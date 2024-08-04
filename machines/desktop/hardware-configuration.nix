@@ -33,10 +33,10 @@
     label = "HDD";
     fsType = "ext4";
     options = [
-      "users" # Allows any user to mount and unmount
-      "nofail" # Prevent system from failing if this drive doesn't mount
-      "x-gvfs-show" # Make disk visible in file explorer
-      "rw" # Mount as read-write
+      "users" # Allow any user to mount and to unmount the filesystem
+      "nofail" # Do not report errors for this device if it does not exist
+      "x-gvfs-show" # Make mounted filesystem visible in file explorer
+      "rw" # Mount the filesystem read-write.
     ];
   };
 
@@ -45,10 +45,10 @@
     label = "SSD";
     fsType = "ext4";
     options = [
-      "users" # Allows any user to mount and unmount
-      "nofail" # Prevent system from failing if this drive doesn't mount
-      "x-gvfs-show" # Make disk visible in file explorer
-      "rw" # Mount as read-write
+      "users" # Allow any user to mount and to unmount the filesystem
+      "nofail" # Do not report errors for this device if it does not exist
+      "x-gvfs-show" # Make mounted filesystem visible in file explorer
+      "rw" # Mount the filesystem read-write.
     ];
   };
 
