@@ -57,6 +57,7 @@ in {
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
     gnumake
+    gparted
     grc
     impression
     kitty
