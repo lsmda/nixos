@@ -41,9 +41,25 @@ in
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
+
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    fzf
+    vimPlugins.fzfWrapper
+    vimPlugins.telescope-fzf-native-nvim
+    vimPlugins.nvim-fzf
+  ];
+
+
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   environment.systemPackages = with pkgs; [
+    fzf
+    vimPlugins.fzfWrapper
+    vimPlugins.telescope-fzf-native-nvim
+    vimPlugins.nvim-fzf
+
     alsa-utils
     bison
     btop
@@ -57,16 +73,19 @@ in
     })
     docker
     fzf
+    gcc
     gnome.gnome-terminal
     gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
     grc
+    kitty
     libsecret
     mpv
     neofetch
     nodejs
+    patchelf
     pkg-config
     protonvpn-gui
     qbittorrent
@@ -78,12 +97,6 @@ in
     wget
     xclip
     zip
-
-    juno-theme
-    zuki-themes
-    yaru-theme
-    yaru-remix-theme
-    gruvbox-dark-gtk
   ];
 
   home-manager.users.user = {
@@ -92,32 +105,51 @@ in
     home.username = "user";
     home.homeDirectory = "/home/user";
 
+  programs.fzf.enable = true;
+
     programs.fish.enable = true;
+
     programs.fish.interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';
 
+    programs.fish.shellInitLast = ''
+      set -gx PATH /home/user/.nix-profile/bin $PATH
+    '';
+
     programs.fish.functions = {
-      deleteGenerationsRange = ''
-        function deleteGenerationsRange --description 'Delete a range of NixOS generations'
-          for i in (seq $argv[1] $argv[2])
-            sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+      deleteGenerationsRange = {
+        body = ''
+          function deleteGenerationsRange --description 'Delete a range of NixOS generations'
+            for i in (seq (math $argv[1]) (math $argv[2]))
+              sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+            end
           end
-        end
-      '';
-      listGenerations = ''
-        function listGenerations --description 'List NixOS generations'
-          sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-        end
-      '';
+        '';
+      };
+      listGenerations = {
+        body = ''
+          function listGenerations --description 'List NixOS generations'
+            sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+          end
+        '';
+      };
+      make = {
+        body = ''
+          function make --description 'Run make in bash'
+            bash -c "make $argv"
+          end
+        '';
+      };
     };
 
     programs.neovim.enable = true;
-    programs.neovim.extraLuaConfig = ''
-      ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
-      ${builtins.readFile ./nvim/lua/lsmda/core/keymaps.lua} 
-    '';
-
+    programs.neovim.plugins = with pkgs; [
+      vimPlugins.fzfWrapper
+      vimPlugins.telescope-fzf-native-nvim
+      vimPlugins.nvim-fzf
+    ];
+    
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
