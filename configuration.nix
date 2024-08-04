@@ -6,6 +6,15 @@
 }: let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
   tmux-config-path = "/home/user/dotfiles/.config/tmux/tmux.conf";
+  nfs-mount-options = [
+    "fsc" #  Enable the cache of (read-only) data pages to the local disk
+    "noauto" # Disable filesystem auto-mount on boot
+    "nofail" # Do not report errors for this device if it does not exist
+    "rw" # Mount filesystem as read-write
+    "x-gvfs-show" # Show mounted fileSystems on file explorer
+    "x-systemd.automount" # Enable on-demand mounting
+    "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
+  ];
 in {
   imports = [
     (import "${home-manager}/nixos")
@@ -16,24 +25,14 @@ in {
   # Network devices
   fileSystems."/mnt/nfs/files" = {
     device = "10.0.0.5:/files";
-    fsType = "nfs4";
-    options = [
-      "noauto"
-      "nofail"
-      "x-gvfs-show"
-      "rw"
-    ];
+    fsType = "nfs";
+    options = nfs-mount-options;
   };
 
   fileSystems."/mnt/nfs/media" = {
     device = "10.0.0.5:/media";
-    fsType = "nfs4";
-    options = [
-      "noauto"
-      "nofail"
-      "x-gvfs-show"
-      "rw"
-    ];
+    fsType = "nfs";
+    options = nfs-mount-options;
   };
 
   users.groups.docker = {};
@@ -78,6 +77,7 @@ in {
       ];
     })
     docker
+    ffmpegthumbnailer
     firefox
     fzf
     gcc
