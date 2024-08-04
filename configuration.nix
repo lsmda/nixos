@@ -9,7 +9,7 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/laptop.nix
+    ./machines/desktop.nix
     ./hardware-configuration.nix
   ];
 
@@ -25,7 +25,7 @@ in {
   networking.hostName = "device";
   networking.networkmanager.enable = true;
 
-  # Allow binaries outside nix store (i.e. neovim lsps managed by mason)
+  # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
   programs.nix-ld.enable = true;
 
   programs.fish.enable = true;
@@ -34,6 +34,7 @@ in {
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
+  services.xserver.desktopManager.xterm.enable = false;
   environment.gnome.excludePackages = [pkgs.gnome-tour];
 
   environment.systemPackages = with pkgs; [
@@ -96,22 +97,17 @@ in {
     programs.kitty.font.name = "JetBrainsMono Nerd Font Mono";
     programs.kitty.font.size = 13;
     programs.kitty.theme = "Everforest Dark Medium";
+    programs.kitty.shellIntegration.mode = "no-cursor";
     programs.kitty.settings = {
       cursor_shape = "block";
       adjust_line_height = "110%";
       adjust_column_width = "110%";
+      confirm_os_window_close = 0;
     };
-
-    programs.tmux.enable = true;
-    programs.tmux.extraConfig =
-      if builtins.pathExists tmux-config-path
-      then builtins.readFile tmux-config-path
-      else "";
 
     programs.fish.enable = true;
     programs.fish.shellInit = ''
       set fish_greeting # Disable greeting
-      set fish_cursor_default block
 
       # Check if TMUX is unset or empty and if the session is interactive
       if test -z "$TMUX" && status is-interactive
@@ -126,6 +122,7 @@ in {
           end
       end
     '';
+
     programs.fish.functions = {
       deleteGenerationsRange.body = ''
         for i in (seq (math $argv[1]) (math $argv[2]))
@@ -134,6 +131,12 @@ in {
       '';
       listGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
+
+    programs.tmux.enable = true;
+    programs.tmux.extraConfig =
+      if builtins.pathExists tmux-config-path
+      then builtins.readFile tmux-config-path
+      else "";
 
     programs.git-credential-oauth.enable = true;
 
