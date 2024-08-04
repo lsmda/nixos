@@ -69,6 +69,7 @@ in {
     kitty
     lazygit
     libsecret
+    libreoffice-qt6-fresh
     lshw
     mpv
     neofetch
@@ -81,6 +82,8 @@ in {
     pika-backup
     pkg-config
     protonvpn-gui
+    python3
+    python312Packages.pip
     qbittorrent
     ripgrep
     spotify
