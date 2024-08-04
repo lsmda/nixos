@@ -84,24 +84,23 @@ in
     home.username = "user";
     home.homeDirectory = "/home/user";
 
+    programs.kitty.enable = true;
+    programs.kitty.font.name = "JetBrainsMono Nerd Font Mono";
+    programs.kitty.font.size = 13;
+    programs.kitty.theme = "Everforest Dark Medium";
+    programs.kitty.shellIntegration.enableFishIntegration = true;
+
     programs.fish.enable = true;
     programs.fish.interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';
-    programs.fish.shellInitLast = ''
-      set -gx PATH /home/user/.nix-profile/bin $PATH
-    '';
     programs.fish.functions = {
-      deleteGenerationsRange = {
-        body = ''
-          for i in (seq (math $argv[1]) (math $argv[2]))
-            sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-          end
-        '';
-      };
-      listGenerations = {
-        body = ''sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'';
-      };
+      deleteGenerationsRange.body = ''
+        for i in (seq (math $argv[1]) (math $argv[2]))
+          sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+        end
+      '';
+      listGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
 
     programs.git.enable = true;
