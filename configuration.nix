@@ -25,6 +25,9 @@ in {
   networking.hostName = "device";
   networking.networkmanager.enable = true;
 
+  # Allow binaries outside nix store (i.e. neovim lsps managed by mason)
+  programs.nix-ld.enable = true;
+
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -48,6 +51,7 @@ in {
       ];
     })
     docker
+    firefox
     fzf
     gcc
     gnome.gnome-tweaks
@@ -182,11 +186,13 @@ in {
     LC_TIME = "en_US.UTF-8";
   };
 
-  hardware.pulseaudio.enable = false;
-
   security.rtkit.enable = true;
 
+  # Store audio state on reboot
   sound.enable = true;
+
+  hardware.pulseaudio.enable = false;
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
