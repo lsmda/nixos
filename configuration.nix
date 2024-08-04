@@ -24,6 +24,9 @@ in {
   networking.hostName = "device";
   networking.networkmanager.enable = true;
 
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemuPackage = pkgs.qemu_kvm;
+
   # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
   programs.nix-ld.enable = true;
 
@@ -111,6 +114,8 @@ in {
     tmux
     unrar
     unzip
+    virt-manager
+    virt-viewer
     vscode-fhs
     wget
     wpsoffice
@@ -153,10 +158,6 @@ in {
       fonts = ["JetBrainsMono"];
     })
   ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -205,6 +206,10 @@ in {
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
