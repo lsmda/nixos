@@ -40,7 +40,6 @@ in
     vimPlugins.nvim-fzf
   ];
 
-
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   environment.systemPackages = with pkgs; [
@@ -71,11 +70,13 @@ in
     grc
     kitty
     libsecret
+    lshw
     mpv
     neofetch
     nodejs
     notes
     patchelf
+    pciutils
     pkg-config
     protonvpn-gui
     qbittorrent
@@ -95,7 +96,7 @@ in
     home.username = "user";
     home.homeDirectory = "/home/user";
 
-  programs.fzf.enable = true;
+    programs.fzf.enable = true;
 
     programs.fish.enable = true;
 
@@ -167,7 +168,6 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
-  
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
