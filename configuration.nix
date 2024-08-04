@@ -10,8 +10,6 @@
     "noauto" # Disable filesystem auto-mount on boot
     "rw" # Mount filesystem as read-write
     "x-gvfs-show" # Show mounted filesystems on file explorer
-    "x-systemd.after=graphical.target"
-    "x-systemd.requires=graphical.target"
     "x-systemd.automount" # enable on-demand mounting
     "x-systemd.mount-timeout=1"
     "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
@@ -68,7 +66,6 @@ in {
     alsa-utils
     bison
     btop
-    cartridges
     (chromium.override {
       enableWideVine = true;
       commandLineArgs = [
@@ -82,7 +79,7 @@ in {
     firefox
     fzf
     gcc
-    git-credential-oauth
+    git-credential-manager
     gnome.eog
     gnome.gnome-tweaks
     gnome.nautilus
@@ -116,7 +113,6 @@ in {
     nodePackages.pnpm
     obsidian
     ollama
-    patchelf
     pciutils
     pika-backup
     pkg-config
@@ -133,7 +129,6 @@ in {
     wget
     wpsoffice
     xclip
-    zed-editor
     zip
   ];
 
@@ -149,11 +144,8 @@ in {
         userName = "lsmda";
         userEmail = "contact@lsmda.pm";
         extraConfig = {
-          credential.helper = [
-            "store"
-            "cache --timeout 86400" # 24 Hours
-            "oauth"
-          ];
+          credential.credentialStore = "secretservice";
+          credential.helper = ["manager"];
         };
       };
     };
