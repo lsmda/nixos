@@ -4,7 +4,7 @@
   console.keyMap = "us";
   services.xserver.xkb.layout = "us";
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   services.xserver.config = ''
     Section "Device"
