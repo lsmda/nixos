@@ -82,7 +82,6 @@ in {
     fzf
     gcc
     git-credential-oauth
-    git-credential-manager
     gnome.eog
     gnome.gnome-tweaks
     gnome.nautilus
@@ -193,14 +192,16 @@ in {
         };
       };
 
-      git-credential-oauth.enable = true;
-
       git = {
         enable = true;
         userName = "lsmda";
         userEmail = "lsmda@apollo.pm";
         extraConfig = {
           credential.credentialStore = "secretservice";
+          credential.helper = [
+            "cache --timeout 86400" # 24 Hours
+            "oauth"
+          ];
         };
       };
     };
