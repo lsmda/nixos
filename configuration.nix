@@ -75,6 +75,7 @@ in {
       ];
     })
     docker
+    eyedropper
     ffmpegthumbnailer
     firefox
     fzf
@@ -122,6 +123,7 @@ in {
     ripgrep
     spotify
     stow
+    textpieces
     tmux
     unzip
     vscode-fhs
