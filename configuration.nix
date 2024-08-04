@@ -18,6 +18,9 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker"];
   };
 
+  networking.hostName = "machine";
+  networking.networkmanager.enable = true;
+
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -28,6 +31,7 @@ in
 
   environment.systemPackages = with pkgs; [
     wget
+    mpv
     nodejs
     xclip
     bison
@@ -41,7 +45,6 @@ in
     grc
     neofetch
     vscode
-
     docker
     spotify
     qbittorrent
@@ -69,19 +72,43 @@ in
     home.homeDirectory = "/home/user";
 
     programs.fish.enable = true;
+    programs.fish.interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+    programs.fish.functions = {
+      deleteGenerationsRange = ''
+        function deleteGenerationsRange --description 'Delete a range of NixOS generations'
+          for i in (seq $argv[1] $argv[2])
+            sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+          end
+        end
+      '';
+      listGenerations = ''
+        function listGenerations --description 'List NixOS generations'
+          sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+        end
+      '';
+    };
+
     programs.neovim.enable = true;
     programs.neovim.extraLuaConfig = ''
     ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
     ${builtins.readFile ./nvim/lua/lsmda/core/keymaps.lua} 
     '';
 
-    programs.gnome-shell.enable = true;
-    programs.home-manager.enable = true;
-
     programs.git.enable = true;
+    programs.git.package = pkgs.gitFull;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
-    programs.git.extraConfig.credential.helper = "oauth";
+
+    programs.git-credential-oauth.enable = true;
+
+    programs.gnome-shell.enable = true;
+    programs.home-manager.enable = true;
+    programs.gh.gitCredentialHelper.hosts = [
+      "https://github.com"
+      "https://gitlab.com"
+    ];
 
     gtk.enable = true;
     gtk.iconTheme.name = "Tela-grey-dark";
@@ -114,9 +141,6 @@ in
     gnome.gnome-settings-daemon 
   ];
 
-  networking.hostName = "machine";
-  networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/Lisbon";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -146,25 +170,6 @@ in
   security.rtkit.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-
-  # GNOME 46: triple-buffering-v4-46
-  nixpkgs.overlays = [
-    (final: prev: {
-      gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
-        mutter = gnomePrev.mutter.overrideAttrs (old: {
-          src = pkgs.fetchFromGitLab  {
-            domain = "gitlab.gnome.org";
-            owner = "vanvugt";
-            repo = "mutter";
-            rev = "triple-buffering-v4-46";
-            hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
-          };
-        });
-      });
-    })
-  ];
-
-  nixpkgs.config.allowAliases = false;
 
   system.stateVersion = "24.05";
 }
