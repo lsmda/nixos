@@ -6,16 +6,6 @@ let
   one_hour = one_minute * 60;
   one_day = one_hour * 24;
   one_month = one_day * 30;
-  keyboard = {
-    us = {
-      keyMap = "us";
-      layout = "us";
-    };
-    pt = {
-      keyMap = "pt-latin1";
-      layout = "pt";
-    };
-  };
 in
 {
   imports = [
@@ -41,8 +31,6 @@ in
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
-
-
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -122,18 +110,14 @@ in
     programs.fish.functions = {
       deleteGenerationsRange = {
         body = ''
-          function deleteGenerationsRange --description 'Delete a range of NixOS generations'
-            for i in (seq (math $argv[1]) (math $argv[2]))
-              sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-            end
-          end
+	    for i in (seq (math $argv[1]) (math $argv[2]))
+	      sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+	    end
         '';
       };
       listGenerations = {
         body = ''
-          function listGenerations --description 'List NixOS generations'
             sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-          end
         '';
       };
       make = {
@@ -210,9 +194,7 @@ in
   };
 
   services.printing.enable = true;
-  services.xserver.xkb.layout = keyboard.us.layout;
   services.xserver.xkb.variant = "";
-  console.keyMap = keyboard.us.keyMap;
 
   hardware.pulseaudio.enable = false;
   
