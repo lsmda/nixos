@@ -95,6 +95,12 @@ in {
     programs.kitty.theme = "Everforest Dark Medium";
     programs.kitty.shellIntegration.enableFishIntegration = true;
 
+    programs.tmux.enable = true;
+    programs.tmux.extraConfig =
+      if builtins.pathExists /home/user/dotfiles/tmux/tmux.conf
+      then builtins.readFile /home/user/dotfiles/tmux/tmux.conf
+      else "";
+
     programs.fish.enable = true;
     programs.fish.shellInit = ''
       set fish_greeting # Disable greeting
