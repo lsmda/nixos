@@ -9,8 +9,8 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/desktop.nix
-    ./hardware-configuration.nix
+    ./machines/desktop/configuration.nix
+    ./machines/desktop/hardware-configuration.nix
   ];
 
   users.groups.docker = {};
