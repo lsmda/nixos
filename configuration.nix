@@ -61,6 +61,7 @@ in
     gnomeExtensions.just-perfection
     grc
     kitty
+    lazygit
     libsecret
     lshw
     mpv
@@ -98,15 +99,13 @@ in
     programs.fish.functions = {
       deleteGenerationsRange = {
         body = ''
-	    for i in (seq (math $argv[1]) (math $argv[2]))
-	      sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-	    end
+          for i in (seq (math $argv[1]) (math $argv[2]))
+            sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+          end
         '';
       };
       listGenerations = {
-        body = ''
-            sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-        '';
+        body = ''sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'';
       };
       make = {
         body = ''bash -c "make $argv"'';
