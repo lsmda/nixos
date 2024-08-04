@@ -5,7 +5,6 @@
   ...
 }: let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-  tmux-config-path = "/home/user/dotfiles/.config/tmux/tmux.conf";
   nfs-mount-options = [
     "fsc" #  Enable the cache of (read-only) data pages to the local disk
     "noauto" # Disable filesystem auto-mount on boot
@@ -19,8 +18,8 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/desktop/configuration.nix
-    ./machines/desktop/hardware-configuration.nix
+    ./machines/laptop/configuration.nix
+    ./machines/laptop/hardware-configuration.nix
   ];
 
   # Network devices
@@ -125,6 +124,7 @@ in {
     qbittorrent
     ripgrep
     spotify
+    stow
     tmux
     unzip
     vscode-fhs
@@ -155,84 +155,6 @@ in {
           cursor_blink_interval = -1;
           cursor_shape = "block";
           cursor_stop_blinking_after = 0;
-        };
-      };
-
-      tmux = {
-        enable = true;
-        extraConfig =
-          if builtins.pathExists tmux-config-path
-          then builtins.readFile tmux-config-path
-          else "";
-      };
-
-      fish = {
-        enable = true;
-        shellInit = ''
-          set fish_greeting # Disable greeting
-
-          # Check if TMUX is unset or empty and if the session is interactive
-          if test -z "$TMUX" && status is-interactive
-            # Check if any Tmux sessions exist
-            set tmux_sessions (tmux list-sessions)
-            if test -z "$tmux_sessions"
-              # If no sessions exist, start a new Tmux session
-              tmux new-session
-            else
-              # If sessions exist, attach to the first one
-              tmux attach-session -t (echo $tmux_sessions[1] | cut -d: -f1)
-            end
-          end
-        '';
-
-        functions = {
-          removeDockerContainer.body = ''
-            set -l regex $argv[1]
-
-            # Get all container names
-            set -l containers (docker ps -a --format "{{.Names}}")
-
-            # Filter containers based on the regex
-            for container in $containers
-              if echo $container | grep -qE $regex
-                docker rm -v --force $container
-                echo "removed"
-                echo -e "\n"
-              end
-            end
-          '';
-          removeDockerVolume.body = ''
-            set -l regex $argv[1]
-
-            # Get all volume names
-            set -l volumes (docker volume ls -q)
-
-            # Filter volumes based on the regex
-            for volume in $volumes
-              if echo $volume | grep -qE $regex
-                echo "Found Volume: $volume"
-                docker volume rm $volume
-                echo -e "\n"
-              end
-            end
-          '';
-          removeNixGeneration.body = ''
-            set -l start $argv[1]
-            set -l end $argv[2]
-
-            if test (count $argv) -eq 1
-              # Only one argument provided, delete that single generation
-              sudo nix-env --delete-generations $start --profile /nix/var/nix/profiles/system
-            else if test (count $argv) -eq 2
-              # Two arguments provided, delete the range of generations
-              for i in (seq (math $start) (math $end))
-                sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-              end
-            else
-              echo "Usage: removeNixGeneration <start> [end]"
-            end
-          '';
-          listNixGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         };
       };
 
