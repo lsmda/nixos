@@ -5,34 +5,12 @@
   ...
 }: let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-  nfs-mount-options = [
-    "fsc" #  Enable the cache of (read-only) data pages to the local disk
-    "noauto" # Disable filesystem auto-mount on boot
-    "rw" # Mount filesystem as read-write
-    "x-gvfs-show" # Show mounted filesystems on file explorer
-    "x-systemd.automount" # enable on-demand mounting
-    "x-systemd.mount-timeout=1"
-    "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
-  ];
 in {
   imports = [
     (import "${home-manager}/nixos")
     ./machines/desktop/configuration.nix
     ./machines/desktop/hardware-configuration.nix
   ];
-
-  # Network devices
-  fileSystems."/mnt/nfs/files" = {
-    device = "10.0.0.5:/files";
-    fsType = "nfs";
-    options = nfs-mount-options;
-  };
-
-  fileSystems."/mnt/nfs/media" = {
-    device = "10.0.0.5:/media";
-    fsType = "nfs";
-    options = nfs-mount-options;
-  };
 
   users.groups.docker = {};
 
@@ -120,11 +98,13 @@ in {
     python3
     python312Packages.pip
     qbittorrent
+    rar
     ripgrep
     spotify
     stow
     textpieces
     tmux
+    unrar
     unzip
     vscode-fhs
     wget
