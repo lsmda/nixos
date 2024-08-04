@@ -8,10 +8,11 @@
   nfs-mount-options = [
     "fsc" #  Enable the cache of (read-only) data pages to the local disk
     "noauto" # Disable filesystem auto-mount on boot
-    "nofail" # Do not report errors for this device if it does not exist
     "rw" # Mount filesystem as read-write
     "x-gvfs-show" # Show mounted filesystems on file explorer
-    "x-systemd.automount" # Enable on-demand mounting
+    "x-systemd.after=graphical.target"
+    "x-systemd.requires=graphical.target"
+    "x-systemd.automount" # enable on-demand mounting
     "x-systemd.mount-timeout=1"
     "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
   ];
