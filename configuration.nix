@@ -93,7 +93,6 @@ in {
     impression
     kitty
     lazygit
-    libsecret
     lshw
     (
       mpv.override {
