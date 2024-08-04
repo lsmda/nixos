@@ -102,6 +102,7 @@ in {
     ripgrep
     spotify
     stow
+    sqlite
     textpieces
     tmux
     unrar
