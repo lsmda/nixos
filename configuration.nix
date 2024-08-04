@@ -40,6 +40,7 @@
     alejandra
     bison
     btop
+    cargo
     (chromium.override {
       commandLineArgs = [
         "--enable-features=VaapiVideoDecodeLinuxGL"
@@ -95,6 +96,7 @@
     qbittorrent
     rar
     ripgrep
+    rustc
     spotify
     stow
     sqlite
@@ -102,7 +104,7 @@
     tmux
     unrar
     unzip
-    # vscode-fhs
+    vscode-fhs
     wget
     wpsoffice
     xclip
