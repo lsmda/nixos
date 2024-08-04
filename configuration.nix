@@ -19,8 +19,8 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/desktop/configuration.nix
-    ./machines/desktop/hardware-configuration.nix
+    ./machines/laptop/configuration.nix
+    ./machines/laptop/hardware-configuration.nix
   ];
 
   # Network devices
@@ -86,6 +86,7 @@ in {
     gnome.eog
     gnome.gnome-tweaks
     gnome.nautilus
+    gnomeExtensions.alttab-scroll-workaround
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
     gnumake
