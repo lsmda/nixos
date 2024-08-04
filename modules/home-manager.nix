@@ -29,6 +29,10 @@ in {
         name = "Tela-grey-dark";
         package = pkgs.tela-icon-theme;
       };
+      cursorTheme = {
+        name = "BreezeX-RosePineDawn-Linux";
+        package = pkgs.rose-pine-cursor;
+      };
     };
 
     dconf = let
@@ -71,6 +75,7 @@ in {
         "org/gnome/desktop/background" = {
           picture-uri = background;
           picture-uri-dark = background;
+          picture-options = "spanned";
         };
         "org/gnome/desktop/screensaver" = {
           picture-uri = background;
