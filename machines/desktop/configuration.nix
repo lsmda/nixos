@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  libs,
-  ...
-}: {
+{config, ...}: {
   console.keyMap = "us";
   services.xserver.xkb.layout = "us";
 
