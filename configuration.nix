@@ -184,12 +184,20 @@ in {
     LC_TIME = "en_US.UTF-8";
   };
 
-  security.rtkit.enable = true;
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
 
   # Store audio state on reboot
   sound.enable = true;
 
   hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
 
   services.pipewire = {
     enable = true;
