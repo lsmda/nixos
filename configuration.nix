@@ -142,22 +142,6 @@ in {
     programs = {
       home-manager.enable = true;
 
-      kitty = {
-        enable = true;
-        font.name = "JetBrainsMono Nerd Font Mono";
-        font.size = 13;
-        theme = "Everforest Dark Medium";
-        shellIntegration.mode = "no-cursor";
-        settings = {
-          adjust_line_height = "110%";
-          adjust_column_width = "110%";
-          confirm_os_window_close = 0;
-          cursor_blink_interval = -1;
-          cursor_shape = "block";
-          cursor_stop_blinking_after = 0;
-        };
-      };
-
       git = {
         enable = true;
         userName = "lsmda";
