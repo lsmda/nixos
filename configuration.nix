@@ -10,7 +10,7 @@ in
 {
   imports = [
     (import "${home-manager}/nixos")
-    ./hosts/desktop.nix
+    ./machines/desktop.nix
     ./hardware-configuration.nix
   ];
 
