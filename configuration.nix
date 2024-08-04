@@ -2,11 +2,20 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-  ONE_SECOND = 1;
-  ONE_MINUTE = ONE_SECOND * 60;
-  ONE_HOUR = ONE_MINUTE * 60;
-  ONE_DAY = ONE_HOUR * 24;
-  ONE_MONTH = ONE_DAY * 30;
+  one_minute = 60;
+  one_hour = one_minute * 60;
+  one_day = one_hour * 24;
+  one_month = one_day * 30;
+  keyboard = {
+    us = {
+      keyMap = "en-us";
+      layout = "us";
+    };
+    pt = {
+      keyMap = "pt-latin1";
+      layout = "pt";
+    };
+  };
 in
 {
   imports = [
@@ -26,6 +35,7 @@ in
   networking.hostName = "device";
   networking.networkmanager.enable = true;
 
+  programs.fish.enable = true;
   programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
@@ -153,21 +163,21 @@ in
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "pt_PT.UTF-8";
-    LC_IDENTIFICATION = "pt_PT.UTF-8";
-    LC_MEASUREMENT = "pt_PT.UTF-8";
-    LC_MONETARY = "pt_PT.UTF-8";
-    LC_NAME = "pt_PT.UTF-8";
-    LC_NUMERIC = "pt_PT.UTF-8";
-    LC_PAPER = "pt_PT.UTF-8";
-    LC_TELEPHONE = "pt_PT.UTF-8";
-    LC_TIME = "pt_PT.UTF-8";
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   services.printing.enable = true;
-  services.xserver.xkb.layout = "pt";
+  services.xserver.xkb.layout = keyboard.pt.layout;
   services.xserver.xkb.variant = "";
-  console.keyMap = "pt-latin1";
+  console.keyMap = keyboard.pt.keyMap;
 
   hardware.pulseaudio.enable = false;
   
