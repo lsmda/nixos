@@ -149,7 +149,6 @@ in {
         userName = "lsmda";
         userEmail = "contact@lsmda.pm";
         extraConfig = {
-          credential.credentialStore = "secretservice";
           credential.helper = [
             "store"
             "cache --timeout 86400" # 24 Hours
