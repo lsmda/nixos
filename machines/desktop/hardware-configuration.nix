@@ -35,6 +35,7 @@
       "users" # Allows any user to mount and unmount
       "nofail" # Prevent system from failing if this drive doesn't mount
       "x-gvfs-show" # Make disk visible in file explorer
+      "rw" # Add read-write access
     ];
   };
 
@@ -45,6 +46,7 @@
       "users" # Allows any user to mount and unmount
       "nofail" # Prevent system from failing if this drive doesn't mount
       "x-gvfs-show" # Make disk visible in file explorer
+      "rw" # Add read-write access
     ];
   };
 
