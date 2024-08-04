@@ -13,6 +13,7 @@
     "rw" # Mount filesystem as read-write
     "x-gvfs-show" # Show mounted filesystems on file explorer
     "x-systemd.automount" # Enable on-demand mounting
+    "x-systemd.mount-timeout=1"
     "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
   ];
 in {
@@ -199,6 +200,7 @@ in {
         extraConfig = {
           credential.credentialStore = "secretservice";
           credential.helper = [
+            "store"
             "cache --timeout 86400" # 24 Hours
             "oauth"
           ];
