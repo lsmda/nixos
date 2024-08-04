@@ -25,7 +25,7 @@ in {
   networking.networkmanager.enable = true;
 
   virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemuPackage = pkgs.qemu_kvm;
+  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
 
   # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
   programs.nix-ld.enable = true;
@@ -107,6 +107,7 @@ in {
     qbittorrent
     rar
     ripgrep
+    spicetify-cli
     spotify
     stow
     sqlite
