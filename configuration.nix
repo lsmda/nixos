@@ -1,9 +1,11 @@
-{ config, pkgs, lib, ... }:
-
-let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+in {
   imports = [
     (import "${home-manager}/nixos")
     ./machines/desktop.nix
@@ -16,7 +18,7 @@ in
     isNormalUser = true;
     description = "user";
     home = "/home/user";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
   networking.hostName = "device";
@@ -28,9 +30,12 @@ in
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
-  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
+  programs.nix-ld.enable = true;
+
+  environment.gnome.excludePackages = [pkgs.gnome-tour];
 
   environment.systemPackages = with pkgs; [
+    alejandra
     alsa-utils
     bison
     btop
@@ -122,7 +127,7 @@ in
 
   fonts.packages = with pkgs; [
     (pkgs.nerdfonts.override {
-      fonts = [ "JetBrainsMono" ];
+      fonts = ["JetBrainsMono"];
     })
   ];
 
@@ -137,7 +142,7 @@ in
 
   # Required to run systray icons
   services.udev.packages = with pkgs; [
-    gnome.gnome-settings-daemon 
+    gnome.gnome-settings-daemon
   ];
 
   time.timeZone = "Europe/Lisbon";
@@ -159,7 +164,7 @@ in
   services.xserver.xkb.variant = "";
 
   hardware.pulseaudio.enable = false;
-  
+
   security.rtkit.enable = true;
 
   sound.enable = true;
@@ -175,7 +180,7 @@ in
     (final: prev: {
       gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
         mutter = gnomePrev.mutter.overrideAttrs (old: {
-          src = pkgs.fetchFromGitLab  {
+          src = pkgs.fetchFromGitLab {
             domain = "gitlab.gnome.org";
             owner = "vanvugt";
             repo = "mutter";
