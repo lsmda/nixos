@@ -1,1 +1,1 @@
-# ❄️ NixOS Configuration Files
+# ❄️ NixOS Configuration
