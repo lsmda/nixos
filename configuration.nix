@@ -19,8 +19,8 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/laptop/configuration.nix
-    ./machines/laptop/hardware-configuration.nix
+    ./machines/desktop/configuration.nix
+    ./machines/desktop/hardware-configuration.nix
   ];
 
   # Network devices
@@ -96,7 +96,6 @@ in {
     kitty
     lazygit
     libsecret
-    libreoffice-qt6-fresh
     lshw
     (
       mpv.override {
@@ -130,7 +129,9 @@ in {
     unzip
     vscode-fhs
     wget
+    wpsoffice
     xclip
+    zed-editor
     zip
   ];
 
