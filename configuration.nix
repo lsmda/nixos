@@ -16,7 +16,6 @@ in {
   # Network devices
   fileSystems."/mnt/nfs/files" = {
     device = "10.0.0.5:/files";
-    label = "Files";
     fsType = "nfs";
     options = [
       "users" # Allow any user to mount and to unmount the filesystem
@@ -28,7 +27,6 @@ in {
 
   fileSystems."/mnt/nfs/media" = {
     device = "10.0.0.5:/media";
-    label = "Media";
     fsType = "nfs";
     options = [
       "users" # Allow any user to mount and to unmount the filesystem
@@ -80,6 +78,7 @@ in {
       ];
     })
     docker
+    feh
     firefox
     fzf
     gcc
@@ -96,7 +95,16 @@ in {
     libsecret
     libreoffice-qt6-fresh
     lshw
-    mpv
+    (
+      mpv.override {
+        scripts = [
+          mpvScripts.evafast
+          mpvScripts.memo
+          mpvScripts.mpris
+          mpvScripts.thumbfast
+        ];
+      }
+    )
     neofetch
     nfs-utils
     nodejs
