@@ -5,6 +5,7 @@
   ...
 }: let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+  tmux-config-path = "/home/user/dotfiles/.config/tmux/tmux.conf";
 in {
   imports = [
     (import "${home-manager}/nixos")
@@ -91,12 +92,11 @@ in {
     programs.kitty.font.name = "JetBrainsMono Nerd Font Mono";
     programs.kitty.font.size = 13;
     programs.kitty.theme = "Everforest Dark Medium";
-    programs.kitty.shellIntegration.enableFishIntegration = true;
 
     programs.tmux.enable = true;
     programs.tmux.extraConfig =
-      if builtins.pathExists /home/user/dotfiles/.config/tmux/tmux.conf
-      then builtins.readFile /home/user/dotfiles/.config/tmux/tmux.conf
+      if builtins.pathExists tmux-config-path
+      then builtins.readFile tmux-config-path
       else "";
 
     programs.fish.enable = true;
@@ -125,10 +125,14 @@ in {
       listGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
     };
 
+    programs.git-credential-oauth.enable = true;
+
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
-    programs.git-credential-oauth.enable = true;
+    programs.git.extraConfig.credential.helper = [
+      "libsecret"
+    ];
 
     gtk.enable = true;
     gtk.iconTheme.name = "Tela-grey-dark";
@@ -156,6 +160,7 @@ in {
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.core-utilities.enable = false;
+  services.printing.enable = true;
 
   # Required to run systray icons
   services.udev.packages = with pkgs; [
@@ -176,9 +181,6 @@ in {
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
   };
-
-  services.printing.enable = true;
-  services.xserver.xkb.variant = "";
 
   hardware.pulseaudio.enable = false;
 
