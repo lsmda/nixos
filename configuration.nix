@@ -20,6 +20,7 @@ in
 {
   imports = [
     (import "${home-manager}/nixos")
+    ./hosts/nvidia.nix
     ./hardware-configuration.nix
   ];
 
@@ -92,7 +93,6 @@ in
     qbittorrent
     ripgrep
     spotify
-    standardnotes
     tmux
     unzip
     vscode
@@ -137,11 +137,7 @@ in
         '';
       };
       make = {
-        body = ''
-          function make --description 'Run make in bash'
-            bash -c "make $argv"
-          end
-        '';
+        body = ''bash -c "make $argv"'';
       };
     };
 
