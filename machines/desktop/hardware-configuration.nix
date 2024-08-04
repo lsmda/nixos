@@ -30,23 +30,25 @@
 
   fileSystems."/mnt/hdd" = {
     device = "/dev/sdb1";
+    label = "HDD";
     fsType = "ext4";
     options = [
       "users" # Allows any user to mount and unmount
       "nofail" # Prevent system from failing if this drive doesn't mount
       "x-gvfs-show" # Make disk visible in file explorer
-      "rw" # Add read-write access
+      "rw" # Mount as read-write
     ];
   };
 
   fileSystems."/mnt/ssd" = {
     device = "/dev/sdc1";
+    label = "SSD";
     fsType = "ext4";
     options = [
       "users" # Allows any user to mount and unmount
       "nofail" # Prevent system from failing if this drive doesn't mount
       "x-gvfs-show" # Make disk visible in file explorer
-      "rw" # Add read-write access
+      "rw" # Mount as read-write
     ];
   };
 

@@ -13,6 +13,31 @@ in {
     ./machines/desktop/hardware-configuration.nix
   ];
 
+  # Network devices
+  fileSystems."/mnt/nfs/files" = {
+    device = "10.0.0.5:/files";
+    label = "Files";
+    fsType = "nfs";
+    options = [
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "x-gvfs-show" # Make disk visible in file explorer
+      "rw" # Mount as read-write
+    ];
+  };
+
+  fileSystems."/mnt/nfs/media" = {
+    device = "10.0.0.5:/media";
+    label = "Media";
+    fsType = "nfs";
+    options = [
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "x-gvfs-show" # Make disk visible in file explorer
+      "rw" # Mount as read-write
+    ];
+  };
+
   users.groups.docker = {};
 
   users.users.user = {
@@ -73,6 +98,7 @@ in {
     lshw
     mpv
     neofetch
+    nfs-utils
     nodejs
     nodePackages.prettier
     nodePackages.pnpm
