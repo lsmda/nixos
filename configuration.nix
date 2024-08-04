@@ -32,7 +32,6 @@ in
 
   environment.systemPackages = with pkgs; [
     alsa-utils
-    apostrophe
     bison
     btop
     cartridges
