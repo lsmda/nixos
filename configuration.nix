@@ -32,6 +32,7 @@ in
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
+  # TODO
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
     fzf
@@ -43,11 +44,6 @@ in
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   environment.systemPackages = with pkgs; [
-    fzf
-    vimPlugins.fzfWrapper
-    vimPlugins.telescope-fzf-native-nvim
-    vimPlugins.nvim-fzf
-
     alsa-utils
     bison
     btop
@@ -96,18 +92,13 @@ in
     home.username = "user";
     home.homeDirectory = "/home/user";
 
-    programs.fzf.enable = true;
-
     programs.fish.enable = true;
-
     programs.fish.interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';
-
     programs.fish.shellInitLast = ''
       set -gx PATH /home/user/.nix-profile/bin $PATH
     '';
-
     programs.fish.functions = {
       deleteGenerationsRange = {
         body = ''
@@ -127,6 +118,8 @@ in
     };
 
     programs.neovim.enable = true;
+
+    # TODO
     programs.neovim.plugins = with pkgs; [
       vimPlugins.fzfWrapper
       vimPlugins.telescope-fzf-native-nvim
@@ -168,6 +161,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
