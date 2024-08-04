@@ -36,7 +36,6 @@ in
   networking.networkmanager.enable = true;
 
   programs.fish.enable = true;
-  programs.fish.enable = true;
   users.defaultUserShell = pkgs.fish;
 
   programs.neovim.enable = true;
@@ -79,6 +78,12 @@ in
     wget
     xclip
     zip
+
+    juno-theme
+    zuki-themes
+    yaru-theme
+    yaru-remix-theme
+    gruvbox-dark-gtk
   ];
 
   home-manager.users.user = {
@@ -121,7 +126,7 @@ in
         commentChar = ";";
       };
       credential = {
-        helper = lib.mkDefault "cache --timeout ${toString ONE_MONTH}";
+        helper = lib.mkDefault "cache --timeout ${toString one_month}";
       };
     };
 
