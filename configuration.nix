@@ -8,7 +8,7 @@ let
   one_month = one_day * 30;
   keyboard = {
     us = {
-      keyMap = "en-us";
+      keyMap = "us";
       layout = "us";
     };
     pt = {
