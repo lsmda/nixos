@@ -24,10 +24,7 @@
   hardware.opengl.enable = true;
   hardware.nvidia.modesetting.enable = true;
   hardware.nvidia.nvidiaSettings = true;
-
-  harware.nvidia = with config.boot.kernelPackages.nvidiaPackages; {
-    package = production;
-  };
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
 
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
   boot.kernelParams = [ "mem_sleep_default=deep" "nvidia-drm.modeset=1" ];
