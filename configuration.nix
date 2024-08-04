@@ -101,7 +101,6 @@ in
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
-
     programs.git-credential-oauth.enable = true;
 
     gtk.enable = true;
@@ -160,6 +159,7 @@ in
   
   security.rtkit.enable = true;
 
+  sound.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
