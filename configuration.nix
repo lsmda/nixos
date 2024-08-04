@@ -73,6 +73,7 @@ in {
     mpv
     neofetch
     nodejs
+    nodePackages.pnpm
     obsidian
     patchelf
     pciutils
@@ -102,10 +103,12 @@ in {
     programs.kitty.theme = "Everforest Dark Medium";
     programs.kitty.shellIntegration.mode = "no-cursor";
     programs.kitty.settings = {
-      cursor_shape = "block";
       adjust_line_height = "110%";
       adjust_column_width = "110%";
       confirm_os_window_close = 0;
+      cursor_blink_interval = -1;
+      cursor_shape = "block";
+      cursor_stop_blinking_after = 0;
     };
 
     programs.fish.enable = true;
