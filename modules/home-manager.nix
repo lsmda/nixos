@@ -83,6 +83,11 @@ in {
         "org/gnome/nautilus/icon-view" = {
           default-zoom-level = "large";
         };
+        "org/gnome/nautilus/preferences" = {
+          recursive-search = "always";
+          show-image-thumbnails = "always";
+          show-directory-item-counts = "always";
+        };
       };
     };
 
