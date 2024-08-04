@@ -24,6 +24,9 @@ in
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
+  programs.neovim.extraLuaConfig = ''
+  ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
+  '';
 
   environment.systemPackages = with pkgs; [
     wget
