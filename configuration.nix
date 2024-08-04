@@ -89,7 +89,7 @@ in {
     spotify
     tmux
     unzip
-    vscode
+    vscode-fhs
     wget
     xclip
     zip
