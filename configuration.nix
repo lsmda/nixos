@@ -19,8 +19,8 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/laptop/configuration.nix
-    ./machines/laptop/hardware-configuration.nix
+    ./machines/desktop/configuration.nix
+    ./machines/desktop/hardware-configuration.nix
   ];
 
   # Network devices
@@ -146,7 +146,7 @@ in {
       git = {
         enable = true;
         userName = "lsmda";
-        userEmail = "lsmda@apollo.pm";
+        userEmail = "contact@lsmda.pm";
         extraConfig = {
           credential.credentialStore = "secretservice";
           credential.helper = [
