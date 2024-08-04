@@ -70,6 +70,7 @@ in {
     gparted
     grc
     impression
+    imwheel
     kitty
     lazygit
     lshw
@@ -97,6 +98,9 @@ in {
     protonvpn-gui
     python3
     python312Packages.pip
+    python312Packages.torch
+    python312Packages.torchvision
+    python312Packages.torchaudio
     qbittorrent
     rar
     ripgrep
