@@ -90,6 +90,7 @@ in {
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
     gnumake
+    gocryptfs
     gparted
     grc
     impression
