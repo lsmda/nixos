@@ -11,15 +11,15 @@
     "noauto" # Disable filesystem auto-mount on boot
     "nofail" # Do not report errors for this device if it does not exist
     "rw" # Mount filesystem as read-write
-    "x-gvfs-show" # Show mounted fileSystems on file explorer
+    "x-gvfs-show" # Show mounted filesystems on file explorer
     "x-systemd.automount" # Enable on-demand mounting
     "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
   ];
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/laptop/configuration.nix
-    ./machines/laptop/hardware-configuration.nix
+    ./machines/desktop/configuration.nix
+    ./machines/desktop/hardware-configuration.nix
   ];
 
   # Network devices
@@ -134,68 +134,75 @@ in {
   ];
 
   home-manager.users.user = {
-    programs.home-manager.enable = true;
-
     home.username = "user";
     home.homeDirectory = "/home/user";
 
-    programs.kitty.enable = true;
-    programs.kitty.font.name = "JetBrainsMono Nerd Font Mono";
-    programs.kitty.font.size = 13;
-    programs.kitty.theme = "Everforest Dark Medium";
-    programs.kitty.shellIntegration.mode = "no-cursor";
-    programs.kitty.settings = {
-      adjust_line_height = "110%";
-      adjust_column_width = "110%";
-      confirm_os_window_close = 0;
-      cursor_blink_interval = -1;
-      cursor_shape = "block";
-      cursor_stop_blinking_after = 0;
-    };
+    programs = {
+      home-manager.enable = true;
 
-    programs.fish.enable = true;
-    programs.fish.shellInit = ''
-      set fish_greeting # Disable greeting
+      kitty = {
+        enable = true;
+        font.name = "JetBrainsMono Nerd Font Mono";
+        font.size = 13;
+        theme = "Everforest Dark Medium";
+        shellIntegration.mode = "no-cursor";
+        settings = {
+          adjust_line_height = "110%";
+          adjust_column_width = "110%";
+          confirm_os_window_close = 0;
+          cursor_blink_interval = -1;
+          cursor_shape = "block";
+          cursor_stop_blinking_after = 0;
+        };
+      };
 
-      # Check if TMUX is unset or empty and if the session is interactive
-      if test -z "$TMUX" && status is-interactive
-          # Check if any Tmux sessions exist
-          set tmux_sessions (tmux list-sessions)
-          if test -z "$tmux_sessions"
+      tmux = {
+        enable = true;
+        extraConfig =
+          if builtins.pathExists tmux-config-path
+          then builtins.readFile tmux-config-path
+          else "";
+      };
+
+      fish = {
+        enable = true;
+        shellInit = ''
+          set fish_greeting # Disable greeting
+
+          # Check if TMUX is unset or empty and if the session is interactive
+          if test -z "$TMUX" && status is-interactive
+            # Check if any Tmux sessions exist
+            set tmux_sessions (tmux list-sessions)
+            if test -z "$tmux_sessions"
               # If no sessions exist, start a new Tmux session
               tmux new-session
-          else
+            else
               # If sessions exist, attach to the first one
               tmux attach-session -t (echo $tmux_sessions[1] | cut -d: -f1)
+            end
           end
-      end
-    '';
+        '';
 
-    programs.fish.functions = {
-      deleteGenerationsRange.body = ''
-        for i in (seq (math $argv[1]) (math $argv[2]))
-          sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-        end
-      '';
-      listGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
-    };
+        functions = {
+          deleteGenerationsRange.body = ''
+            for i in (seq (math $argv[1]) (math $argv[2]))
+              sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
+            end
+          '';
+          listGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+        };
+      };
 
-    programs.tmux.enable = true;
-    programs.tmux.extraConfig =
-      if builtins.pathExists tmux-config-path
-      then builtins.readFile tmux-config-path
-      else "";
+      git-credential-oauth.enable = true;
 
-    programs.git.enable = true;
-    programs.git.userName = "lsmda";
-    programs.git.userEmail = "lsmda@apollo.pm";
-    programs.git.extraConfig = {
-      credential.helper = [
-        "${
-          pkgs.git.override {withLibsecret = true;}
-        }/bin/git-credential-libsecret"
-        "git-credential-oauth"
-      ];
+      git = {
+        enable = true;
+        userName = "lsmda";
+        userEmail = "lsmda@apollo.pm";
+        extraConfig = {
+          credential.credentialStore = "secretservice";
+        };
+      };
     };
 
     gtk.enable = true;
