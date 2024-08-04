@@ -31,11 +31,21 @@
   fileSystems."/mnt/hdd" = {
     device = "/dev/sda1";
     fsType = "ext4";
+    options = [
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "x-gvfs-show" # Make disk visible in your file explorer
+    ];
   };
 
   fileSystems."/mnt/ssd" = {
     device = "/dev/sdc1";
     fsType = "ext4";
+    options = [
+      "users" # Allows any user to mount and unmount
+      "nofail" # Prevent system from failing if this drive doesn't mount
+      "x-gvfs-show" # Make disk visible in your file explorer
+    ];
   };
 
   swapDevices = [];
