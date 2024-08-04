@@ -15,14 +15,13 @@ in
     isNormalUser = true;
     description = "user";
     home = "/home/user";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   networking.hostName = "device";
   networking.networkmanager.enable = true;
 
   programs.fish.enable = true;
-  programs.firefox.enable = true;
   users.defaultUserShell = pkgs.fish;
 
   programs.neovim.enable = true;
@@ -31,6 +30,7 @@ in
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   environment.systemPackages = with pkgs; [
+    alsa-utils
     bison
     btop
     docker
@@ -55,7 +55,6 @@ in
     wget
     xclip
     zip
-
     (chromium.override {
       enableWideVine = true;
       commandLineArgs = [
@@ -67,6 +66,8 @@ in
   ];
 
   home-manager.users.user = {
+    programs.home-manager.enable = true;
+
     home.username = "user";
     home.homeDirectory = "/home/user";
 
@@ -99,11 +100,9 @@ in
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
+
     programs.git-credential-oauth.enable = true;
     programs.git-credential-oauth.package = pkgs.git-credential-manager;
-
-    programs.gnome-shell.enable = true;
-    programs.home-manager.enable = true;
 
     gtk.enable = true;
     gtk.iconTheme.name = "Tela-grey-dark";
@@ -132,6 +131,7 @@ in
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.core-utilities.enable = false;
 
+  # Required to run systray icons
   services.udev.packages = with pkgs; [
     gnome.gnome-settings-daemon 
   ];
@@ -151,30 +151,40 @@ in
     LC_TIME = "pt_PT.UTF-8";
   };
 
+  services.printing.enable = true;
   services.xserver.xkb.layout = "pt";
   services.xserver.xkb.variant = "";
-
   console.keyMap = "pt-latin1";
-  services.printing.enable = true;
 
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
-  hardware.pulseaudio.package = pkgs.pulseaudioFull;
-  hardware.opengl = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # For Broadwell (2015) or newer processors. LIBVA_DRIVER_NAME=iHD
-    ];
-  };
-
+  hardware.pulseaudio.enable = false;
+  
   security.rtkit.enable = true;
+
   services.pipewire = {
-    enable = lib.mkDefault false;
-    alsa.enable = false;
-    alsa.support32Bit = false;
-    pulse.enable = false;
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
   };
 
+  # GNOME 46: Triple Buffering
+  nixpkgs.overlays = [
+    (final: prev: {
+      gnome = prev.gnome.overrideScope (gnomeFinal: gnomePrev: {
+        mutter = gnomePrev.mutter.overrideAttrs (old: {
+          src = pkgs.fetchFromGitLab  {
+            domain = "gitlab.gnome.org";
+            owner = "vanvugt";
+            repo = "mutter";
+            rev = "triple-buffering-v4-46";
+            hash = "sha256-fkPjB/5DPBX06t7yj0Rb3UEuu5b9mu3aS+jhH18+lpI=";
+          };
+        });
+      });
+    })
+  ];
+
+  nixpkgs.config.allowAliases = false;
   nixpkgs.config.allowUnfree = true;
 
   system.stateVersion = "24.05";
