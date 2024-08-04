@@ -184,7 +184,7 @@ in {
         '';
 
         functions = {
-          deleteDockerContainerWithVolumeByRegex.body = ''
+          removeDockerContainer.body = ''
             set -l regex $argv[1]
 
             # Get all container names
@@ -193,18 +193,33 @@ in {
             # Filter containers based on the regex
             for container in $containers
               if echo $container | grep -qE $regex
-                echo "Found: $container"
-                echo "Removing..."
                 docker rm -v --force $container
+                echo "removed"
+                echo -e "\n"
               end
             end
           '';
-          deleteNixGenerationsByRange.body = ''
+          removeDockerVolume.body = ''
+            set -l regex $argv[1]
+
+            # Get all volume names
+            set -l volumes (docker volume ls -q)
+
+            # Filter volumes based on the regex
+            for volume in $volumes
+              if echo $volume | grep -qE $regex
+                echo "Found Volume: $volume"
+                docker volume rm $volume
+                echo -e "\n"
+              end
+            end
+          '';
+          removeNixGenerations.body = ''
             for i in (seq (math $argv[1]) (math $argv[2]))
               sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
             end
           '';
-          listGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+          listNixGenerations.body = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
         };
       };
 
