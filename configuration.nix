@@ -2,10 +2,6 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-  one_minute = 60;
-  one_hour = one_minute * 60;
-  one_day = one_hour * 24;
-  one_month = one_day * 30;
 in
 {
   imports = [
@@ -129,15 +125,6 @@ in
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
-    programs.git.extraConfig = {
-      core = {
-        commentChar = ";";
-      };
-      credential = {
-        helper = lib.mkDefault "cache --timeout ${toString one_month}";
-      };
-    };
-
     programs.git-credential-oauth.enable = true;
 
     gtk.enable = true;
