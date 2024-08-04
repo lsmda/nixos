@@ -1,6 +1,9 @@
-{ pkgs, config, libs, ... }:
-
 {
+  pkgs,
+  config,
+  libs,
+  ...
+}: {
   console.keyMap = "us";
   services.xserver.xkb.layout = "us";
 
@@ -26,6 +29,6 @@
   hardware.nvidia.nvidiaSettings = true;
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.production;
 
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-  boot.kernelParams = [ "mem_sleep_default=deep" "nvidia-drm.modeset=1" ];
+  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  boot.kernelParams = ["mem_sleep_default=deep" "nvidia-drm.modeset=1"];
 }
