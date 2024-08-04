@@ -50,6 +50,7 @@
     })
     docker
     eyedropper
+    fastfetch
     ffmpegthumbnailer
     firefox
     fzf
@@ -81,9 +82,7 @@
         ];
       }
     )
-    neofetch
     nfs-utils
-    nixd
     nodejs
     nodePackages.prettier
     nodePackages.pnpm
