@@ -2,6 +2,11 @@
 
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+  ONE_SECOND = 1;
+  ONE_MINUTE = ONE_SECOND * 60;
+  ONE_HOUR = ONE_MINUTE * 60;
+  ONE_DAY = ONE_HOUR * 24;
+  ONE_MONTH = ONE_DAY * 30;
 in
 {
   imports = [
@@ -33,6 +38,14 @@ in
     alsa-utils
     bison
     btop
+    (chromium.override {
+      enableWideVine = true;
+      commandLineArgs = [
+        "--enable-features=VaapiVideoDecodeLinuxGL"
+        "--ignore-gpu-blocklist"
+        "--enable-zero-copy"
+      ];
+    })
     docker
     fzf
     gnome.gnome-terminal
@@ -56,14 +69,6 @@ in
     wget
     xclip
     zip
-    (chromium.override {
-      enableWideVine = true;
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-      ];
-    })
   ];
 
   home-manager.users.user = {
@@ -101,6 +106,15 @@ in
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
+    programs.git.extraConfig = {
+      core = {
+        commentChar = ";";
+      };
+      credential = {
+        helper = lib.mkDefault "cache --timeout ${toString ONE_MONTH}";
+      };
+    };
+
     programs.git-credential-oauth.enable = true;
 
     gtk.enable = true;
