@@ -18,37 +18,35 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/357a5d5a-54a6-4594-851c-370d8283e010";
+    device = "/dev/disk/by-uuid/8db409b0-1dea-489d-851a-627b84c6c0e8";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/6579-0A1E";
+    device = "/dev/disk/by-uuid/81E8-FC65";
     fsType = "vfat";
     options = ["fmask=0022" "dmask=0022"];
   };
 
-  fileSystems."/mnt/hdd" = {
-    device = "/dev/disk/by-uuid/8a67e114-480d-40a7-8e26-b4af579ab3e4";
-    label = "HDD";
+  fileSystems."/mnt/ssd" = {
+    device = "/dev/disk/by-uuid/2dc9266f-c7c9-4320-a9c5-2856cb9793b5";
+    label = "ssd";
     fsType = "ext4";
     options = [
       "users" # Allow any user to mount and to unmount the filesystem
       "nofail" # Do not report errors for this device if it does not exist
       "x-gvfs-show" # Make mounted filesystem visible in file explorer
-      "rw" # Mount the filesystem read-write.
     ];
   };
 
-  fileSystems."/mnt/ssd" = {
-    device = "/dev/disk/by-uuid/2dc9266f-c7c9-4320-a9c5-2856cb9793b5";
-    label = "SSD";
+  fileSystems."/mnt/hdd" = {
+    device = "/dev/disk/by-uuid/5db59a5a-b4b7-4ef6-a96c-07ee1d8d4c60";
+    label = "hdd";
     fsType = "ext4";
     options = [
       "users" # Allow any user to mount and to unmount the filesystem
       "nofail" # Do not report errors for this device if it does not exist
       "x-gvfs-show" # Make mounted filesystem visible in file explorer
-      "rw" # Mount the filesystem read-write.
     ];
   };
 
