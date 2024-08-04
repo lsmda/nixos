@@ -51,7 +51,6 @@ in {
     docker
     fzf
     gcc
-    gnome.gnome-terminal
     gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.appindicator
