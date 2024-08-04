@@ -34,8 +34,11 @@ in {
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
-  services.xserver.desktopManager.xterm.enable = false;
+  # Remove pre-installed apps
+  documentation.nixos.enable = false;
   environment.gnome.excludePackages = [pkgs.gnome-tour];
+  services.xserver.excludePackages = [pkgs.xterm];
+  services.xserver.desktopManager.xterm.enable = false;
 
   environment.systemPackages = with pkgs; [
     alejandra
