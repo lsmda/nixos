@@ -78,10 +78,12 @@ in {
       ];
     })
     docker
-    feh
     firefox
     fzf
     gcc
+    git-credential-oauth
+    git-credential-manager
+    gnome.eog
     gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.appindicator
@@ -184,14 +186,17 @@ in {
       then builtins.readFile tmux-config-path
       else "";
 
-    programs.git-credential-oauth.enable = true;
-
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
-    programs.git.extraConfig.credential.helper = [
-      "libsecret"
-    ];
+    programs.git.extraConfig = {
+      credential.helper = [
+        "${
+          pkgs.git.override {withLibsecret = true;}
+        }/bin/git-credential-libsecret"
+        "git-credential-oauth"
+      ];
+    };
 
     gtk.enable = true;
     gtk.iconTheme.name = "Tela-grey-dark";
