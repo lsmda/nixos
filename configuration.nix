@@ -24,8 +24,8 @@ in {
   networking.hostName = "device";
   networking.networkmanager.enable = true;
 
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.package = pkgs.qemu_kvm;
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = ["user"];
 
   # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
   programs.nix-ld.enable = true;
@@ -44,7 +44,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     alejandra
-    alsa-utils
     bison
     btop
     (chromium.override {
@@ -99,15 +98,9 @@ in {
     pika-backup
     pkg-config
     protonvpn-gui
-    python3
-    python312Packages.pip
-    python312Packages.torch
-    python312Packages.torchvision
-    python312Packages.torchaudio
     qbittorrent
     rar
     ripgrep
-    spicetify-cli
     spotify
     stow
     sqlite
@@ -115,8 +108,6 @@ in {
     tmux
     unrar
     unzip
-    virt-manager
-    virt-viewer
     vscode-fhs
     wget
     wpsoffice
@@ -210,7 +201,7 @@ in {
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_latest;
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_xanmod;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
