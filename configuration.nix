@@ -41,6 +41,7 @@ in
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
     grc
+    libsecret
     mpv
     neofetch
     nodejs
@@ -102,7 +103,6 @@ in
     programs.git.userEmail = "lsmda@apollo.pm";
 
     programs.git-credential-oauth.enable = true;
-    programs.git-credential-oauth.package = pkgs.git-credential-manager;
 
     gtk.enable = true;
     gtk.iconTheme.name = "Tela-grey-dark";
