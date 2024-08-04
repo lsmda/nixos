@@ -30,8 +30,6 @@ in {
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
-  programs.nix-ld.enable = true;
-
   environment.gnome.excludePackages = [pkgs.gnome-tour];
 
   environment.systemPackages = with pkgs; [
@@ -97,8 +95,8 @@ in {
 
     programs.tmux.enable = true;
     programs.tmux.extraConfig =
-      if builtins.pathExists /home/user/dotfiles/tmux/tmux.conf
-      then builtins.readFile /home/user/dotfiles/tmux/tmux.conf
+      if builtins.pathExists /home/user/dotfiles/.config/tmux/tmux.conf
+      then builtins.readFile /home/user/dotfiles/.config/tmux/tmux.conf
       else "";
 
     programs.fish.enable = true;
