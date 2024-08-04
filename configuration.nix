@@ -18,10 +18,11 @@ in
     extraGroups = [ "networkmanager" "wheel" "docker"];
   };
 
-  networking.hostName = "machine";
+  networking.hostName = "device";
   networking.networkmanager.enable = true;
 
   programs.fish.enable = true;
+  programs.firefox.enable = true;
   users.defaultUserShell = pkgs.fish;
 
   programs.neovim.enable = true;
@@ -30,41 +31,39 @@ in
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   environment.systemPackages = with pkgs; [
-    wget
-    mpv
-    nodejs
-    xclip
     bison
-    ripgrep
-    zip
-    unzip
-    tmux
-    pkg-config
     btop
-    fzf
-    grc
-    neofetch
-    vscode
     docker
-    spotify
-    qbittorrent
-    home-manager
-    protonvpn-gui
-    gnome.nautilus
-    tela-icon-theme
-    gnome.gnome-tweaks
+    fzf
     gnome.gnome-terminal
-    git-credential-oauth
-    gnomeExtensions.just-perfection
+    gnome.gnome-tweaks
+    gnome.nautilus
     gnomeExtensions.appindicator
+    gnomeExtensions.just-perfection
+    grc
+    mpv
+    neofetch
+    nodejs
+    pkg-config
+    protonvpn-gui
+    qbittorrent
+    ripgrep
+    spotify
+    tmux
+    unzip
+    vscode
+    wget
+    xclip
+    zip
 
-   (chromium.override {
-     commandLineArgs = [
-       "--enable-features=VaapiVideoDecodeLinuxGL"
-       "--ignore-gpu-blocklist"
-       "--enable-zero-copy"
-     ];
-   })
+    (chromium.override {
+      enableWideVine = true;
+      commandLineArgs = [
+        "--enable-features=VaapiVideoDecodeLinuxGL"
+        "--ignore-gpu-blocklist"
+        "--enable-zero-copy"
+      ];
+    })
   ];
 
   home-manager.users.user = {
@@ -75,6 +74,7 @@ in
     programs.fish.interactiveShellInit = ''
       set fish_greeting # Disable greeting
     '';
+
     programs.fish.functions = {
       deleteGenerationsRange = ''
         function deleteGenerationsRange --description 'Delete a range of NixOS generations'
@@ -92,26 +92,22 @@ in
 
     programs.neovim.enable = true;
     programs.neovim.extraLuaConfig = ''
-    ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
-    ${builtins.readFile ./nvim/lua/lsmda/core/keymaps.lua} 
+      ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
+      ${builtins.readFile ./nvim/lua/lsmda/core/keymaps.lua} 
     '';
 
     programs.git.enable = true;
-    programs.git.package = pkgs.gitFull;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
-
     programs.git-credential-oauth.enable = true;
+    programs.git-credential-oauth.package = pkgs.git-credential-manager;
 
     programs.gnome-shell.enable = true;
     programs.home-manager.enable = true;
-    programs.gh.gitCredentialHelper.hosts = [
-      "https://github.com"
-      "https://gitlab.com"
-    ];
 
     gtk.enable = true;
     gtk.iconTheme.name = "Tela-grey-dark";
+    gtk.iconTheme.package = pkgs.tela-icon-theme;
 
     dconf.enable = true;
     dconf.settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
@@ -135,7 +131,6 @@ in
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.core-utilities.enable = false;
-  services.gnome.gnome-keyring.enable = true;
 
   services.udev.packages = with pkgs; [
     gnome.gnome-settings-daemon 
@@ -162,12 +157,23 @@ in
   console.keyMap = "pt-latin1";
   services.printing.enable = true;
 
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
   hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # For Broadwell (2015) or newer processors. LIBVA_DRIVER_NAME=iHD
+    ];
+  };
 
   security.rtkit.enable = true;
+  services.pipewire = {
+    enable = lib.mkDefault false;
+    alsa.enable = false;
+    alsa.support32Bit = false;
+    pulse.enable = false;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
