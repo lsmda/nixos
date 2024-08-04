@@ -16,23 +16,23 @@ in {
   # Network devices
   fileSystems."/mnt/nfs/files" = {
     device = "10.0.0.5:/files";
-    fsType = "nfs";
+    fsType = "nfs4";
     options = [
-      "users" # Allow any user to mount and to unmount the filesystem
-      "nofail" # Do not report errors for this device if it does not exist
-      "x-gvfs-show" # Make mounted filesystem visible in file explorer
-      "rw" # Mount the filesystem read-write.
+      "noauto"
+      "nofail"
+      "x-gvfs-show"
+      "rw"
     ];
   };
 
   fileSystems."/mnt/nfs/media" = {
     device = "10.0.0.5:/media";
-    fsType = "nfs";
+    fsType = "nfs4";
     options = [
-      "users" # Allow any user to mount and to unmount the filesystem
-      "nofail" # Do not report errors for this device if it does not exist
-      "x-gvfs-show" # Make mounted filesystem visible in file explorer
-      "rw" # Mount the filesystem read-write.
+      "noauto"
+      "nofail"
+      "x-gvfs-show"
+      "rw"
     ];
   };
 
@@ -102,6 +102,7 @@ in {
           mpvScripts.memo
           mpvScripts.mpris
           mpvScripts.thumbfast
+          mpvScripts.modernx
         ];
       }
     )
@@ -111,6 +112,7 @@ in {
     nodePackages.prettier
     nodePackages.pnpm
     obsidian
+    ollama
     patchelf
     pciutils
     pika-backup
