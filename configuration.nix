@@ -85,6 +85,7 @@ in
     mpv
     neofetch
     nodejs
+    notes
     patchelf
     pkg-config
     protonvpn-gui
@@ -212,9 +213,9 @@ in
   };
 
   services.printing.enable = true;
-  services.xserver.xkb.layout = keyboard.pt.layout;
+  services.xserver.xkb.layout = keyboard.us.layout;
   services.xserver.xkb.variant = "";
-  console.keyMap = keyboard.pt.keyMap;
+  console.keyMap = keyboard.us.keyMap;
 
   hardware.pulseaudio.enable = false;
   
