@@ -6,7 +6,7 @@ in
 {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/laptop.nix
+    ./machines/desktop.nix
     ./hardware-configuration.nix
   ];
 
@@ -32,8 +32,10 @@ in
 
   environment.systemPackages = with pkgs; [
     alsa-utils
+    apostrophe
     bison
     btop
+    cartridges
     (chromium.override {
       enableWideVine = true;
       commandLineArgs = [
@@ -52,6 +54,7 @@ in
     gnomeExtensions.just-perfection
     gnumake
     grc
+    impression
     kitty
     lazygit
     libsecret
@@ -62,6 +65,7 @@ in
     notes
     patchelf
     pciutils
+    pika-backup
     pkg-config
     protonvpn-gui
     qbittorrent
