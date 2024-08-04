@@ -10,6 +10,7 @@ in {
     (import "${home-manager}/nixos")
     ./machines/desktop/configuration.nix
     ./machines/desktop/hardware-configuration.nix
+    ./modules/wireguard.nix
   ];
 
   users.groups.docker = {};
