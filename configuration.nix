@@ -184,7 +184,22 @@ in {
         '';
 
         functions = {
-          deleteGenerationsRange.body = ''
+          deleteDockerContainerWithVolumeByRegex.body = ''
+            set -l regex $argv[1]
+
+            # Get all container names
+            set -l containers (docker ps -a --format "{{.Names}}")
+
+            # Filter containers based on the regex
+            for container in $containers
+              if echo $container | grep -qE $regex
+                echo "Found: $container"
+                echo "Removing..."
+                docker rm -v --force $container
+              end
+            end
+          '';
+          deleteNixGenerationsByRange.body = ''
             for i in (seq (math $argv[1]) (math $argv[2]))
               sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
             end
