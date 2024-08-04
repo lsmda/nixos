@@ -92,6 +92,7 @@ in
     qbittorrent
     ripgrep
     spotify
+    standardnotes
     tmux
     unzip
     vscode
