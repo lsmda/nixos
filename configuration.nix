@@ -24,9 +24,8 @@ in
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
-  programs.neovim.extraLuaConfig = ''
-  ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
-  '';
+
+  environment.gnome.excludePackages = [ pkgs.gnome-tour pkgs.xterm ];
 
   environment.systemPackages = with pkgs; [
     wget
@@ -45,9 +44,12 @@ in
     fzf
     grc
 
+    pkgs.gnome.gnome-terminal
     pkgs.docker
+    pkgs.spotify
+    pkgs.qbittorrent
+    pkgs.protonvpn-gui
     pkgs.gnome.nautilus
-    pkgs.blackbox-terminal
     pkgs.gnome.gnome-tweaks
     pkgs.gnomeExtensions.just-perfection
 
@@ -61,14 +63,14 @@ in
   ];
 
   home-manager.users.user = {
-    home.stateVersion = "18.09";
-    programs.neovim = {
-      enable = true;
-      extraConfig = ''
-        set number relative
-        set clipboard+=unnamedplus
-      '';
-    };
+    home.username = "user";
+    home.homeDirectory = "/home/user";
+    
+    programs.neovim.enable = true;
+    programs.neovim.extraLuaConfig = ''
+    ${builtins.readFile ./nvim/lua/lsmda/core/options.lua} 
+    ${builtins.readFile ./nvim/lua/lsmda/core/keymaps.lua} 
+    '';
 
     gtk = {
       enable = true;
@@ -77,12 +79,19 @@ in
         package = pkgs.papirus-icon-theme;
       };
     };
+
+    home.stateVersion = "24.05";
   };
 
   home-manager.backupFileExtension = "backup";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.gnome.core-utilities.enable = false;
 
   networking.hostName = "machine";
   networking.networkmanager.enable = true;
@@ -101,11 +110,6 @@ in
     LC_TELEPHONE = "pt_PT.UTF-8";
     LC_TIME = "pt_PT.UTF-8";
   };
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-utilities.enable = false;
 
   services.xserver.xkb.layout = "pt";
   services.xserver.xkb.variant = "";
