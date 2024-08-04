@@ -8,7 +8,7 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/desktop.nix
+    ./machines/laptop.nix
     ./hardware-configuration.nix
   ];
 
@@ -66,7 +66,7 @@ in {
     mpv
     neofetch
     nodejs
-    notes
+    obsidian
     patchelf
     pciutils
     pika-backup
