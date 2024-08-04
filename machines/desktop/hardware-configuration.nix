@@ -29,12 +29,12 @@
   };
 
   fileSystems."/mnt/hdd" = {
-    device = "/dev/sda1";
+    device = "/dev/sdb1";
     fsType = "ext4";
     options = [
       "users" # Allows any user to mount and unmount
       "nofail" # Prevent system from failing if this drive doesn't mount
-      "x-gvfs-show" # Make disk visible in your file explorer
+      "x-gvfs-show" # Make disk visible in file explorer
     ];
   };
 
@@ -44,7 +44,7 @@
     options = [
       "users" # Allows any user to mount and unmount
       "nofail" # Prevent system from failing if this drive doesn't mount
-      "x-gvfs-show" # Make disk visible in your file explorer
+      "x-gvfs-show" # Make disk visible in file explorer
     ];
   };
 
