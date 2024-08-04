@@ -56,7 +56,9 @@
     fzf
     gcc
     git-credential-manager
+    gnome-text-editor
     gnome.eog
+    gnome.gnome-calculator
     gnome.gnome-tweaks
     gnome.nautilus
     gnomeExtensions.alttab-scroll-workaround
@@ -99,7 +101,6 @@
     spotify
     stow
     sqlite
-    textpieces
     tmux
     unrar
     unzip
