@@ -9,7 +9,7 @@
 in {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/laptop.nix
+    ./machines/desktop.nix
     ./hardware-configuration.nix
   ];
 
