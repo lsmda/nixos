@@ -6,7 +6,7 @@ in
 {
   imports = [
     (import "${home-manager}/nixos")
-    ./machines/desktop.nix
+    ./machines/laptop.nix
     ./hardware-configuration.nix
   ];
 
@@ -27,15 +27,6 @@ in
 
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
-
-  # TODO
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [
-    fzf
-    vimPlugins.fzfWrapper
-    vimPlugins.telescope-fzf-native-nvim
-    vimPlugins.nvim-fzf
-  ];
 
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
@@ -59,6 +50,7 @@ in
     gnome.nautilus
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
+    gnumake
     grc
     kitty
     lazygit
@@ -107,20 +99,8 @@ in
       listGenerations = {
         body = ''sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'';
       };
-      make = {
-        body = ''bash -c "make $argv"'';
-      };
     };
 
-    programs.neovim.enable = true;
-
-    # TODO
-    programs.neovim.plugins = with pkgs; [
-      vimPlugins.fzfWrapper
-      vimPlugins.telescope-fzf-native-nvim
-      vimPlugins.nvim-fzf
-    ];
-    
     programs.git.enable = true;
     programs.git.userName = "lsmda";
     programs.git.userEmail = "lsmda@apollo.pm";
