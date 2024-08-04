@@ -96,6 +96,11 @@ in {
     programs.kitty.font.name = "JetBrainsMono Nerd Font Mono";
     programs.kitty.font.size = 13;
     programs.kitty.theme = "Everforest Dark Medium";
+    programs.kitty.settings = {
+      cursor_shape = "block";
+      adjust_line_height = "110%";
+      adjust_column_width = "110%";
+    };
 
     programs.tmux.enable = true;
     programs.tmux.extraConfig =
@@ -106,6 +111,7 @@ in {
     programs.fish.enable = true;
     programs.fish.shellInit = ''
       set fish_greeting # Disable greeting
+      set fish_cursor_default block
 
       # Check if TMUX is unset or empty and if the session is interactive
       if test -z "$TMUX" && status is-interactive
