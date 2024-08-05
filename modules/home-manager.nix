@@ -49,6 +49,11 @@ in {
           night-light-temperature = lib.hm.gvariant.mkUint32 4200;
         };
 
+        # Sound
+        "org/gnome/desktop/sound" = {
+          event-sounds = false;
+        };
+
         # Power
         "org/gnome/control-center" = {
           last-panel = "power";
