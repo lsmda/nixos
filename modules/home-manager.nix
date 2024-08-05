@@ -48,6 +48,7 @@ in {
           night-light-schedule-to = 0.0;
           night-light-temperature = lib.hm.gvariant.mkUint32 4200;
         };
+
         # Power
         "org/gnome/control-center" = {
           last-panel = "power";
@@ -59,6 +60,7 @@ in {
         "org/gnome/desktop/session" = {
           idle-delay = lib.hm.gvariant.mkUint32 0;
         };
+
         # Multitasking
         "org/gnome/desktop/interface" = {
           color-scheme = "prefer-dark";
@@ -71,6 +73,7 @@ in {
         "org/gnome/shell/app-switcher" = {
           current-workspace-only = true;
         };
+
         # Appearence
         "org/gnome/desktop/background" = {
           picture-uri = background;

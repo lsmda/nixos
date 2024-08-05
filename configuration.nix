@@ -15,8 +15,11 @@
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-  networking.hostName = "device";
-  networking.networkmanager.enable = true;
+  networking = {
+    hostName = "device";
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [5432];
+  };
 
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = ["user"];
@@ -65,6 +68,7 @@
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
     gnumake
+    go
     gocryptfs
     gparted
     grc
@@ -167,7 +171,7 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linux_xanmod;
+  boot.kernelPackages = pkgs.linuxPackages_6_8;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
