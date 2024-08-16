@@ -36,7 +36,7 @@ in {
     };
 
     dconf = let
-      background = "file:///home/user/dotfiles/wallpapers/background_02.jpg";
+      background = "file:///home/user/dotfiles/wallpapers/background.jpg";
     in {
       enable = true;
       settings = {
