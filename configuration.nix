@@ -1,10 +1,8 @@
 {pkgs, ...}: {
   imports = [
     ./machines/pi-4/configuration.nix
-
     ./modules/packages/common.nix
     # ./modules/packages/desktop.nix
-
     # ./modules/home-manager.nix
     # ./modules/services.nix
     # ./modules/wireguard.nix

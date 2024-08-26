@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in {
   imports = [
@@ -15,7 +10,9 @@ in {
   };
 
   networking = {
-    hostName = lib.mkDefault "pi";
+    hostName = "pi";
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [80 5432];
   };
 
   home-manager.users.user = {lib, ...}: {
@@ -31,13 +28,15 @@ in {
         userEmail = "contact@lsmda.pm";
         extraConfig = {
           credential.credentialStore = "gpg";
-          credential.helper = ["manager"];
+          credential.helper = ["store"];
         };
       };
     };
 
     home.stateVersion = "24.05";
   };
+
+  home-manager.backupFileExtension = "backup";
 
   boot = {
     kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
@@ -57,6 +56,5 @@ in {
   };
 
   services.openssh.enable = true;
-
   hardware.enableRedistributableFirmware = true;
 }
