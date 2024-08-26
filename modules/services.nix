@@ -1,4 +1,10 @@
 {pkgs, ...}: {
+  networking = {
+    hostName = "device";
+    networkmanager.enable = true;
+    firewall.allowedTCPPorts = [5432];
+  };
+
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = ["user"];
 
@@ -32,15 +38,6 @@
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
-  };
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
   };
 
   # Store audio state on reboot

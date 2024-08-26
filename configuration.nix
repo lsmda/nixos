@@ -19,7 +19,6 @@
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-
   # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
   programs.nix-ld.enable = true;
 
