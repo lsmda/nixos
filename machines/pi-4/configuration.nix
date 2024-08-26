@@ -30,7 +30,7 @@ in {
         userName = "lsmda";
         userEmail = "contact@lsmda.pm";
         extraConfig = {
-          credential.credentialStore = "secretservice";
+          credential.credentialStore = "gpg";
           credential.helper = ["manager"];
         };
       };
