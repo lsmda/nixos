@@ -1,0 +1,46 @@
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    (chromium.override {
+      commandLineArgs = [
+        "--enable-features=VaapiVideoDecodeLinuxGL"
+        "--ignore-gpu-blocklist"
+        "--enable-zero-copy"
+      ];
+    })
+    eyedropper
+    ffmpegthumbnailer
+    firefox
+    gnome-text-editor
+    gnome.eog
+    gnome.gnome-calculator
+    gnome.gnome-tweaks
+    gnome.nautilus
+    gnomeExtensions.alttab-scroll-workaround
+    gnomeExtensions.appindicator
+    gnomeExtensions.just-perfection
+    gparted
+    impression
+    imwheel
+    kitty
+    (
+      mpv.override {
+        scripts = [
+          mpvScripts.evafast
+          mpvScripts.memo
+          mpvScripts.mpris
+          mpvScripts.thumbfast
+          mpvScripts.modernx
+        ];
+      }
+    )
+    obsidian
+    pika-backup
+    protonvpn-gui
+    qbittorrent
+    rar
+    spotify
+    unrar
+    vscode-fhs
+    wpsoffice
+  ];
+}

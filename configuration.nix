@@ -1,9 +1,13 @@
 {pkgs, ...}: {
   imports = [
-    ./machines/desktop/configuration.nix
-    ./machines/desktop/hardware-configuration.nix
-    ./modules/home-manager.nix
-    ./modules/wireguard.nix
+    ./machines/pi-4/configuration.nix
+
+    ./modules/packages/common.nix
+    # ./modules/packages/desktop.nix
+
+    # ./modules/home-manager.nix
+    # ./modules/services.nix
+    # ./modules/wireguard.nix
   ];
 
   users.groups.docker = {};
@@ -15,14 +19,6 @@
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-  networking = {
-    hostName = "device";
-    networkmanager.enable = true;
-    firewall.allowedTCPPorts = [5432];
-  };
-
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["user"];
 
   # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
   programs.nix-ld.enable = true;
@@ -33,119 +29,11 @@
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
-  # Remove pre-installed apps
-  documentation.nixos.enable = false;
-  environment.gnome.excludePackages = [pkgs.gnome-tour];
-  services.xserver.excludePackages = [pkgs.xterm];
-  services.xserver.desktopManager.xterm.enable = false;
-
-  environment.systemPackages = with pkgs; [
-    alejandra
-    bison
-    btop
-    cargo
-    (chromium.override {
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-      ];
-    })
-    docker
-    eyedropper
-    fastfetch
-    ffmpegthumbnailer
-    firefox
-    fzf
-    gcc
-    git-credential-manager
-    gnome-text-editor
-    gnome.eog
-    gnome.gnome-calculator
-    gnome.gnome-tweaks
-    gnome.nautilus
-    gnomeExtensions.alttab-scroll-workaround
-    gnomeExtensions.appindicator
-    gnomeExtensions.just-perfection
-    gnumake
-    go
-    gocryptfs
-    gparted
-    grc
-    impression
-    imwheel
-    kitty
-    lazygit
-    lshw
-    (
-      mpv.override {
-        scripts = [
-          mpvScripts.evafast
-          mpvScripts.memo
-          mpvScripts.mpris
-          mpvScripts.thumbfast
-          mpvScripts.modernx
-        ];
-      }
-    )
-    nfs-utils
-    nodejs
-    nodePackages.prettier
-    nodePackages.pnpm
-    obsidian
-    ollama
-    pciutils
-    pika-backup
-    pkg-config
-    protonvpn-gui
-    qbittorrent
-    rar
-    ripgrep
-    rustc
-    spotify
-    stow
-    sqlite
-    tmux
-    unrar
-    unzip
-    vscode-fhs
-    wget
-    wpsoffice
-    xclip
-    zip
-  ];
-
   fonts.packages = with pkgs; [
     (nerdfonts.override {
       fonts = ["JetBrainsMono"];
     })
   ];
-
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.gnome.core-utilities.enable = false;
-  services.printing.enable = true;
-
-  # Required to run systray icons
-  services.udev.packages = with pkgs; [
-    gnome.gnome-settings-daemon
-  ];
-
-  time.timeZone = "Europe/Lisbon";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
-  };
 
   nix = {
     settings.auto-optimise-store = true;
@@ -155,23 +43,6 @@
       options = "--delete-older-than 7d";
     };
   };
-
-  # Store audio state on reboot
-  sound.enable = true;
-
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_8;
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";

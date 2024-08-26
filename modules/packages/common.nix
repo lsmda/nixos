@@ -1,0 +1,36 @@
+{pkgs, ...}: {
+  environment.systemPackages = with pkgs; [
+    alejandra
+    bison
+    btop
+    cargo
+    docker
+    fastfetch
+    fzf
+    gcc
+    git
+    git-credential-manager
+    gnumake
+    go
+    gocryptfs
+    grc
+    kitty
+    lazygit
+    lshw
+    nfs-utils
+    nodejs
+    nodePackages.prettier
+    nodePackages.pnpm
+    ollama
+    pciutils
+    pkg-config
+    ripgrep
+    rustc
+    stow
+    sqlite
+    unzip
+    wget
+    xclip
+    zip
+  ];
+}
