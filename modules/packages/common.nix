@@ -9,9 +9,7 @@
     fzf
     gcc
     git
-    git-credential-manager
     gnumake
-    gnupg
     go
     gocryptfs
     grc

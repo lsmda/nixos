@@ -10,6 +10,7 @@
     eyedropper
     ffmpegthumbnailer
     firefox
+    git-credential-manager
     gnome-text-editor
     gnome.eog
     gnome.gnome-calculator
