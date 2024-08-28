@@ -23,6 +23,7 @@
     ollama
     pciutils
     pkg-config
+    python3
     ripgrep
     rustc
     stow
