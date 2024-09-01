@@ -29,8 +29,6 @@
     neovim.defaultEditor = true;
   };
 
-  virtualisation.virtualbox.host.enable = true;
-
   nix = {
     settings.auto-optimise-store = true;
     gc = {
@@ -67,10 +65,6 @@
     loader.efi.canTouchEfiVariables = true;
     kernelPackages = pkgs.linuxPackages_6_8;
   };
-
-  # Remove pre-installed apps
-  documentation.nixos.enable = false;
-  environment.gnome.excludePackages = [pkgs.gnome-tour];
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";

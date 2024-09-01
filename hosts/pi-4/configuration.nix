@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in {
   imports = [
@@ -10,7 +14,7 @@ in {
   };
 
   networking = {
-    hostName = "pi";
+    hostName = lib.mkDefault "pi";
     networkmanager.enable = true;
     firewall.allowedTCPPorts = [22 80 5432];
   };

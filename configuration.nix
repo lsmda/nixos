@@ -3,6 +3,7 @@
     ./hosts/laptop/configuration.nix
     ./hosts/laptop/hardware-configuration.nix
 
+    ./modules/boot.nix
     ./modules/home.nix
     ./modules/sound.nix
     ./modules/system.nix

@@ -14,4 +14,8 @@
     xserver.desktopManager.gnome.enable = true;
     xserver.displayManager.gdm.enable = true;
   };
+
+  # Remove pre-installed gnome apps
+  documentation.nixos.enable = false;
+  environment.gnome.excludePackages = [pkgs.gnome-tour];
 }
