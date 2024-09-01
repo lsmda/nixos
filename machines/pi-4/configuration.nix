@@ -15,7 +15,7 @@ in {
     firewall.allowedTCPPorts = [80 5432];
   };
 
-  home-manager.users.user = {lib, ...}: {
+  home-manager.users.user = {
     home.username = "user";
     home.homeDirectory = "/home/user";
 
@@ -55,6 +55,10 @@ in {
     };
   };
 
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+  };
+
   hardware.enableRedistributableFirmware = true;
 }
