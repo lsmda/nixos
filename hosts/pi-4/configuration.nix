@@ -12,7 +12,7 @@ in {
   networking = {
     hostName = "pi";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [80 5432];
+    firewall.allowedTCPPorts = [22 80 5432];
   };
 
   home-manager.users.user = {
