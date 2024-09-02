@@ -60,12 +60,6 @@
     })
   ];
 
-  boot = {
-    loader.systemd-boot.enable = true;
-    loader.efi.canTouchEfiVariables = true;
-    kernelPackages = pkgs.linuxPackages_6_8;
-  };
-
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
 }
