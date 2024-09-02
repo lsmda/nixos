@@ -20,20 +20,14 @@ in {
   };
 
   networking = {
-    hostName = lib.mkDefault "pi";
-    firewall.allowedTCPPorts = lib.mkDefault [22 80 5432];
+    hostName = lib.mkForce "pi";
+    firewall.allowedTCPPorts = lib.mkForce [22 80 5432];
   };
 
   home-manager.users.user = {
-    programs = {
-      git = {
-        extraConfig =
-          lib.mkDefault {};
-      };
-    };
-
-    gtk.enable = lib.mkDefault false;
-    dconf.enable = lib.mkDefault false;
+    programs = lib.mkForce {};
+    gtk.enable = lib.mkForce false;
+    dconf.enable = lib.mkForce false;
   };
 
   services.openssh = {
