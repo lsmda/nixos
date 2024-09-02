@@ -1,7 +1,7 @@
 {...}: {
   imports = [
-    ./hosts/laptop/configuration.nix
-    ./hosts/laptop/hardware-configuration.nix
+    ./machines/laptop/configuration.nix
+    ./machines/laptop/hardware-configuration.nix
 
     ./modules/boot.nix
     ./modules/home.nix
