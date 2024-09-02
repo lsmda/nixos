@@ -8,6 +8,7 @@
     };
   };
 
+  # Store audio state on reboot
   sound.enable = true;
 
   hardware.pulseaudio.enable = false;

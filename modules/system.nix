@@ -19,25 +19,6 @@
     firewall.allowedTCPPorts = [5432];
   };
 
-  programs = {
-    # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
-    nix-ld.enable = true;
-
-    fish.enable = true;
-
-    neovim.enable = true;
-    neovim.defaultEditor = true;
-  };
-
-  nix = {
-    settings.auto-optimise-store = true;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
   time.timeZone = "Europe/Lisbon";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -53,12 +34,20 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Store audio state on reboot
   fonts.packages = with pkgs; [
     (nerdfonts.override {
       fonts = ["JetBrainsMono"];
     })
   ];
+
+  nix = {
+    settings.auto-optimise-store = true;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "24.05";
