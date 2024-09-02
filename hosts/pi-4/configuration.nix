@@ -16,7 +16,7 @@ in {
   networking = {
     hostName = lib.mkDefault "pi";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [22 80 5432];
+    firewall.allowedTCPPorts = lib.mkDefault [22 80 5432];
   };
 
   home-manager.users.user = {
