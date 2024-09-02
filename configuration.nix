@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./machines/pi-4/configuration.nix
+    ./machines/server/configuration.nix
   ];
 }
