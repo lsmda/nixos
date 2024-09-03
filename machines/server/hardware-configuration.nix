@@ -13,15 +13,10 @@
     options = ["noatime"];
   };
 
-  fileSystems."/export/files" = {
-    device = "/mnt/files";
-    fsType = "nfs";
-    options = ["bind"];
-  };
-
-  fileSystems."/export" = {
+  fileSystems."/mnt/ssd" = {
     device = "/dev/disk/by-uuid/1df3f628-a2e9-45f2-ada5-d7029749cb9a";
     fsType = "ext4";
+    options = ["noatime" "nofail" "x-systemd.before=local-fs.target"];
   };
 
   hardware.enableRedistributableFirmware = true;

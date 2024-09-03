@@ -1,5 +1,5 @@
 {...}: {
   imports = [
-    ./machines/laptop/configuration.nix
+    ./machines/server/configuration.nix
   ];
 }
