@@ -97,7 +97,16 @@ in {
           show-directory-item-counts = "always";
         };
 
-        # Just Perfection Extension
+        # Active extensions
+        "org/gnome/shell" = {
+          enabled-extensions = [
+            "appindicatorsupport@rgcjonas.gmail.com"
+            "alt-tab-scroll-workaround@lucasresck.github.io"
+            "just-perfection-desktop@just-perfection"
+          ];
+        };
+
+        # Just Perfection extension
         "org/gnome/shell/extensions/just-perfection" = {
           # Profile
           theme = true;
@@ -138,7 +147,7 @@ in {
 
           # Behavior
           workspace-wrap-around = false;
-          workspace-peek = false;
+          workspace-peek = true;
           window-demands-attention-focus = false;
           window-maximized-on-create = true;
           type-to-search = true;
