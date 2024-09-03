@@ -5,7 +5,7 @@
   ];
 in {
   networking = {
-    hostName = "device";
+    hostName = "machine";
     networkmanager.enable = true;
 
     firewall.enable = true;

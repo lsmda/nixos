@@ -5,7 +5,7 @@
     "x-gvfs-show" # Show mounted filesystems on file explorer
     "x-systemd.automount" # Enable on-demand mounting
     "x-systemd.mount-timeout=1" # Ignore pending mounts after 1sec
-    "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
+    # "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
   ];
 in {
   fileSystems."/mnt/files" = {
