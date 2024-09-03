@@ -1,11 +1,10 @@
 {...}: let
   nfs-mount-options = [
-    "fsc" #  Enable cache of (read-only) data pages to the local disk
     "noauto" # Disable auto-mount on boot
     "rw" # Read-write permissions
     "x-gvfs-show" # Show mounted filesystems on file explorer
     "x-systemd.automount" # Enable on-demand mounting
-    "x-systemd.mount-timeout=1"
+    "x-systemd.mount-timeout=1" # Ignore pending mounts after 1sec
     "x-systemd.idle-timeout=600" # Unmount idle partitions after 10min
   ];
 in {
