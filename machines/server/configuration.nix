@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
 
     ../../modules/home.nix
+    ../../modules/nfs.nix
     ../../modules/system.nix
 
     ../../packages/common.nix
