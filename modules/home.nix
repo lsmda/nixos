@@ -96,6 +96,80 @@ in {
           show-image-thumbnails = "always";
           show-directory-item-counts = "always";
         };
+
+        # Just Perfection Extension
+        "org/gnome/shell/extensions/just-perfection" = {
+          # Profile
+          theme = true;
+
+          # Visibility
+          panel = false;
+          panel-in-overview = true;
+          activities-button = false;
+          clock-menu = true;
+          keyboard-layout = false;
+          accessibility-menu = false;
+          quick-settings = true;
+          screen-sharing-indicator = true;
+          screen-recording-indicator = true;
+          world-clock = false;
+          weather = false;
+          calendar = true;
+          events = false;
+          search = false;
+          dash = false;
+          dash-separator = false;
+          dash-app-running-indicator = false;
+          show-applications-button = false;
+          osd = true;
+          workspace-popup = true;
+          workspace = false;
+          workspaces-in-app-grid = false;
+          window-preview-close-button = true;
+          window-preview-caption = false;
+          background-menu = true;
+          ripple-box = false;
+          window-menu-take-screenshot-button = true;
+
+          # Icons
+          panel-notification-icon = true;
+          power-icon = true;
+          window-picker-icon = false;
+
+          # Behavior
+          workspace-wrap-around = false;
+          workspace-peek = false;
+          window-demands-attention-focus = false;
+          window-maximized-on-create = true;
+          type-to-search = true;
+          workspace-switcher-should-show = false;
+          overlay-key = true;
+          double-super-to-appgrid = false;
+          switcher-popup-delay = true;
+          startup-status = 1;
+
+          # Customize
+          controls-manager-spacing-size = 50;
+          workspace-background-corner-size = 1;
+          panel-size = 0;
+          panel-icon-size = 0;
+          panel-button-padding-size = 0;
+          panel-indicator-padding-size = 0;
+          top-panel-position = 0;
+          clock-menu-position = 0;
+          clock-menu-position-offset = 0;
+          workspace-switcher-size = 0;
+          enable-animations = true;
+          animation = 5;
+          dash-icon-size = 0;
+          notification-banner-position = 5;
+          osd-position = 6;
+          alt-tab-window-preview-size = 0;
+          alt-tab-small-icon-size = 0;
+          alt-tab-icon-size = 0;
+          looking-glass-width = 0;
+          looking-glass-height = 0;
+        };
       };
     };
 
