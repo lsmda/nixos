@@ -4,10 +4,13 @@
 
     ../../modules/boot.nix
     ../../modules/home.nix
+    ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/nvidia.nix
     ../../modules/sound.nix
+    ../../modules/ssh.nix
     ../../modules/system.nix
+    ../../modules/users.nix
     ../../modules/wireguard.nix
     ../../modules/xserver.nix
 

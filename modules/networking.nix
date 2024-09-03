@@ -1,13 +1,11 @@
-{
-  hostname ? "device",
-  allowedPorts ? [
+{...}: let
+  allowedPorts = [
     5432 # PostgreSQL
     2049 # NFS
-  ],
-  ...
-}: {
+  ];
+in {
   networking = {
-    hostName = hostname;
+    hostName = "device";
     networkmanager.enable = true;
 
     firewall.enable = true;
