@@ -1,24 +1,4 @@
 {pkgs, ...}: {
-  users = {
-    defaultUserShell = pkgs.fish;
-    extraGroups.vboxusers.members = ["user"];
-
-    groups.docker = {};
-
-    users.user = {
-      isNormalUser = true;
-      description = "user";
-      home = "/home/user";
-      extraGroups = ["networkmanager" "wheel" "docker"];
-    };
-  };
-
-  networking = {
-    hostName = "device";
-    networkmanager.enable = true;
-    firewall.allowedTCPPorts = [5432];
-  };
-
   time.timeZone = "Europe/Lisbon";
 
   i18n.defaultLocale = "en_US.UTF-8";
