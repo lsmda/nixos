@@ -2,13 +2,13 @@
   services.nfs.server.enable = true;
 
   fileSystems."/share/files" = {
-    device = "/mnt/ssd/files";
+    device = "/mnt/hyperx/files";
     fsType = "none";
     options = ["bind"];
   };
 
   fileSystems."/share/media" = {
-    device = "/mnt/ssd/media";
+    device = "/mnt/hyperx/media";
     fsType = "none";
     options = ["bind"];
   };

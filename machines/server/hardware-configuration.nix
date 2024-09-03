@@ -13,8 +13,8 @@
     options = ["noatime"];
   };
 
-  fileSystems."/mnt/ssd" = {
-    device = "/dev/disk/by-uuid/1df3f628-a2e9-45f2-ada5-d7029749cb9a";
+  fileSystems."/mnt/hyperx" = {
+    device = "/dev/disk/by-label/HOME_NFS";
     fsType = "ext4";
     options = ["noatime" "nofail" "x-systemd.before=local-fs.target"];
   };
