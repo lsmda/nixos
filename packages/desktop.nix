@@ -71,5 +71,5 @@
   };
 
   virtualisation.virtualbox.host.enable = true;
-  extraGroups.vboxusers.members = ["user"];
+  users.extraGroups.vboxusers.members = ["user"];
 }
