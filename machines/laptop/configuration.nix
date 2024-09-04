@@ -19,7 +19,9 @@
 
   home-manager.users."user" = {
     dconf.settings = {
-      "org/gnome/nautilus/icon-view" = lib.mkForce "medium";
+      "org/gnome/nautilus/icon-view" = {
+        default-zoom-level = lib.mkForce "medium";
+      };
     };
   };
 
