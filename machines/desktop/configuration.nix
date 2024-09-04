@@ -12,7 +12,7 @@
     ../../modules/ssh.nix
     ../../modules/system.nix
     ../../modules/users.nix
-    ../../modules/wireguard.nix
+    # ../../modules/wireguard.nix
     ../../modules/xserver.nix
 
     ../../packages/common.nix
