@@ -5,7 +5,7 @@ in {
     (import "${home-manager}/nixos")
   ];
 
-  home-manager.users.user = {lib, ...}: {
+  home-manager.users."user" = {lib, ...}: {
     home.username = "user";
     home.homeDirectory = "/home/user";
 

@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   imports = [
     ./hardware-configuration.nix
 
@@ -16,6 +16,12 @@
     ../../packages/common.nix
     ../../packages/desktop.nix
   ];
+
+  home-manager.users."user" = {
+    dconf.settings = {
+      "org/gnome/nautilus/icon-view" = lib.mkForce "medium";
+    };
+  };
 
   console.keyMap = "pt-latin1";
   services.xserver.xkb.layout = "pt";
