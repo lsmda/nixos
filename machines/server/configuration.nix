@@ -18,8 +18,6 @@
 
   networking.hostName = lib.mkForce "pi";
 
-  users.users."user".password = "password"; # NOTE: Change after first boot
-
   home-manager.users.user = {
     programs = lib.mkForce {};
     gtk.enable = lib.mkForce false;
