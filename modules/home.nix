@@ -9,6 +9,8 @@ in {
     home.username = "user";
     home.homeDirectory = "/home/user";
 
+    services.mpris-proxy.enable = true;
+
     programs = {
       home-manager.enable = true;
 

@@ -2,11 +2,12 @@
   imports = [
     ./hardware-configuration.nix
 
+    ../../modules/bluetooth.nix
     ../../modules/boot.nix
     ../../modules/home.nix
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
-    ../../modules/sound.nix
+    ../../modules/pipewire.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
     ../../modules/users.nix
