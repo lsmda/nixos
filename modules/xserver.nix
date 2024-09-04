@@ -18,4 +18,5 @@
   # Remove pre-installed gnome apps
   documentation.nixos.enable = false;
   environment.gnome.excludePackages = [pkgs.gnome-tour];
+  services.xserver.excludePackages = [pkgs.xterm];
 }
