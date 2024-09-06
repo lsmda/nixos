@@ -8,7 +8,7 @@
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/nvidia.nix
-    ../../modules/pulseaudio.nix
+    ../../modules/pipewire.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
     ../../modules/users.nix
