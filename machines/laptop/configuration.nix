@@ -1,11 +1,12 @@
 {lib, ...}: {
   imports = [
+    (import ../../modules/networking.nix {hostname = "igris";})
+
     ./hardware-configuration.nix
 
     ../../modules/bluetooth.nix
     ../../modules/boot.nix
     ../../modules/home.nix
-    ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/pipewire.nix
     ../../modules/ssh.nix

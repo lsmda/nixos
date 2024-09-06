@@ -4,6 +4,8 @@
   ...
 }: {
   imports = [
+    (import ../../modules/networking.nix {hostname = "pi";})
+
     ./hardware-configuration.nix
 
     ../../modules/home.nix
@@ -15,8 +17,6 @@
 
     ../../packages/common.nix
   ];
-
-  networking.hostName = lib.mkForce "pi";
 
   home-manager.users.user = {
     programs = lib.mkForce {};

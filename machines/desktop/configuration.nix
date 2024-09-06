@@ -1,5 +1,7 @@
 {...}: {
   imports = [
+    (import ../../modules/networking.nix {hostname = "urus";})
+
     ./hardware-configuration.nix
 
     ../../modules/bluetooth.nix
