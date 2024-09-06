@@ -1,6 +1,6 @@
 {lib, ...}: {
   imports = [
-    (import ../../modules/networking.nix {hostname = "igris";})
+    (import ../../modules/networking.nix {hostname = "laptop";})
 
     ./hardware-configuration.nix
 

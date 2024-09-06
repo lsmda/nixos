@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    (import ../../modules/networking.nix {hostname = "pi";})
+    (import ../../modules/networking.nix {hostname = "server";})
 
     ./hardware-configuration.nix
 

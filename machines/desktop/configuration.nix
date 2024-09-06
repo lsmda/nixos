@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    (import ../../modules/networking.nix {hostname = "urus";})
+    (import ../../modules/networking.nix {hostname = "desktop";})
 
     ./hardware-configuration.nix
 
