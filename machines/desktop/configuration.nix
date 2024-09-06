@@ -7,7 +7,6 @@
     ../../modules/bluetooth.nix
     ../../modules/boot.nix
     ../../modules/home.nix
-    ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/nvidia.nix
     ../../modules/pipewire.nix

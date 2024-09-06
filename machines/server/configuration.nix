@@ -9,7 +9,6 @@
     ./hardware-configuration.nix
 
     ../../modules/home.nix
-    ../../modules/networking.nix
     ../../modules/nfs-server.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
