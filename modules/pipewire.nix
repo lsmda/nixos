@@ -23,6 +23,20 @@
           }
         ];
       };
+
+      wireplumber.extraConfig.bluetooth-enhancements = {
+        "monitor.bluez.rules" = [
+          {
+            matches = [
+              {"node.name" = "~bluez_card.*";}
+            ];
+            actions.update-props = {
+              "bluez5.auto-connect" = ["a2dp_sink" "a2dp_source"];
+              "bluez5.hw-volume" = ["a2dp_sink" "a2dp_source"];
+            };
+          }
+        ];
+      };
     };
   };
 
