@@ -1,4 +1,7 @@
 {...}: {
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+
   # Store audio state on reboot
   sound.enable = true;
 
@@ -39,7 +42,4 @@
       };
     };
   };
-
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 }

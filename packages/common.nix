@@ -20,7 +20,6 @@
     nodejs
     nodePackages.prettier
     nodePackages.pnpm
-    ollama
     pciutils
     pkg-config
     python3
