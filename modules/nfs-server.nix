@@ -3,14 +3,16 @@
 
   fileSystems."/share/files" = {
     device = "/mnt/hyperx/files";
+    label = "files";
     fsType = "none";
-    options = ["bind"];
+    options = ["bind" "users"];
   };
 
   fileSystems."/share/media" = {
     device = "/mnt/hyperx/media";
+    label = "media";
     fsType = "none";
-    options = ["bind"];
+    options = ["bind" "users"];
   };
 
   services.nfs.server.exports = ''
