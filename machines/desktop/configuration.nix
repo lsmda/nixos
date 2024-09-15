@@ -1,8 +1,10 @@
-{...}: {
+{lib, ...}: let
+  machine = "desktop";
+in {
   imports = [
-    (import ../../modules/networking.nix {hostname = "desktop";})
-
     ./hardware-configuration.nix
+
+    (import ../../modules/networking.nix {inherit lib machine;})
 
     ../../modules/bluetooth.nix
     ../../modules/boot.nix

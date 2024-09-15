@@ -2,11 +2,13 @@
   lib,
   pkgs,
   ...
-}: {
+}: let
+  machine = "server";
+in {
   imports = [
-    (import ../../modules/networking.nix {hostname = "server";})
-
     ./hardware-configuration.nix
+
+    (import ../../modules/networking.nix {inherit lib machine;})
 
     ../../modules/home.nix
     ../../modules/nfs-server.nix
