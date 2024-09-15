@@ -7,6 +7,7 @@
         "--enable-zero-copy"
       ];
     })
+    discord
     eyedropper
     ffmpegthumbnailer
     firefox
