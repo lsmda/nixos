@@ -16,7 +16,7 @@ in {
   };
 
   server = {
-    address = "10.0.0.05";
+    address = "10.0.0.5";
     gateway = gateway;
     hostname = "server";
     interface = "end0";
