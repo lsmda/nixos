@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 let
   machine = "desktop";
 in
@@ -6,7 +6,7 @@ in
   imports = [
     ./hardware-configuration.nix
 
-    (import ../../modules/networking.nix { inherit lib machine; })
+    (import ../../modules/networking.nix { inherit machine; })
 
     ../../modules/bluetooth.nix
     ../../modules/boot.nix
