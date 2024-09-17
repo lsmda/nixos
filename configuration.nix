@@ -1,5 +1,4 @@
-{...}: {
-  imports = [
-    ./machines/desktop/configuration.nix
-  ];
+{ ... }:
+{
+  imports = [ ./machines/desktop/configuration.nix ];
 }

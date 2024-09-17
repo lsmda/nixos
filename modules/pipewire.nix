@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -16,8 +17,8 @@
         "monitor.alsa.rules" = [
           {
             matches = [
-              {"node.name" = "~alsa_input.*";}
-              {"node.name" = "~alsa_output.*";}
+              { "node.name" = "~alsa_input.*"; }
+              { "node.name" = "~alsa_output.*"; }
             ];
             actions.update-props = {
               "node.pause-on-idle" = false;
@@ -30,12 +31,16 @@
       wireplumber.extraConfig.bluetooth-enhancements = {
         "monitor.bluez.rules" = [
           {
-            matches = [
-              {"node.name" = "~bluez_card.*";}
-            ];
+            matches = [ { "node.name" = "~bluez_card.*"; } ];
             actions.update-props = {
-              "bluez5.auto-connect" = ["a2dp_sink" "a2dp_source"];
-              "bluez5.hw-volume" = ["a2dp_sink" "a2dp_source"];
+              "bluez5.auto-connect" = [
+                "a2dp_sink"
+                "a2dp_source"
+              ];
+              "bluez5.hw-volume" = [
+                "a2dp_sink"
+                "a2dp_source"
+              ];
             };
           }
         ];

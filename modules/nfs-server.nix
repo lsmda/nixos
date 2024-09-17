@@ -1,18 +1,25 @@
-{...}: {
+{ ... }:
+{
   services.nfs.server.enable = true;
 
   fileSystems."/share/files" = {
     device = "/mnt/hyperx/files";
     label = "files";
     fsType = "none";
-    options = ["bind" "users"];
+    options = [
+      "bind"
+      "users"
+    ];
   };
 
   fileSystems."/share/media" = {
     device = "/mnt/hyperx/media";
     label = "media";
     fsType = "none";
-    options = ["bind" "users"];
+    options = [
+      "bind"
+      "users"
+    ];
   };
 
   services.nfs.server.exports = ''

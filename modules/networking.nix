@@ -1,8 +1,5 @@
-{
-  lib,
-  machine,
-  ...
-}: let
+{ lib, machine, ... }:
+let
   opts = lib.getAttr machine (import ../options/default.nix);
 
   address = opts.address;
@@ -14,7 +11,8 @@
     5432 # PostgreSQL
     2049 # NFS
   ];
-in {
+in
+{
   networking = {
     hostName = hostname;
     networkmanager.enable = true;

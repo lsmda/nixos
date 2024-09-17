@@ -1,6 +1,6 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
-    alejandra
     bison
     btop
     cargo
@@ -17,6 +17,7 @@
     lazygit
     lshw
     nfs-utils
+    nixfmt-rfc-style
     nodejs
     nodePackages.prettier
     nodePackages.pnpm

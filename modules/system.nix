@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   time.timeZone = "Europe/Lisbon";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -14,11 +15,7 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  fonts.packages = with pkgs; [
-    (nerdfonts.override {
-      fonts = ["JetBrainsMono"];
-    })
-  ];
+  fonts.packages = with pkgs; [ (nerdfonts.override { fonts = [ "JetBrainsMono" ]; }) ];
 
   nix = {
     settings.auto-optimise-store = true;

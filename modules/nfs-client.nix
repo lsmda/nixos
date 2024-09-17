@@ -1,4 +1,5 @@
-{...}: let
+{ ... }:
+let
   nfs-mount-options = [
     "noauto" # Disable auto-mount on boot
     "rw" # Read-write permissions
@@ -6,7 +7,8 @@
     "x-systemd.automount" # Enable on-demand mounting
     "x-systemd.mount-timeout=5" # Ignore pending mounts after 5sec
   ];
-in {
+in
+{
   fileSystems."/mnt/files" = {
     device = "10.0.0.5:/files";
     fsType = "nfs";

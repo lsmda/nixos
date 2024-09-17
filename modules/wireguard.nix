@@ -1,22 +1,27 @@
-{...}: let
+{ ... }:
+let
   client = "10.2.0.2/32";
   dns = "10.2.0.1";
   listenPort = 51820;
   privateKey = "/etc/wireguard/privatekey";
   publicKey = builtins.readFile "/etc/wireguard/publickey";
   server = "185.76.11.17"; # Public IP address
-in {
+in
+{
   networking.wg-quick.interfaces = {
     ES = {
-      address = [client];
-      dns = [dns];
+      address = [ client ];
+      dns = [ dns ];
       listenPort = listenPort;
       privateKeyFile = privateKey;
 
       peers = [
         {
           publicKey = publicKey;
-          allowedIPs = ["0.0.0.0/0" "::/0"]; # Forward all traffic through wireguard
+          allowedIPs = [
+            "0.0.0.0/0"
+            "::/0"
+          ]; # Forward all traffic through wireguard
           endpoint = "${server}:${toString listenPort}";
           persistentKeepalive = 25;
         }

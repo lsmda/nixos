@@ -1,6 +1,7 @@
 let
   gateway = "10.0.0.1";
-in {
+in
+{
   desktop = {
     address = "10.0.0.10";
     gateway = gateway;

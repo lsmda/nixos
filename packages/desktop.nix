@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     (chromium.override {
       commandLineArgs = [
@@ -24,23 +25,20 @@
     impression
     imwheel
     kitty
-    (
-      mpv.override {
-        scripts = [
-          mpvScripts.evafast
-          mpvScripts.memo
-          mpvScripts.mpris
-          mpvScripts.thumbfast
-          mpvScripts.modernx
-        ];
-      }
-    )
+    (mpv.override {
+      scripts = [
+        mpvScripts.evafast
+        mpvScripts.memo
+        mpvScripts.mpris
+        mpvScripts.thumbfast
+        mpvScripts.modernx
+      ];
+    })
     obsidian
     pika-backup
     protonvpn-gui
     qbittorrent
     rar
-    spotify
     unrar
     vscode-fhs
     wpsoffice
@@ -72,5 +70,5 @@
   };
 
   virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["user"];
+  users.extraGroups.vboxusers.members = [ "user" ];
 }

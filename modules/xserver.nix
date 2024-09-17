@@ -1,13 +1,12 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services = {
     gnome.core-utilities.enable = false;
 
     printing.enable = true;
 
     # Required to run systray icons
-    udev.packages = with pkgs; [
-      gnome.gnome-settings-daemon
-    ];
+    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
     xserver.enable = true;
     xserver.desktopManager.xterm.enable = false;
@@ -17,6 +16,6 @@
 
   # Remove pre-installed gnome apps
   documentation.nixos.enable = false;
-  environment.gnome.excludePackages = [pkgs.gnome-tour];
-  services.xserver.excludePackages = [pkgs.xterm];
+  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
+  services.xserver.excludePackages = [ pkgs.xterm ];
 }

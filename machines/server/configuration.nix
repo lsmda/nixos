@@ -1,14 +1,12 @@
-{
-  lib,
-  pkgs,
-  ...
-}: let
+{ lib, pkgs, ... }:
+let
   machine = "server";
-in {
+in
+{
   imports = [
     ./hardware-configuration.nix
 
-    (import ../../modules/networking.nix {inherit lib machine;})
+    (import ../../modules/networking.nix { inherit lib machine; })
 
     ../../modules/home.nix
     ../../modules/nfs-server.nix
@@ -20,7 +18,7 @@ in {
   ];
 
   home-manager.users.user = {
-    programs = lib.mkForce {};
+    programs = lib.mkForce { };
     gtk.enable = lib.mkForce false;
     dconf.enable = lib.mkForce false;
   };
