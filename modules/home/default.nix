@@ -6,9 +6,7 @@
 }:
 
 let
-  dconf = config.home.dconf;
-  git-extra = config.home.git-extra;
-  gtk = config.home.gtk;
+  cfg = config.home;
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
 in
 
@@ -38,16 +36,13 @@ in
         home.username = "user";
         home.homeDirectory = "/home/user";
 
-        services.mpris-proxy.enable = true;
-
         programs = {
           home-manager.enable = true;
 
           git = lib.mkMerge [
+            (import ./git.nix)
 
-            (import ./git.nix { })
-
-            (lib.mkIf git-extra.enable {
+            (lib.mkIf cfg.git-extra.enable {
               extraConfig = {
                 credential.credentialStore = "secretservice";
                 credential.helper = [ "manager" ];
@@ -56,9 +51,9 @@ in
           ];
         };
 
-        dconf = lib.mkIf dconf.enable (import ./dconf.nix { inherit lib; });
+        dconf = lib.mkIf cfg.dconf.enable (import ./dconf.nix { inherit lib; });
 
-        gtk = lib.mkIf gtk.enable (import ./gtk.nix { inherit pkgs; });
+        gtk = lib.mkIf cfg.gtk.enable (import ./gtk.nix { inherit pkgs; });
 
         home.stateVersion = "24.05";
       };
