@@ -43,14 +43,17 @@ in
         programs = {
           home-manager.enable = true;
 
-          git =
+          git = lib.mkMerge [
+
             (import ./git.nix { })
-            // lib.mkIf git-extra.enable {
+
+            (lib.mkIf git-extra.enable {
               extraConfig = {
                 credential.credentialStore = "secretservice";
                 credential.helper = [ "manager" ];
               };
-            };
+            })
+          ];
         };
 
         dconf = lib.mkIf dconf.enable (import ./dconf.nix { inherit lib; });
