@@ -1,4 +1,5 @@
 { ... }:
+
 {
   hardware.bluetooth.settings = {
     General = {

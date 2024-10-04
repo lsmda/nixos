@@ -1,4 +1,5 @@
-{ machine, ... }:
+{ ... }:
+
 let
   allowedPorts = [
     5432 # PostgreSQL
@@ -8,8 +9,6 @@ in
 {
   networking = {
     networkmanager.enable = true;
-
-    hostName = machine;
 
     firewall.enable = true;
     firewall.allowedTCPPorts = allowedPorts;

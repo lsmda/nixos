@@ -1,4 +1,5 @@
 { pkgs, ... }:
+
 {
   environment.systemPackages = with pkgs; [
     bison
@@ -33,14 +34,4 @@
     xclip
     zip
   ];
-
-  programs = {
-    # Allow binaries outside nix store (i.e. Neovim LSP's managed by mason)
-    nix-ld.enable = true;
-
-    fish.enable = true;
-
-    neovim.enable = true;
-    neovim.defaultEditor = true;
-  };
 }

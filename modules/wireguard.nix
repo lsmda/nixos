@@ -1,4 +1,5 @@
 { ... }:
+
 let
   client = "10.2.0.2/32";
   dns = "10.2.0.1";
@@ -21,13 +22,13 @@ in
           allowedIPs = [
             "0.0.0.0/0"
             "::/0"
-          ]; # Forward all traffic through wireguard
+          ];
           endpoint = "${server}:${toString listenPort}";
           persistentKeepalive = 25;
         }
       ];
 
-      # Allow LAN connections by routing local traffic via default gateway
+      # Allow LAN traffic on network 10.0.0.0
       postUp = ''
         ip route add 10.0.0.0/24 via 10.0.0.1
       '';
