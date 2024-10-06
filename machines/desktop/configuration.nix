@@ -11,8 +11,8 @@ in
     ./hardware-configuration.nix
 
     ../../modules/bluetooth.nix
-    ../../modules/chromium.nix
     ../../modules/boot.nix
+    ../../modules/chromium.nix
     ../../modules/fish.nix
     ../../modules/neovim.nix
     ../../modules/networking.nix
