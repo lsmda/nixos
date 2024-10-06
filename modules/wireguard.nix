@@ -1,29 +1,20 @@
-{ ... }:
-
-let
-  client = "10.2.0.2/32";
-  dns = "10.2.0.1";
-  listenPort = 51820;
-  privateKey = "/etc/wireguard/privatekey";
-  publicKey = builtins.readFile "/etc/wireguard/publickey";
-  server = "185.76.11.17"; # Public IP address
-in
+{ ... }@args:
 {
   networking.wg-quick.interfaces = {
-    ES = {
-      address = [ client ];
-      dns = [ dns ];
-      listenPort = listenPort;
-      privateKeyFile = privateKey;
+    ${args.name} = {
+      address = [ args.client ];
+      dns = [ args.dns ];
+      listenPort = args.port;
+      privateKeyFile = args.privateKey;
 
       peers = [
         {
-          publicKey = publicKey;
+          publicKey = args.publicKey;
           allowedIPs = [
             "0.0.0.0/0"
             "::/0"
           ];
-          endpoint = "${server}:${toString listenPort}";
+          endpoint = "${args.server}:${toString args.port}";
           persistentKeepalive = 25;
         }
       ];

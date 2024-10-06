@@ -1,8 +1,9 @@
-{ lib, ... }:
+lib:
 
 let
   background = "file:///home/user/dotfiles/wallpapers/background.jpg";
 in
+
 {
   enable = true;
 

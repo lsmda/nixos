@@ -39,6 +39,7 @@
     pika-backup
     protonvpn-gui
     qbittorrent
+    spotify
     rar
     unrar
     vscode-fhs
