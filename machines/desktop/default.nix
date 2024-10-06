@@ -9,6 +9,7 @@
     ../../modules/bluetooth.nix
     ../../modules/boot.nix
     ../../modules/chromium.nix
+    ../../modules/firefox.nix
     ../../modules/fish.nix
     ../../modules/neovim.nix
     ../../modules/networking.nix
