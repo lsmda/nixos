@@ -31,24 +31,25 @@ in
   config =
 
     let
-      username = "user";
+      user = "user";
+      host = "laptop";
     in
 
     lib.mkMerge [
       {
-        networking.hostName = "laptop";
+        networking.hostName = host;
         console.keyMap = "pt-latin1";
         services.xserver.xkb.layout = "pt";
       }
 
-      (import ../../modules/users.nix username)
+      (import ../../modules/users.nix { inherit pkgs user; })
 
       (import ../../modules/home-manager.nix {
 
-        inherit lib username;
+        inherit lib user;
 
         cfg = {
-          home-manager.users.${username} =
+          home-manager.users.${user} =
             { lib, ... }:
             {
               dconf = import ../../modules/dconf.nix lib;

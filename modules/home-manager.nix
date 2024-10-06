@@ -1,19 +1,24 @@
-{ ... }@args:
+{
+  cfg,
+  lib,
+  user,
+  ...
+}:
 
-with args.lib;
+with lib;
 
 mkMerge [
   {
-    home-manager.users.${args.username} = {
+    home-manager.users.${user} = {
       programs.home-manager.enable = true;
 
-      home.username = args.username;
-      home.homeDirectory = "/home/${args.username}";
+      home.username = user;
+      home.homeDirectory = "/home/${user}";
       home.stateVersion = "24.05";
     };
 
     home-manager.backupFileExtension = "backup";
   }
 
-  args.cfg
+  cfg
 ]

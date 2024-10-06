@@ -25,21 +25,26 @@ in
   config =
 
     let
-      username = "user";
+      user = "user";
+      host = "server";
     in
 
     lib.mkMerge [
       {
-        networking.hostName = "server";
+        networking.hostName = host;
         boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
       }
 
+      (import ../../modules/users.nix { inherit pkgs user; })
+
       (import ../../modules/home-manager.nix {
 
-        inherit lib username;
+        inherit lib user;
 
-        home-manager.users.${username} = {
-          programs.git = lib.attrsets.filterAttrs (n: _: n != "extraConfig") (import ../../modules/git.nix);
+        cfg = {
+          home-manager.users.${user} = with lib.attrsets; {
+            programs.git = filterAttrs (n: _: n != "extraConfig") import ../../modules/git.nix;
+          };
         };
       })
     ];
