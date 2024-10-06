@@ -1,14 +1,10 @@
 { lib, pkgs, ... }:
 
-let
-  home-manager = fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
-in
-
 {
   imports = [
-    (import "${home-manager}/nixos")
+    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz"}/nixos"
 
-    ./hardware-configuration.nix
+    ./hardware.nix
 
     ../../modules/fish.nix
     ../../modules/neovim.nix
