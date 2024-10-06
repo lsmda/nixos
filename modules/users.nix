@@ -1,6 +1,8 @@
-{ pkgs, user, ... }:
+{ pkgs, user }:
 
 {
+  users.groups.docker = { }; # create docker group
+
   users.users = {
     ${user} = {
       uid = 1000;
