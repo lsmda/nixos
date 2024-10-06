@@ -5,5 +5,6 @@
   extraConfig = {
     credential.credentialStore = "secretservice";
     credential.helper = [ "manager" ];
+    core.commentChar = ";";
   };
 }
