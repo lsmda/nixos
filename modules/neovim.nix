@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   programs = {
     neovim.enable = true;

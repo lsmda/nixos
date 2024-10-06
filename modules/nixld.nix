@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   programs = {
     # Allow external binaries (i.e. Mason LSPs)

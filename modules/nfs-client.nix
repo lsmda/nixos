@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   nfs-mount-options = [
     "noauto" # Disable auto-mount on boot
@@ -9,6 +7,7 @@ let
     "x-systemd.mount-timeout=5" # Ignore pending mounts after 5sec
   ];
 in
+
 {
   fileSystems."/mnt/files" = {
     device = "10.0.0.5:/files";

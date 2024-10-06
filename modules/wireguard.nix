@@ -1,4 +1,5 @@
 { ... }@args:
+
 {
   networking.wg-quick.interfaces = {
     ${args.name} = {

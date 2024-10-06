@@ -1,11 +1,10 @@
-{ ... }:
-
 let
   allowedPorts = [
     5432 # PostgreSQL
     2049 # nfs
   ];
 in
+
 {
   networking = {
     networkmanager.enable = true;
