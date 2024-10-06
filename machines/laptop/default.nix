@@ -29,13 +29,14 @@ in
   ];
 
   config =
+    with lib;
 
     let
       user = "user";
       host = "laptop";
     in
 
-    lib.mkMerge [
+    mkMerge [
       {
         networking.hostName = host;
         console.keyMap = "pt-latin1";
@@ -65,7 +66,7 @@ in
         port = 51820;
         client = "10.2.0.2/32";
         dns = "10.2.0.1";
-        publicKey = builtins.readFile "/etc/wireguard/publickey";
+        publicKey = readFile "/etc/wireguard/publickey";
         privateKey = "/etc/wireguard/privatekey";
       })
     ];

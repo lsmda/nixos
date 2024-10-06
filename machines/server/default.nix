@@ -23,13 +23,14 @@ in
   ];
 
   config =
+    with lib;
 
     let
       user = "user";
       host = "server";
     in
 
-    lib.mkMerge [
+    mkMerge [
       {
         networking.hostName = host;
         boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
@@ -42,7 +43,7 @@ in
         inherit lib user;
 
         cfg = {
-          home-manager.users.${user} = with lib.attrsets; {
+          home-manager.users.${user} = with attrsets; {
             programs.git = filterAttrs (n: _: n != "extraConfig") import ../../modules/git.nix;
           };
         };
