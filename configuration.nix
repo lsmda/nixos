@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./machines/laptop ];
+  imports = [ ./machines/desktop ];
 }

@@ -13,7 +13,6 @@
     ../../modules/nixld.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
-    ../../modules/users.nix
 
     ../../packages/common.nix
   ];
@@ -39,8 +38,10 @@
         inherit lib user;
 
         cfg = {
-          home-manager.users.${user} = with attrsets; {
-            programs.git = filterAttrs (n: _: n != "extraConfig") import ../../modules/git.nix;
+          home-manager.users.${user} = {
+            programs.git = import ../../modules/git.nix // {
+              extraConfig = { };
+            };
           };
         };
       })
