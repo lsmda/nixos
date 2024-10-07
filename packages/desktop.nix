@@ -42,6 +42,7 @@
     rar
     unrar
     vscode-fhs
+    winbox
     wpsoffice
   ];
 }
