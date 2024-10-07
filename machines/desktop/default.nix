@@ -14,7 +14,7 @@
     ../../modules/neovim.nix
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
-    ../../modules/nixld.nix
+    ../../modules/nix-ld.nix
     ../../modules/nvidia.nix
     ../../modules/pipewire.nix
     ../../modules/ssh.nix

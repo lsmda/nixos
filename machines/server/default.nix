@@ -10,7 +10,7 @@
     ../../modules/neovim.nix
     ../../modules/networking.nix
     ../../modules/nfs-server.nix
-    ../../modules/nixld.nix
+    ../../modules/nix-ld.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
 
