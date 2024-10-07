@@ -57,14 +57,14 @@
         };
       })
 
-      (import ../../modules/wireguard.nix {
-        name = "wireguard";
-        server = "185.76.11.22";
-        port = 51820;
-        client = "10.2.0.2/32";
-        dns = "10.2.0.1";
-        publicKey = readFile "/etc/wireguard/publickey";
-        privateKey = "/etc/wireguard/privatekey";
-      })
+      # (import ../../modules/wireguard.nix {
+      #   name = "wireguard";
+      #   server = "185.76.11.22";
+      #   port = 51820;
+      #   client = "10.2.0.2/32";
+      #   dns = "10.2.0.1";
+      #   publicKey = readFile "/etc/wireguard/publickey";
+      #   privateKey = "/etc/wireguard/privatekey";
+      # })
     ];
 }

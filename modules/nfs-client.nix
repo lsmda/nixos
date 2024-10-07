@@ -10,13 +10,13 @@ in
 
 {
   fileSystems."/mnt/files" = {
-    device = "10.0.0.5:/files";
+    device = "192.168.88.5:/files";
     fsType = "nfs";
     options = nfs-mount-options;
   };
 
   fileSystems."/mnt/media" = {
-    device = "10.0.0.5:/media";
+    device = "192.168.88.5:/media";
     fsType = "nfs";
     options = nfs-mount-options;
   };

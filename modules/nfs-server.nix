@@ -22,8 +22,8 @@
   };
 
   services.nfs.server.exports = ''
-    /share         10.0.0.0/24(rw,fsid=0,no_subtree_check)
-    /share/files   10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
-    /share/media   10.0.0.0/24(rw,nohide,insecure,no_subtree_check)
+    /share         192.168.88.0/24(rw,fsid=0,no_subtree_check)
+    /share/files   192.168.88.0/24(rw,nohide,insecure,no_subtree_check)
+    /share/media   192.168.88.0/24(rw,nohide,insecure,no_subtree_check)
   '';
 }
