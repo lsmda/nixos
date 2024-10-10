@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    age
     bison
     btop
     cargo
@@ -27,6 +28,7 @@
     python3
     ripgrep
     rustc
+    sops
     stow
     sqlite
     unzip

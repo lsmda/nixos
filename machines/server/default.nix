@@ -1,7 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
+    "${fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz"}/nixos"
 
     ./hardware.nix
@@ -11,39 +17,40 @@
     ../../modules/networking.nix
     ../../modules/nfs-server.nix
     ../../modules/nix-ld.nix
+    ../../modules/sops.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
+
+    ../../options
 
     ../../packages/common.nix
   ];
 
   config =
-    with lib;
 
     let
-      user = "user";
-      host = "server";
+      inherit (lib) mkMerge;
     in
 
     mkMerge [
       {
-        networking.hostName = host;
+        machine.username = "user";
+        machine.hostname = "server";
+
         boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
       }
 
-      (import ../../modules/users.nix { inherit pkgs user; })
+      (import ../../modules/users.nix { inherit config pkgs; })
 
       (import ../../modules/home-manager.nix {
-
-        inherit lib user;
-
-        cfg = {
-          home-manager.users.${user} = {
+        attrs = {
+          home-manager.users.${config.machine.username} = {
             programs.git = import ../../modules/git.nix // {
               extraConfig = { };
             };
           };
         };
+        inherit config lib;
       })
     ];
 }

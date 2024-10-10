@@ -1,7 +1,13 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
+    "${fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
     "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz"}/nixos"
 
     ./hardware.nix
@@ -16,38 +22,39 @@
     ../../modules/nfs-client.nix
     ../../modules/nix-ld.nix
     ../../modules/pipewire.nix
+    ../../modules/sops.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
     ../../modules/virtualbox.nix
     ../../modules/xserver.nix
 
+    ../../options
+
     ../../packages/common.nix
     ../../packages/desktop.nix
+
   ];
 
   config =
-    with lib;
 
     let
-      user = "user";
-      host = "laptop";
+      inherit (lib) mkMerge readFile;
     in
 
     mkMerge [
       {
-        networking.hostName = host;
+        machine.username = "user";
+        machine.hostname = "laptop";
+
         console.keyMap = "pt-latin1";
         services.xserver.xkb.layout = "pt";
       }
 
-      (import ../../modules/users.nix { inherit pkgs user; })
+      (import ../../modules/users.nix { inherit config pkgs; })
 
       (import ../../modules/home-manager.nix {
-
-        inherit lib user;
-
-        cfg = {
-          home-manager.users.${user} =
+        attrs = {
+          home-manager.users.${config.machine.username} =
             { lib, ... }:
             {
               dconf = import ../../modules/dconf.nix lib;
@@ -55,6 +62,7 @@
               programs.git = import ../../modules/git.nix;
             };
         };
+        inherit config lib;
       })
 
       (import ../../modules/wireguard.nix {
