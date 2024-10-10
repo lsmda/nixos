@@ -4,6 +4,5 @@
   sops.defaultSopsFile = ../secrets/secrets.yaml;
   sops.age.keyFile = "/home/${config.machine.username}/.config/sops/age/keys.txt";
 
-  # sops.secrets.git_email = { };
-  # sops.secrets.git_username = { };
+  sops.secrets.hashed_password = { };
 }
