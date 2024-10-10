@@ -68,7 +68,6 @@
       (import ../../modules/wireguard.nix {
         name = "wireguard";
         server = "185.76.11.17";
-
         port = 51820;
         client = "10.2.0.2/32";
         dns = "10.2.0.1";
