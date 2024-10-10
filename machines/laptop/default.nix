@@ -59,7 +59,7 @@
             {
               dconf = import ../../modules/dconf.nix lib;
               gtk = import ../../modules/gtk.nix pkgs;
-              programs.git = import ../../modules/git.nix;
+              programs.git = import ../../modules/git.nix { inherit config; };
             };
         };
         inherit config lib;

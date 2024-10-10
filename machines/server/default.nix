@@ -45,7 +45,7 @@
       (import ../../modules/home-manager.nix {
         attrs = {
           home-manager.users.${config.machine.username} = {
-            programs.git = import ../../modules/git.nix // {
+            programs.git = import ../../modules/git.nix { inherit config; } // {
               extraConfig = { };
             };
           };

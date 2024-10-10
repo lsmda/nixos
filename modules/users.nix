@@ -1,5 +1,9 @@
 { config, pkgs }:
 
+let
+  inherit (builtins) readFile;
+in
+
 {
   users.groups.docker = { }; # create docker group
 
@@ -10,7 +14,7 @@
       group = "users";
       home = "/home/${config.machine.username}";
       shell = pkgs.fish;
-      hashedPassword = config.sops.secrets.hashed_password.path;
+      hashedPassword = readFile config.sops.secrets.hashed_password.path;
 
       extraGroups = [
         "networkmanager"

@@ -2,7 +2,7 @@
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
-  # Store audio state on reboot
+  # store audio state on reboot
   sound.enable = true;
 
   services = {

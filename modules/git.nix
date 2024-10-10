@@ -1,8 +1,14 @@
+{ config, ... }:
+
+let
+  inherit (builtins) readFile;
+in
+
 {
   enable = true;
 
-  userName = "lsmda";
-  userEmail = "contact@lsmda.pm";
+  userName = readFile config.sops.secrets.git_user.path;
+  userEmail = readFile config.sops.secrets.git_email.path;
 
   extraConfig = {
     credential.credentialStore = "secretservice";
