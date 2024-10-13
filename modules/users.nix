@@ -1,4 +1,4 @@
-{ config, pkgs }:
+{ config, pkgs, ... }:
 
 {
   users.groups.docker = { }; # create docker group

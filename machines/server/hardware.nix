@@ -1,4 +1,4 @@
-{ lib, modulesPath, ... }:
+{ modulesPath, pkgs, ... }:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -19,26 +19,10 @@
     ];
   };
 
-  hardware.enableRedistributableFirmware = true;
-
   boot.initrd.availableKernelModules = [ "xhci_pci" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
-  boot = {
-    loader = {
-      grub.enable = false;
-      generic-extlinux-compatible.enable = true;
-    };
-  };
-
-  swapDevices = [ ];
-
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.end0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
+  hardware.enableRedistributableFirmware = true;
 }

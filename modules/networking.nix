@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
   allowedPorts = [
@@ -16,5 +16,7 @@ in
     firewall.enable = true;
     firewall.allowedTCPPorts = allowedPorts;
     firewall.allowedUDPPorts = allowedPorts;
+
+    useDHCP = lib.mkDefault true;
   };
 }

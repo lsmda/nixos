@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 
 {
   imports = [
@@ -20,6 +15,7 @@
     ../../modules/sops.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
+    ../../modules/users.nix
 
     ../../options
 
@@ -40,12 +36,10 @@
         lan.network = "1.0.0.0";
         lan.gateway = "1.0.0.1";
 
-        boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
+        nixpkgs.hostPlatform = "aarch64-linux";
       }
 
-      (import ../../modules/users.nix { inherit config pkgs; })
-
-      # the following machines will be able to ssh into the server
+      # add authorized ssh keys
       {
         users.users.${config.machine.username} = {
           openssh.authorizedKeys.keyFiles = [

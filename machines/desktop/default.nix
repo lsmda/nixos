@@ -26,6 +26,7 @@
     ../../modules/sops.nix
     ../../modules/ssh.nix
     ../../modules/system.nix
+    ../../modules/users.nix
     ../../modules/virtualbox.nix
     ../../modules/xserver.nix
 
@@ -53,9 +54,9 @@
 
         console.keyMap = "us";
         services.xserver.xkb.layout = "us";
-      }
 
-      (import ../../modules/users.nix { inherit config pkgs; })
+        nixpkgs.hostPlatform = "x86_64-linux";
+      }
 
       (import ../../modules/home-manager.nix {
         attrs = {
@@ -70,7 +71,7 @@
         inherit config lib;
       })
 
-      ((import ../../modules/wireguard.nix config) {
+      (import ../../modules/wireguard.nix {
         interface = "es_30";
         server = "185.76.11.17";
         port = 51820;
@@ -78,6 +79,7 @@
         dns = "10.2.0.1";
         publicKey = "roOsz9dJeKKVt6E3EIEKXQfZsmhSfsqOceZWiuGLIgg=";
         privateKeyFile = toString secrets."wireguard/es_30/privateKey".path;
+        inherit config;
       })
     ];
 }

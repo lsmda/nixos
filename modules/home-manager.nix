@@ -2,6 +2,7 @@
   attrs,
   config,
   lib,
+  ...
 }:
 
 let

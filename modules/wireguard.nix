@@ -1,16 +1,14 @@
-config: args:
-
-let
-  inherit (args)
-    interface
-    server
-    port
-    client
-    dns
-    publicKey
-    privateKeyFile
-    ;
-in
+{
+  config,
+  interface,
+  server,
+  port,
+  client,
+  dns,
+  publicKey,
+  privateKeyFile,
+  ...
+}:
 
 {
   networking.wg-quick.interfaces = {
