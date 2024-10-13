@@ -36,6 +36,8 @@
         lan.network = "1.0.0.0";
         lan.gateway = "1.0.0.1";
 
+        user.credentials = /etc/credentials.json;
+
         nixpkgs.hostPlatform = "aarch64-linux";
       }
 

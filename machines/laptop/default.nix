@@ -52,6 +52,8 @@
         lan.gateway = "1.0.0.1";
         lan.server = "1.0.0.5";
 
+        user.credentials = /etc/credentials.json;
+
         console.keyMap = "pt-latin1";
         services.xserver.xkb.layout = "pt";
 

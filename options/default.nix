@@ -27,5 +27,10 @@
       default = null;
       description = "Local area network nfs server address";
     };
+
+    user.credentials = lib.mkOption {
+      type = lib.types.path;
+      description = "Path to file containing user credentials";
+    };
   };
 }

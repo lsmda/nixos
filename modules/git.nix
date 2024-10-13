@@ -1,5 +1,7 @@
+{ config, ... }:
+
 let
-  credentials = builtins.fromJSON (builtins.readFile /etc/credentials.json);
+  credentials = builtins.fromJSON (builtins.readFile config.user.credentials);
 in
 
 {
