@@ -14,7 +14,7 @@ in
       night-light-schedule-automatic = false;
       night-light-schedule-from = 0.0;
       night-light-schedule-to = 0.0;
-      night-light-temperature = lib.hm.gvariant.mkUint32 4200;
+      night-light-temperature = lib.hm.gvariant.mkUint32 3700;
     };
 
     # sound
