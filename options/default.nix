@@ -12,20 +12,20 @@
       description = "Name of host machine";
     };
 
-    lan.address = lib.mkOption {
+    lan.network = lib.mkOption {
       type = lib.types.str;
-      description = "LAN ipv4 address";
+      description = "Local area network address";
     };
 
     lan.gateway = lib.mkOption {
       type = lib.types.str;
-      description = "LAN gateway ipv4 address";
+      description = "Local area network gateway address";
     };
 
     lan.server = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
-      description = "LAN server ipv4 address";
+      description = "Local area network nfs server address";
     };
   };
 }

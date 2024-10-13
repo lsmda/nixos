@@ -47,7 +47,7 @@
         machine.username = "user";
         machine.hostname = "desktop";
 
-        lan.address = "1.0.0.0";
+        lan.network = "1.0.0.0";
         lan.gateway = "1.0.0.1";
         lan.server = "1.0.0.5";
 

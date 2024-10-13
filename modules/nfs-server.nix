@@ -24,8 +24,8 @@
   };
 
   services.nfs.server.exports = ''
-    /share         ${config.lan.address}/24(rw,fsid=0,no_subtree_check)
-    /share/files   ${config.lan.address}/24(rw,nohide,insecure,no_subtree_check)
-    /share/media   ${config.lan.address}/24(rw,nohide,insecure,no_subtree_check)
+    /share         ${config.lan.network}/24(rw,fsid=0,no_subtree_check)
+    /share/files   ${config.lan.network}/24(rw,nohide,insecure,no_subtree_check)
+    /share/media   ${config.lan.network}/24(rw,nohide,insecure,no_subtree_check)
   '';
 }

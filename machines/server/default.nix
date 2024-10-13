@@ -37,7 +37,7 @@
         machine.username = "user";
         machine.hostname = "server";
 
-        lan.address = "1.0.0.0";
+        lan.network = "1.0.0.0";
         lan.gateway = "1.0.0.1";
 
         boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;

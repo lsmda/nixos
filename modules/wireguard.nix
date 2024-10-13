@@ -34,7 +34,7 @@ in
 
       # allow LAN traffic
       postUp = ''
-        ip route add ${config.lan.address}/24 via ${config.lan.gateway}
+        ip route add ${config.lan.network}/24 via ${config.lan.gateway}
       '';
     };
   };
