@@ -3,13 +3,6 @@
 let
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
-    (chromium.override {
-      commandLineArgs = [
-        "--enable-features=VaapiVideoDecodeLinuxGL"
-        "--ignore-gpu-blocklist"
-        "--enable-zero-copy"
-      ];
-    })
     discord
     eog
     eyedropper

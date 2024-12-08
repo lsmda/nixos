@@ -71,14 +71,5 @@
       MoreFromMozilla = false;
       FirefoxLabs = false;
     };
-
-  };
-
-  programs.firefox.preferences = {
-    "extensions.pocket.enabled" = false;
-    "extensions.screenshots.disabled" = true;
-    # use native GTK buttons
-    "widget.gtk.non-native-titlebar-buttons.enabled" = false;
-    "widget.use-xdg-desktop-portal.file-picker" = true;
   };
 }

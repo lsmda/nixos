@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./machines/rpi4 ];
+  imports = [ ./machines/lpt0 ];
 }

@@ -12,6 +12,8 @@
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "nvme"
+    "usb_storage"
+    "sd_mod"
   ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -19,16 +21,16 @@
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a5c6de45-74b8-47e1-9b22-2242900591a5";
+    device = "/dev/disk/by-uuid/ecd2c902-0184-4e0a-9bea-eb3b1cd30724";
     fsType = "ext4";
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/E450-1FB3";
+    device = "/dev/disk/by-uuid/F53E-0A95";
     fsType = "vfat";
     options = [
-      "fmask=0022"
-      "dmask=0022"
+      "fmask=0077"
+      "dmask=0077"
     ];
   };
 

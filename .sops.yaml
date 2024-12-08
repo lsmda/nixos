@@ -15,3 +15,9 @@ creation_rules:
           - *dskt
           - *lpt0
           - *rpi4
+  - path_regex: secrets/git/[^/]+$
+    key_groups:
+      - age:
+          - *dskt
+          - *lpt0
+          - *rpi4

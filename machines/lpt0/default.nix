@@ -23,13 +23,10 @@ in
     ./hardware.nix
 
     ../../modules/bluetooth.nix
-    ../../modules/chromium.nix
-    ../../modules/firefox.nix
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/options.nix
     ../../modules/pipewire.nix
-    ../../modules/services.nix
     ../../modules/sops.nix
     ../../modules/xserver.nix
   ];
@@ -47,12 +44,17 @@ in
       services.xserver.xkb.layout = "pt";
 
       networking.wg-quick.interfaces.es_65 = local_routing // {
+        autostart = false;
         configFile = secrets.es_65.path;
       };
 
       networking.wg-quick.interfaces.ie_36 = local_routing // {
         autostart = false;
         configFile = secrets.ie_36.path;
+      };
+
+      networking.wg-quick.interfaces.uk_14 = local_routing // {
+        configFile = secrets.uk_14.path;
       };
 
       # virtual box
@@ -75,26 +77,28 @@ in
     })
 
     # home-manager
-    (import ../../modules/home config.machine.username {
+    (import ../../home/default.nix config.machine.username {
       imports = [
-        ../../modules/home/dconf.nix
-        ../../modules/home/gtk.nix
-        ../../modules/home/keybinds.nix
-        ../../modules/home/packages.nix
+        ../../home/chromium.nix
+        ../../home/dconf.nix
+        ../../home/firefox.nix
+        ../../home/gtk.nix
+        ../../home/keybinds.nix
+        ../../home/packages.nix
       ];
 
       # extend dconf module
       dconf = {
         settings."org/gnome/desktop/background".picture-uri = background;
         settings."org/gnome/desktop/background".picture-uri-dark = background;
-        settings."org/gnome/desktop/interface".text-scaling-factor = mkForce 0.9;
+        settings."org/gnome/desktop/interface".text-scaling-factor = mkForce 0.8;
         settings."org/gnome/desktop/screensaver".picture-uri = background;
         settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
       };
 
       programs = mkMerge [
-        (import ../../modules/home/mpv.nix { inherit pkgs; })
-        (import ../../modules/home/git.nix { inherit config pkgs; })
+        (import ../../home/mpv.nix { inherit pkgs; })
+        (import ../../home/git.nix { inherit config pkgs; })
       ];
 
       home.stateVersion = "24.11";

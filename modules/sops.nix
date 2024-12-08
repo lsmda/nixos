@@ -7,7 +7,7 @@ let
     mode = "0400";
   };
 
-  binarySopsFile =
+  fromBinary =
     path:
     permissions
     // {
@@ -15,7 +15,7 @@ let
       sopsFile = path;
     };
 
-  yamlSopsFile =
+  fromYaml =
     path:
     permissions
     // {
@@ -35,22 +35,22 @@ in
   sops.age.keyFile = "/home/${config.machine.username}/.config/sops/age/keys.txt";
 
   # git credentials
-  sops.secrets."main/user" = yamlSopsFile ../secrets/git.yaml;
-  sops.secrets."main/mail" = yamlSopsFile ../secrets/git.yaml;
-  sops.secrets."work/user" = yamlSopsFile ../secrets/git.yaml;
-  sops.secrets."work/mail" = yamlSopsFile ../secrets/git.yaml;
+  sops.secrets."git/main" = fromBinary ../secrets/git/main.conf;
+  sops.secrets."git/work" = fromBinary ../secrets/git/work.conf;
 
   # ssh keys
-  sops.secrets."dskt/ed_25519_pub" = yamlSopsFile ../secrets/ssh.yaml;
-  sops.secrets."lpt0/ed_25519_pub" = yamlSopsFile ../secrets/ssh.yaml;
-  sops.secrets."rpi4/ed_25519_pub" = yamlSopsFile ../secrets/ssh.yaml;
+  sops.secrets."dskt/ed_25519_pub" = fromYaml ../secrets/ssh.yaml;
+  sops.secrets."lpt0/ed_25519_pub" = fromYaml ../secrets/ssh.yaml;
+  sops.secrets."rpi4/ed_25519_pub" = fromYaml ../secrets/ssh.yaml;
 
   # wireguard interfaces
-  sops.secrets."es_62" = binarySopsFile ../secrets/wireguard/es_62.conf;
-  sops.secrets."es_65" = binarySopsFile ../secrets/wireguard/es_65.conf;
-  sops.secrets."ie_25" = binarySopsFile ../secrets/wireguard/ie_25.conf;
-  sops.secrets."ie_36" = binarySopsFile ../secrets/wireguard/ie_36.conf;
+  sops.secrets."es_62" = fromBinary ../secrets/wireguard/es_62.conf;
+  sops.secrets."es_65" = fromBinary ../secrets/wireguard/es_65.conf;
+  sops.secrets."ie_25" = fromBinary ../secrets/wireguard/ie_25.conf;
+  sops.secrets."ie_36" = fromBinary ../secrets/wireguard/ie_36.conf;
+  sops.secrets."uk_14" = fromBinary ../secrets/wireguard/uk_14.conf;
+  sops.secrets."uk_24" = fromBinary ../secrets/wireguard/uk_24.conf;
 
   # system data
-  sops.secrets."user/hashed_password" = yamlSopsFile ../secrets/sys.yaml;
+  sops.secrets."user/hashed_password" = fromYaml ../secrets/sys.yaml;
 }

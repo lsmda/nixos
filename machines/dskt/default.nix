@@ -23,14 +23,11 @@ in
     ./hardware.nix
 
     ../../modules/bluetooth.nix
-    ../../modules/chromium.nix
-    ../../modules/firefox.nix
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/nvidia.nix
     ../../modules/options.nix
     ../../modules/pipewire.nix
-    ../../modules/services.nix
     ../../modules/sops.nix
     ../../modules/xserver.nix
   ];
@@ -48,12 +45,17 @@ in
       services.xserver.xkb.layout = "us";
 
       networking.wg-quick.interfaces.es_62 = local_routing // {
+        autostart = false;
         configFile = secrets.es_62.path;
       };
 
       networking.wg-quick.interfaces.ie_25 = local_routing // {
         autostart = false;
         configFile = secrets.ie_25.path;
+      };
+
+      networking.wg-quick.interfaces.uk_24 = local_routing // {
+        configFile = secrets.uk_24.path;
       };
 
       environment.variables = {
@@ -85,12 +87,14 @@ in
     })
 
     # home-manager
-    (import ../../modules/home config.machine.username {
+    (import ../../home/default.nix config.machine.username {
       imports = [
-        ../../modules/home/dconf.nix
-        ../../modules/home/gtk.nix
-        ../../modules/home/keybinds.nix
-        ../../modules/home/packages.nix
+        ../../home/chromium.nix
+        ../../home/dconf.nix
+        ../../home/firefox.nix
+        ../../home/gtk.nix
+        ../../home/keybinds.nix
+        ../../home/packages.nix
       ];
 
       # extend dconf module
