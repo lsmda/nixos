@@ -7,12 +7,12 @@
 
 let
   inherit (lib) mkMerge;
-  secrets = config.sops.secrets;
-  background = "file:///home/user/dotfiles/wallpapers/background.jpg";
+  background = toString ../../assets/00.jpg;
   local_routing = {
     postUp = "ip route add ${config.lan.network}/24 via ${config.lan.gateway}";
-    postDown = "ip route del ${config.lan.network}/24 via ${config.lan.gateway}";
+    preDown = "ip route del ${config.lan.network}/24 via ${config.lan.gateway}";
   };
+  secrets = config.sops.secrets;
 in
 
 {
