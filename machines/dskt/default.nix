@@ -110,8 +110,8 @@ in
       # for some reason `sops` attribute is not appended to the config set. this makes the git
       # module not work since it depends on secrets. manually passing the config fixes the issue.
       programs = mkMerge [
-        (import ../../modules/home/mpv.nix { inherit pkgs; })
-        (import ../../modules/home/git.nix { inherit config pkgs; })
+        (import ../../home/mpv.nix { inherit pkgs; })
+        (import ../../home/git.nix { inherit config pkgs; })
       ];
 
       # should be kept the same as `system.stateVersion`
