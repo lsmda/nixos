@@ -1,14 +1,14 @@
 { ... }@args:
 
 let
-  listToSet = builtins.map (name: {
+  list_to_set = map (name: {
     inherit name;
     value = { };
   });
 in
 
 {
-  users.groups = builtins.listToAttrs (listToSet (args.extraGroups or [ ]));
+  users.groups = builtins.listToAttrs (list_to_set (args.extraGroups or [ ]));
 
   users.users.${args.username} = {
     home = args.home;

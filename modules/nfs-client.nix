@@ -9,7 +9,7 @@ let
     "x-systemd.mount-timeout=5" # ignore pending mounts after 5sec
   ];
 
-  simpleShare = path: {
+  simple_share = path: {
     device = "${config.lan.storage}:${path}";
     fsType = "nfs";
     options = options;
@@ -17,6 +17,6 @@ let
 in
 
 {
-  fileSystems."/mnt/files" = simpleShare "/files";
-  fileSystems."/mnt/media" = simpleShare "/media";
+  fileSystems."/mnt/files" = simple_share "/files";
+  fileSystems."/mnt/media" = simple_share "/media";
 }

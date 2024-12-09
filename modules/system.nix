@@ -16,18 +16,16 @@ cfg:
 
   time.timeZone = "Europe/Lisbon";
 
-  programs = {
-    neovim.enable = true;
-    neovim.defaultEditor = true;
+  programs.neovim.enable = true;
+  programs.neovim.defaultEditor = true;
 
-    fish.enable = true;
+  programs.fish.enable = true;
 
-    # allow external binaries (i.e. Mason LSPs)
-    nix-ld.enable = true;
-  };
+  # allow external binaries (i.e. mason LSPs)
+  programs.nix-ld.enable = true;
 
   # ssh
   services.openssh.enable = true;
 }
 
-// cfg # merge attributes passed as argument
+// cfg # merge with configuration set passed to module

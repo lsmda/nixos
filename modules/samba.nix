@@ -1,8 +1,8 @@
-{ ... }:
+{ config, ... }:
 
 let
-  simpleShare = path: {
-    "admin users" = "user";
+  simple_share = path: {
+    "admin users" = config.machine.username;
     "browseable" = "yes";
     "guest ok" = "no";
     "path" = path;
@@ -10,15 +10,15 @@ let
   };
 in
 
-# samba is used to access the nfs server on ios and windows.
+# ios and windows use samba to connect to nfs.
 
 {
   services.samba.enable = true;
   services.samba.openFirewall = true;
 
   services.samba.settings = {
-    files = simpleShare "/mnt/hyperx/files";
-    media = simpleShare "/mnt/hyperx/media";
+    files = simple_share "/mnt/hyperx/files";
+    media = simple_share "/mnt/hyperx/media";
   };
 
   services.samba-wsdd = {

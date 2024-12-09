@@ -27,7 +27,7 @@ in
       path = toString secrets."git/main".path;
     }
     {
-      condition = "gitdir:~/Documents/work/**";
+      condition = "hasconfig:remote.*.url:https://gitlab.com/*/digital/**";
       path = toString secrets."git/work".path;
     }
   ];

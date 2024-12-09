@@ -1,30 +1,24 @@
 { config, ... }:
 
 let
-  permissions = {
-    owner = config.machine.username;
+  user = config.machine.username;
+
+  attributes = {
+    owner = user;
     group = "root";
     mode = "0400";
   };
 
-  fromBinary =
-    path:
-    permissions
-    // {
-      format = "binary";
-      sopsFile = path;
-    };
+  sops_file = path: { sopsFile = path; };
 
-  fromYaml =
-    path:
-    permissions
-    // {
-      format = "yaml";
-      sopsFile = path;
-    };
+  yaml = path: sops_file path // { format = "yaml"; };
+  binary = path: sops_file path // { format = "binary"; };
+
+  from_yaml = path: yaml path // attributes;
+  from_binary = path: binary path // attributes;
 in
 
-# generate an age key:
+# generate age key:
 # $ mkdir -p ~/.config/sops/age
 # $ age-keygen -o ~/.config/sops/age/keys.txt
 
@@ -32,25 +26,25 @@ in
 # $ sops updatekeys secrets/example.yaml
 
 {
-  sops.age.keyFile = "/home/${config.machine.username}/.config/sops/age/keys.txt";
+  sops.age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
+
+  # user's hashed password
+  sops.secrets."user/password" = from_yaml ../secrets/sys.yaml;
+
+  # ssh public keys
+  sops.secrets."dskt/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
+  sops.secrets."lpt0/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
+  sops.secrets."rpi4/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
 
   # git credentials
-  sops.secrets."git/main" = fromBinary ../secrets/git/main.conf;
-  sops.secrets."git/work" = fromBinary ../secrets/git/work.conf;
+  sops.secrets."git/main" = from_binary ../secrets/git/main.conf;
+  sops.secrets."git/work" = from_binary ../secrets/git/work.conf;
 
-  # ssh keys
-  sops.secrets."dskt/ed_25519_pub" = fromYaml ../secrets/ssh.yaml;
-  sops.secrets."lpt0/ed_25519_pub" = fromYaml ../secrets/ssh.yaml;
-  sops.secrets."rpi4/ed_25519_pub" = fromYaml ../secrets/ssh.yaml;
-
-  # wireguard interfaces
-  sops.secrets."es_62" = fromBinary ../secrets/wireguard/es_62.conf;
-  sops.secrets."es_65" = fromBinary ../secrets/wireguard/es_65.conf;
-  sops.secrets."ie_25" = fromBinary ../secrets/wireguard/ie_25.conf;
-  sops.secrets."ie_36" = fromBinary ../secrets/wireguard/ie_36.conf;
-  sops.secrets."uk_14" = fromBinary ../secrets/wireguard/uk_14.conf;
-  sops.secrets."uk_24" = fromBinary ../secrets/wireguard/uk_24.conf;
-
-  # system data
-  sops.secrets."user/hashed_password" = fromYaml ../secrets/sys.yaml;
+  # wireguard configuration files
+  sops.secrets."es_62" = from_binary ../secrets/wireguard/es_62.conf;
+  sops.secrets."es_65" = from_binary ../secrets/wireguard/es_65.conf;
+  sops.secrets."ie_25" = from_binary ../secrets/wireguard/ie_25.conf;
+  sops.secrets."ie_36" = from_binary ../secrets/wireguard/ie_36.conf;
+  sops.secrets."uk_14" = from_binary ../secrets/wireguard/uk_14.conf;
+  sops.secrets."uk_24" = from_binary ../secrets/wireguard/uk_24.conf;
 }

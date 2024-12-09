@@ -3,8 +3,6 @@
 # use `dconf watch /` to track state changes, then set them here.
 
 {
-  dconf.enable = true;
-
   dconf.settings = {
     # displays
     "org/gnome/settings-daemon/plugins/color" = {
@@ -26,8 +24,11 @@
     };
 
     "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
       sleep-inactive-ac-type = "nothing";
       power-button-action = "nothing";
+      power-saver-profile-on-low-battery = false;
+      sleep-inactive-battery-type = "nothing";
     };
 
     "org/gnome/desktop/session" = {
@@ -36,8 +37,10 @@
 
     # multitasking
     "org/gnome/desktop/interface" = {
+      accent-color = "slate";
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
+      show-battery-percentage = true;
     };
 
     "org/gnome/mutter" = {
@@ -64,8 +67,9 @@
       show-directory-item-counts = "always";
     };
 
-    # active extensions
     "org/gnome/shell" = {
+      last-selected-power-profile = "performance";
+      # active extensions
       enabled-extensions = [
         "alt-tab-scroll-workaround@lucasresck.github.io"
         "appindicatorsupport@rgcjonas.gmail.com"
