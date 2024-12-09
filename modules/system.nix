@@ -26,6 +26,14 @@ cfg:
 
   # ssh
   services.openssh.enable = true;
+
+  # optimize nix store
+  nix.settings.auto-optimise-store = true;
+
+  nix.gc.automatic = true;
+  nix.gc.dates = "weekly";
+  nix.gc.options = "--delete-older-than 30d";
+
 }
 
 // cfg # merge with configuration set passed to module
