@@ -55,8 +55,8 @@ in
       };
 
       networking.wg-quick.interfaces.ie_36 = local_routing // {
-        configFile = secrets.ie_36.path;
         autostart = true;
+        configFile = secrets.ie_36.path;
       };
 
       networking.wg-quick.interfaces.uk_14 = local_routing // {
