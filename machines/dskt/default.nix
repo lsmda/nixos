@@ -7,12 +7,13 @@
 
 let
   inherit (lib) mkMerge;
-  background = toString ../../assets/00.jpg;
-  local_routing = {
-    postUp = "ip route add ${config.lan.network}/24 via ${config.lan.gateway}";
-    preDown = "ip route del ${config.lan.network}/24 via ${config.lan.gateway}";
-  };
+  inherit (config.lan) network gateway;
+
   secrets = config.sops.secrets;
+  background = toString ../../assets/00.jpg;
+
+  local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
+  local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
 in
 
 {
