@@ -100,8 +100,7 @@ in
         ../../home/packages.nix
       ];
 
-      # dconf module has some attributes that don't work well on laptop.
-      # overriding the attributes so the appearence of the interface looks better.
+      # extending dconf attributes.
       dconf = {
         settings."org/gnome/desktop/background".picture-uri = background;
         settings."org/gnome/desktop/background".picture-uri-dark = background;
