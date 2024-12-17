@@ -14,8 +14,11 @@ in
   git.extraConfig.push.autoSetupRemote = true;
 
   git.aliases = {
+    cm = "commit";
     br = "branch";
-    co = "checkout";
+    ch = "checkout";
+    cf = "config";
+    rs = "reset";
     st = "status";
 
     ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cblue\\\\ [%cn]\" --decorate";
