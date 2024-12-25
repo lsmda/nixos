@@ -29,7 +29,7 @@ in
     # attributes that don't belong to a specific module should be defined here.
     (import ../../modules/system.nix {
       machine.username = "user";
-      machine.hostname = "rpi4";
+      machine.hostname = "wardstone";
 
       lan.network = "192.168.0.0";
 

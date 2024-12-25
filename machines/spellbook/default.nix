@@ -6,11 +6,11 @@
 }:
 
 let
-  inherit (lib) mkMerge;
+  inherit (lib) mkForce mkMerge;
   inherit (config.lan) network gateway;
 
   secrets = config.sops.secrets;
-  background = toString ../../assets/00.jpg;
+  background = toString ../../assets/01.jpg;
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
@@ -26,7 +26,6 @@ in
     ../../modules/bluetooth.nix
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
-    ../../modules/nvidia.nix
     ../../modules/options.nix
     ../../modules/pipewire.nix
     ../../modules/sops.nix
@@ -38,41 +37,32 @@ in
     # attributes that don't belong to a specific module should be defined here.
     (import ../../modules/system.nix {
       machine.username = "user";
-      machine.hostname = "dskt";
+      machine.hostname = "spellbook";
 
       lan.network = "192.168.0.0";
       lan.gateway = "192.168.0.1";
       lan.storage = "192.168.0.5";
 
-      console.keyMap = "us";
-      services.xserver.xkb.layout = "us";
-
-      environment.variables = {
-        GSK_RENDERER = "cairo"; # fix nautilus rendering backend
-      };
-
-      services.udev.extraRules = ''
-        # internal bluetooth controller is SO BAD, disabling it to keep the machine holy and pure.
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"
-      '';
+      console.keyMap = "pt-latin1";
+      services.xserver.xkb.layout = "pt";
 
       system.stateVersion = "24.11";
 
       # wireguard interfaces (vpn). configuration files are kept encrypted in binary format.
       # sops-nix decrypts the corresponding files and passes them to the `configFile` attribute.
-      networking.wg-quick.interfaces.es_62 = local_routing // {
+      networking.wg-quick.interfaces.es_65 = local_routing // {
         autostart = false;
-        configFile = secrets.es_62.path;
+        configFile = secrets.es_65.path;
       };
 
-      networking.wg-quick.interfaces.ie_25 = local_routing // {
-        autostart = false;
-        configFile = secrets.ie_25.path;
-      };
-
-      networking.wg-quick.interfaces.uk_24 = local_routing // {
+      networking.wg-quick.interfaces.ie_36 = local_routing // {
         autostart = true;
-        configFile = secrets.uk_24.path;
+        configFile = secrets.ie_36.path;
+      };
+
+      networking.wg-quick.interfaces.uk_14 = local_routing // {
+        autostart = false;
+        configFile = secrets.uk_14.path;
       };
     })
 
@@ -100,11 +90,14 @@ in
         ../../home/packages.nix
       ];
 
-      # extending dconf attributes.
+      # dconf module has some attributes that don't work well on laptop.
+      # overriding the attributes so the appearence of the interface looks better.
       dconf = {
         settings."org/gnome/desktop/background".picture-uri = background;
         settings."org/gnome/desktop/background".picture-uri-dark = background;
+        settings."org/gnome/desktop/interface".text-scaling-factor = mkForce 0.8;
         settings."org/gnome/desktop/screensaver".picture-uri = background;
+        settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
       };
 
       # for some reason `sops` attribute is not appended to the config set. this makes the git
