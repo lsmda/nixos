@@ -43,7 +43,6 @@ let
     fastfetch
     fzf
     gcc
-    git
     gnumake
     go
     gocryptfs
