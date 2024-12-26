@@ -19,6 +19,7 @@ let
     impression
     imwheel
     kitty
+    librewolf
     love # lua-based 2d game engine language
     mgba
     nautilus
@@ -26,6 +27,7 @@ let
     pika-backup
     protonvpn-gui
     qbittorrent
+    rofi
     spotify
     vscode-fhs
     winbox

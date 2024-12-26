@@ -13,6 +13,13 @@
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
   services.xserver.enable = true;
+
+  services.xserver.windowManager.awesome.enable = true;
+  services.xserver.windowManager.awesome.luaModules = with pkgs.luaPackages; [
+    luarocks # lua package manager
+    luadbi-mysql # database abstraction layer
+  ];
+
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
