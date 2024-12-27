@@ -11,6 +11,7 @@ let
 
   secrets = config.sops.secrets;
   background = toString ../../assets/01.jpg;
+  theme = (import ../../colors/vesper);
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
@@ -42,6 +43,8 @@ in
       lan.network = "192.168.0.0";
       lan.gateway = "192.168.0.1";
       lan.storage = "192.168.0.5";
+
+      colorscheme = theme.colors;
 
       console.keyMap = "pt-latin1";
       services.xserver.xkb.layout = "pt";
@@ -104,7 +107,8 @@ in
       # module not work since it depends on secrets. manually passing the config fixes the issue.
       programs = mkMerge [
         (import ../../home/mpv.nix { inherit pkgs; })
-        (import ../../home/git.nix { inherit config pkgs; })
+        (import ../../home/git.nix { inherit config; })
+        (import ../../home/kitty.nix { inherit config; })
       ];
 
       # should be kept the same as `system.stateVersion`

@@ -18,15 +18,16 @@ let
     gparted
     impression
     imwheel
-    kitty
     librewolf
     love # lua-based 2d game engine language
     mgba
     nautilus
     obsidian
+    picom
     pika-backup
     protonvpn-gui
     qbittorrent
+    redshift
     rofi
     spotify
     vscode-fhs
