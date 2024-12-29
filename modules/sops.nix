@@ -30,6 +30,7 @@ in
 
   # user's hashed password
   sops.secrets."user/password" = from_yaml ../secrets/sys.yaml;
+  sops.secrets."user/deepseek" = from_yaml ../secrets/sys.yaml;
 
   # ssh public keys
   sops.secrets."dskt/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
