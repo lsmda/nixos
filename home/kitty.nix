@@ -29,51 +29,51 @@
   };
 
   kitty.extraConfig = ''
-    foreground ${config.theme.colors.base05}
-    background ${config.theme.colors.base00}
+    foreground ${config.colorscheme.base05}
+    background ${config.colorscheme.base00}
 
-    color0 ${config.theme.colors.base03}
-    color1 ${config.theme.colors.base08}
-    color2 ${config.theme.colors.base0B}
-    color3 ${config.theme.colors.base09}
-    color4 ${config.theme.colors.base0D}
-    color5 ${config.theme.colors.base0E}
-    color6 ${config.theme.colors.base0C}
-    color7 ${config.theme.colors.base06}
-    color8 ${config.theme.colors.base04}
-    color9 ${config.theme.colors.base08}
+    color0 ${config.colorscheme.base03}
+    color1 ${config.colorscheme.base08}
+    color2 ${config.colorscheme.base0B}
+    color3 ${config.colorscheme.base09}
+    color4 ${config.colorscheme.base0D}
+    color5 ${config.colorscheme.base0E}
+    color6 ${config.colorscheme.base0C}
+    color7 ${config.colorscheme.base06}
+    color8 ${config.colorscheme.base04}
+    color9 ${config.colorscheme.base08}
 
-    color10 ${config.theme.colors.base0B}
-    color11 ${config.theme.colors.base0A}
-    color12 ${config.theme.colors.base0C}
-    color13 ${config.theme.colors.base0E}
-    color14 ${config.theme.colors.base0C}
-    color15 ${config.theme.colors.base07}
-    color16 ${config.theme.colors.base00}
-    color17 ${config.theme.colors.base0F}
-    color18 ${config.theme.colors.base0B}
-    color19 ${config.theme.colors.base09}
-    color20 ${config.theme.colors.base0D}
-    color21 ${config.theme.colors.base0E}
-    color22 ${config.theme.colors.base0C}
-    color23 ${config.theme.colors.base06}
+    color10 ${config.colorscheme.base0B}
+    color11 ${config.colorscheme.base0A}
+    color12 ${config.colorscheme.base0C}
+    color13 ${config.colorscheme.base0E}
+    color14 ${config.colorscheme.base0C}
+    color15 ${config.colorscheme.base07}
+    color16 ${config.colorscheme.base00}
+    color17 ${config.colorscheme.base0F}
+    color18 ${config.colorscheme.base0B}
+    color19 ${config.colorscheme.base09}
+    color20 ${config.colorscheme.base0D}
+    color21 ${config.colorscheme.base0E}
+    color22 ${config.colorscheme.base0C}
+    color23 ${config.colorscheme.base06}
 
     tab_fade 1
     tab_bar_style fade
-    cursor ${config.theme.colors.base07}
-    cursor_text_color ${config.theme.colors.base00}
-    selection_foreground ${config.theme.colors.base01}
-    selection_background ${config.theme.colors.base0D}
-    url_color ${config.theme.colors.base0C}
-    active_border_color ${config.theme.colors.base04}
-    inactive_border_color ${config.theme.colors.base00}
-    bell_border_color ${config.theme.colors.base03}
-    active_tab_foreground ${config.theme.colors.base04}
-    active_tab_background ${config.theme.colors.base00}
+    cursor ${config.colorscheme.base07}
+    cursor_text_color ${config.colorscheme.base00}
+    selection_foreground ${config.colorscheme.base01}
+    selection_background ${config.colorscheme.base0D}
+    url_color ${config.colorscheme.base0C}
+    active_border_color ${config.colorscheme.base04}
+    inactive_border_color ${config.colorscheme.base00}
+    bell_border_color ${config.colorscheme.base03}
+    active_tab_foreground ${config.colorscheme.base04}
+    active_tab_background ${config.colorscheme.base00}
     active_tab_font_style bold
-    inactive_tab_foreground ${config.theme.colors.base07}
-    inactive_tab_background ${config.theme.colors.base08}
+    inactive_tab_foreground ${config.colorscheme.base07}
+    inactive_tab_background ${config.colorscheme.base08}
     inactive_tab_font_style bold
-    tab_bar_background ${config.theme.colors.base00}
+    tab_bar_background ${config.colorscheme.base00}
   '';
 }
