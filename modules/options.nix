@@ -30,6 +30,6 @@
   options.colorscheme = lib.mkOption {
     type = lib.types.attrs;
     description = "Base16 color scheme.";
-    default = (import ../themes/metal).colors;
+    default = import ../themes/metal;
   };
 }
