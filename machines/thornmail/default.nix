@@ -100,6 +100,12 @@ in
         ../../home/packages.nix
       ];
 
+      # dotfiles
+      home.file.".imwheelrc".source = ../../home/config/.imwheelrc;
+      home.file.".Xresources".source = ../../home/config/.Xresources;
+      home.file.".config/autostart/imwheel.desktop".source = ../../home/config/imwheel.desktop;
+      home.file.".config/redshift.conf".source = ../../home/config/redshift.conf;
+
       # extending dconf attributes.
       dconf = {
         settings."org/gnome/desktop/background".picture-uri = background;

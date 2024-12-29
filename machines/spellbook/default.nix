@@ -11,7 +11,7 @@ let
 
   secrets = config.sops.secrets;
   background = toString ../../assets/01.jpg;
-  theme = (import ../../colors/vesper);
+  theme = (import ../../themes/vesper);
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
@@ -92,6 +92,10 @@ in
         ../../home/keybinds.nix
         ../../home/packages.nix
       ];
+
+      # dotfiles
+      home.file.".Xresources".source = ../../home/config/.Xresources;
+      home.file.".config/redshift.conf".source = ../../home/config/redshift.conf;
 
       # dconf module has some attributes that don't work well on laptop.
       # overriding the attributes so the appearence of the interface looks better.
