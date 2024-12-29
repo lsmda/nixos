@@ -1,5 +1,3 @@
-cfg:
-
 {
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
@@ -33,7 +31,4 @@ cfg:
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.gc.options = "--delete-older-than 3d";
-
 }
-
-// cfg # merge with configuration set passed to module
