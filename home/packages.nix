@@ -3,6 +3,8 @@
 let
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
+    acpi
+    alsa-utils
     discord
     eog
     eyedropper
@@ -19,6 +21,7 @@ let
     impression
     imwheel
     librewolf
+    lite-xl
     love # lua-based 2d game engine language
     mgba
     nautilus
@@ -26,6 +29,7 @@ let
     picom
     pika-backup
     protonvpn-gui
+    pulseaudio
     qbittorrent
     redshift
     rofi
