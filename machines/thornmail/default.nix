@@ -35,6 +35,8 @@ in
     ../../modules/xserver.nix
   ];
 
+  system.stateVersion = "24.11";
+
   machine.username = "user";
   machine.hostname = "thornmail";
 
@@ -53,8 +55,6 @@ in
     # internal bluetooth controller is SO BAD, disabling it to keep the machine holy and pure.
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"
   '';
-
-  system.stateVersion = "24.11";
 
   networking.wg-quick.interfaces.es_62 = local_routing // {
     autostart = false;

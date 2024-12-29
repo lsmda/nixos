@@ -19,12 +19,12 @@ in
     ../../modules/system.nix
   ];
 
+  system.stateVersion = "24.11";
+
   machine.username = "user";
   machine.hostname = "wardstone";
 
   lan.network = "192.168.0.0";
-
-  system.stateVersion = "24.11";
 
   users.users.${config.machine.username} = {
     home = "/home/${config.machine.username}";
