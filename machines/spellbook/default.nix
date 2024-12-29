@@ -11,7 +11,6 @@ let
 
   secrets = config.sops.secrets;
   background = toString ../../assets/01.jpg;
-  theme = (import ../../themes/grayscale);
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
@@ -43,8 +42,6 @@ in
       lan.network = "192.168.0.0";
       lan.gateway = "192.168.0.1";
       lan.storage = "192.168.0.5";
-
-      colorscheme = theme.colors;
 
       console.keyMap = "pt-latin1";
       services.xserver.xkb.layout = "pt";
