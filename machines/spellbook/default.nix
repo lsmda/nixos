@@ -11,7 +11,7 @@ let
 
   secrets = config.sops.secrets;
   background = toString ../../assets/01.jpg;
-  theme = (import ../../themes/vesper);
+  theme = (import ../../themes/grayscale);
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
