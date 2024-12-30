@@ -14,6 +14,14 @@ let
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
+
+  user_groups = [
+    "networkmanager"
+    "wheel"
+    "docker"
+  ];
+
+  to_attribute = (import ../../utils).to_attribute;
 in
 
 {
@@ -30,7 +38,6 @@ in
     ../../modules/pipewire.nix
     ../../modules/sops.nix
     ../../modules/system.nix
-    ../../modules/wireguard.nix
     ../../modules/xserver.nix
   ];
 
@@ -61,6 +68,11 @@ in
     configFile = secrets.uk_14.path;
   };
 
+  users.groups = lib.pipe user_groups [
+    (map to_attribute)
+    builtins.listToAttrs
+  ];
+
   users.users.${config.machine.username} = {
     home = "/home/${config.machine.username}";
     uid = 1000;
@@ -68,12 +80,7 @@ in
     group = "users";
     shell = pkgs.fish;
     hashedPasswordFile = secrets."user/password".path;
-
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+    extraGroups = user_groups;
   };
 
   home-manager.users.${config.machine.username} = {

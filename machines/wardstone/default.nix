@@ -1,7 +1,20 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   secrets = config.sops.secrets;
+
+  user_groups = [
+    "networkmanager"
+    "wheel"
+    "docker"
+  ];
+
+  to_attribute = (import ../../utils).to_attribute;
 in
 
 {
@@ -26,6 +39,11 @@ in
 
   lan.network = "192.168.0.0";
 
+  users.groups = lib.pipe user_groups [
+    (map to_attribute)
+    builtins.listToAttrs
+  ];
+
   users.users.${config.machine.username} = {
     home = "/home/${config.machine.username}";
     uid = 1000;
@@ -34,11 +52,7 @@ in
     shell = pkgs.fish;
     hashedPasswordFile = secrets."user/password".path;
 
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+    extraGroups = user_groups;
 
     openssh.authorizedKeys.keyFiles = [
       secrets."dskt/ed_25519_pub".path

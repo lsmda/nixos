@@ -14,6 +14,14 @@ let
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
+
+  user_groups = [
+    "networkmanager"
+    "wheel"
+    "docker"
+  ];
+
+  to_attribute = (import ../../utils).to_attribute;
 in
 
 {
@@ -70,6 +78,11 @@ in
     autostart = true;
     configFile = secrets.uk_24.path;
   };
+
+  users.groups = lib.pipe user_groups [
+    (map to_attribute)
+    builtins.listToAttrs
+  ];
 
   users.users.${config.machine.username} = {
     home = "/home/${config.machine.username}";

@@ -5,6 +5,7 @@ let
   desktop = with pkgs; [
     acpi
     alsa-utils
+    brightnessctl
     discord
     eog
     eyedropper
@@ -28,6 +29,7 @@ let
     obsidian
     picom
     pika-backup
+    playerctl
     protonvpn-gui
     pulseaudio
     qbittorrent
