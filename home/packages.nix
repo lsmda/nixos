@@ -34,7 +34,6 @@ let
     pulseaudio
     qbittorrent
     redshift
-    rofi
     spotify
     vscode-fhs
     winbox

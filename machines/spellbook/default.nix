@@ -51,21 +51,6 @@ in
   console.keyMap = "pt-latin1";
   services.xserver.xkb.layout = "pt";
 
-  programs.hyprland.enable = true;
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
-  programs.xwayland.enable = true;
-
-  environment.variables = {
-    NIXOS_OZONE_WL = "1"; # use wayland
-  };
-
-  xdg.portal.enable = true;
-  xdg.portal.config.common.default = "*";
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-hyprland
-  ];
-
   networking.wg-quick.interfaces.es_65 = local_routing // {
     autostart = true;
     configFile = secrets.es_65.path;
@@ -103,7 +88,6 @@ in
       ../../home/dunst.nix
       ../../home/firefox.nix
       ../../home/gtk.nix
-      ../../home/hypridle.nix
       ../../home/hyprland.nix
       ../../home/keybinds.nix
       ../../home/packages.nix
@@ -114,6 +98,7 @@ in
       (import ../../home/mpv.nix { inherit pkgs; })
       (import ../../home/git.nix { inherit config pkgs; })
       (import ../../home/kitty.nix { inherit config; })
+      (import ../../home/rofi.nix { inherit pkgs; })
     ];
 
     # extend wayland config
@@ -122,7 +107,7 @@ in
     home.pointerCursor.gtk.enable = true;
     home.pointerCursor.name = "BreezeX-RosePineDawn-Linux";
     home.pointerCursor.package = pkgs.rose-pine-cursor;
-    home.pointerCursor.size = 18;
+    home.pointerCursor.size = 20;
 
     home.stateVersion = "24.11";
   };

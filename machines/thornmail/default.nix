@@ -116,7 +116,6 @@ in
       ../../home/dunst.nix
       ../../home/firefox.nix
       ../../home/gtk.nix
-      ../../home/hypridle.nix
       ../../home/hyprland.nix
       ../../home/keybinds.nix
       ../../home/packages.nix

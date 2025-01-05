@@ -128,6 +128,8 @@ in
   };
 
   home.packages = with pkgs; [
+    wayland-protocols
+    wayland-utils
     brightnessctl # control screen brightness
     grim # screenshot tool for wayland
     hyprpicker # color picker for hyprland
@@ -136,7 +138,7 @@ in
     swaybg # wallpaper manager
     wl-clipboard # clipboard manager for wayland
     xdg-utils # desktop integration tools
-    rofi # application launcher
     xwaylandvideobridge # screen sharing for xwayland apps
+    hyprutils
   ];
 }

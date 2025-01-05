@@ -1,25 +1,36 @@
 { config, pkgs, ... }:
 
 {
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  services.xserver.enable = true;
+  services.displayManager.sddm.enable = true;
+
+  programs.hyprland.enable = true;
+  programs.hyprland.xwayland.enable = true;
+
+  environment.variables = {
+    NIXOS_OZONE_WL = "1"; # use wayland on electron apps
+  };
+
+  xdg.portal.enable = true;
+  xdg.portal.config.common.default = "*";
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-hyprland
   ];
 
-  services.printing.enable = false;
-  services.xserver.enable = false;
-
+  # secrets credential store (git, etc)
   programs.seahorse.enable = true;
   services.gnome.gnome-keyring.enable = true;
-
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
-  services.displayManager.defaultSession = "hyprland";
 
   services.libinput.enable = true;
   services.libinput.touchpad.naturalScrolling = true;
   services.libinput.touchpad.disableWhileTyping = true;
 
+  services.printing.enable = false;
   documentation.nixos.enable = false;
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+  ];
 
   # virtual box
   virtualisation.virtualbox.host.enable = true;
