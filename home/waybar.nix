@@ -10,7 +10,7 @@ in
     settings = [
       {
         layer = "top";
-        height = 24;
+        height = 36;
 
         margin-right = 8;
         margin-left = 8;

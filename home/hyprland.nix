@@ -11,7 +11,6 @@ let
     "SUPER, ${toString n}, workspace, ${toString n}"
     "SUPER+SHIFT, ${toString n}, movetoworkspacesilent, ${toString n}"
   ]) workspace_range;
-
 in
 
 {
@@ -24,9 +23,9 @@ in
     monitor = [ ", preferred, auto, 1.5" ];
     windowrulev2 = [ "workspace special silent, initialclass:^(xwaylandvideobridge)$" ];
 
-    exec = [
-      "pkill -f waybar; waybar"
-      "pkill swaybg; swaybg --image ${../assets/00.jpg}"
+    exec-once = [
+      "${pkgs.waybar}/bin/waybar"
+      "${pkgs.swaybg}/bin/swaybg -i ${../assets/00.jpg}"
     ];
 
     bind = [
