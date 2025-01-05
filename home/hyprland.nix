@@ -32,7 +32,7 @@ in
       "SUPER, RETURN, exec, ${lib.getExe pkgs.kitty}"
       "SUPER, B, exec, ${lib.getExe config.programs.chromium.package}"
 
-      "ALT, R, exec, rofi -show run"
+      "ALT, R, exec, rofi -show combi -combi-modes 'run,drun' -modes combi"
 
       "SUPER, TAB, workspace, e+1"
       "SUPER+SHIFT, TAB, workspace, e-1"
@@ -81,7 +81,7 @@ in
     ];
 
     general = {
-      gaps_in = 10;
+      gaps_in = 8;
       gaps_out = 8;
       border_size = 1;
     };
@@ -100,10 +100,8 @@ in
 
     misc = {
       animate_manual_resizes = true;
-
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
-
       key_press_enables_dpms = true;
       mouse_move_enables_dpms = true;
     };
@@ -112,11 +110,11 @@ in
       touchpad.clickfinger_behavior = true;
       touchpad.drag_lock = true;
       touchpad.natural_scroll = true;
-      touchpad.scroll_factor = 0.7;
+      touchpad.scroll_factor = 0.65;
     };
 
     decoration = {
-      rounding = 10;
+      rounding = 8;
       blur.enabled = false;
     };
 
@@ -127,17 +125,10 @@ in
   };
 
   home.packages = with pkgs; [
-    wayland-protocols
-    wayland-utils
     brightnessctl # control screen brightness
-    grim # screenshot tool for wayland
-    hyprpicker # color picker for hyprland
-    slurp # region selector for screenshots
-    swappy # screenshot editor
     swaybg # wallpaper manager
     wl-clipboard # clipboard manager for wayland
     xdg-utils # desktop integration tools
     xwaylandvideobridge # screen sharing for xwayland apps
-    hyprutils
   ];
 }
