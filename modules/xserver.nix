@@ -2,13 +2,19 @@
 
 {
   services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
+  services.displayManager.ly.enable = true;
 
   programs.hyprland.enable = true;
   programs.hyprland.xwayland.enable = true;
 
   environment.variables = {
-    NIXOS_OZONE_WL = "1"; # use wayland on electron apps
+    # use wayland on electron apps
+    NIXOS_OZONE_WL = "1";
+
+    # screenshare
+    XDG_CURRENT_DESKTOP = "Hyprland";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_SESSION_DESKTOP = "Hyprland";
   };
 
   xdg.portal.enable = true;
