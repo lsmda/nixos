@@ -11,6 +11,15 @@
     description = "Name of host machine";
   };
 
+  options.machine.keyboard = lib.mkOption {
+    type = lib.types.enum [
+      "pt"
+      "us"
+    ];
+    default = "us";
+    description = "Keyboard layout";
+  };
+
   options.lan.network = lib.mkOption {
     type = lib.types.str;
     description = "Local network address";

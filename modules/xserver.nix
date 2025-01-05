@@ -5,29 +5,18 @@
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
-  services.gnome.core-utilities.enable = false;
+  services.printing.enable = false;
+  services.xserver.enable = false;
 
-  services.printing.enable = true;
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.displayManager.defaultSession = "hyprland";
 
-  # required to run systray icons
-  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+  services.libinput.enable = true;
+  services.libinput.touchpad.naturalScrolling = true;
+  services.libinput.touchpad.disableWhileTyping = true;
 
-  services.xserver.enable = true;
-
-  services.xserver.windowManager.awesome.enable = true;
-  services.xserver.windowManager.awesome.luaModules = with pkgs.luaPackages; [
-    luarocks # lua package manager
-    luadbi-mysql # database abstraction layer
-  ];
-
-  services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-
-  # remove pre-installed gnome apps
   documentation.nixos.enable = false;
-  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
-  services.xserver.excludePackages = [ pkgs.xterm ];
 
   # virtual box
   virtualisation.virtualbox.host.enable = true;

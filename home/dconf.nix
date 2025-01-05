@@ -86,7 +86,7 @@
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = "appmenu:minimize,maximize,close";
+      button-layout = "appmenu:";
     };
 
     "org/gnome/mutter" = {

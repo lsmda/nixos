@@ -9,9 +9,6 @@ let
   inherit (lib) mkMerge;
   inherit (config.lan) network gateway;
 
-  secrets = config.sops.secrets;
-  background = toString ../../assets/00.jpg;
-
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
   local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
 
@@ -21,6 +18,7 @@ let
     "docker"
   ];
 
+  secrets = config.sops.secrets;
   to_attribute = (import ../../utils).to_attribute;
 in
 
@@ -52,11 +50,20 @@ in
   lan.gateway = "192.168.0.1";
   lan.storage = "192.168.0.5";
 
-  console.keyMap = "us";
-  services.xserver.xkb.layout = "us";
+  programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
+  programs.xwayland.enable = true;
+
+  xdg.portal.enable = true;
+  xdg.portal.config.common.default = "*";
+  xdg.portal.extraPortals = with pkgs; [
+    xdg-desktop-portal-hyprland
+  ];
 
   environment.variables = {
     GSK_RENDERER = "cairo"; # fix nautilus rendering backend
+    NIXOS_OZONE_WL = "1"; # use wayland
   };
 
   services.udev.extraRules = ''
@@ -103,34 +110,37 @@ in
     imports = [
       ../../home/chromium.nix
       ../../home/dconf.nix
+      ../../home/dunst.nix
       ../../home/firefox.nix
       ../../home/gtk.nix
+      ../../home/hypridle.nix
+      ../../home/hyprland.nix
       ../../home/keybinds.nix
       ../../home/packages.nix
+      ../../home/waybar.nix
     ];
 
     home.file.".imwheelrc".source = ../../home/config/.imwheelrc;
-    home.file.".Xresources".source = ../../home/config/.Xresources;
     home.file.".config/autostart/imwheel.desktop".source = ../../home/config/imwheel.desktop;
-    home.file.".config/redshift.conf".source = ../../home/config/redshift.conf;
-
-    dconf = {
-      settings."org/gnome/desktop/background".picture-uri = background;
-      settings."org/gnome/desktop/background".picture-uri-dark = background;
-      settings."org/gnome/desktop/screensaver".picture-uri = background;
-    };
 
     programs = mkMerge [
       (import ../../home/mpv.nix { inherit pkgs; })
       (import ../../home/git.nix { inherit config pkgs; })
+      (import ../../home/kitty.nix { inherit config; })
     ];
+
+    # extend wayland config
+    wayland.windowManager.hyprland.settings.input.kb_layout = "us";
+
+    home.pointerCursor.gtk.enable = true;
+    home.pointerCursor.name = "BreezeX-RosePineDawn-Linux";
+    home.pointerCursor.package = pkgs.rose-pine-cursor;
+    home.pointerCursor.size = 18;
 
     home.stateVersion = "24.11";
   };
 
   home-manager.backupFileExtension = "backup";
-
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
-
 }

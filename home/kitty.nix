@@ -5,7 +5,7 @@
 
   kitty.settings = {
     # scrollback
-    scrollback_lines = 10000;
+    scrollback_lines = 1000;
     scrollback_pager_history_size = 300; # mb
 
     # disable audio
