@@ -24,10 +24,6 @@ in
     monitor = [ ", preferred, auto, 1.5" ];
     windowrulev2 = [ "workspace special silent, initialclass:^(xwaylandvideobridge)$" ];
 
-    exec-once = [
-      "hypridle"
-    ];
-
     exec = [
       "pkill -f waybar; waybar"
       "pkill swaybg; swaybg --image ${../assets/00.jpg}"
