@@ -50,6 +50,9 @@ in
   lan.gateway = "192.168.0.1";
   lan.storage = "192.168.0.5";
 
+  console.keyMap = "us";
+  services.xserver.xkb.layout = "us";
+
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;

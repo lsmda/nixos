@@ -48,6 +48,9 @@ in
   lan.gateway = "192.168.0.1";
   lan.storage = "192.168.0.5";
 
+  console.keyMap = "pt-latin1";
+  services.xserver.xkb.layout = "pt";
+
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
@@ -109,7 +112,7 @@ in
 
     programs = mkMerge [
       (import ../../home/mpv.nix { inherit pkgs; })
-      (import ../../home/git.nix { inherit config; })
+      (import ../../home/git.nix { inherit config pkgs; })
       (import ../../home/kitty.nix { inherit config; })
     ];
 
