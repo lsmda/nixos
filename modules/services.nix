@@ -7,8 +7,8 @@ in
 {
   systemd.services.set_environment_variables = {
     script = ''
-      deepseek_key=$(${pkgs.coreutils}/bin/cat ${secrets."user/deepseek".path})
-      ${pkgs.fish}/bin/fish -c "set -U OPENAI_API_KEY $deepseek_key"
+      DEEPSEEK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."user/deepseek".path})
+      ${pkgs.fish}/bin/fish -c "set -Ux OPENAI_API_KEY $DEEPSEEK_KEY"
     '';
 
     serviceConfig = {
