@@ -10,10 +10,10 @@
 
   programs.chromium.commandLineArgs = [
     # performance
-    # "--enable-gpu-rasterization"
-    # "--enable-oop-rasterization"
-    # "--enable-zero-copy"
-    # "--ignore-gpu-blocklist"
+    "--enable-gpu-rasterization"
+    "--enable-oop-rasterization"
+    "--enable-zero-copy"
+    "--ignore-gpu-blocklist"
 
     # misc
     "--no-default-browser-check"

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ ... }:
 
 let
   color = import ../themes/metal;
@@ -7,7 +7,6 @@ in
 {
   services.dunst = {
     enable = true;
-    # iconTheme = icons;
 
     settings.global = {
       width = "(300, 900)";

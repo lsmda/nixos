@@ -45,8 +45,6 @@ in
       modules-right = [
         "tray"
         "pulseaudio"
-        "cpu"
-        "memory"
         "network"
         "battery"
         "clock"
@@ -73,10 +71,6 @@ in
           "󰕾"
         ];
       };
-
-      cpu.format = " {usage}%";
-
-      memory.format = " {}%";
 
       network = {
         format-disconnected = "󰤮 ";
@@ -129,7 +123,7 @@ in
     }
 
     #workspaces button {
-      color: ${color.base09};
+      color: ${color.base05};
     }
 
     #workspaces button.empty {
@@ -137,10 +131,10 @@ in
     }
 
     #workspaces button.active.empty {
-      color: ${color.base09};
+      color: ${color.base05};
     }
 
-    #tray, #pulseaudio, #cpu, #memory, #network, #battery, #clock {
+    #tray, #pulseaudio, #network, #battery, #clock {
       margin-left: 15px;
     }
 

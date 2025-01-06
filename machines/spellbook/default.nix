@@ -35,6 +35,7 @@ in
     ../../modules/options.nix
     ../../modules/pipewire.nix
     ../../modules/sops.nix
+    ../../modules/services.nix
     ../../modules/system.nix
     ../../modules/xserver.nix
   ];
@@ -86,7 +87,9 @@ in
       ../../home/chromium.nix
       ../../home/dconf.nix
       ../../home/dunst.nix
+      ../../home/fastfetch.nix
       ../../home/firefox.nix
+      ../../home/fish.nix
       ../../home/gtk.nix
       ../../home/hyprland.nix
       ../../home/keybinds.nix

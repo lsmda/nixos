@@ -8,7 +8,14 @@ in
 {
   rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+
+    package = pkgs.rofi-wayland.override {
+      plugins = with pkgs; [
+        rofi-emoji
+        rofi-vpn
+        rofi-power-menu
+      ];
+    };
 
     theme = builtins.toString (
       pkgs.writeText "rofi-theme" ''
