@@ -35,8 +35,10 @@ in
         format = "{}";
         max-length = 42;
         rewrite = {
-          "(.*) — Mozilla Firefox" = "Firefox";
-          "(.*) - Chromium" = "Chromium";
+          ".* — Mozilla Firefox" = "Firefox";
+          ".* - Chromium" = "Chromium";
+          "Microsoft Teams .*" = "Microsoft Teams";
+          "Spotify Premium" = "Spotify";
         };
       };
 
@@ -114,6 +116,7 @@ in
       border: none;
       border-radius: ${toString 8}px;
       font-family: "JetBrainsMono Nerd Font";
+      opacity: .9;
     }
 
     .modules-right {

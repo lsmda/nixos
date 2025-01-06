@@ -6,6 +6,10 @@
 }:
 
 let
+  color = import ../themes/metal;
+  theme = import ../modules/theme.nix;
+  slice_hex = builtins.substring 1 6;
+
   workspace_range = lib.range 1 4;
   workspace_bindings = map (n: [
     "SUPER, ${toString n}, workspace, ${toString n}"
@@ -21,7 +25,11 @@ in
 
   wayland.windowManager.hyprland.settings = {
     monitor = [ ", preferred, auto, 1.5" ];
-    windowrulev2 = [ "workspace special silent, initialclass:^(xwaylandvideobridge)$" ];
+
+    windowrulev2 = [
+      "opacity 0.94 0.94, class:.*"
+      "workspace special silent, initialclass:^(xwaylandvideobridge)$"
+    ];
 
     exec-once = [
       "${pkgs.waybar}/bin/waybar"
@@ -45,8 +53,7 @@ in
       "SUPER, k, movewindow, u"
 
       "SUPER, Q, killactive"
-      "SUPER, F, fullscreen"
-      "SUPER, SPACE, togglefloating"
+      "SUPER, SPACE, fullscreen, 1"
     ] ++ lib.flatten workspace_bindings;
 
     bindle = [
@@ -83,7 +90,10 @@ in
     general = {
       gaps_in = 8;
       gaps_out = 8;
-      border_size = 1;
+      border_size = theme.border;
+
+      "col.active_border" = "0xff${slice_hex color.base05}";
+      "col.nogroup_border_active" = "0xff${slice_hex color.base05}";
     };
 
     animations = {
@@ -114,9 +124,20 @@ in
     };
 
     decoration = {
-      rounding = 8;
-      blur.enabled = false;
+      rounding = theme.radius;
+
+      blur = {
+        enabled = true;
+        size = 8;
+        passes = 1;
+        ignore_opacity = true;
+      };
     };
+
+    layerrule = [
+      "blur, rofi"
+      "blur, waybar"
+    ];
 
     gestures.workspace_swipe = true;
 

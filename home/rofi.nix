@@ -22,8 +22,8 @@ in
         }
 
         * {
-            background:     ${color.base00};
-            background-alt: ${color.base01};
+            background:     #101010E5;
+            background-alt: #101010E5;
             foreground:     ${color.base05};
             selected:       ${color.base05};
             active:         ${color.base0B};
@@ -173,6 +173,7 @@ in
             background-color:            transparent;
             text-color:                  @foreground-colour;
             cursor:                      "default";
+            transparent:                 true;
         }
 
         element {
@@ -186,11 +187,6 @@ in
             background-color:            transparent;
             text-color:                  @foreground-colour;
             cursor:                      pointer;
-        }
-
-        element normal.normal {
-            background-color:            var(normal-background);
-            text-color:                  var(normal-foreground);
         }
 
         element normal.urgent {
@@ -218,11 +214,6 @@ in
             text-color:                  var(selected-active-foreground);
         }
 
-        element alternate.normal {
-            background-color:            var(alternate-normal-background);
-            text-color:                  var(alternate-normal-foreground);
-        }
-
         element alternate.urgent {
             background-color:            var(alternate-urgent-background);
             text-color:                  var(alternate-urgent-foreground);
@@ -247,19 +238,6 @@ in
             cursor:                      inherit;
             vertical-align:              0.5;
             horizontal-align:            0.0;
-        }
-
-        mode-switcher{
-            enabled:                     true;
-            spacing:                     ${toString theme.spacing_lg}px;
-            margin:                      0px;
-            padding:                     0px;
-            
-            border:                      0px solid;
-            border-radius:               0px 0px 0px 0px;
-            border-color:                @border-colour;
-            background-color:            transparent;
-            text-color:                  @foreground-colour;
         }
 
         textbox {
