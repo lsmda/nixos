@@ -32,7 +32,7 @@ in
     ];
 
     exec-once = [
-      "${pkgs.waybar}/bin/waybar"
+      "pkill --signal SIGUSR2 waybar; ${pkgs.waybar}/bin/waybar"
       "${pkgs.swaybg}/bin/swaybg -i ${../assets/00.jpg}"
     ];
 
@@ -118,7 +118,7 @@ in
 
     input = {
       touchpad.clickfinger_behavior = true;
-      touchpad.drag_lock = true;
+      touchpad.drag_lock = false;
       touchpad.natural_scroll = true;
       touchpad.scroll_factor = 0.65;
     };
