@@ -36,6 +36,7 @@ in
     ../../modules/options.nix
     ../../modules/pipewire.nix
     ../../modules/sops.nix
+    ../../modules/services.nix
     ../../modules/system.nix
     ../../modules/wireguard.nix
     ../../modules/xserver.nix
@@ -114,22 +115,25 @@ in
       ../../home/chromium.nix
       ../../home/dconf.nix
       ../../home/dunst.nix
+      ../../home/fastfetch.nix
       ../../home/firefox.nix
+      ../../home/fish.nix
       ../../home/gtk.nix
       ../../home/hyprland.nix
       ../../home/keybinds.nix
+      ../../home/mpv.nix
       ../../home/packages.nix
+      ../../home/rofi.nix
       ../../home/waybar.nix
+    ];
+
+    programs = mkMerge [
+      (import ../../home/git.nix { inherit config pkgs; })
+      (import ../../home/kitty.nix { inherit config; })
     ];
 
     home.file.".imwheelrc".source = ../../home/config/.imwheelrc;
     home.file.".config/autostart/imwheel.desktop".source = ../../home/config/imwheel.desktop;
-
-    programs = mkMerge [
-      (import ../../home/mpv.nix { inherit pkgs; })
-      (import ../../home/git.nix { inherit config pkgs; })
-      (import ../../home/kitty.nix { inherit config; })
-    ];
 
     # extend wayland config
     wayland.windowManager.hyprland.settings.input.kb_layout = "us";

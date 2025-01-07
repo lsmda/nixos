@@ -6,7 +6,7 @@ let
 in
 
 {
-  rofi = {
+  programs.rofi = {
     enable = true;
 
     package = pkgs.rofi-wayland.override {

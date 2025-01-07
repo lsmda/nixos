@@ -93,15 +93,15 @@ in
       ../../home/gtk.nix
       ../../home/hyprland.nix
       ../../home/keybinds.nix
+      ../../home/mpv.nix
       ../../home/packages.nix
+      ../../home/rofi.nix
       ../../home/waybar.nix
     ];
 
     programs = mkMerge [
-      (import ../../home/mpv.nix { inherit pkgs; })
       (import ../../home/git.nix { inherit config pkgs; })
       (import ../../home/kitty.nix { inherit config; })
-      (import ../../home/rofi.nix { inherit pkgs; })
     ];
 
     # extend wayland config

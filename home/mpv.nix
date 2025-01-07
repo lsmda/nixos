@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-  mpv.enable = true;
+  programs.mpv.enable = true;
 
-  mpv.package = (
+  programs.mpv.package = (
     pkgs.mpv.override {
       scripts = [
         pkgs.mpvScripts.autoload
@@ -15,7 +15,7 @@
     }
   );
 
-  mpv.bindings = {
+  programs.mpv.bindings = {
     h = "seek -10";
     l = "seek 10";
     LEFT = "seek -10";
@@ -36,7 +36,7 @@
     "ctrl+w" = "quit";
   };
 
-  mpv.config = {
+  programs.mpv.config = {
     # start in fullscreen mode by default.
     fs = "yes";
 
@@ -79,7 +79,7 @@
     osd-font-size = 24;
   };
 
-  mpv.scriptOpts.thumbfast = {
+  programs.mpv.scriptOpts.thumbfast = {
     spawn_first = true;
     network = true;
     hwdec = true;
