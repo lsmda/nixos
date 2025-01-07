@@ -5,7 +5,7 @@ let
 in
 
 {
-  systemd.services.set_environment_variables = {
+  systemd.services.environment-variables = {
     script = ''
       DEEPSEEK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."user/deepseek".path})
       ${pkgs.fish}/bin/fish -c "set -Ux OPENAI_API_KEY $DEEPSEEK_KEY"
