@@ -2,6 +2,7 @@
 
 let
   color = import ../themes/metal;
+  theme = import ../modules/theme.nix;
 in
 
 {
@@ -18,7 +19,7 @@ in
         alignment = "left";
         vertical_alignment = "center";
         ellipsize = "end";
-        offset = "15x15";
+        offset = "28x34";
         padding = 15;
         horizontal_padding = 15;
         text_icon_padding = 15;
@@ -31,10 +32,10 @@ in
         progress_bar_min_width = 150;
         progress_bar_max_width = 300;
         separator_height = 2;
-        frame_width = 3;
+        frame_width = theme.border;
         frame_color = color.base05;
         separator_color = "frame";
-        corner_radius = 8;
+        corner_radius = theme.radius;
         transparency = "0.1";
         gap_size = 8;
         line_height = 4;
@@ -47,7 +48,7 @@ in
         format = "<b>%s</b>\n%b";
         word_wrap = "no";
         sort = "yes";
-        shrink = "yes";
+        shrink = "no";
         indicate_hidden = "yes";
         sticky_history = "yes";
         ignore_newline = "no";
@@ -71,14 +72,14 @@ in
         background = color.base00;
         foreground = color.base05;
         highlight = color.base0A;
-        timeout = 4;
+        timeout = 5;
       };
 
       urgency_normal = {
         background = color.base00;
         foreground = color.base05;
         highlight = color.base0A;
-        timeout = 6;
+        timeout = 5;
       };
 
       urgency_critical = {
