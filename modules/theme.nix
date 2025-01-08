@@ -8,8 +8,8 @@ in
   spacing_lg = 10;
   spacing_xl = 14;
 
-  border = 4;
-  radius = 10;
+  border = 2;
+  radius = 8;
 
   # font
   font_mono = "JetBrainsMono Nerd Font";
