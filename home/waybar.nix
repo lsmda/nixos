@@ -1,5 +1,6 @@
 let
   color = import ../themes/metal;
+  theme = import ../modules/theme.nix;
 in
 
 {
@@ -20,8 +21,11 @@ in
 
       "hyprland/workspaces" = {
         format = "{icon}";
-        format-icons.default = "";
+        on-click = "activate";
+
         format-icons.active = "";
+        format-icons.urgent = "";
+        format-icons.default = "";
         format-icons.empty = "";
 
         persistent-workspaces."*" = 4;
@@ -45,22 +49,20 @@ in
       modules-right = [
         "tray"
         "pulseaudio"
+        "bluetooth"
         "network"
         "battery"
         "clock"
       ];
 
       tray = {
-        reverse-direction = true;
+        reverse-direction = false;
         spacing = 8;
       };
 
       pulseaudio = {
         format = "{format_source} {icon} {volume}%";
-        format-muted = "{format_source} 󰸈";
-
-        format-bluetooth = "{format_source} 󰋋 󰂯 {volume}%";
-        format-bluetooth-muted = "{format_source} 󰟎 󰂯";
+        format-muted = "{format_source} 󰸈 {volume}%";
 
         format-source = "󰍬";
         format-source-muted = "󰍭";
@@ -70,6 +72,16 @@ in
           "󰖀"
           "󰕾"
         ];
+      };
+
+      bluetooth = {
+        format = "󰂯";
+        format-disabled = "󰂲";
+        format-connected = "󰂱 {num_connections} connected";
+        tooltip-format = "{controller_alias}\t{controller_address}";
+        tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{device_enumerate}";
+        tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+        on-click = "blueman-manager";
       };
 
       network = {
@@ -108,22 +120,28 @@ in
   programs.waybar.style = ''
     * {
       border: none;
-      border-radius: ${toString 8}px;
       font-family: "JetBrainsMono Nerd Font";
-      opacity: .9;
+      opacity: .98;
     }
 
     .modules-right {
-      margin-right: ${toString 5}px;
+      margin-right: ${toString 10}px;
     }
 
     #waybar {
       background: ${color.base00};
+      border-radius: ${toString theme.radius}px;
       color: ${color.base05};
     }
 
     #workspaces button {
       color: ${color.base05};
+    }
+
+    #workspaces button:hover {
+      box-shadow: inherit;
+      text-shadow: inherit;
+      background: transparent;
     }
 
     #workspaces button.empty {
@@ -134,8 +152,12 @@ in
       color: ${color.base05};
     }
 
-    #tray, #pulseaudio, #network, #battery, #clock {
+    #tray, #pulseaudio, #bluetooth, #network, #battery, #clock {
       margin-left: 15px;
+    }
+
+    #pulseaudio.muted, #bluetooh.disabled {
+      color: ${color.base0D};
     }
 
     #battery.charging {
