@@ -32,7 +32,7 @@ in
     ];
 
     exec-once = [
-      "pkill --signal SIGUSR2 waybar; ${pkgs.waybar}/bin/waybar"
+      "${pkgs.waybar}/bin/waybar"
       "${pkgs.swaybg}/bin/swaybg -i ${../assets/00.jpg}"
     ];
 
