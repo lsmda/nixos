@@ -26,6 +26,10 @@
       echo -n (set_color blue)(prompt_pwd)" "
     '';
 
+    removeDockerImages = ''
+      docker rmi (docker images -q)
+    '';
+
     removeDockerContainer = ''
       set -l regex $argv[1]
 
