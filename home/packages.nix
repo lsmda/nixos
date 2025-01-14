@@ -22,7 +22,6 @@ let
     impression
     imwheel
     librewolf
-    lite-xl
     love # lua-based 2d game engine language
     mgba
     nautilus

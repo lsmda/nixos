@@ -2,37 +2,24 @@
 
 {
   services.xserver.enable = true;
-  services.displayManager.ly.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 
-  programs.hyprland.enable = true;
-  programs.hyprland.xwayland.enable = true;
+  # required to run systray icons
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
-  environment.variables = {
-    # use wayland on electron apps
-    NIXOS_OZONE_WL = "1";
-
-    # screenshare
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-  };
-
-  xdg.portal.enable = true;
-  xdg.portal.config.common.default = "*";
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-hyprland
-  ];
-
-  # secrets credential store (git, etc)
-  programs.seahorse.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+  # remove pre-installed gnome apps
+  programs.geary.enable = false;
+  documentation.nixos.enable = false;
+  services.gnome.core-utilities.enable = false;
+  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
+  services.xserver.excludePackages = [ pkgs.xterm ];
 
   services.libinput.enable = true;
   services.libinput.touchpad.naturalScrolling = true;
   services.libinput.touchpad.disableWhileTyping = true;
 
   services.printing.enable = false;
-  documentation.nixos.enable = false;
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })

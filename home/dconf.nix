@@ -10,7 +10,7 @@
       night-light-schedule-automatic = false;
       night-light-schedule-from = 0.0;
       night-light-schedule-to = 0.0;
-      night-light-temperature = lib.hm.gvariant.mkUint32 3700;
+      night-light-temperature = lib.hm.gvariant.mkUint32 3400;
     };
 
     # sound
@@ -46,6 +46,7 @@
     "org/gnome/mutter" = {
       edge-tiling = true;
       workspaces-only-on-primary = false;
+      center-new-windows = true;
     };
 
     "org/gnome/shell/app-switcher" = {
@@ -86,11 +87,8 @@
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = "appmenu:";
-    };
-
-    "org/gnome/mutter" = {
-      center-new-windows = true;
+      action-double-click-titlebar = "toggle-maximize";
+      button-layout = "appmenu:minimize,maximize,close";
     };
 
     "org/gnome/desktop/interface" = {
@@ -110,20 +108,21 @@
       keyboard-layout = false;
       accessibility-menu = false;
       quick-settings = true;
+      quick-settings-dark-mode = true;
       screen-sharing-indicator = true;
       screen-recording-indicator = true;
       world-clock = false;
       weather = false;
       calendar = true;
-      events = false;
+      events-button = false;
       search = false;
       dash = false;
       dash-separator = false;
-      dash-app-running-indicator = false;
-      show-applications-button = false;
+      dash-app-running = false;
+      show-apps-button = false;
       osd = true;
       workspace-popup = true;
-      workspace = false;
+      workspace = true;
       workspaces-in-app-grid = false;
       window-preview-close-button = true;
       window-preview-caption = false;
@@ -149,7 +148,7 @@
       startup-status = 1;
 
       # customize
-      controls-manager-spacing-size = 50;
+      controls-manager-spacing-size = 10;
       workspace-background-corner-size = 1;
       panel-size = 0;
       panel-icon-size = 0;
@@ -159,8 +158,7 @@
       clock-menu-position = 0;
       clock-menu-position-offset = 0;
       workspace-switcher-size = 0;
-      enable-animations = true;
-      animation = 5;
+      animation = 1;
       dash-icon-size = 0;
       notification-banner-position = 5;
       osd-position = 6;
@@ -169,6 +167,7 @@
       alt-tab-icon-size = 0;
       looking-glass-width = 0;
       looking-glass-height = 0;
+      max-displayed-search-results = 0;
     };
   };
 }

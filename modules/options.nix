@@ -11,15 +11,6 @@
     description = "Name of host machine";
   };
 
-  options.machine.keyboard = lib.mkOption {
-    type = lib.types.enum [
-      "pt"
-      "us"
-    ];
-    default = "us";
-    description = "Keyboard layout";
-  };
-
   options.lan.network = lib.mkOption {
     type = lib.types.str;
     description = "Local network address";
@@ -39,6 +30,6 @@
   options.colorscheme = lib.mkOption {
     type = lib.types.attrs;
     description = "Base16 color scheme.";
-    default = import ../themes/metal;
+    default = import ../themes/metal.nix;
   };
 }

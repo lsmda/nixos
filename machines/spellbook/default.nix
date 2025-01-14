@@ -6,7 +6,8 @@
 }:
 
 let
-  inherit (lib) mkMerge;
+  inherit (import ../../utils) to_attribute;
+  inherit (lib) mkForce mkMerge;
   inherit (config.lan) network gateway;
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
@@ -19,7 +20,7 @@ let
   ];
 
   secrets = config.sops.secrets;
-  to_attribute = (import ../../utils).to_attribute;
+  background = toString ../../assets/00.jpg;
 in
 
 {
@@ -86,17 +87,13 @@ in
     imports = [
       ../../home/chromium.nix
       ../../home/dconf.nix
-      ../../home/dunst.nix
       ../../home/fastfetch.nix
       ../../home/firefox.nix
       ../../home/fish.nix
       ../../home/gtk.nix
-      ../../home/hyprland.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix
-      ../../home/rofi.nix
-      ../../home/waybar.nix
     ];
 
     programs = mkMerge [
@@ -104,13 +101,13 @@ in
       (import ../../home/kitty.nix { inherit config; })
     ];
 
-    # extend wayland config
-    wayland.windowManager.hyprland.settings.input.kb_layout = "pt";
-
-    home.pointerCursor.gtk.enable = true;
-    home.pointerCursor.name = "BreezeX-RosePineDawn-Linux";
-    home.pointerCursor.package = pkgs.rose-pine-cursor;
-    home.pointerCursor.size = 20;
+    dconf = {
+      settings."org/gnome/desktop/background".picture-uri = background;
+      settings."org/gnome/desktop/background".picture-uri-dark = background;
+      settings."org/gnome/desktop/interface".text-scaling-factor = mkForce 0.8;
+      settings."org/gnome/desktop/screensaver".picture-uri = background;
+      settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
+    };
 
     home.stateVersion = "24.11";
   };
