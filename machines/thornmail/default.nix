@@ -6,6 +6,7 @@
 }:
 
 let
+  inherit (import ../../utils) to_attribute;
   inherit (lib) mkMerge;
   inherit (config.lan) network gateway;
 
@@ -19,7 +20,7 @@ let
   ];
 
   secrets = config.sops.secrets;
-  to_attribute = (import ../../utils).to_attribute;
+  background = toString ../../assets/00.jpg;
 in
 
 {
@@ -54,22 +55,6 @@ in
   console.keyMap = "us";
   services.xserver.xkb.layout = "us";
 
-  programs.hyprland.enable = true;
-  programs.hyprlock.enable = true;
-  services.hypridle.enable = true;
-  programs.xwayland.enable = true;
-
-  xdg.portal.enable = true;
-  xdg.portal.config.common.default = "*";
-  xdg.portal.extraPortals = with pkgs; [
-    xdg-desktop-portal-hyprland
-  ];
-
-  environment.variables = {
-    GSK_RENDERER = "cairo"; # fix nautilus rendering backend
-    NIXOS_OZONE_WL = "1"; # use wayland
-  };
-
   services.udev.extraRules = ''
     # internal bluetooth controller is SO BAD, disabling it to keep the machine holy and pure.
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"
@@ -102,29 +87,20 @@ in
     group = "users";
     shell = pkgs.fish;
     hashedPasswordFile = secrets."user/password".path;
-
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
+    extraGroups = user_groups;
   };
 
   home-manager.users.${config.machine.username} = {
     imports = [
       ../../home/chromium.nix
       ../../home/dconf.nix
-      ../../home/dunst.nix
       ../../home/fastfetch.nix
       ../../home/firefox.nix
       ../../home/fish.nix
       ../../home/gtk.nix
-      ../../home/hyprland.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix
-      ../../home/rofi.nix
-      ../../home/waybar.nix
     ];
 
     programs = mkMerge [
@@ -132,16 +108,14 @@ in
       (import ../../home/kitty.nix { inherit config; })
     ];
 
+    dconf = {
+      settings."org/gnome/desktop/background".picture-uri = background;
+      settings."org/gnome/desktop/background".picture-uri-dark = background;
+      settings."org/gnome/desktop/screensaver".picture-uri = background;
+    };
+
     home.file.".imwheelrc".source = ../../home/config/.imwheelrc;
     home.file.".config/autostart/imwheel.desktop".source = ../../home/config/imwheel.desktop;
-
-    # extend wayland config
-    wayland.windowManager.hyprland.settings.input.kb_layout = "us";
-
-    home.pointerCursor.gtk.enable = true;
-    home.pointerCursor.name = "BreezeX-RosePineDawn-Linux";
-    home.pointerCursor.package = pkgs.rose-pine-cursor;
-    home.pointerCursor.size = 18;
 
     home.stateVersion = "24.11";
   };
