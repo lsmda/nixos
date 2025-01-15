@@ -33,9 +33,9 @@ in
   sops.secrets."user/deepseek" = from_yaml ../secrets/sys.yaml;
 
   # ssh public keys
-  sops.secrets."dskt/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
-  sops.secrets."lpt0/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
-  sops.secrets."rpi4/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
+  sops.secrets."spellbook/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
+  sops.secrets."thornmail/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
+  sops.secrets."wardstone/ed_25519_pub" = from_yaml ../secrets/ssh.yaml;
 
   # git credentials
   sops.secrets."git/main" = from_binary ../secrets/git/main.conf;

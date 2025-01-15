@@ -1,23 +1,23 @@
 keys:
-  - &dskt age1588vpcs2zagn3mhjrv97t6xvnzc4n7pfykulg4mcwe8h24dres5qq24usf
-  - &lpt0 age1c9f7432jeskzm9xdu3pax4numqmeks5jnds8vddgxd0ytnemrpequ4s5zu
-  - &rpi4 age1qgdfyx67sed3rnd2esq8rc534rsvzdcdunyg7ftr786z5jrltc2sxjtewt
+  - &spellbook age1c9f7432jeskzm9xdu3pax4numqmeks5jnds8vddgxd0ytnemrpequ4s5zu
+  - &thornmail age1588vpcs2zagn3mhjrv97t6xvnzc4n7pfykulg4mcwe8h24dres5qq24usf
+  - &wardstone age1qgdfyx67sed3rnd2esq8rc534rsvzdcdunyg7ftr786z5jrltc2sxjtewt
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml)$
     key_groups:
       - age:
-          - *dskt
-          - *lpt0
-          - *rpi4
+          - *spellbook
+          - *thornmail
+          - *wardstone
   - path_regex: secrets/wireguard/[^/]+$
     key_groups:
       - age:
-          - *dskt
-          - *lpt0
-          - *rpi4
+          - *spellbook
+          - *thornmail
+          - *wardstone
   - path_regex: secrets/git/[^/]+$
     key_groups:
       - age:
-          - *dskt
-          - *lpt0
-          - *rpi4
+          - *spellbook
+          - *thornmail
+          - *wardstone

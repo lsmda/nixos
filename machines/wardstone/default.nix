@@ -55,8 +55,8 @@ in
     extraGroups = user_groups;
 
     openssh.authorizedKeys.keyFiles = [
-      secrets."dskt/ed_25519_pub".path
-      secrets."lpt0/ed_25519_pub".path
+      secrets."spellbook/ed_25519_pub".path
+      secrets."thornmail/ed_25519_pub".path
     ];
   };
 
