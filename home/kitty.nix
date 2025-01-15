@@ -9,7 +9,7 @@
 
     enable_audio_bell = false;
 
-    remember_window_size = "yes";
+    remember_window_size = true;
     window_margin_width = 1;
 
     font_family = "JetBrainsMono Nerd Font";
@@ -22,7 +22,7 @@
     active_tab_font_style = "normal";
 
     confirm_os_window_close = 0;
-    sync_to_monitor = "yes";
+    sync_to_monitor = true;
     window_padding_width = 5;
   };
 
