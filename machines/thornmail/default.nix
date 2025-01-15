@@ -7,7 +7,7 @@
 
 let
   inherit (import ../../utils) to_attribute;
-  inherit (lib) mkMerge;
+  inherit (lib) mkForce mkMerge;
   inherit (config.lan) network gateway;
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
@@ -39,7 +39,6 @@ in
     ../../modules/sops.nix
     ../../modules/services.nix
     ../../modules/system.nix
-    ../../modules/wireguard.nix
     ../../modules/xserver.nix
   ];
 
@@ -106,6 +105,7 @@ in
     programs = mkMerge [
       (import ../../home/git.nix { inherit config pkgs; })
       (import ../../home/kitty.nix { inherit config; })
+      { kitty.settings.font_size = mkForce 10; }
     ];
 
     dconf = {
