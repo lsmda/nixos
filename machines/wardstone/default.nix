@@ -6,7 +6,8 @@
 }:
 
 let
-  secrets = config.sops.secrets;
+  inherit (import ../../utils) to_attribute;
+  inherit (lib) mkMerge;
 
   user_groups = [
     "networkmanager"
@@ -14,7 +15,7 @@ let
     "docker"
   ];
 
-  to_attribute = (import ../../utils).to_attribute;
+  secrets = config.sops.secrets;
 in
 
 {
@@ -61,11 +62,16 @@ in
   };
 
   home-manager.users.${config.machine.username} = {
-    programs.home-manager.enable = true;
+    imports = [
+      ../../home/fastfetch.nix
+      ../../home/fish.nix
+      ../../home/packages.nix
+    ];
 
-    programs.git = (import ../../home/git.nix { inherit config pkgs; }) // {
-      git.extraConfig = { };
-    };
+    programs = mkMerge [
+      (import ../../home/git.nix { inherit config; })
+      { git.extraConfig = { }; }
+    ];
 
     home.username = config.machine.username;
     home.homeDirectory = "/home/${config.machine.username}";
