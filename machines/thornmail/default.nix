@@ -94,7 +94,6 @@ in
       ../../home/chromium.nix
       ../../home/dconf.nix
       ../../home/fastfetch.nix
-      ../../home/firefox.nix
       ../../home/fish.nix
       ../../home/gtk.nix
       ../../home/keybinds.nix
@@ -116,6 +115,7 @@ in
 
     home.file.".imwheelrc".source = ../../home/config/.imwheelrc;
     home.file.".config/autostart/imwheel.desktop".source = ../../home/config/imwheel.desktop;
+    home.file.".config/ghostty/config".source = ../../home/config/ghostty;
 
     home.stateVersion = "24.11";
   };

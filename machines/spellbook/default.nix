@@ -54,12 +54,12 @@ in
   services.xserver.xkb.layout = "pt";
 
   networking.wg-quick.interfaces.es_65 = local_routing // {
-    autostart = true;
+    autostart = false;
     configFile = secrets.es_65.path;
   };
 
   networking.wg-quick.interfaces.ie_36 = local_routing // {
-    autostart = false;
+    autostart = true;
     configFile = secrets.ie_36.path;
   };
 
@@ -88,7 +88,6 @@ in
       ../../home/chromium.nix
       ../../home/dconf.nix
       ../../home/fastfetch.nix
-      ../../home/firefox.nix
       ../../home/fish.nix
       ../../home/gtk.nix
       ../../home/keybinds.nix
@@ -108,6 +107,8 @@ in
       settings."org/gnome/desktop/screensaver".picture-uri = background;
       settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
     };
+
+    home.file.".config/ghostty/config".source = ../../home/config/ghostty;
 
     home.stateVersion = "24.11";
   };

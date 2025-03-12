@@ -11,6 +11,7 @@ let
     eyedropper
     ffmpegthumbnailer
     flameshot
+    ghostty
     git-credential-manager
     gnome-calculator
     gnome-text-editor
@@ -18,6 +19,7 @@ let
     gnomeExtensions.alttab-scroll-workaround
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
+    gnupg
     gparted
     impression
     imwheel
@@ -26,12 +28,14 @@ let
     mgba
     nautilus
     obsidian
+    pass
     picom
     pika-backup
     playerctl
     protonvpn-gui
     pulseaudio
     qbittorrent
+    rancher
     redshift
     spotify
     vscode-fhs
