@@ -24,7 +24,6 @@
     cursor-style-blink = false
     cursor-invert-fg-bg = true
 
-    shell-integration = fish
     shell-integration-features = no-cursor
 
     mouse-hide-while-typing = true

@@ -50,7 +50,7 @@ in
     uid = 1000;
     isNormalUser = true;
     group = "users";
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
     hashedPasswordFile = secrets."user/password".path;
 
     extraGroups = user_groups;
@@ -64,8 +64,8 @@ in
   home-manager.users.${config.machine.username} = {
     imports = [
       ../../home/fastfetch.nix
-      ../../home/fish.nix
       ../../home/packages.nix
+      ../../home/nushell.nix
     ];
 
     programs = mkMerge [

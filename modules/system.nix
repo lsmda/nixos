@@ -17,8 +17,6 @@
   programs.neovim.enable = true;
   programs.neovim.defaultEditor = true;
 
-  programs.fish.enable = true;
-
   # allow external binaries (i.e. mason LSPs)
   programs.nix-ld.enable = true;
 

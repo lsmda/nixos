@@ -1,11 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
-  home.packages = with pkgs; [
-    nushell
-  ];
+  programs.nushell.enable = true;
 
-  home.file.".config/nushell/config.nu".text = ''
+  programs.nushell.configFile.text = ''
     $env.config.show_banner = false
 
     alias .. = cd ..

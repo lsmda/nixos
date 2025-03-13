@@ -78,7 +78,7 @@ in
     uid = 1000;
     isNormalUser = true;
     group = "users";
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
     hashedPasswordFile = secrets."user/password".path;
     extraGroups = user_groups;
   };
@@ -88,7 +88,6 @@ in
       ../../home/chromium.nix
       ../../home/dconf.nix
       ../../home/fastfetch.nix
-      ../../home/fish.nix
       ../../home/ghostty.nix
       ../../home/gtk.nix
       ../../home/keybinds.nix
