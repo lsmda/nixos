@@ -58,7 +58,6 @@ let
     go
     gocryptfs
     grc
-    kitty
     lazygit
     lshw
     lua

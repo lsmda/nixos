@@ -95,7 +95,9 @@ in
       ../../home/dconf.nix
       ../../home/fastfetch.nix
       ../../home/fish.nix
+      ../../home/ghostty.nix
       ../../home/gtk.nix
+      ../../home/imwheel.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix
@@ -112,10 +114,6 @@ in
       settings."org/gnome/desktop/background".picture-uri-dark = background;
       settings."org/gnome/desktop/screensaver".picture-uri = background;
     };
-
-    home.file.".imwheelrc".source = ../../home/config/.imwheelrc;
-    home.file.".config/autostart/imwheel.desktop".source = ../../home/config/imwheel.desktop;
-    home.file.".config/ghostty/config".source = ../../home/config/ghostty;
 
     home.stateVersion = "24.11";
   };

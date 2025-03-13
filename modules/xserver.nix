@@ -4,10 +4,10 @@
   services.xserver.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.defaultSession = "gnome-xorg";
 
   # required to run systray icons
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+  services.displayManager.defaultSession = "gnome-xorg";
 
   # remove pre-installed gnome apps
   programs.geary.enable = false;

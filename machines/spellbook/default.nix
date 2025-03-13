@@ -89,6 +89,7 @@ in
       ../../home/dconf.nix
       ../../home/fastfetch.nix
       ../../home/fish.nix
+      ../../home/ghostty.nix
       ../../home/gtk.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix
@@ -107,8 +108,6 @@ in
       settings."org/gnome/desktop/screensaver".picture-uri = background;
       settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
     };
-
-    home.file.".config/ghostty/config".source = ../../home/config/ghostty;
 
     home.stateVersion = "24.11";
   };
