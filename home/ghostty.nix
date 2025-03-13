@@ -1,6 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    ghostty
+  ];
+
   home.file.".config/ghostty/config".text = ''
     font-family = "JetBrainsMono Nerd Font"
     font-size = 11

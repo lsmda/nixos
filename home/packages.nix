@@ -11,7 +11,6 @@ let
     eyedropper
     ffmpegthumbnailer
     flameshot
-    ghostty
     git-credential-manager
     gnome-calculator
     gnome-text-editor
@@ -66,7 +65,6 @@ let
     nodejs
     nodePackages.prettier
     nodePackages.pnpm
-    nushell
     pciutils
     pkg-config
     python3

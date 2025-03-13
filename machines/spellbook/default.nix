@@ -94,11 +94,11 @@ in
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix
+      ../../home/nushell.nix
     ];
 
     programs = mkMerge [
       (import ../../home/git.nix { inherit config pkgs; })
-      (import ../../home/kitty.nix { inherit config; })
     ];
 
     dconf = {
