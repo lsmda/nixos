@@ -5,6 +5,8 @@
 
   programs.nushell.configFile.text = ''
     $env.config.show_banner = false
+    $env.config.completions.external.enable = true
+    $env.config.completions.external.max_results = 200
 
     alias .. = cd ..
     alias dd = sudo dockerd
@@ -40,18 +42,8 @@
       if ($end | is-empty) {
         sudo nix-env --delete-generations $start --profile /nix/var/nix/profiles/system
       } else {
-        seq $start $end | each { |i|
+        for i in (seq $start $end) {
           sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-        }
-      }
-    }
-
-    def removeChannelGeneration [start: int, end?: int] {
-      if ($end | is-empty) {
-        sudo nix-channel --remove $start
-      } else {
-        seq $start $end | each { |i|
-          sudo nix-channel --remove $i
         }
       }
     }
