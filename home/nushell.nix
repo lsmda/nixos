@@ -1,9 +1,14 @@
-{ ... }:
+{ config, ... }:
+
+let
+  secrets = config.sops.secrets;
+in
 
 {
   programs.nushell.enable = true;
 
   programs.nushell.configFile.text = ''
+    $env.OPENAI_API_KEY = (open ${secrets."user/deepseek".path})
     $env.config.show_banner = false
     $env.config.completions.external.enable = true
     $env.config.completions.external.max_results = 200

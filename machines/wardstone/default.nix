@@ -7,7 +7,6 @@
 
 let
   inherit (import ../../utils) to_attribute;
-  inherit (lib) mkMerge;
 
   user_groups = [
     "networkmanager"
@@ -65,13 +64,12 @@ in
     imports = [
       ../../home/fastfetch.nix
       ../../home/packages.nix
-      ../../home/nushell.nix
+
+      (import ../../home/git.nix { inherit config; })
+      (import ../../home/nushell.nix { inherit config; })
     ];
 
-    programs = mkMerge [
-      (import ../../home/git.nix { inherit config; })
-      { git.extraConfig = { }; }
-    ];
+    programs.git.extraConfig = { };
 
     home.username = config.machine.username;
     home.homeDirectory = "/home/${config.machine.username}";

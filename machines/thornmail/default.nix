@@ -7,7 +7,6 @@
 
 let
   inherit (import ../../utils) to_attribute;
-  inherit (lib) mkMerge;
   inherit (config.lan) network gateway;
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
@@ -37,7 +36,6 @@ in
     ../../modules/options.nix
     ../../modules/pipewire.nix
     ../../modules/sops.nix
-    ../../modules/services.nix
     ../../modules/system.nix
     ../../modules/xserver.nix
   ];
@@ -100,11 +98,9 @@ in
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix
-      ../../home/nushell.nix
-    ];
 
-    programs = mkMerge [
-      (import ../../home/git.nix { inherit config pkgs; })
+      (import ../../home/git.nix { inherit config; })
+      (import ../../home/nushell.nix { inherit config; })
     ];
 
     dconf = {

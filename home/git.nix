@@ -5,15 +5,15 @@ let
 in
 
 {
-  git.enable = true;
+  programs.git.enable = true;
 
-  git.extraConfig.core.commentChar = ";";
-  git.extraConfig.credential.credentialStore = "secretservice";
-  git.extraConfig.credential.helper = "manager";
-  git.extraConfig.init.defaultBranch = "main";
-  git.extraConfig.push.autoSetupRemote = true;
+  programs.git.extraConfig.core.commentChar = ";";
+  programs.git.extraConfig.credential.credentialStore = "secretservice";
+  programs.git.extraConfig.credential.helper = "manager";
+  programs.git.extraConfig.init.defaultBranch = "main";
+  programs.git.extraConfig.push.autoSetupRemote = true;
 
-  git.aliases = {
+  programs.git.aliases = {
     br = "branch";
 
     cf = "config";
@@ -32,7 +32,7 @@ in
     st = "status";
   };
 
-  git.includes = [
+  programs.git.includes = [
     { path = toString secrets."git/main".path; }
     {
       condition = "hasconfig:remote.*.url:https://gitlab.com/*/digital/**";
