@@ -1,5 +1,5 @@
 { ... }:
 
 {
-  imports = [ ./machines/thornmail ];
+  imports = [ ./machines/wardstone ];
 }

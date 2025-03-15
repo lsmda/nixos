@@ -15,6 +15,7 @@ let
   ];
 
   secrets = config.sops.secrets;
+  templates = config.sops.templates;
 in
 
 {
@@ -51,13 +52,7 @@ in
     group = "users";
     shell = pkgs.nushell;
     hashedPasswordFile = secrets."user/password".path;
-
     extraGroups = user_groups;
-
-    openssh.authorizedKeys.keyFiles = [
-      secrets."spellbook/ed_25519_pub".path
-      secrets."thornmail/ed_25519_pub".path
-    ];
   };
 
   home-manager.users.${config.machine.username} = {
