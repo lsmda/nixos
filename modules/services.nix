@@ -7,10 +7,10 @@ in
 {
   systemd.services.ssh-authorized-keys = {
     script = ''
-      SPELLBOOK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."spellbook/ed_25519_pub".path})
-
-      # Define the authorized_keys file path
       AUTH_KEYS_FILE=~/.ssh/authorized_keys
+
+      SPELLBOOK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."spellbook/ed_25519_pub".path})
+      THORNMAIL_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."thornmail/ed_25519_pub".path})
 
       # Check if directory exists, create if it doesn't
       [ -d ~/.ssh ] || mkdir -p ~/.ssh
@@ -24,9 +24,8 @@ in
         : > "$AUTH_KEYS_FILE"  # This clears the file contents
       fi
 
-      # Append the key and add a newline
       echo "$SPELLBOOK_KEY" >> "$AUTH_KEYS_FILE"
-      echo "" >> "$AUTH_KEYS_FILE"  # Adds a blank line
+      echo "$THORNMAIL_KEY" >> "$AUTH_KEYS_FILE"
     '';
 
     serviceConfig = {

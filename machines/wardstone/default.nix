@@ -30,6 +30,7 @@ in
     ../../modules/nfs-server.nix
     ../../modules/options.nix
     ../../modules/samba.nix
+    ../../modules/services.nix
     ../../modules/sops.nix
     ../../modules/system.nix
   ];
