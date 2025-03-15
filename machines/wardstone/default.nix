@@ -7,6 +7,7 @@
 
 let
   inherit (import ../../utils) to_attribute;
+  inherit (lib) mkForce;
 
   user_groups = [
     "networkmanager"
@@ -64,7 +65,7 @@ in
       (import ../../home/nushell.nix { inherit config; })
     ];
 
-    programs.git.extraConfig = { };
+    programs.git.extraConfig = mkForce { };
 
     home.username = config.machine.username;
     home.homeDirectory = "/home/${config.machine.username}";
