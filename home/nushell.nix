@@ -31,6 +31,7 @@ in
 
     def removeDockerContainer [regex: string] {
       let containers = (docker ps -a --format "{{.Names}}" | split row "\n")
+
       $containers | where { |container| $container =~ $regex } | each { |container| 
         docker rm -v --force $container
       }
@@ -38,7 +39,26 @@ in
 
     def removeDockerVolume [regex: string] {
       let volumes = (docker volume ls -q | split row "\n")
-      $volumes | where { |volume| $volume =~ $regex } | each { |volume| 
+      let target_volumes = ($volumes | where { |volume| $volume =~ $regex })
+      
+      if ($target_volumes | length) == 0 {
+        echo $"No volumes found matching '$regex'"
+        return
+      }
+      
+      echo $"Found ($target_volumes | length) volumes matching '$regex'"
+      
+      $target_volumes | each { |volume| 
+        echo $"Removing volume: $volume"
+
+        # Find and remove any containers using this volume
+        let containers = (docker ps -a --filter volume=$volume -q)
+
+        if ($containers | length) > 0 {
+          echo $"  Removing ($containers | length) containers using this volume"
+          docker rm -f $containers
+        }
+
         docker volume rm $volume
       }
     }
