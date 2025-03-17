@@ -14,7 +14,6 @@ in
     $env.config.completions.external.max_results = 200
 
     alias .. = cd ..
-    alias dd = sudo dockerd
     alias ns = nix-shell
     alias ff = fastfetch
     alias gfs = gocryptfs
@@ -24,6 +23,11 @@ in
     alias bios = sudo systemctl reboot --firmware-setup
     alias generations = sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
     alias rebuild = sudo nixos-rebuild switch
+
+    # docker
+    alias dd = sudo dockerd
+    alias dps = docker ps | split row '\n'
+    alias dpsa = docker ps | split row '\n'
 
     def removeDockerImages [] {
       docker images -q | split row "\n" | uniq | each { |img| docker rmi $img }
