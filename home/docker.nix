@@ -6,7 +6,7 @@
     docker
   ];
 
-  home.file.".config/.docker/config.json".text = ''
+  home.file.".docker/config.json".text = ''
     {
       "psFormat": "table {{.ID}}\\t{{.Names}}\\t{{.Status}}\\t{{.CreatedAt}}"
     }
