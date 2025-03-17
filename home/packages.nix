@@ -48,8 +48,6 @@ let
     bison
     btop
     cargo
-    dive # tool for exploring docker images
-    docker
     fastfetch
     fzf
     gcc

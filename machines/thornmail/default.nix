@@ -91,6 +91,7 @@ in
     imports = [
       ../../home/chromium.nix
       ../../home/dconf.nix
+      ../../home/docker.nix
       ../../home/fastfetch.nix
       ../../home/ghostty.nix
       ../../home/gtk.nix

@@ -16,7 +16,6 @@ let
   ];
 
   secrets = config.sops.secrets;
-  templates = config.sops.templates;
 in
 
 {
@@ -59,6 +58,7 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
+      ../../home/docker.nix
       ../../home/fastfetch.nix
       ../../home/packages.nix
 
