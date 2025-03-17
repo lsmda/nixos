@@ -8,7 +8,7 @@
 
   home.file.".docker/config.json".text = ''
     {
-      "psFormat": "table {{.ID}}\\t{{.Names}}\\t{{.Status}}\\t{{.CreatedAt}}"
+      "psFormat": "table {{.RunningFor}}\t{{.State}}\t{{.Image}}\t{{.ID}}\t{{.Names}}"
     }
   '';
 }
