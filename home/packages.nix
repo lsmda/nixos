@@ -59,9 +59,7 @@ let
     lshw
     lua
     nfs-utils
-    nixfmt-rfc-style
     nodejs
-    nodePackages.prettier
     nodePackages.pnpm
     pciutils
     pkg-config
