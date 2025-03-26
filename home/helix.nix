@@ -1,19 +1,5 @@
 { lib, pkgs, ... }:
 
-let
-  __prettier = language: {
-    command = lib.getExe pkgs.nodePackages.prettier;
-    args = [
-      "--parser"
-      language
-    ];
-  };
-  __prettierd = extension: {
-    command = lib.getExe pkgs.prettierd;
-    args = [ extension ];
-  };
-in
-
 {
   home.packages = with pkgs; [
     # ts/js
@@ -26,47 +12,6 @@ in
   ];
 
   programs.helix.enable = true;
-
-  programs.helix.languages.language = [
-    {
-      name = "html";
-      auto-format = true;
-      formatter = __prettier "html";
-    }
-    {
-      name = "css";
-      auto-format = true;
-      formatter = __prettier "css";
-    }
-    {
-      name = "javascript";
-      auto-format = true;
-      formatter = __prettierd ".js";
-    }
-    {
-      name = "jsx";
-      auto-format = true;
-      formatter = __prettierd ".jsx";
-    }
-    {
-      name = "typescript";
-      auto-format = true;
-      formatter = __prettierd ".ts";
-    }
-    {
-      name = "tsx";
-      auto-format = true;
-      formatter = __prettierd ".tsx";
-    }
-    {
-      name = "nix";
-      auto-format = true;
-      language-servers = [ "nil" ];
-      formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
-    }
-  ];
-
-  programs.helix.settings.theme = "forest";
 
   programs.helix.settings.editor = {
     completion-replace = true;
@@ -202,6 +147,61 @@ in
       ];
     };
   };
+
+  programs.helix.languages.language =
+    let
+      __prettier = language: {
+        command = lib.getExe pkgs.nodePackages.prettier;
+        args = [
+          "--parser"
+          language
+        ];
+      };
+      __prettierd = extension: {
+        command = lib.getExe pkgs.prettierd;
+        args = [ extension ];
+      };
+    in
+    [
+      {
+        name = "html";
+        auto-format = true;
+        formatter = __prettier "html";
+      }
+      {
+        name = "css";
+        auto-format = true;
+        formatter = __prettier "css";
+      }
+      {
+        name = "javascript";
+        auto-format = true;
+        formatter = __prettierd ".js";
+      }
+      {
+        name = "jsx";
+        auto-format = true;
+        formatter = __prettierd ".jsx";
+      }
+      {
+        name = "typescript";
+        auto-format = true;
+        formatter = __prettierd ".ts";
+      }
+      {
+        name = "tsx";
+        auto-format = true;
+        formatter = __prettierd ".tsx";
+      }
+      {
+        name = "nix";
+        auto-format = true;
+        language-servers = [ "nil" ];
+        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+      }
+    ];
+
+  programs.helix.settings.theme = "forest";
 
   programs.helix.themes.forest = {
     inherits = "everforest_dark";
