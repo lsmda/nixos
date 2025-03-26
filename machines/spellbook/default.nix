@@ -52,6 +52,17 @@ in
   console.keyMap = "pt-latin1";
   services.xserver.xkb.layout = "pt";
 
+  # remap caps to escape key
+  services.interception-tools = {
+    enable = true;
+    udevmonConfig = ''
+      - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
+        DEVICE:
+          EVENTS:
+            EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
+    '';
+  };
+
   networking.wg-quick.interfaces.es_65 = local_routing // {
     autostart = false;
     configFile = secrets.es_65.path;
