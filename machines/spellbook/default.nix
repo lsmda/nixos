@@ -88,6 +88,7 @@ in
       ../../home/dconf.nix
       ../../home/docker.nix
       ../../home/fastfetch.nix
+      ../../home/helix.nix
       ../../home/ghostty.nix
       ../../home/gtk.nix
       ../../home/keybinds.nix

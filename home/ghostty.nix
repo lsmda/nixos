@@ -27,7 +27,7 @@
     shell-integration-features = no-cursor
 
     mouse-hide-while-typing = true
-    background-opacity = 0.95
+    background-opacity = 0.98
     background-blur = true
 
     scrollback-limit = 9999999
