@@ -79,7 +79,7 @@ in
       }
     }
 
-    keychain --eval --quiet ~/.ssh/server, ~/.ssh/laptop, ~/.ssh/desktop
+    keychain --eval --quiet ~/.ssh/server ~/.ssh/laptop ~/.ssh/desktop
       | lines
       | where not ($it | is-empty)
       | parse "{k}={v}; export {k2};"
