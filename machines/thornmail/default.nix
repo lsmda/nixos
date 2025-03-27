@@ -53,6 +53,9 @@ in
   console.keyMap = "us";
   services.xserver.xkb.layout = "us";
 
+  services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+
   services.udev.extraRules = ''
     # internal bluetooth controller is SO BAD, disabling it to keep the machine holy and pure.
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"

@@ -53,6 +53,9 @@ in
   console.keyMap = "pt-latin1";
   services.xserver.xkb.layout = "pt";
 
+  services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+
   networking.wg-quick.interfaces.es_65 = local_routing // {
     autostart = false;
     configFile = secrets.es_65.path;

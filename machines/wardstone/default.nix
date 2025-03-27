@@ -42,6 +42,9 @@ in
 
   lan.network = "192.168.0.0";
 
+  services.openssh.enable = true;
+  programs.ssh.startAgent = true;
+
   users.groups = lib.pipe user_groups [
     (map to_attribute)
     builtins.listToAttrs

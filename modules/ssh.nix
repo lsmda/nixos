@@ -5,12 +5,6 @@ let
 in
 
 {
-  # enable ssh
-  services.openssh.enable = true;
-
-  # start ssh-agent on login
-  programs.ssh.startAgent = true;
-
   # write authorized ssh keys on system activation
   systemd.services.ssh-authorized-keys = {
     script = ''
