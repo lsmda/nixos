@@ -11,5 +11,4 @@
             EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
     '';
   };
-
 }
