@@ -45,6 +45,7 @@ let
     go
     gocryptfs
     grc
+    keychain
     lazygit
     lshw
     lua
