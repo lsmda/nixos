@@ -89,6 +89,7 @@ in
       ../../home/dconf.nix
       ../../home/docker.nix
       ../../home/fastfetch.nix
+      ../../home/gpg.nix
       ../../home/helix.nix
       ../../home/ghostty.nix
       ../../home/gtk.nix

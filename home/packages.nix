@@ -15,7 +15,6 @@ let
     gnomeExtensions.alttab-scroll-workaround
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
-    gnupg
     gparted
     impression
     imwheel
