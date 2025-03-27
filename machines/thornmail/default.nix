@@ -30,6 +30,7 @@ in
     ./hardware.nix
 
     ../../modules/bluetooth.nix
+    ../../modules/keyboard.nix
     ../../modules/networking.nix
     ../../modules/nfs-client.nix
     ../../modules/nvidia.nix
