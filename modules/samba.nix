@@ -2,11 +2,12 @@
 
 let
   simple_share = path: {
-    "admin users" = config.machine.username;
+    "path" = path;
     "guest ok" = "no";
     "browseable" = "yes";
     "writeable" = "yes";
-    "path" = path;
+    "fruit:nfs_aces" = "no";
+    "admin users" = config.machine.username;
   };
 in
 
