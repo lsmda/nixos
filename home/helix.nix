@@ -75,10 +75,12 @@
         "paste_before"
       ];
       A-S-j = [
+        "extend_to_line_bounds"
         "yank"
         "paste_after"
       ];
       A-S-k = [
+        "extend_to_line_bounds"
         "yank"
         "paste_before"
       ];
