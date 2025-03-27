@@ -3,10 +3,10 @@
 let
   simple_share = path: {
     "admin users" = config.machine.username;
-    "browseable" = "yes";
     "guest ok" = "no";
+    "browseable" = "yes";
+    "writeable" = "yes";
     "path" = path;
-    "read only" = false;
   };
 in
 
