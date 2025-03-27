@@ -4,12 +4,9 @@ let
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
     acpi
-    alsa-utils
-    brightnessctl
     discord
     eog
     eyedropper
-    ffmpegthumbnailer
     flameshot
     git-credential-manager
     gnome-calculator
@@ -28,14 +25,8 @@ let
     nautilus
     obsidian
     pass
-    picom
     pika-backup
-    playerctl
-    protonvpn-gui
-    pulseaudio
     qbittorrent
-    rancher
-    redshift
     spotify
     vscode-fhs
     winbox
@@ -58,7 +49,7 @@ let
     lazygit
     lshw
     lua
-    nfs-utils
+    nnn # file manager
     nodejs
     nodePackages.pnpm
     pciutils
@@ -67,10 +58,8 @@ let
     ripgrep
     rustc
     sops
-    stow
     sqlite
     sqlitebrowser
-    tmux
     unzip
     usbutils
     wget
