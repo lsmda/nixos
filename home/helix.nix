@@ -75,16 +75,12 @@
         "paste_before"
       ];
       A-S-j = [
-        "extend_to_line_bounds"
         "yank"
         "paste_after"
-        "collapse_selection"
       ];
       A-S-k = [
-        "extend_to_line_bounds"
         "yank"
         "paste_before"
-        "collapse_selection"
       ];
       C-a = "select_all";
       C-h = "jump_view_left";
