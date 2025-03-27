@@ -20,9 +20,6 @@
   # allow external binaries (i.e. mason LSPs)
   programs.nix-ld.enable = true;
 
-  # ssh
-  services.openssh.enable = true;
-
   # optimize nix store
   nix.settings.auto-optimise-store = true;
 
