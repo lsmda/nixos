@@ -60,6 +60,7 @@ in
     imports = [
       ../../home/docker.nix
       ../../home/fastfetch.nix
+      ../../home/helix.nix
       ../../home/packages.nix
 
       (import ../../home/git.nix { inherit config; })

@@ -95,6 +95,7 @@ in
       ../../home/fastfetch.nix
       ../../home/ghostty.nix
       ../../home/gtk.nix
+      ../../home/helix.nix
       ../../home/imwheel.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix

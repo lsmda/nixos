@@ -26,10 +26,4 @@
     default = null;
     description = "Local network server address";
   };
-
-  options.colorscheme = lib.mkOption {
-    type = lib.types.attrs;
-    description = "Base16 color scheme.";
-    default = import ../themes/metal.nix;
-  };
 }
