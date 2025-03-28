@@ -23,7 +23,6 @@ in
         $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
     }
 
-
     $env.PROMPT_COMMAND_RIGHT = {||
         let time_segment = ([
             (ansi reset)
