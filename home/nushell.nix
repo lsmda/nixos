@@ -2,6 +2,7 @@
 
 let
   secrets = config.sops.secrets;
+  hostname = config.machine.hostname;
 in
 
 {
@@ -79,7 +80,7 @@ in
       }
     }
 
-    keychain --eval --quiet ~/.ssh/server ~/.ssh/laptop ~/.ssh/desktop
+    keychain --eval --quiet ~/.ssh/${hostname}
       | lines
       | where not ($it | is-empty)
       | parse "{k}={v}; export {k2};"
