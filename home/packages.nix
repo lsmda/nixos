@@ -50,6 +50,7 @@ let
     lazygit
     lshw
     lua
+    neovim
     nnn # file manager
     nodejs
     nodePackages.pnpm

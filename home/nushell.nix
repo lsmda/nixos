@@ -7,6 +7,7 @@ in
 
 {
   programs.nushell.enable = true;
+  programs.nushell.defaultEditor = true;
 
   programs.nushell.configFile.text = ''
     $env.OPENAI_API_KEY = (open ${secrets."user/deepseek".path})

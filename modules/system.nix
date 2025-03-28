@@ -14,9 +14,6 @@
 
   time.timeZone = "Europe/Lisbon";
 
-  programs.neovim.enable = true;
-  programs.neovim.defaultEditor = true;
-
   # allow external binaries (i.e. mason LSPs)
   programs.nix-ld.enable = true;
 
