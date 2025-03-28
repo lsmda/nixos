@@ -38,6 +38,7 @@ let
     bison
     btop
     cargo
+    cryfs
     fastfetch
     fzf
     gcc
