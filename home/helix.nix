@@ -12,6 +12,7 @@
   ];
 
   programs.helix.enable = true;
+  programs.helix.defaultEditor = true;
 
   programs.helix.settings.editor = {
     completion-replace = true;
