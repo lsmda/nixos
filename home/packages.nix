@@ -36,7 +36,6 @@ let
   headless = with pkgs; [
     age
     bison
-    btop
     cargo
     cryfs
     fastfetch

@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
 {
-  # home.packages = with pkgs; [
-  #   gnupg
-  #   pinentry-gtk2
-  # ];
-
   programs.gpg.enable = true;
 
   services.gpg-agent.enable = true;

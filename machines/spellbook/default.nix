@@ -88,6 +88,7 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
+      ../../home/btop.nix
       ../../home/chromium.nix
       ../../home/dconf.nix
       ../../home/docker.nix

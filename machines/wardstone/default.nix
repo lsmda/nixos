@@ -62,6 +62,7 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
+      ../../home/btop.nix
       ../../home/docker.nix
       ../../home/fastfetch.nix
       ../../home/helix.nix
