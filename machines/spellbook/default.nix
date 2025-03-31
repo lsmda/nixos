@@ -93,10 +93,11 @@ in
       ../../home/dconf.nix
       ../../home/docker.nix
       ../../home/fastfetch.nix
-      ../../home/gpg.nix
-      ../../home/helix.nix
       ../../home/ghostty.nix
+      ../../home/gpg.nix
       ../../home/gtk.nix
+      ../../home/helix.nix
+      ../../home/lazygit.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix

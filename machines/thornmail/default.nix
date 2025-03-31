@@ -99,9 +99,11 @@ in
       ../../home/docker.nix
       ../../home/fastfetch.nix
       ../../home/ghostty.nix
+      ../../home/gpg.nix
       ../../home/gtk.nix
       ../../home/helix.nix
       ../../home/imwheel.nix
+      ../../home/lazygit.nix
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix

@@ -46,7 +46,6 @@ let
     gocryptfs
     grc
     keychain
-    lazygit
     lshw
     lua
     neovim
