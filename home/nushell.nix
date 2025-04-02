@@ -47,6 +47,7 @@ in
     $env.config.completions.external.max_results = 200
 
     alias .. = cd ..
+    alias rr = ranger
     alias dd = sudo dockerd
     alias ll = ls -l
     alias ns = nix-shell

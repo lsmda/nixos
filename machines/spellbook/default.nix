@@ -101,6 +101,7 @@ in
       ../../home/keybinds.nix
       ../../home/mpv.nix
       ../../home/packages.nix
+      ../../home/ranger.nix
 
       (import ../../home/git.nix { inherit config; })
       (import ../../home/nushell.nix { inherit config; })
