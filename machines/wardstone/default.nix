@@ -25,14 +25,14 @@ in
 
     ./hardware.nix
 
-    ../../modules/keyboard.nix
-    ../../modules/networking.nix
-    ../../modules/nfs-server.nix
-    ../../modules/options.nix
-    ../../modules/samba.nix
-    ../../modules/sops.nix
-    ../../modules/ssh.nix
-    ../../modules/system.nix
+    ../../modules/system/locale.nix
+    ../../modules/system/keyboard.nix
+    ../../modules/system/networking.nix
+    ../../modules/system/nfs-server.nix
+    ../../modules/system/options.nix
+    ../../modules/system/samba.nix
+    ../../modules/system/sops.nix
+    ../../modules/system/systemd.nix
   ];
 
   system.stateVersion = "24.11";
@@ -62,17 +62,17 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
-      ../../home/btop.nix
-      ../../home/docker.nix
-      ../../home/fastfetch.nix
-      ../../home/gpg.nix
-      ../../home/helix.nix
-      ../../home/lazygit.nix
-      ../../home/packages.nix
-      ../../home/ranger.nix
+      ../../modules/home/btop.nix
+      ../../modules/home/docker.nix
+      ../../modules/home/fastfetch.nix
+      ../../modules/home/gpg.nix
+      ../../modules/home/helix.nix
+      ../../modules/home/lazygit.nix
+      ../../modules/home/packages.nix
+      ../../modules/home/ranger.nix
 
-      (import ../../home/git.nix { inherit config; })
-      (import ../../home/nushell.nix { inherit config; })
+      (import ../../modules/home/git.nix { inherit config; })
+      (import ../../modules/home/nushell.nix { inherit config; })
     ];
 
     programs.git.extraConfig = mkForce { };

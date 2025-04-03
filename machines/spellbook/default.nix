@@ -30,15 +30,16 @@ in
 
     ./hardware.nix
 
-    ../../modules/bluetooth.nix
-    ../../modules/keyboard.nix
-    ../../modules/networking.nix
-    ../../modules/nfs-client.nix
-    ../../modules/options.nix
-    ../../modules/pipewire.nix
-    ../../modules/sops.nix
-    ../../modules/system.nix
-    ../../modules/xserver.nix
+    ../../modules/system/bluetooth.nix
+    ../../modules/system/locale.nix
+    ../../modules/system/keyboard.nix
+    ../../modules/system/networking.nix
+    ../../modules/system/nfs-client.nix
+    ../../modules/system/options.nix
+    ../../modules/system/pipewire.nix
+    ../../modules/system/sops.nix
+    ../../modules/system/systemd.nix
+    ../../modules/system/xserver.nix
   ];
 
   system.stateVersion = "24.11";
@@ -88,23 +89,23 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
-      ../../home/btop.nix
-      ../../home/chromium.nix
-      ../../home/dconf.nix
-      ../../home/docker.nix
-      ../../home/fastfetch.nix
-      ../../home/ghostty.nix
-      ../../home/gpg.nix
-      ../../home/gtk.nix
-      ../../home/helix.nix
-      ../../home/lazygit.nix
-      ../../home/keybinds.nix
-      ../../home/mpv.nix
-      ../../home/packages.nix
-      ../../home/ranger.nix
+      ../../modules/home/btop.nix
+      ../../modules/home/chromium.nix
+      ../../modules/home/dconf.nix
+      ../../modules/home/docker.nix
+      ../../modules/home/fastfetch.nix
+      ../../modules/home/ghostty.nix
+      ../../modules/home/gpg.nix
+      ../../modules/home/gtk.nix
+      ../../modules/home/helix.nix
+      ../../modules/home/lazygit.nix
+      ../../modules/home/keybinds.nix
+      ../../modules/home/mpv.nix
+      ../../modules/home/packages.nix
+      ../../modules/home/ranger.nix
 
-      (import ../../home/git.nix { inherit config; })
-      (import ../../home/nushell.nix { inherit config; })
+      (import ../../modules/home/git.nix { inherit config; })
+      (import ../../modules/home/nushell.nix { inherit config; })
     ];
 
     dconf = {
