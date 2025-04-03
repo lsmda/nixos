@@ -2,7 +2,6 @@
 
 {
   programs.btop.enable = true;
-
   programs.btop.settings = {
     vim_keys = true;
     color_theme = "everforest-dark-hard";
