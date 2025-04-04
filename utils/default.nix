@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   to_attribute = str: {
     name = str;
