@@ -52,6 +52,7 @@ in
     alias ll = ls -l
     alias ns = nix-shell
     alias ff = fastfetch
+    alias cfs = cryfs
     alias gfs = gocryptfs
     alias lz = lazygit
     alias mt = mount
