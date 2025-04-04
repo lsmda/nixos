@@ -1,13 +1,11 @@
-{ config, ... }:
+{ ... }:
 
 let
-  simple_share = path: {
+  share = path: {
     "path" = path;
     "guest ok" = "no";
     "browseable" = "yes";
     "writeable" = "yes";
-    "fruit:nfs_aces" = "no";
-    "admin users" = config.machine.username;
   };
 in
 
@@ -18,8 +16,8 @@ in
   services.samba.openFirewall = true;
 
   services.samba.settings = {
-    files = simple_share "/mnt/hyperx/files";
-    media = simple_share "/mnt/hyperx/media";
+    files = share "/mnt/hyperx/files";
+    media = share "/mnt/hyperx/media";
   };
 
   services.samba-wsdd = {
