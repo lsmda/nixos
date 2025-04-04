@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../utils) to_attribute;
+  inherit (import ../../modules/utils) to_attribute;
   inherit (lib) mkForce;
 
   user_groups = [

@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../utils) to_attribute;
+  inherit (import ../../modules/utils) to_attribute;
   inherit (config.lan) network gateway;
 
   local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
