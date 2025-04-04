@@ -1,4 +1,10 @@
+{ pkgs, ... }:
+
 {
+  home.packages = with pkgs; [
+    flameshot
+  ];
+
   dconf.settings = {
     # disable default keybinds
     "org/gnome/shell/keybindings" = {

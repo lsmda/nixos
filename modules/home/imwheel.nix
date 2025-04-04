@@ -1,6 +1,10 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    imwheel
+  ];
+
   home.file.".imwheelrc".text = ''
     ".*"
     None,      Up,   Button4, 3

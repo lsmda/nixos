@@ -3,11 +3,8 @@
 let
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
-    acpi
     discord
-    eog
-    eyedropper
-    flameshot
+    eog # image viewer
     git-credential-manager
     gnome-calculator
     gnome-text-editor
@@ -15,16 +12,13 @@ let
     gnomeExtensions.alttab-scroll-workaround
     gnomeExtensions.appindicator
     gnomeExtensions.just-perfection
-    gparted
-    impression
-    imwheel
+    gparted # disk utility
+    impression # usb image burner
     librewolf
     love # lua-based 2d game engine language
-    mgba
-    nautilus
+    mgba # gameboy emulator
+    nautilus # file explorer
     obsidian
-    pass
-    pika-backup
     qbittorrent
     spotify
     vscode-fhs
@@ -35,7 +29,6 @@ let
   # packages that run on terminal interfaces (headless systems)
   headless = with pkgs; [
     age
-    bison
     cargo
     cryfs
     fastfetch
@@ -44,15 +37,12 @@ let
     gnumake
     go
     gocryptfs
-    grc
     keychain
     lshw
     lua
     neovim
     nodejs
     nodePackages.pnpm
-    pciutils
-    pkg-config
     python3
     ripgrep
     rustc
@@ -60,7 +50,6 @@ let
     sqlite
     sqlitebrowser
     unzip
-    usbutils
     wget
     xclip
     zip
