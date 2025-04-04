@@ -59,7 +59,7 @@ in
     alias umt = umount
     alias bios = sudo systemctl reboot --firmware-setup
     alias generations = sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
-    alias rebuild = sudo nixos-rebuild switch
+    alias rebuild = sudo nixos-rebuild switch --show-trace
 
     # print docker output as a table
     def --wrapped d [...args] { 
