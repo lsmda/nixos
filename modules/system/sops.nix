@@ -3,19 +3,14 @@
 let
   user = config.machine.username;
 
-  attributes = {
-    owner = user;
-    group = "root";
+  sops_file = path: {
     mode = "0400";
+    owner = user;
+    sopsFile = path;
   };
 
-  sops_file = path: { sopsFile = path; };
-
-  yaml = path: sops_file path // { format = "yaml"; };
-  binary = path: sops_file path // { format = "binary"; };
-
-  from_yaml = path: yaml path // attributes;
-  from_binary = path: binary path // attributes;
+  from_yaml = path: sops_file path // { format = "yaml"; };
+  from_binary = path: sops_file path // { format = "binary"; };
 in
 
 # generate age key:
