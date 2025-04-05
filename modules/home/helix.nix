@@ -2,37 +2,115 @@
 
 {
   home.packages = with pkgs; [
-    # ts/js
     nodePackages.prettier
     prettierd
-
-    # nix
-    nil
-    nixfmt-rfc-style
   ];
 
   programs.helix.enable = true;
   programs.helix.defaultEditor = true;
 
+  # only available to helix
+  programs.helix.extraPackages = with pkgs; [
+    nil
+    nixd
+    nixfmt-rfc-style
+  ];
+
+  programs.helix.languages.language-server = {
+    nixd = {
+      command = lib.getExe pkgs.nixd;
+      config.nixd = {
+        formatting.command = lib.getExe pkgs.nixfmt-rfc-style;
+        options = {
+          nixpkgs.expr = "import <nixpkgs> {}";
+          nixos.expr = "import <nixos> { configuration = /etc/nixos/configuration.nix; }";
+        };
+      };
+    };
+  };
+
+  programs.helix.languages.language =
+    let
+      __prettier = language: {
+        command = lib.getExe pkgs.nodePackages.prettier;
+        args = [
+          "--parser"
+          language
+        ];
+      };
+      __prettierd = extension: {
+        command = lib.getExe pkgs.prettierd;
+        args = [ extension ];
+      };
+    in
+    [
+      {
+        name = "html";
+        auto-format = true;
+        formatter = __prettier "html";
+      }
+      {
+        name = "css";
+        auto-format = true;
+        formatter = __prettier "css";
+      }
+      {
+        name = "javascript";
+        auto-format = true;
+        formatter = __prettierd ".js";
+      }
+      {
+        name = "jsx";
+        auto-format = true;
+        formatter = __prettierd ".jsx";
+      }
+      {
+        name = "typescript";
+        auto-format = true;
+        formatter = __prettierd ".ts";
+      }
+      {
+        name = "tsx";
+        auto-format = true;
+        formatter = __prettierd ".tsx";
+      }
+      {
+        name = "nix";
+        auto-format = true;
+        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+        language-servers = [
+          "nil"
+          "nixd"
+        ];
+      }
+    ];
+
   programs.helix.settings.editor = {
-    completion-replace = true;
     popup-border = "all";
     line-number = "relative";
     mouse = false;
     scrolloff = 50;
     color-modes = true;
+
+    completion-replace = true;
+    completion-timeout = 250;
+    completion-trigger-len = 2;
+
     file-picker = {
       hidden = false;
     };
+
     indent-guides = {
       render = true;
       character = "╎";
       skip-levels = 2;
     };
+
     lsp = {
       enable = true;
       display-messages = true;
     };
+
     statusline = {
       left = [
         "mode"
@@ -126,70 +204,21 @@
         ];
       };
     };
+
     insert = {
       C-h = "move_char_left";
       C-l = "move_char_right";
       C-k = "move_line_up";
       C-j = "move_line_down";
+      C-space = "completion";
     };
+
     select = {
       A-n = "normal_mode";
       A-e = "extend_to_line_end";
       A-q = "extend_to_line_start";
     };
   };
-
-  programs.helix.languages.language =
-    let
-      __prettier = language: {
-        command = lib.getExe pkgs.nodePackages.prettier;
-        args = [
-          "--parser"
-          language
-        ];
-      };
-      __prettierd = extension: {
-        command = lib.getExe pkgs.prettierd;
-        args = [ extension ];
-      };
-    in
-    [
-      {
-        name = "html";
-        auto-format = true;
-        formatter = __prettier "html";
-      }
-      {
-        name = "css";
-        auto-format = true;
-        formatter = __prettier "css";
-      }
-      {
-        name = "javascript";
-        auto-format = true;
-        formatter = __prettierd ".js";
-      }
-      {
-        name = "jsx";
-        auto-format = true;
-        formatter = __prettierd ".jsx";
-      }
-      {
-        name = "typescript";
-        auto-format = true;
-        formatter = __prettierd ".ts";
-      }
-      {
-        name = "tsx";
-        auto-format = true;
-        formatter = __prettierd ".tsx";
-      }
-      {
-        name = "nix";
-        auto-format = true;
-        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
-      }
-    ];
 
   programs.helix.settings.theme = "forest";
 
