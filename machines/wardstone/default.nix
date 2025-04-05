@@ -10,9 +10,9 @@ let
   inherit (lib) mkForce;
 
   user_groups = [
+    "docker"
     "networkmanager"
     "wheel"
-    "docker"
   ];
 
   secrets = config.sops.secrets;

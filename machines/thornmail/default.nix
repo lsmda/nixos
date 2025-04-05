@@ -7,19 +7,15 @@
 
 let
   inherit (import ../../modules/utils) to_attribute;
-  inherit (config.lan) network gateway;
-
-  local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
-  local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
-
-  user_groups = [
-    "networkmanager"
-    "wheel"
-    "docker"
-  ];
 
   secrets = config.sops.secrets;
   background = toString ../../assets/00.jpg;
+
+  user_groups = [
+    "docker"
+    "networkmanager"
+    "wheel"
+  ];
 in
 
 {
@@ -62,20 +58,14 @@ in
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"
   '';
 
-  networking.wg-quick.interfaces.es_62 = local_routing // {
-    autostart = false;
-    configFile = secrets.es_62.path;
-  };
+  networking.wg-quick.interfaces.es_62.autostart = false;
+  networking.wg-quick.interfaces.es_62.configFile = secrets.es_62.path;
 
-  networking.wg-quick.interfaces.ie_25 = local_routing // {
-    autostart = false;
-    configFile = secrets.ie_25.path;
-  };
+  networking.wg-quick.interfaces.ie_25.autostart = false;
+  networking.wg-quick.interfaces.ie_25.configFile = secrets.ie_25.path;
 
-  networking.wg-quick.interfaces.uk_24 = local_routing // {
-    autostart = true;
-    configFile = secrets.uk_24.path;
-  };
+  networking.wg-quick.interfaces.uk_24.autostart = true;
+  networking.wg-quick.interfaces.uk_24.configFile = secrets.uk_24.path;
 
   users.groups = lib.pipe user_groups [
     (map to_attribute)

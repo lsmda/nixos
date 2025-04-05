@@ -6,21 +6,17 @@
 }:
 
 let
-  inherit (import ../../modules/utils) to_attribute;
   inherit (lib) mkForce;
-  inherit (config.lan) network gateway;
-
-  local_routing.postUp = "ip route add ${network}/24 via ${gateway}";
-  local_routing.postDown = "ip route del ${network}/24 via ${gateway}";
-
-  user_groups = [
-    "networkmanager"
-    "wheel"
-    "docker"
-  ];
+  inherit (import ../../modules/utils) to_attribute;
 
   secrets = config.sops.secrets;
   background = toString ../../assets/00.jpg;
+
+  user_groups = [
+    "docker"
+    "networkmanager"
+    "wheel"
+  ];
 in
 
 {
@@ -57,20 +53,14 @@ in
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
 
-  networking.wg-quick.interfaces.es_65 = local_routing // {
-    autostart = false;
-    configFile = secrets.es_65.path;
-  };
+  networking.wg-quick.interfaces.es_65.autostart = true;
+  networking.wg-quick.interfaces.es_65.configFile = secrets.es_65.path;
 
-  networking.wg-quick.interfaces.ie_36 = local_routing // {
-    autostart = true;
-    configFile = secrets.ie_36.path;
-  };
+  networking.wg-quick.interfaces.ie_36.autostart = false;
+  networking.wg-quick.interfaces.ie_36.configFile = secrets.ie_36.path;
 
-  networking.wg-quick.interfaces.uk_14 = local_routing // {
-    autostart = false;
-    configFile = secrets.uk_14.path;
-  };
+  networking.wg-quick.interfaces.uk_14.autostart = false;
+  networking.wg-quick.interfaces.uk_14.configFile = secrets.uk_14.path;
 
   users.groups = lib.pipe user_groups [
     (map to_attribute)
