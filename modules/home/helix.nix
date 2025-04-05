@@ -8,6 +8,7 @@
 
   programs.helix.enable = true;
   programs.helix.defaultEditor = true;
+  programs.helix.settings.theme = "forest";
 
   # only available to helix
   programs.helix.extraPackages = with pkgs; [
@@ -219,8 +220,6 @@
       A-q = "extend_to_line_start";
     };
   };
-
-  programs.helix.settings.theme = "forest";
 
   programs.helix.themes.forest = {
     inherits = "everforest_dark";
