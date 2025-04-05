@@ -1,17 +1,21 @@
 { lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    nodePackages.prettier
-    prettierd
-  ];
-
   programs.helix.enable = true;
   programs.helix.defaultEditor = true;
   programs.helix.settings.theme = "forest";
 
-  # only available to helix
   programs.helix.extraPackages = with pkgs; [
+    # html, css
+    vscode-langservers-extracted
+
+    # javascript
+    deno
+    nodePackages.prettier
+    nodePackages.typescript-language-server
+    prettierd
+
+    # nix
     nil
     nixd
     nixfmt-rfc-style
@@ -19,72 +23,124 @@
 
   programs.helix.languages.language-server = {
     nixd = {
-      command = lib.getExe pkgs.nixd;
+      command = "nixd";
       config.nixd = {
-        formatting.command = lib.getExe pkgs.nixfmt-rfc-style;
+        formatting.command = "nixfmt";
         options = {
           nixpkgs.expr = "import <nixpkgs> {}";
           nixos.expr = "import <nixos> { configuration = /etc/nixos/configuration.nix; }";
         };
       };
     };
+    typescript-language-server = with pkgs.nodePackages; {
+      command = lib.getExe typescript-language-server;
+      args = [ "--stdio" ];
+    };
   };
 
   programs.helix.languages.language =
     let
-      __prettier = language: {
-        command = lib.getExe pkgs.nodePackages.prettier;
+      denoFmt = language: {
+        command = "deno";
+        args = [
+          "fmt"
+          "-"
+          "--ext"
+          language
+        ];
+      };
+
+      denoLanguages =
+        map
+          (language: {
+            name = language;
+            auto-format = true;
+            formatter = denoFmt language;
+          })
+          [
+            "markdown"
+            "json"
+          ];
+
+      prettierFmt = language: {
+        command = "prettier";
         args = [
           "--parser"
           language
         ];
       };
-      __prettierd = extension: {
-        command = lib.getExe pkgs.prettierd;
-        args = [ extension ];
-      };
+
+      prettierLanguages =
+        map
+          (language: {
+            name = language;
+            auto-format = true;
+            formatter = prettierFmt language;
+          })
+          [
+            "html"
+            "css"
+            "scss"
+            "yaml"
+          ];
     in
     [
       {
-        name = "html";
-        auto-format = true;
-        formatter = __prettier "html";
-      }
-      {
-        name = "css";
-        auto-format = true;
-        formatter = __prettier "css";
-      }
-      {
         name = "javascript";
         auto-format = true;
-        formatter = __prettierd ".js";
+        formatter = denoFmt "js";
+        language-servers = [
+          {
+            name = "typescript-language-server";
+            except-features = [ "format" ];
+          }
+        ];
       }
       {
         name = "jsx";
         auto-format = true;
-        formatter = __prettierd ".jsx";
+        formatter = denoFmt "jsx";
+        language-servers = [
+          {
+            name = "typescript-language-server";
+            except-features = [ "format" ];
+          }
+        ];
       }
       {
         name = "typescript";
         auto-format = true;
-        formatter = __prettierd ".ts";
+        formatter = denoFmt "ts";
+        language-servers = [
+          {
+            name = "typescript-language-server";
+            except-features = [ "format" ];
+          }
+        ];
       }
       {
         name = "tsx";
         auto-format = true;
-        formatter = __prettierd ".tsx";
+        formatter = denoFmt "tsx";
+        language-servers = [
+          {
+            name = "typescript-language-server";
+            except-features = [ "format" ];
+          }
+        ];
       }
       {
         name = "nix";
         auto-format = true;
-        formatter.command = lib.getExe pkgs.nixfmt-rfc-style;
+        formatter.command = "nixfmt";
         language-servers = [
           "nil"
           "nixd"
         ];
       }
-    ];
+    ]
+    ++ denoLanguages
+    ++ prettierLanguages;
 
   programs.helix.settings.editor = {
     popup-border = "all";
