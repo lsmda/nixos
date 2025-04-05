@@ -25,8 +25,8 @@ in
 
     ./hardware.nix
 
-    ../../modules/system/locale.nix
     ../../modules/system/keyboard.nix
+    ../../modules/system/locale.nix
     ../../modules/system/networking.nix
     ../../modules/system/nfs-server.nix
     ../../modules/system/options.nix

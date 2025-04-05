@@ -1,5 +1,3 @@
-{ ... }:
-
 {
   kitty.enable = true;
 

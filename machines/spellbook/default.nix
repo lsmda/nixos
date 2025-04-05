@@ -31,8 +31,8 @@ in
     ./hardware.nix
 
     ../../modules/system/bluetooth.nix
-    ../../modules/system/locale.nix
     ../../modules/system/keyboard.nix
+    ../../modules/system/locale.nix
     ../../modules/system/networking.nix
     ../../modules/system/nfs-client.nix
     ../../modules/system/options.nix
@@ -98,8 +98,8 @@ in
       ../../modules/home/gpg.nix
       ../../modules/home/gtk.nix
       ../../modules/home/helix.nix
-      ../../modules/home/lazygit.nix
       ../../modules/home/keybinds.nix
+      ../../modules/home/lazygit.nix
       ../../modules/home/mpv.nix
       ../../modules/home/packages.nix
       ../../modules/home/ranger.nix

@@ -1,5 +1,3 @@
-{ ... }:
-
 let
   share = path: {
     "path" = path;
