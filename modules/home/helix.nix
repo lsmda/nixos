@@ -236,6 +236,7 @@
         "normal_mode"
       ];
       space = {
+        # lazygit
         l = [
           ":write-all"
           ":new"
@@ -246,7 +247,7 @@
         ];
         q = ":quit";
         Q = ":quit-all!";
-        p = "paste_clipboard_before";
+        p = ":clipboard-paste-replace";
         r = {
           r = ":config-reload";
           n = "rename_symbol";
