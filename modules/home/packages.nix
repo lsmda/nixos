@@ -24,6 +24,7 @@ let
     vscode-fhs
     winbox
     wpsoffice
+    zotero
   ];
 
   # packages that run on terminal interfaces (headless systems)
