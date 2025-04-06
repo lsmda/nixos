@@ -66,7 +66,7 @@ in
 
       $env.config.table.header_on_separator = false
       $env.config.table.index_mode = "always"
-      $env.config.table.mode = "rounded"
+      $env.config.table.mode = "basic_compact"
       $env.config.table.show_empty = true
       $env.config.table.trim.methodology = "wrapping"
       $env.config.table.trim.wrapping_try_keep_words = true
