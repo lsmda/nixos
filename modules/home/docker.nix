@@ -7,8 +7,6 @@
   ];
 
   home.file.".docker/config.json".text = ''
-    {
-      "psFormat": "table {{.RunningFor}}\t{{.State}}\t{{.Image}}\t{{.ID}}\t{{.Names}}"
-    }
+    { "psFormat": "table {{.RunningFor}}\t{{.State}}\t{{printf \"%.50s\" .Image}}\t{{.ID}}\t{{.Names}}" }
   '';
 }
