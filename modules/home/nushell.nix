@@ -44,6 +44,7 @@ in
 
         $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
       }
+      $env.PROMPT_COMMAND_RIGHT = ""
 
       $env.EDITOR = "hx"
       $env.OPENAI_API_KEY = (open ${secrets."user/deepseek".path})
@@ -81,18 +82,6 @@ in
 
       $env.config.hooks.command_not_found = {||}
       $env.config.hooks.env_change = {}
-      $env.config.hooks.pre_prompt = []
-      $env.config.hooks.pre_execution = [
-        {
-          let prompt = commandline | str trim
-
-          if ($prompt | is-empty) {
-            return
-          }
-
-          print $"(ansi title)($prompt) — nu(char bel)"
-        }
-      ]
       $env.config.hooks.display_output = {
         tee { table --expand | print }
         | $env.last = $in
