@@ -1,60 +1,61 @@
-{ pkgs, ... }:
-
 {
-  home.packages = with pkgs; [
-    ghostty
-  ];
+  programs.ghostty = {
+    enable = true;
 
-  home.file.".config/ghostty/config".text = ''
-    font-family = "JetBrainsMono Nerd Font"
-    font-size = 11
-    adjust-cell-width = 10%
-    adjust-cell-height = 5%
+    settings = {
+      font-size = 11;
+      font-family = "JetBrainsMono Nerd Font";
 
-    window-padding-x = 4
-    window-padding-y = 8
-    window-inherit-working-directory = true
+      adjust-cell-width = "10%";
+      adjust-cell-height = "5%";
 
-    clipboard-trim-trailing-spaces = true
-    clipboard-paste-protection = true
+      background-blur = true;
+      background-opacity = 0.98;
 
-    quick-terminal-position = center
+      clipboard-paste-protection = true;
+      clipboard-trim-trailing-spaces = true;
 
-    cursor-style = block
-    cursor-style-blink = false
-    cursor-invert-fg-bg = true
+      theme = "Everforest Dark - Hard";
 
-    shell-integration-features = no-cursor
+      window-inherit-working-directory = true;
+      window-padding-x = 4;
+      window-padding-y = 8;
+      window-padding-balance = true;
+      window-padding-color = "background";
 
-    mouse-hide-while-typing = true
-    background-opacity = 0.98
-    background-blur = true
+      cursor-style = "block";
+      cursor-style-blink = false;
+      cursor-invert-fg-bg = true;
 
-    scrollback-limit = 9999999
+      shell-integration-features = "no-cursor";
 
-    keybind = shift+alt+enter=new_tab
-    keybind = shift+alt+backspace=close_tab
-    keybind = shift+alt+h=previous_tab
-    keybind = shift+alt+l=next_tab
-    keybind = ctrl+shift+r=reload_config
+      mouse-hide-while-typing = true;
 
-    theme = Everforest Dark - Hard
+      scrollback-limit = 9999999;
 
-    font-feature = ss01
-    font-feature = ss04
+      font-feature = [
+        "ss01"
+        "ss04"
+      ];
 
-    adjust-box-thickness = 1
-    adjust-cursor-thickness = 1
-     
-    resize-overlay = never
-    copy-on-select = false
-    confirm-close-surface = false
+      adjust-box-thickness = 1;
+      adjust-cursor-thickness = 1;
 
-    window-padding-balance = true
-    window-padding-color = background
-    gtk-single-instance = false
+      resize-overlay = "never";
+      copy-on-select = false;
+      confirm-close-surface = false;
 
-    auto-update = off
-    term = ghostty
-  '';
+      gtk-single-instance = false;
+
+      term = "ghostty";
+
+      keybind = [
+        "shift+alt+enter=new_tab"
+        "shift+alt+backspace=close_tab"
+        "shift+alt+h=previous_tab"
+        "shift+alt+l=next_tab"
+        "ctrl+shift+r=reload_config"
+      ];
+    };
+  };
 }
