@@ -70,6 +70,7 @@ in
       ../../modules/home/lazygit.nix
       ../../modules/home/packages.nix
       ../../modules/home/ranger.nix
+      ../../modules/home/starship.nix
 
       (import ../../modules/home/git.nix { inherit config; })
       (import ../../modules/home/nushell.nix { inherit config; })
