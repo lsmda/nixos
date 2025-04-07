@@ -1,26 +1,29 @@
 { config, pkgs, ... }:
 
 {
-  services.xserver.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    displayManager.gdm.enable = true;
+    excludePackages = [ pkgs.xterm ];
+  };
+
+  services.displayManager.defaultSession = "gnome-xorg";
+
+  services.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
+    touchpad.disableWhileTyping = true;
+  };
 
   # required to run systray icons
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
-  services.displayManager.defaultSession = "gnome-xorg";
-
-  # remove pre-installed gnome apps
-  programs.geary.enable = false;
-  documentation.nixos.enable = false;
-  services.gnome.core-utilities.enable = false;
-  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
-  services.xserver.excludePackages = [ pkgs.xterm ];
-
-  services.libinput.enable = true;
-  services.libinput.touchpad.naturalScrolling = true;
-  services.libinput.touchpad.disableWhileTyping = true;
 
   services.printing.enable = false;
+  services.gnome.core-utilities.enable = false;
+  programs.geary.enable = false;
+  documentation.nixos.enable = false;
+  environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
@@ -29,4 +32,10 @@
   # virtual box
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ config.machine.username ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 3d";
+  };
 }
