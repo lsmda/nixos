@@ -19,6 +19,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "kvm-intel" ];
   boot.kernelPackages = pkgs.linuxPackages_6_12;
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ecd2c902-0184-4e0a-9bea-eb3b1cd30724";
