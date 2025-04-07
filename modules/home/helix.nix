@@ -281,7 +281,7 @@
     settings.theme = "forest";
 
     themes.forest = {
-      inherits = "everforest_dark";
+      inherits = "amberwood";
       "ui.background" = { };
       "ui.menu" = { };
       "ui.popup" = { };
