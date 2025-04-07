@@ -13,7 +13,6 @@ in
       ".." = "cd ..";
       dd = "sudo dockerd";
       rr = "ranger";
-      ll = "ls -l";
       ns = "nix-shell";
       ff = "fastfetch";
       cfs = "cryfs";
@@ -31,19 +30,13 @@ in
     };
 
     configFile.text = ''
-      $env.PROMPT_COMMAND = {||
-        let dir = match (do -i { $env.PWD | path relative-to $nu.home-path }) {
-           null => $env.PWD
-           "" => '~'
-           $relative_pwd => ([~ $relative_pwd] | path join)
-        }
+      $env.STARSHIP_SHELL = "nu"
 
-        let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-        let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
-        let path_segment = $"($path_color)($dir)(ansi reset)"
-
-        $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+      def create_left_prompt [] {
+        starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
       }
+
+      $env.PROMPT_COMMAND = {|| create_left_prompt }
       $env.PROMPT_COMMAND_RIGHT = ""
 
       $env.EDITOR = "hx"
@@ -66,7 +59,6 @@ in
 
       $env.config.table.header_on_separator = false
       $env.config.table.index_mode = "always"
-      $env.config.table.mode = "basic_compact"
       $env.config.table.show_empty = true
       $env.config.table.trim.methodology = "wrapping"
       $env.config.table.trim.wrapping_try_keep_words = true
@@ -83,8 +75,11 @@ in
       $env.config.hooks.command_not_found = {||}
       $env.config.hooks.env_change = {}
       $env.config.hooks.display_output = {
-        tee { table --expand | print }
-        | $env.last = $in
+        tee { table --expand | print } | $env.last = $in
+      }
+
+      def ll [] {
+        ls -l | reject target readonly num_links inode accessed modified
       }
 
       def --wrapped d [...args] { 
