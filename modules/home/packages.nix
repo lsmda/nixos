@@ -30,6 +30,7 @@ let
   # packages that run on terminal interfaces (headless systems)
   headless = with pkgs; [
     age
+    bat
     cargo
     cryfs
     fastfetch
