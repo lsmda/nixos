@@ -15,7 +15,7 @@
       clipboard-paste-protection = true;
       clipboard-trim-trailing-spaces = true;
 
-      theme = "Everforest Dark - Hard";
+      theme = "xcodedarkhc";
 
       window-inherit-working-directory = true;
       window-padding-x = 4;
