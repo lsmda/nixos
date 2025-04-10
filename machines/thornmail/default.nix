@@ -13,6 +13,7 @@ let
 
   user_groups = [
     "docker"
+    "keyd"
     "networkmanager"
     "wheel"
   ];
@@ -26,7 +27,7 @@ in
     ./hardware.nix
 
     ../../modules/system/bluetooth.nix
-    ../../modules/system/keyboard.nix
+    ../../modules/system/keyd.nix
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix
     ../../modules/system/nfs-client.nix
