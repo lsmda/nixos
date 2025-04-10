@@ -232,8 +232,6 @@
       normal = {
         A-h = "jump_backward";
         A-l = "jump_forward";
-        A-q = "goto_first_nonwhitespace";
-        A-e = "goto_line_end";
         A-j = [
           "extend_to_line_bounds"
           "delete_selection"
@@ -297,6 +295,8 @@
             ":write"
           ];
         };
+        home = "goto_first_nonwhitespace";
+        end = "goto_line_end";
       };
 
       insert = {
@@ -308,9 +308,8 @@
       };
 
       select = {
-        A-n = "normal_mode";
-        A-e = "extend_to_line_end";
-        A-q = "extend_to_line_start";
+        end = "extend_to_line_end";
+        home = "extend_to_line_start";
       };
     };
 
