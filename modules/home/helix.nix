@@ -14,6 +14,7 @@
       nodePackages.prettier
       nodePackages.typescript-language-server
       prettierd
+      vscode-langservers-extracted
 
       # nix
       nil
@@ -22,8 +23,35 @@
     ];
 
     languages.language-server = {
+      emmet-lsp = {
+        command = lib.getExe pkgs.emmet-ls;
+        args = [ "--stdio" ];
+      };
+      eslint = {
+        command = "${pkgs.vscode-langservers-extracted}/bin/vscode-eslint-language-server";
+        args = [ "--stdio" ];
+        config = {
+          validate = "on";
+          experimental.useFlatConfig = false;
+          rulesCustomizations = [ ];
+          run = "onType";
+          problems.shortenToSingleLine = false;
+          nodePath = "";
+          codeAction.disableRuleComment = {
+            enable = true;
+            location = "separateLine";
+          };
+
+          codeActionOnSave = {
+            enable = true;
+            mode = "fixAll";
+          };
+
+          workingDirectory.mode = "location";
+        };
+      };
       nixd = {
-        command = "nixd";
+        command = lib.getExe pkgs.nixd;
         config.nixd = {
           formatting.command = "nixfmt";
           options = {
@@ -32,8 +60,8 @@
           };
         };
       };
-      typescript-language-server = with pkgs.nodePackages; {
-        command = lib.getExe typescript-language-server;
+      typescript-language-server = {
+        command = lib.getExe pkgs.nodePackages.typescript-language-server;
         args = [ "--stdio" ];
       };
     };
@@ -58,8 +86,8 @@
               formatter = denoFmt language;
             })
             [
-              "markdown"
               "json"
+              "markdown"
             ];
 
         prettierFmt = language: {
@@ -78,22 +106,34 @@
               formatter = prettierFmt language;
             })
             [
-              "html"
-              "css"
               "scss"
               "yaml"
             ];
       in
       [
         {
+          name = "html";
+          auto-format = true;
+          formatter = prettierFmt "html";
+          language-servers = [
+            "vscode-html-language-server"
+          ];
+        }
+        {
+          name = "css";
+          auto-format = true;
+          formatter = prettierFmt "css";
+          language-servers = [
+            "vscode-css-language-server"
+          ];
+        }
+        {
           name = "javascript";
           auto-format = true;
           formatter = denoFmt "js";
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
+            "eslint"
+            "typescript-language-server"
           ];
         }
         {
@@ -101,10 +141,9 @@
           auto-format = true;
           formatter = denoFmt "jsx";
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
+            "eslint"
+            "emmet-lsp"
+            "typescript-language-server"
           ];
         }
         {
@@ -112,10 +151,8 @@
           auto-format = true;
           formatter = denoFmt "ts";
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
+            "eslint"
+            "typescript-language-server"
           ];
         }
         {
@@ -123,10 +160,9 @@
           auto-format = true;
           formatter = denoFmt "tsx";
           language-servers = [
-            {
-              name = "typescript-language-server";
-              except-features = [ "format" ];
-            }
+            "eslint"
+            "emmet-lsp"
+            "typescript-language-server"
           ];
         }
         {
