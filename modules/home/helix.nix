@@ -306,11 +306,6 @@
         C-j = "move_line_down";
         C-space = "completion";
       };
-
-      select = {
-        end = "extend_to_line_end";
-        home = "extend_to_line_start";
-      };
     };
 
     settings.theme = "forest";
