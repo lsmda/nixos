@@ -21,7 +21,7 @@
       capslock = esc
 
       [alt]
-      q = home
+      q = home 
       e = end
     '';
   };
