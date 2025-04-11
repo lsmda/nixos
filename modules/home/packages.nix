@@ -3,8 +3,10 @@
 let
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
+    brave
     discord
     eog # image viewer
+    ffmpegthumbnailer
     git-credential-manager
     gnome-calculator
     gnome-text-editor
