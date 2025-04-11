@@ -24,13 +24,13 @@ in
   sops.age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
 
   # user's hashed password
-  sops.secrets."user/password" = from_yaml ../../secrets/sys.yaml;
-  sops.secrets."user/deepseek" = from_yaml ../../secrets/sys.yaml;
+  sops.secrets."deepseek" = from_yaml ../../secrets/system.yaml;
+  sops.secrets."password" = from_yaml ../../secrets/system.yaml;
 
   # ssh public keys
-  sops.secrets."spellbook/ed_25519_pub" = from_yaml ../../secrets/ssh.yaml;
-  sops.secrets."thornmail/ed_25519_pub" = from_yaml ../../secrets/ssh.yaml;
-  sops.secrets."wardstone/ed_25519_pub" = from_yaml ../../secrets/ssh.yaml;
+  sops.secrets."ed25519/spellbook" = from_yaml ../../secrets/system.yaml;
+  sops.secrets."ed25519/thornmail" = from_yaml ../../secrets/system.yaml;
+  sops.secrets."ed25519/wardstone" = from_yaml ../../secrets/system.yaml;
 
   # git credentials
   sops.secrets."git/main" = from_binary ../../secrets/git/main.conf;

@@ -79,7 +79,7 @@ in
     isNormalUser = true;
     group = "users";
     shell = pkgs.nushell;
-    hashedPasswordFile = secrets."user/password".path;
+    hashedPasswordFile = secrets."password".path;
     extraGroups = user_groups;
   };
 

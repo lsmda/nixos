@@ -10,8 +10,8 @@ in
     script = ''
       AUTH_KEYS_FILE=~/.ssh/authorized_keys
 
-      SPELLBOOK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."spellbook/ed_25519_pub".path})
-      THORNMAIL_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."thornmail/ed_25519_pub".path})
+      SPELLBOOK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."ed25519/spellbook".path})
+      THORNMAIL_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."ed25519/thornmail".path})
 
       # Check if directory exists, create if it doesn't
       [ -d ~/.ssh ] || mkdir -p ~/.ssh
@@ -38,20 +38,4 @@ in
     wantedBy = [ "multi-user.target" ];
     after = [ "system-activation.target" ];
   };
-
-  # systemd.services.environment-variables = {
-  #   script = ''
-  #     DEEPSEEK_KEY=$(${pkgs.coreutils}/bin/cat ${secrets."user/deepseek".path})
-  #     ${pkgs.fish}/bin/fish -c "set -Ux OPENAI_API_KEY $DEEPSEEK_KEY"
-  #   '';
-
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = "no";
-  #     User = config.machine.username;
-  #   };
-
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "system-activation.target" ];
-  # };
 }
