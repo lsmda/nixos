@@ -22,6 +22,141 @@
       nixfmt-rfc-style
     ];
 
+    settings.editor = {
+      popup-border = "all";
+      line-number = "relative";
+      mouse = false;
+      scrolloff = 50;
+      color-modes = true;
+
+      completion-replace = true;
+      completion-timeout = 250;
+      completion-trigger-len = 2;
+
+      file-picker = {
+        hidden = false;
+      };
+
+      indent-guides = {
+        render = true;
+        character = "╎";
+        skip-levels = 2;
+      };
+
+      inline-diagnostics = {
+        cursor-line = "hint";
+        other-lines = "error";
+      };
+
+      lsp = {
+        enable = true;
+        display-messages = true;
+      };
+
+      statusline = {
+        left = [
+          "mode"
+          "file-name"
+          "version-control"
+          "file-modification-indicator"
+        ];
+        right = [
+          "spinner"
+          "diagnostics"
+          "selections"
+          "position"
+          "file-encoding"
+          "file-line-ending"
+          "file-type"
+        ];
+        mode = {
+          normal = "N";
+          insert = "I";
+          select = "S";
+        };
+      };
+    };
+
+    settings.keys = {
+      normal = {
+        A-h = "jump_backward";
+        A-l = "jump_forward";
+        A-j = [
+          "extend_to_line_bounds"
+          "delete_selection"
+          "move_line_down"
+          "paste_before"
+        ];
+        A-k = [
+          "extend_to_line_bounds"
+          "delete_selection"
+          "move_line_up"
+          "paste_before"
+        ];
+        A-S-j = [
+          "extend_to_line_bounds"
+          "yank"
+          "paste_after"
+        ];
+        A-S-k = [
+          "extend_to_line_bounds"
+          "yank"
+          "paste_before"
+        ];
+        C-a = "select_all";
+        C-h = "jump_view_left";
+        C-j = "jump_view_down";
+        C-k = "jump_view_up";
+        C-l = "jump_view_right";
+        C-space = "expand_selection";
+        backspace = "shrink_selection";
+        esc = [
+          "collapse_selection"
+          "keep_primary_selection"
+        ];
+        ret = [
+          "open_below"
+          "normal_mode"
+        ];
+        space = {
+          # lazygit
+          l = [
+            ":write-all"
+            ":new"
+            ":insert-output lazygit"
+            ":buffer-close!"
+            ":redraw"
+            ":reload-all"
+          ];
+          q = ":quit";
+          Q = ":quit-all!";
+          p = ":clipboard-paste-replace";
+          r = {
+            r = ":config-reload";
+            n = "rename_symbol";
+          };
+          s = {
+            j = ":hsplit";
+            l = ":vsplit";
+          };
+          w = [
+            ":fmt"
+            ":write"
+          ];
+        };
+        home = "goto_first_nonwhitespace";
+        end = "goto_line_end";
+      };
+
+      insert = {
+        C-h = "move_char_left";
+        C-l = "move_char_right";
+        C-k = "move_line_up";
+        C-j = "move_line_down";
+        C-space = "completion";
+      };
+    };
+
     languages.language-server = {
       emmet-lsp = {
         command = lib.getExe pkgs.emmet-ls;
@@ -177,136 +312,6 @@
       ]
       ++ denoLanguages
       ++ prettierLanguages;
-
-    settings.editor = {
-      popup-border = "all";
-      line-number = "relative";
-      mouse = false;
-      scrolloff = 50;
-      color-modes = true;
-
-      completion-replace = true;
-      completion-timeout = 250;
-      completion-trigger-len = 2;
-
-      file-picker = {
-        hidden = false;
-      };
-
-      indent-guides = {
-        render = true;
-        character = "╎";
-        skip-levels = 2;
-      };
-
-      lsp = {
-        enable = true;
-        display-messages = true;
-      };
-
-      statusline = {
-        left = [
-          "mode"
-          "file-name"
-          "version-control"
-          "file-modification-indicator"
-        ];
-        right = [
-          "spinner"
-          "diagnostics"
-          "selections"
-          "position"
-          "file-encoding"
-          "file-line-ending"
-          "file-type"
-        ];
-        mode = {
-          normal = "N";
-          insert = "I";
-          select = "S";
-        };
-      };
-    };
-
-    settings.keys = {
-      normal = {
-        A-h = "jump_backward";
-        A-l = "jump_forward";
-        A-j = [
-          "extend_to_line_bounds"
-          "delete_selection"
-          "move_line_down"
-          "paste_before"
-        ];
-        A-k = [
-          "extend_to_line_bounds"
-          "delete_selection"
-          "move_line_up"
-          "paste_before"
-        ];
-        A-S-j = [
-          "extend_to_line_bounds"
-          "yank"
-          "paste_after"
-        ];
-        A-S-k = [
-          "extend_to_line_bounds"
-          "yank"
-          "paste_before"
-        ];
-        C-a = "select_all";
-        C-h = "jump_view_left";
-        C-j = "jump_view_down";
-        C-k = "jump_view_up";
-        C-l = "jump_view_right";
-        C-space = "expand_selection";
-        backspace = "shrink_selection";
-        esc = [
-          "collapse_selection"
-          "keep_primary_selection"
-        ];
-        ret = [
-          "open_below"
-          "normal_mode"
-        ];
-        space = {
-          # lazygit
-          l = [
-            ":write-all"
-            ":new"
-            ":insert-output lazygit"
-            ":buffer-close!"
-            ":redraw"
-            ":reload-all"
-          ];
-          q = ":quit";
-          Q = ":quit-all!";
-          p = ":clipboard-paste-replace";
-          r = {
-            r = ":config-reload";
-            n = "rename_symbol";
-          };
-          s = {
-            j = ":hsplit";
-            l = ":vsplit";
-          };
-          w = [
-            ":fmt"
-            ":write"
-          ];
-        };
-        home = "goto_first_nonwhitespace";
-        end = "goto_line_end";
-      };
-
-      insert = {
-        C-h = "move_char_left";
-        C-l = "move_char_right";
-        C-k = "move_line_up";
-        C-j = "move_line_down";
-        C-space = "completion";
-      };
-    };
 
     settings.theme = "forest";
 
