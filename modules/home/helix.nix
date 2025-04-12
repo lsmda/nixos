@@ -28,6 +28,7 @@
       mouse = false;
       scrolloff = 50;
       color-modes = true;
+      soft-wrap.enable = true;
 
       completion-replace = true;
       completion-timeout = 250;
