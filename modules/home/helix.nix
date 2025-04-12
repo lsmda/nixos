@@ -168,20 +168,16 @@
         config = {
           validate = "on";
           experimental.useFlatConfig = false;
-          rulesCustomizations = [ ];
           run = "onType";
           problems.shortenToSingleLine = false;
-          nodePath = "";
           codeAction.disableRuleComment = {
             enable = true;
             location = "separateLine";
           };
-
           codeActionOnSave = {
             enable = true;
             mode = "fixAll";
           };
-
           workingDirectory.mode = "location";
         };
       };

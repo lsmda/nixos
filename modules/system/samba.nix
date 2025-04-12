@@ -10,12 +10,14 @@ in
 # ios and windows use samba to connect to nfs.
 
 {
-  services.samba.enable = true;
-  services.samba.openFirewall = true;
+  services.samba = {
+    enable = true;
+    openFirewall = true;
 
-  services.samba.settings = {
-    files = share "/mnt/hyperx/files";
-    media = share "/mnt/hyperx/media";
+    settings = {
+      files = share "/mnt/hyperx/files";
+      media = share "/mnt/hyperx/media";
+    };
   };
 
   services.samba-wsdd = {
