@@ -80,8 +80,8 @@ in
         tee { table --expand | print } | $env.last = $in
       }
 
-      def ll [] {
-        ls -l | reject target readonly num_links inode accessed modified
+      def ll [...args] {
+        ls -l ...$args | reject target readonly num_links inode accessed modified
       }
 
       def --wrapped d [...args] { 
@@ -92,7 +92,8 @@ in
         let is_server = sys host | hostname | $in =~ wardstone
 
         if (is_server) {
-          return ssh -p 23231 localhost ...$args
+          ssh -p 23231 localhost ...$args
+          return
         }
 
         ssh -p 23231 ${toString storage} ...$args
