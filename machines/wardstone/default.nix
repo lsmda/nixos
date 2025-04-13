@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../modules/utils) to_attribute;
+  inherit (import ../../modules/utils) keys to_attribute;
   inherit (lib) mkForce;
 
   user_groups = [
@@ -34,7 +34,6 @@ in
     ../../modules/system/samba.nix
     ../../modules/system/soft-serve.nix
     ../../modules/system/sops.nix
-    ../../modules/system/systemd.nix
   ];
 
   system.stateVersion = "24.11";
@@ -61,6 +60,10 @@ in
     shell = pkgs.nushell;
     hashedPasswordFile = secrets."password".path;
     extraGroups = user_groups;
+    openssh.authorizedKeys.keys = [
+      keys.thornmail
+      keys.spellbook
+    ];
   };
 
   users.users.soft-serve = {

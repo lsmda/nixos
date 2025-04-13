@@ -27,11 +27,6 @@ in
   sops.secrets."deepseek" = from_yaml ../../secrets/system.yaml;
   sops.secrets."password" = from_yaml ../../secrets/system.yaml;
 
-  # ssh public keys
-  sops.secrets."ed25519/spellbook" = from_yaml ../../secrets/system.yaml;
-  sops.secrets."ed25519/thornmail" = from_yaml ../../secrets/system.yaml;
-  sops.secrets."ed25519/wardstone" = from_yaml ../../secrets/system.yaml;
-
   # git credentials
   sops.secrets."git/main" = from_binary ../../secrets/git/main.conf;
   sops.secrets."git/work" = from_binary ../../secrets/git/work.conf;

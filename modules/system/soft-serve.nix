@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  secrets = config.sops.secrets;
-
+  inherit (../utils) keys;
   ssh_listen_addr = 23231;
   git_listen_addr = 9418;
   http_listen_addr = 23232;
@@ -35,11 +34,7 @@ in
       SOFT_SERVE_STATS_LISTEN_ADDR = ":${toString stats_listen_addr}";
 
       SOFT_SERVE_DATA_PATH = "/srv/soft-serve";
-      SOFT_SERVE_INITIAL_ADMIN_KEYS = ''
-        "${secrets."ed25519/wardstone".path}"
-        "${secrets."ed25519/spellbook".path}"
-        "${secrets."ed25519/thornmail".path}"
-      '';
+      SOFT_SERVE_INITIAL_ADMIN_KEYS = keys.wardstone;
     };
 
   };
