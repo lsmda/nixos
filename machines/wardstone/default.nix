@@ -31,6 +31,7 @@ in
     ../../modules/system/nfs-server.nix
     ../../modules/system/options.nix
     ../../modules/system/samba.nix
+    ../../modules/system/soft-serve.nix
     ../../modules/system/sops.nix
     ../../modules/system/systemd.nix
   ];
@@ -74,7 +75,6 @@ in
 
       (import ../../modules/home/git.nix { inherit config; })
       (import ../../modules/home/nushell.nix { inherit config; })
-      (import ../../modules/home/soft-serve.nix { inherit config pkgs; })
     ];
 
     programs.git.extraConfig = mkForce { };

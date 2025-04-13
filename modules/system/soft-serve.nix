@@ -6,6 +6,7 @@ in
 
 {
   systemd.services."soft-serve" = {
+    enable = true;
     description = "Soft Serve git server";
     requires = [ "network-online.target" ];
     after = [ "network-online.target" ];
