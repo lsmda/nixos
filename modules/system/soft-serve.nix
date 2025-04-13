@@ -1,5 +1,5 @@
 {
-  environmnet.variables = {
+  environment.variables = {
     SOFT_SERVE_DATA_PATH = "/srv/soft-serve";
   };
 
