@@ -5,6 +5,10 @@ let
 in
 
 {
+  home.packages = with pkgs; [
+    soft-serve
+  ];
+
   systemd.services."soft-serve" = {
     enable = true;
     description = "Soft Serve git server";
