@@ -51,6 +51,7 @@ let
     python3
     ripgrep
     rustc
+    soft-soft-serve # Self-hosted Git server
     sops
     sqlite
     sqlitebrowser

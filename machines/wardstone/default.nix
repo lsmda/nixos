@@ -12,6 +12,7 @@ let
   user_groups = [
     "docker"
     "networkmanager"
+    "soft-serve"
     "wheel"
   ];
 
