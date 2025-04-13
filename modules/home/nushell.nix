@@ -31,6 +31,7 @@ in
 
     configFile.text = ''
       $env.STARSHIP_SHELL = "nu"
+      $env.TERM = "xterm-256color"
 
       def create_left_prompt [] {
         starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'

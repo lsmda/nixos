@@ -47,8 +47,6 @@
 
       gtk-single-instance = false;
 
-      term = "ghostty";
-
       keybind = [
         "shift+alt+enter=new_tab"
         "shift+alt+backspace=close_tab"
