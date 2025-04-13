@@ -89,9 +89,7 @@ in
       }
 
       def runestore [...args] {
-        let is_server = sys host | hostname | $in =~ wardstone
-
-        if (is_server) {
+        if (sys host | hostname | $in =~ wardstone) {
           ssh -p 23231 localhost ...$args
           return
         }
