@@ -32,6 +32,7 @@ in
     ../../modules/system/options.nix
     ../../modules/system/samba.nix
     ../../modules/system/sops.nix
+    ../../modules/system/soft-serve.nix
     ../../modules/system/systemd.nix
   ];
 

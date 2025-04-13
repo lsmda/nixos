@@ -40,6 +40,7 @@ let
     gcc
     gnumake
     go
+    glow # render markdown on the CLI
     gocryptfs
     keychain
     lshw
