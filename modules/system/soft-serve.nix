@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  inherit (../utils) keys;
+  inherit (import ../utils) keys;
   ssh_listen_addr = 23231;
   git_listen_addr = 9418;
   http_listen_addr = 23232;
