@@ -29,10 +29,10 @@ in
     environment = {
       SOFT_SERVE_NAME = "Runestore";
 
-      SOFT_SERVE_SSH_LISTEN_ADDR = ":${ssh_listen_addr}";
-      SOFT_SERVE_GIT_LISTEN_ADDR = ":${git_listen_addr}";
-      SOFT_SERVE_HTTP_LISTEN_ADDR = ":${http_listen_addr}";
-      SOFT_SERVE_STATS_LISTEN_ADDR = ":${stats_listen_addr}";
+      SOFT_SERVE_SSH_LISTEN_ADDR = ":${toString ssh_listen_addr}";
+      SOFT_SERVE_GIT_LISTEN_ADDR = ":${toString git_listen_addr}";
+      SOFT_SERVE_HTTP_LISTEN_ADDR = ":${toString http_listen_addr}";
+      SOFT_SERVE_STATS_LISTEN_ADDR = ":${toString stats_listen_addr}";
 
       SOFT_SERVE_DATA_PATH = "/srv/soft-serve";
       SOFT_SERVE_INITIAL_ADMIN_KEYS = ''
