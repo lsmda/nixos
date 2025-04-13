@@ -64,9 +64,11 @@ in
   };
 
   users.users.soft-serve = {
-    description = "Soft-serve service user";
+    description = "soft-serve service user";
     isSystemUser = true;
     group = "soft-serve";
+    shell = pkgs.nushell;
+    hashedPasswordFile = secrets."password".path;
   };
 
   home-manager.users.${config.machine.username} = {
