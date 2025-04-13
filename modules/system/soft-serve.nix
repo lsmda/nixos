@@ -1,3 +1,9 @@
+{ config, ... }:
+
+let
+  secrets = config.sops.secrets;
+in
+
 {
   environment.variables = {
     SOFT_SERVE_DATA_PATH = "/srv/soft-serve";
@@ -15,6 +21,11 @@
         idle_timeout = 120;
       };
       stats.listen_addr = ":23233";
+      initial_admin_keys = [
+        "${secrets."ed25519/spellbook".path}"
+        "${secrets."ed25519/thornmail".path}"
+        "${secrets."ed25519/wardstone".path}"
+      ];
     };
   };
 }
