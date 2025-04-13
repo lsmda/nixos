@@ -2,6 +2,11 @@
 
 let
   secrets = config.sops.secrets;
+
+  ssh_listen_addr = 23231;
+  git_listen_addr = 9418;
+  http_listen_addr = 23232;
+  stats_listen_addr = 23233;
 in
 
 {
@@ -22,6 +27,13 @@ in
     };
 
     environment = {
+      SOFT_SERVE_NAME = "Runestore";
+
+      SOFT_SERVE_SSH_LISTEN_ADDR = ssh_listen_addr;
+      SOFT_SERVE_GIT_LISTEN_ADDR = git_listen_addr;
+      SOFT_SERVE_HTTP_LISTEN_ADDR = http_listen_addr;
+      SOFT_SERVE_STATS_LISTEN_ADDR = stats_listen_addr;
+
       SOFT_SERVE_DATA_PATH = "/srv/soft-serve";
       SOFT_SERVE_INITIAL_ADMIN_KEYS = ''
         "${secrets."ed25519/wardstone".path}"
@@ -33,6 +45,9 @@ in
   };
 
   networking.firewall.allowedTCPPorts = [
-    23231
+    ssh_listen_addr
+    git_listen_addr
+    http_listen_addr
+    stats_listen_addr
   ];
 }
