@@ -87,6 +87,16 @@ in
         docker ...$args | split row '\n'
       }
 
+      def runestore [...args] {
+        let is_server = sys host | hostname | $in =~ wardstone
+
+        if (is_server) {
+          return ssh -p 23231 localhost ...$args
+        }
+
+        ssh -p 23231 ${toString storage} ...$args
+      }
+
       def removeDockerImages [] {
         docker images -q | split row "\n" | uniq | each { |img| docker rmi $img }
       }
