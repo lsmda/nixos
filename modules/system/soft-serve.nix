@@ -26,5 +26,9 @@ in
       SOFT_SERVE_DATA_PATH = "/srv/soft-serve";
       SOFT_SERVE_INITIAL_ADMIN_KEYS = "${secrets."ed25519/wardstone".path}";
     };
+
+    path = with pkgs; [
+      coreutils
+    ];
   };
 }
