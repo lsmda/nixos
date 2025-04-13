@@ -35,7 +35,6 @@ in
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/sops.nix
-    ../../modules/system/systemd.nix
     ../../modules/system/xserver.nix
   ];
 
