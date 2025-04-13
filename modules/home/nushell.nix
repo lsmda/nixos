@@ -3,6 +3,7 @@
 let
   secrets = config.sops.secrets;
   hostname = config.machine.hostname;
+  storage = config.lan.storage;
 in
 
 {
