@@ -47,6 +47,7 @@ in
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
 
+  # initialize all user groups
   users.groups = lib.pipe user_groups [
     (map to_attribute)
     builtins.listToAttrs
@@ -60,6 +61,12 @@ in
     shell = pkgs.nushell;
     hashedPasswordFile = secrets."password".path;
     extraGroups = user_groups;
+  };
+
+  users.users.soft-serve = {
+    description = "Soft-serve service user";
+    isSystemUser = true;
+    group = "soft-serve";
   };
 
   home-manager.users.${config.machine.username} = {
