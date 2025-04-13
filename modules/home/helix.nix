@@ -44,11 +44,6 @@
         skip-levels = 2;
       };
 
-      inline-diagnostics = {
-        cursor-line = "hint";
-        other-lines = "error";
-      };
-
       lsp = {
         enable = true;
         display-messages = true;
