@@ -18,7 +18,7 @@ in
   networking.useDHCP = lib.mkDefault true;
 
   networking.extraHosts = ''
-    192.168.0.1   router
+    192.168.0.1   router.local
     192.168.0.5   wardstone
     192.168.0.10  thornmail
     192.168.0.11  spellbook
