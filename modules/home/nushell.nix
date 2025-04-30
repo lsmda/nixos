@@ -80,8 +80,8 @@ in
         tee { table --expand | print } | $env.last = $in
       }
 
-      def ll [...args] {
-        ls -l ...$args | reject target readonly num_links inode accessed modified
+      def ll [] {
+        ls -la | reject inode num_links accessed modified target readonly
       }
 
       def --wrapped d [...args] { 
