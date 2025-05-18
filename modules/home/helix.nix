@@ -20,6 +20,10 @@
       nil
       nixd
       nixfmt-rfc-style
+
+      # python
+      pyright
+      ruff
     ];
 
     settings.editor = {
@@ -177,6 +181,12 @@
           workingDirectory.mode = "location";
         };
       };
+      gopls = {
+        command = lib.getExe pkgs.gopls;
+        config = {
+          gofumpt = true;
+        };
+      };
       nixd = {
         command = lib.getExe pkgs.nixd;
         config.nixd = {
@@ -195,7 +205,7 @@
 
     languages.language =
       let
-        denoFmt = language: {
+        denoFormatter = language: {
           command = "deno";
           args = [
             "fmt"
@@ -204,60 +214,44 @@
             language
           ];
         };
-
         denoLanguages =
           map
-            (language: {
-              name = language;
+            (name: {
+              inherit name;
               auto-format = true;
-              formatter = denoFmt language;
+              formatter = denoFormatter name;
             })
             [
-              "json"
-              "markdown"
-            ];
-
-        prettierFmt = language: {
-          command = "prettier";
-          args = [
-            "--parser"
-            language
-          ];
-        };
-
-        prettierLanguages =
-          map
-            (language: {
-              name = language;
-              auto-format = true;
-              formatter = prettierFmt language;
-            })
-            [
+              "html"
+              "css"
               "scss"
+              "json"
               "yaml"
+              "markdown"
             ];
       in
       [
         {
-          name = "html";
+          name = "python";
           auto-format = true;
-          formatter = prettierFmt "html";
+          formatter = {
+            command = "ruff";
+            args = [
+              "format"
+              "--line-length"
+              "88"
+              "-"
+            ];
+          };
           language-servers = [
-            "vscode-html-language-server"
-          ];
-        }
-        {
-          name = "css";
-          auto-format = true;
-          formatter = prettierFmt "css";
-          language-servers = [
-            "vscode-css-language-server"
+            "pyright"
+            "ruff"
           ];
         }
         {
           name = "javascript";
           auto-format = true;
-          formatter = denoFmt "js";
+          formatter = denoFormatter "js";
           language-servers = [
             "eslint"
             "typescript-language-server"
@@ -266,7 +260,7 @@
         {
           name = "jsx";
           auto-format = true;
-          formatter = denoFmt "jsx";
+          formatter = denoFormatter "jsx";
           language-servers = [
             "eslint"
             "emmet-lsp"
@@ -276,7 +270,7 @@
         {
           name = "typescript";
           auto-format = true;
-          formatter = denoFmt "ts";
+          formatter = denoFormatter "ts";
           language-servers = [
             "eslint"
             "typescript-language-server"
@@ -285,7 +279,7 @@
         {
           name = "tsx";
           auto-format = true;
-          formatter = denoFmt "tsx";
+          formatter = denoFormatter "tsx";
           language-servers = [
             "eslint"
             "emmet-lsp"
@@ -301,9 +295,14 @@
             "nixd"
           ];
         }
+        {
+          name = "go";
+          auto-format = true;
+          formatter.command = "gofumpt";
+          language-servers = [ "gopls" ];
+        }
       ]
-      ++ denoLanguages
-      ++ prettierLanguages;
+      ++ denoLanguages;
 
     settings.theme = "forest";
 

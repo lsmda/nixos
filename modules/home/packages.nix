@@ -5,6 +5,7 @@ let
   desktop = with pkgs; [
     brave
     discord
+    firefox
     eog # image viewer
     ffmpegthumbnailer
     git-credential-manager
