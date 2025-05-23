@@ -32,6 +32,7 @@ in
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix
     ../../modules/system/nfs-client.nix
+    ../../modules/system/niri.nix
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/sops.nix
@@ -96,6 +97,7 @@ in
 
       (import ../../modules/home/git.nix { inherit config; })
       (import ../../modules/home/nushell.nix { inherit config; })
+      (import ../../modules/home/wayland.nix { inherit lib pkgs; })
     ];
 
     dconf = {
