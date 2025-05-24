@@ -473,6 +473,7 @@
           "󰁹"
         ];
         tooltip-format = "{timeTo} | {power} W";
+        interval = 5;
       };
     };
 
