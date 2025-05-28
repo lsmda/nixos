@@ -3,7 +3,7 @@
     enable = true;
 
     settings = {
-      font-size = 11;
+      font-size = 11.4;
       font-family = "JetBrainsMono Nerd Font";
 
       adjust-cell-width = "10%";

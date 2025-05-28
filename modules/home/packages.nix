@@ -26,6 +26,7 @@ let
     spotify
     vscode-fhs
     winbox
+    wlsunset # night light
     wpsoffice
     zotero
   ];

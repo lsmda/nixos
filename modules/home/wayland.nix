@@ -48,6 +48,7 @@
   home.file.".config/niri/config.kdl".text = ''
     spawn-at-startup "${pkgs.waybar}/bin/waybar"
     spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-m" "fill" "-i" "${../../assets/00.jpg}"
+    spawn-at-startup "${pkgs.wlsunset}/bin/wlsunset" "-l" "37-2" "-L" "-8.4" "-t" "3400" "-T" "4000" 
 
     input {
       keyboard {
@@ -62,8 +63,8 @@
         tap
         dwt
         natural-scroll
-        accel-profile "flat"
-        accel-speed 0.2
+        accel-profile "adaptive"
+        accel-speed -0.1
         scroll-method "two-finger"
       }
 
@@ -78,7 +79,7 @@
     }
 
     output "eDP-1" {
-      scale 1.75
+      scale 1.85
     }
 
     layout {
@@ -497,13 +498,19 @@
       #battery,
       #clock {
         border-radius: 4px;
-        background-color: rgba(0, 0, 0, 0.45);
-        color: rgba(240, 240, 250, 1);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: rgb(250, 250, 250);
         padding: 0.5rem 0.85rem;
       }
 
       #custom-swaync {
         min-width: 1.6rem;
+      }
+
+      #custom-swaync menu,
+      #tray menu {
+        background: rgb(30, 30, 30);
+        color: rgb(250, 250, 250);
       }
     '';
   };

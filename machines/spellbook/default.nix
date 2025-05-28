@@ -100,8 +100,6 @@ in
       (import ../../modules/home/wayland.nix { inherit lib pkgs; })
     ];
 
-    programs.ghostty.settings.font-size = mkForce 11.6;
-
     dconf = {
       settings."org/gnome/desktop/background".picture-uri = background;
       settings."org/gnome/desktop/background".picture-uri-dark = background;
