@@ -23,7 +23,7 @@ in
 {
   imports = [
     "${fetchTarball "https://github.com/Mic92/sops-nix/archive/master.tar.gz"}/modules/sops"
-    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz"}/nixos"
+    "${fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz"}/nixos"
 
     ./hardware.nix
 
@@ -99,6 +99,8 @@ in
       (import ../../modules/home/nushell.nix { inherit config; })
       (import ../../modules/home/wayland.nix { inherit lib pkgs; })
     ];
+
+    programs.ghostty.settings.font-size = mkForce 11.6;
 
     dconf = {
       settings."org/gnome/desktop/background".picture-uri = background;
