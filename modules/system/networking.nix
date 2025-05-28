@@ -5,12 +5,20 @@ let
     5432 # postgresql
     2049 # nfs
   ];
+
+  localDevRange = {
+    from = 5000;
+    to = 5010;
+  };
 in
 
 {
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = allowedPorts;
   networking.firewall.allowedUDPPorts = allowedPorts;
+
+  networking.firewall.allowedTCPPortRanges = [ localDevRange ];
+  networking.firewall.allowedUDPPortRanges = [ localDevRange ];
 
   networking.hostName = config.machine.hostname;
   networking.networkmanager.enable = true;
