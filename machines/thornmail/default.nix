@@ -38,7 +38,7 @@ in
     ../../modules/system/xserver.nix
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   machine.username = "user";
   machine.hostname = "thornmail";
@@ -109,7 +109,7 @@ in
       settings."org/gnome/desktop/screensaver".picture-uri = background;
     };
 
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.05";
   };
 
   home-manager.backupFileExtension = "backup";

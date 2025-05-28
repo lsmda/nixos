@@ -1,11 +1,10 @@
 {
-  hardware = {
-    # store sound state on reboot
-    alsa.enablePersistence = true;
-    pulseaudio.enable = false;
-  };
+  # store sound state on reboot
+  hardware.alsa.enablePersistence = true;
 
   security.rtkit.enable = true;
+
+  services.pulseaudio.enable = false;
 
   services.pipewire = {
     enable = true;

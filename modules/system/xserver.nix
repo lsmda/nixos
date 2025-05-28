@@ -20,13 +20,13 @@
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
   services.printing.enable = false;
-  services.gnome.core-utilities.enable = false;
+  services.gnome.core-apps.enable = false;
   programs.geary.enable = false;
   documentation.nixos.enable = false;
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
   ];
 
   # virtual box

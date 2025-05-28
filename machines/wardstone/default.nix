@@ -36,7 +36,7 @@ in
     ../../modules/system/sops.nix
   ];
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   machine.username = "user";
   machine.hostname = "wardstone";
@@ -95,7 +95,7 @@ in
     home.username = config.machine.username;
     home.homeDirectory = "/home/${config.machine.username}";
 
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.05";
   };
 
   home-manager.useGlobalPkgs = true;
