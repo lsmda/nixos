@@ -6,11 +6,11 @@
       font-size = 12;
       font-family = "JetBrainsMono Nerd Font";
 
-      adjust-cell-width = "10%";
-      adjust-cell-height = "5%";
+      adjust-cell-width = "4%";
+      adjust-cell-height = "2%";
 
       background-blur = true;
-      background-opacity = 0.98;
+      background-opacity = 0.94;
 
       clipboard-paste-protection = true;
       clipboard-trim-trailing-spaces = true;
@@ -18,8 +18,8 @@
       theme = "iceberg-dark";
 
       window-inherit-working-directory = true;
-      window-padding-x = 4;
-      window-padding-y = 8;
+      window-padding-x = 6;
+      window-padding-y = 6;
       window-padding-balance = true;
       window-padding-color = "background";
 
