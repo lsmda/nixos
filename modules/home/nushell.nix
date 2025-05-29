@@ -33,6 +33,7 @@ in
     configFile.text = ''
       $env.STARSHIP_SHELL = "nu"
       $env.TERM = "xterm-256color"
+      $env.COLORTERM = "truecolor"
 
       def create_left_prompt [] {
         starship prompt --cmd-duration $env.CMD_DURATION_MS $'--status=($env.LAST_EXIT_CODE)'
@@ -78,10 +79,6 @@ in
       $env.config.hooks.env_change = {}
       $env.config.hooks.display_output = {
         tee { table --expand | print } | $env.last = $in
-      }
-
-      def ll [] {
-        ls -la | reject inode num_links accessed modified target readonly
       }
 
       def --wrapped d [...args] { 

@@ -31,6 +31,7 @@
   };
 
   hardware.enableAllFirmware = true;
+  hardware.graphics.enable = true;
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
