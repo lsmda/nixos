@@ -32,6 +32,7 @@ in
     ../../modules/system/networking.nix
     ../../modules/system/nfs-client.nix
     ../../modules/system/nvidia.nix
+    ../../modules/system/openssh.nix
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/sops.nix
@@ -42,10 +43,6 @@ in
 
   machine.username = "user";
   machine.hostname = "thornmail";
-
-  lan.network = "192.168.0.0";
-  lan.gateway = "192.168.0.1";
-  lan.storage = "192.168.0.5";
 
   console.keyMap = "us";
   services.xserver.xkb.layout = "us";

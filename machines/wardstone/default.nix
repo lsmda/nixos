@@ -30,6 +30,7 @@ in
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix
     ../../modules/system/nfs-server.nix
+    ../../modules/system/openssh.nix
     ../../modules/system/options.nix
     ../../modules/system/samba.nix
     ../../modules/system/soft-serve.nix
@@ -40,11 +41,6 @@ in
 
   machine.username = "user";
   machine.hostname = "wardstone";
-
-  lan.network = "192.168.0.0";
-
-  services.openssh.enable = true;
-  programs.ssh.startAgent = true;
 
   # initialize all user groups
   users.groups = lib.pipe user_groups [
@@ -61,6 +57,7 @@ in
     hashedPasswordFile = secrets."password".path;
     extraGroups = user_groups;
     openssh.authorizedKeys.keys = [
+      keys.frostbite
       keys.thornmail
       keys.spellbook
     ];

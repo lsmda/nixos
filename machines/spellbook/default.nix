@@ -33,6 +33,7 @@ in
     ../../modules/system/networking.nix
     ../../modules/system/nfs-client.nix
     ../../modules/system/niri.nix
+    ../../modules/system/openssh.nix
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/sops.nix
@@ -43,10 +44,6 @@ in
 
   machine.username = "user";
   machine.hostname = "spellbook";
-
-  lan.network = "192.168.0.0";
-  lan.gateway = "192.168.0.1";
-  lan.storage = "192.168.0.5";
 
   console.keyMap = "pt-latin1";
   services.xserver.xkb.layout = "pt";
