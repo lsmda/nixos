@@ -26,6 +26,7 @@ in
 
     ./hardware.nix
 
+    ../../modules/system/caddy.nix
     ../../modules/system/keyd.nix
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix

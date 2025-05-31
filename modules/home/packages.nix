@@ -35,6 +35,7 @@ let
   headless = with pkgs; [
     age
     bat
+    caddy
     cargo
     cryfs
     fastfetch

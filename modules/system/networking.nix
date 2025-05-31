@@ -2,8 +2,6 @@
 
 let
   allowedPorts = [
-    80
-    443
     5432 # postgresql
     2049 # nfs
   ];
