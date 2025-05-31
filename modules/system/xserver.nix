@@ -29,13 +29,16 @@
     nerd-fonts.jetbrains-mono
   ];
 
-  # virtual box
+  # enable virtual box
   virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ config.machine.username ];
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = "daily";
     options = "--delete-older-than 3d";
   };
+
+  # maximum number of latest generations in the boot menu.
+  boot.loader.systemd-boot.configurationLimit = 4;
 }
