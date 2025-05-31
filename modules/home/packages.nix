@@ -1,9 +1,12 @@
 { pkgs, ... }:
 
 let
+  charter = pkgs.callPackage ../pkgs/charter.nix { };
+
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
     brave
+    charter
     discord
     firefox
     eog # image viewer
