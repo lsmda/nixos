@@ -6,9 +6,6 @@
       font-size = 12;
       font-family = "JetBrainsMono Nerd Font";
 
-      adjust-cell-width = "4%";
-      adjust-cell-height = "2%";
-
       background-blur = true;
       background-opacity = 0.94;
 
