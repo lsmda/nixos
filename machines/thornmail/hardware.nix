@@ -15,10 +15,12 @@
     "usbhid"
     "sd_mod"
   ];
+
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 5;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/cf3307f7-9959-4dfe-b50b-bce39a767d99";

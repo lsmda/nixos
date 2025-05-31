@@ -28,6 +28,7 @@ in
     ./hardware.nix
 
     ../../modules/system/bluetooth.nix
+    ../../modules/system/caddy.nix
     ../../modules/system/keyd.nix
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix
@@ -36,6 +37,7 @@ in
     ../../modules/system/openssh.nix
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
+    ../../modules/system/postgresql.nix
     ../../modules/system/sops.nix
     ../../modules/system/xserver.nix
   ];

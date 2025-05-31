@@ -45,7 +45,4 @@
   nix.extraOptions = ''
     min-free = ${toString (500 * 1024 * 1024)}
   '';
-
-  # maximum number of latest generations in the boot menu.
-  boot.loader.systemd-boot.configurationLimit = 4;
 }
