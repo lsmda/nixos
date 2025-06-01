@@ -11,18 +11,15 @@
     };
   };
 
-  environment.etc."keyd/default.conf" = {
-    enable = true;
-    text = ''
-      [ids]
-      *
+  environment.etc."keyd/default.conf".text = ''
+    [ids]
+    *
 
-      [main]
-      capslock = esc
+    [main]
+    capslock = esc
 
-      [alt]
-      q = home 
-      e = end
-    '';
-  };
+    [alt]
+    q = home 
+    e = end
+  '';
 }
