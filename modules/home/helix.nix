@@ -30,6 +30,10 @@
       popup-border = "all";
       line-number = "relative";
       mouse = false;
+      continue-comments = false;
+      true-color = true;
+      default-yank-register = "+";
+      default-line-ending = "lf";
       scrolloff = 50;
       color-modes = true;
       soft-wrap.enable = true;
