@@ -31,6 +31,8 @@ in
     };
 
     configFile.text = ''
+      use std/log
+
       $env.STARSHIP_SHELL = "nu"
       $env.TERM = "xterm-256color"
       $env.COLORTERM = "truecolor"
@@ -81,8 +83,61 @@ in
         tee { table --expand | print } | $env.last = $in
       }
 
+      def ll [
+          --short-names (-s), # Only print the file names, and not the path
+          --full-paths (-f),  # display paths as absolute paths
+          --du (-d),          # Display the apparent directory size ("disk usage") in place of the directory metadata size
+          --directory (-D),   # List the specified directory itself instead of its contents
+          --mime-type (-m),   # Show mime-type in type column instead of 'file' (based on filenames only; files' contents are not examined)
+          --threads (-t),     # Use multiple threads to list contents. Output will be non-deterministic.
+          ...pattern: glob,   # The glob pattern to use.
+      ]: [ nothing -> table ] {
+        let pattern = if ($pattern | is-empty) { [ '.' ] } else { $pattern }
+        (ls
+          --all
+          --long
+          --short-names=$short_names
+          --full-paths=$full_paths
+          --du=$du
+          --directory=$directory
+          --mime-type=$mime_type
+          --threads=$threads
+          ...$pattern
+        ) | reject target inode num_links accessed
+      }
+
+      def --wrapped cat [...args] {
+        bat ...$args
+      }
+
       def --wrapped d [...args] { 
-        docker ...$args | split row '\n'
+        docker ...$args | split row "\n"
+      }
+
+      def removeDockerImages [] {
+        d images -q | uniq | each { |img| docker rmi $img }
+      }
+
+      def removeDockerContainer [regex: string] {
+        let containers = (d ps -a --format "{{.Names}}" | where { |c| $c =~ $regex })
+
+        if ($containers | is-empty) {
+           log info $"No containers found matching \"($regex)\""
+           return
+        }
+
+        $containers | each { |c| docker rm -v --force $c }
+      }
+
+      def removeDockerVolume [regex: string] {
+        let volumes = (d volume ls -q | where { |v| $v =~ $regex })
+         
+        if ($volumes | is-empty) {
+           log info $"No volumes found matching \"($regex)\""
+           return
+        }
+
+        $volumes | each { |v| docker volume rm --force $v }
       }
 
       def runestore [...args] {
@@ -92,31 +147,6 @@ in
         }
 
         ssh -p 23231 ${toString storage} ...$args
-      }
-
-      def removeDockerImages [] {
-        docker images -q | split row "\n" | uniq | each { |img| docker rmi $img }
-      }
-
-      def removeDockerContainer [regex: string] {
-        let containers = (docker ps -a --format "{{.Names}}" | split row "\n")
-
-        $containers | where { |container| $container =~ $regex } | each { |container| 
-          docker rm -v --force $container
-        }
-      }
-
-      def removeDockerVolume [regex: string] {
-        let volumes = (docker volume ls -q | split row "\n" | enumerate | where item =~ regex)
-         
-        if ($volumes | length) == 0 {
-           echo $"No volumes found matching '$regex'"
-           return
-        }
-         
-        echo $"Found ($volumes | length) volumes matching '$regex'"
-         
-        $volumes | each { |volume| docker volume rm $volume }
       }
 
       def removeNixGeneration [start: int, end?: int] {
