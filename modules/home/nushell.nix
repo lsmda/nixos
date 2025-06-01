@@ -115,7 +115,7 @@ in
       }
 
       def removeDockerImages [] {
-        d images -q | uniq | each { |img| docker rmi $img }
+        d images -q | uniq | each { |i| docker rmi --force $i }
       }
 
       def removeDockerContainer [regex: string] {
