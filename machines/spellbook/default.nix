@@ -80,6 +80,7 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
+      ../../modules/home/bat.nix
       ../../modules/home/btop.nix
       ../../modules/home/dconf.nix
       ../../modules/home/docker.nix
@@ -107,6 +108,14 @@ in
       settings."org/gnome/desktop/screensaver".picture-uri = background;
       settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
     };
+
+    home.file.".Xresources".text = ''
+      Xft.antialias: 1
+      Xft.hinting: 1
+      Xft.rgba: rgb
+      Xft.hintstyle: hintslight
+      Xft.lcdfilter: lcddefault 
+    '';
 
     home.stateVersion = "25.05";
   };

@@ -81,6 +81,7 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
+      ../../modules/home/bat.nix
       ../../modules/home/btop.nix
       ../../modules/home/dconf.nix
       ../../modules/home/docker.nix
