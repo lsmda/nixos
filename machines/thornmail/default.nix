@@ -27,6 +27,7 @@ in
     ./hardware.nix
 
     ../../modules/system/bluetooth.nix
+    ../../modules/system/fonts.nix
     ../../modules/system/keyd.nix
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix

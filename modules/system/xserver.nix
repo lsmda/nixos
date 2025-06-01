@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  environment.sessionVariables.FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
 
   services.xserver = {
     enable = true;
@@ -10,7 +9,7 @@
     excludePackages = [ pkgs.xterm ];
   };
 
-  services.displayManager.defaultSession = "gnome-xorg";
+  services.displayManager.defaultSession = "gnome";
 
   services.libinput = {
     enable = true;
@@ -26,10 +25,6 @@
   programs.geary.enable = false;
   documentation.nixos.enable = false;
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
 
   # enable virtual box
   virtualisation.virtualbox.host.enable = true;
