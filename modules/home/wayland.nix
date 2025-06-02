@@ -53,7 +53,7 @@
     input {
       keyboard {
         xkb {
-          layout "pt"
+          layout "us"
         }
         repeat-delay 400
         repeat-rate 40
@@ -68,18 +68,18 @@
         scroll-method "two-finger"
       }
 
-      // mouse {
-      //  natural-scroll
-      //  accel-speed 0.4
-      //  accel-profile "flat"
-      // }
+      mouse {
+        accel-profile "adaptive"
+        accel-speed -0.1
+      }
 
       disable-power-key-handling
       warp-mouse-to-focus
     }
 
-    output "eDP-1" {
-      scale 1.85
+    output "DP-3" {
+        mode "1920x1080@60.000"
+        variable-refresh-rate
     }
 
     layout {
@@ -343,7 +343,6 @@
     enable = true;
     settings.main = {
       layer = "top";
-      output = "eDP-1";
       margin = "6 8.5 6 8.5";
       spacing = 6;
 
