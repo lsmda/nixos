@@ -7,7 +7,7 @@
 
 let
   inherit (lib) mkForce;
-  inherit (import ../../modules/utils) to_attribute;
+  inherit (import ../../modules/utils) toAttribute;
 
   secrets = config.sops.secrets;
   background = toString ../../assets/00.jpg;
@@ -65,7 +65,7 @@ in
   networking.wg-quick.interfaces.uk_14.configFile = secrets.uk_14.path;
 
   users.groups = lib.pipe user_groups [
-    (map to_attribute)
+    (map toAttribute)
     builtins.listToAttrs
   ];
 
@@ -91,6 +91,7 @@ in
       ../../modules/home/helix.nix
       ../../modules/home/keybinds.nix
       ../../modules/home/lazygit.nix
+      ../../modules/home/librewolf.nix
       ../../modules/home/mpv.nix
       ../../modules/home/packages.nix
       ../../modules/home/ranger.nix
@@ -98,7 +99,7 @@ in
 
       (import ../../modules/home/git.nix { inherit config; })
       (import ../../modules/home/nushell.nix { inherit config; })
-      (import ../../modules/home/wayland.nix { inherit lib pkgs; })
+      (import ../../modules/home/wayland.nix { inherit config lib pkgs; })
     ];
 
     dconf = {

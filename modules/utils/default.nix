@@ -1,12 +1,12 @@
 let
-  to_attribute = str: {
+  toAttribute = str: {
     name = str;
     value = { };
   };
 in
 
 {
-  inherit to_attribute;
+  inherit toAttribute;
   keys = {
     frostbite = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5TSKvFG/h8aL9+nEKgsoi32s0Jimvhg0TIPcZ1a5dO contact@lsmda.pm";
     spellbook = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN25GOi1lQySmv4qRr9fyM1QCbr2Rw3+TqySs8ItbP/h contact@lsmda.pm";

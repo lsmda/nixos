@@ -1,4 +1,13 @@
-{ pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+
+let
+  hostname = config.machine.hostname;
+in
 
 {
   home.packages = with pkgs; [
@@ -24,8 +33,6 @@
     wl-mirror
     wlr-randr
     wtype
-    tessen
-    emoji-picker
   ];
 
   systemd.user.services.xwayland-satellite = {
@@ -45,253 +52,10 @@
     Install.WantedBy = [ "niri.service" ];
   };
 
-  home.file.".config/niri/config.kdl".text = ''
-    spawn-at-startup "${pkgs.waybar}/bin/waybar"
-    spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-m" "fill" "-i" "${../../assets/00.jpg}"
-    spawn-at-startup "${pkgs.wlsunset}/bin/wlsunset" "-l" "37-2" "-L" "-8.4" "-t" "3400" "-T" "4000" 
-
-    input {
-      keyboard {
-        xkb {
-          layout "us"
-        }
-        repeat-delay 400
-        repeat-rate 40
-      }
-
-      touchpad {
-        tap
-        dwt
-        natural-scroll
-        accel-profile "adaptive"
-        accel-speed -0.1
-        scroll-method "two-finger"
-      }
-
-      mouse {
-        accel-profile "adaptive"
-        accel-speed -0.1
-      }
-
-      disable-power-key-handling
-      warp-mouse-to-focus
-    }
-
-    output "DP-3" {
-        mode "1920x1080@60.000"
-        variable-refresh-rate
-    }
-
-    layout {
-      gaps 10
-      center-focused-column "always"
-
-      preset-column-widths {
-        proportion 0.5
-        proportion 0.75
-        proportion 1.0
-      }
-
-      preset-window-heights {
-        proportion 0.5
-        proportion 0.75
-        proportion 1.0
-      }
-
-      default-column-width {
-        proportion 1.0;
-      }
-
-      focus-ring {
-        off
-      }
-
-      border {
-        width 4
-        inactive-color "#333"
-        active-color "#ae97c9"
-      }
-
-      shadow {
-        on
-        softness 25
-        spread 0
-        offset x=0 y=0
-        color "#111c"
-      }
-
-      struts {
-        left -4
-        right -4
-        top -9
-        bottom -4
-      }
-    }
-
-    environment {
-      DISPLAY ":0"
-      QT_QPA_PLATFORM "wayland"
-      _JAVA_AWT_WM_NONREPARENTING "1"
-      EGL_PLATFORM "wayland"
-      NIXOS_OZONE_WL "1"
-      ELECTRON_OZONE_PLATFORM_HINT "auto"
-    }
-
-    cursor {
-      xcursor-theme "phinger-cursors-dark"
-      xcursor-size 24
-    }
-
-    prefer-no-csd
-    screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
-
-    animations {
-      slowdown 1.0
-
-      workspace-switch {
-        spring damping-ratio=0.9 stiffness=800 epsilon=0.0001
-      }
-
-      horizontal-view-movement {
-        spring damping-ratio=0.9 stiffness=800 epsilon=0.0001
-      }
-
-      window-open {
-        duration-ms 250
-        curve "ease-out-cubic"
-      }
-
-      window-close {
-        duration-ms 250
-        curve "ease-out-cubic"
-      }
-
-      window-movement {
-        spring damping-ratio=0.9 stiffness=800 epsilon=0.0001
-      }
-
-      window-resize {
-        spring damping-ratio=0.9 stiffness=800 epsilon=0.0001
-      }
-
-      config-notification-open-close {
-        spring damping-ratio=0.9 stiffness=800 epsilon=0.0001
-      }
-
-      screenshot-ui-open {
-        duration-ms 200
-        curve "ease-out-quad"
-      }
-    }
-
-    window-rule {
-      geometry-corner-radius 4
-      clip-to-geometry true
-    }
-
-    binds {
-      Mod+Shift+Space { show-hotkey-overlay; }
-
-      Mod+Return { spawn "ghostty"; }
-      Mod+D { spawn "fuzzel"; }
-      Mod+Shift+D { spawn "emoji-picker"; }
-      Mod+P { spawn "tessen"; }
-      Mod+Alt+L { spawn "loginctl" "lock-session"; }
-      Mod+Shift+A { spawn "fnottctl" "actions"; }
-      Mod+Shift+S { spawn "fnottctl" "dismiss"; }
-
-      XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume=raise"; }
-      XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--output-volume=lower"; }
-      XF86AudioMute allow-when-locked=true { spawn "swayosd-client" "--output-volume=mute-toggle"; }
-      Mod+XF86AudioRaiseVolume allow-when-locked=true { spawn "swayosd-client" "--input-volume=raise"; }
-      Mod+XF86AudioLowerVolume allow-when-locked=true { spawn "swayosd-client" "--input-volume=lower"; }
-      Mod+XF86AudioMute allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
-      XF86AudioMicMute allow-when-locked=true { spawn "swayosd-client" "--input-volume=mute-toggle"; }
-      XF86MonBrightnessDown { spawn "swayosd-client" "--brightness=lower"; }
-      XF86MonBrightnessUp { spawn "swayosd-client" "--brightness=raise"; }
-
-      Mod+Q { close-window; }
-
-      Mod+H { focus-column-left; }
-      Mod+J { focus-window-down; }
-      Mod+K { focus-window-up; }
-      Mod+L { focus-column-right; }
-
-      Mod+Shift+H { move-column-left; }
-      Mod+Shift+J { move-column-to-workspace-down; }
-      Mod+Shift+K { move-column-to-workspace-up; }
-      Mod+Shift+L { move-column-right; }
-
-      Mod+Shift+Home { move-column-to-first; }
-      Mod+Shift+End { move-column-to-last; }
-
-      Mod+Alt+J { move-workspace-down; }
-      Mod+Alt+K { move-workspace-up; }
-
-      Mod+Ctrl+H { set-column-width "-5%"; }
-      Mod+Ctrl+J { set-window-height "+5%"; }
-      Mod+Ctrl+K { set-window-height "-5%"; }
-      Mod+Ctrl+L { set-column-width "+5%"; }
-
-      Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-      Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-      Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-      Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
-
-      Mod+WheelScrollRight      { focus-column-right; }
-      Mod+WheelScrollLeft       { focus-column-left; }
-      Mod+Ctrl+WheelScrollRight { move-column-right; }
-      Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-
-      Mod+Shift+WheelScrollDown      { focus-column-right; }
-      Mod+Shift+WheelScrollUp        { focus-column-left; }
-      Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-      Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
-
-      Mod+1 { focus-workspace 1; }
-      Mod+2 { focus-workspace 2; }
-      Mod+3 { focus-workspace 3; }
-      Mod+4 { focus-workspace 4; }
-      Mod+5 { focus-workspace 5; }
-      Mod+6 { focus-workspace 6; }
-      Mod+7 { focus-workspace 7; }
-      Mod+8 { focus-workspace 8; }
-      Mod+9 { focus-workspace 9; }
-      Mod+Shift+1 { move-column-to-workspace 1; }
-      Mod+Shift+2 { move-column-to-workspace 2; }
-      Mod+Shift+3 { move-column-to-workspace 3; }
-      Mod+Shift+4 { move-column-to-workspace 4; }
-      Mod+Shift+5 { move-column-to-workspace 5; }
-      Mod+Shift+6 { move-column-to-workspace 6; }
-      Mod+Shift+7 { move-column-to-workspace 7; }
-      Mod+Shift+8 { move-column-to-workspace 8; }
-      Mod+Shift+9 { move-column-to-workspace 9; }
-
-      Mod+Tab { focus-workspace-previous; }
-
-      Mod+Comma  { consume-window-into-column; }
-      Mod+Period { expel-window-from-column; }
-
-      Mod+R { switch-preset-column-width; }
-      Mod+Shift+R { switch-preset-window-height; }
-
-      Mod+Ctrl+F { expand-column-to-available-width; }
-
-      Mod+C { center-column; }
-
-      Mod+V       { toggle-window-floating; }
-      Mod+Shift+V { switch-focus-between-floating-and-tiling; }
-
-      Print { screenshot; }
-      Ctrl+Print { screenshot-screen; }
-      Alt+Print { screenshot-window; }
-
-      Mod+Shift+E { spawn "wlogout"; }
-      Ctrl+Alt+Delete { quit; }
-
-      Mod+Shift+P { power-off-monitors; }
-    }
-  '';
+  home.file.".config/niri/config.kdl".text = lib.strings.concatStringsSep "\n" [
+    (import ./niri/shared.nix { inherit pkgs; })
+    (import ./niri/${hostname}.nix)
+  ];
 
   services.swayosd = {
     enable = true;
@@ -403,7 +167,7 @@
       ];
 
       tray = {
-        icon-size = 15;
+        icon-size = 18;
         spacing = 8;
       };
 
@@ -479,8 +243,9 @@
 
     style = ''
       * {
-        font-family: "JetBrainsMono Nerd Font";
-        font-size: 12px;
+        font-family: "Inter";
+        font-size: 16px;
+        font-weight: 600;
       }
 
       window#waybar {
@@ -498,7 +263,7 @@
       #clock {
         border-radius: 4px;
         background-color: rgba(0, 0, 0, 0.5);
-        color: rgb(250, 250, 250);
+        color: rgba(200, 200, 200, 0.8);
         padding: 0.5rem 0.85rem;
       }
 
@@ -517,9 +282,9 @@
   home.file.".config/fuzzel/fuzzel.ini" = {
     text = ''
       dpi-aware=no
-      width=14
-      line-height=20
-      font=JetBrainsMono Nerd Font Md:size=12
+      width=20
+      line-height=40
+      font=Inter Md:size=16
       fields=name,categories
       icons-enabled=no
       lines=5

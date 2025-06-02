@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../modules/utils) keys to_attribute;
+  inherit (import ../../modules/utils) keys toAttribute;
   inherit (lib) mkForce;
 
   user_groups = [
@@ -47,7 +47,7 @@ in
 
   # initialize all user groups
   users.groups = lib.pipe user_groups [
-    (map to_attribute)
+    (map toAttribute)
     builtins.listToAttrs
   ];
 
