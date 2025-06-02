@@ -134,7 +134,6 @@
           ];
           q = ":quit";
           Q = ":quit-all!";
-          p = ":clipboard-paste-replace";
           r = {
             r = ":config-reload";
             n = "rename_symbol";
