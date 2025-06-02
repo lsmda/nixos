@@ -1,9 +1,17 @@
 { pkgs, ... }:
 
+let
+  charter = pkgs.callPackage ../pkgs/charter.nix { };
+  consolas = pkgs.callPackage ../pkgs/consolas.nix { };
+in
+
 {
   environment.sessionVariables.FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
 
   fonts.packages = with pkgs; [
+    charter
+    consolas
+    inter
     nerd-fonts.jetbrains-mono
   ];
 

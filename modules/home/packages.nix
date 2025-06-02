@@ -1,14 +1,9 @@
 { pkgs, ... }:
 
 let
-  charter = pkgs.callPackage ../pkgs/charter.nix { };
-  consolas = pkgs.callPackage ../pkgs/consolas.nix { };
-
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
     brave
-    charter
-    consolas
     discord
     firefox
     eog # image viewer
@@ -49,6 +44,7 @@ let
     go
     glow # render markdown on the CLI
     gocryptfs
+    jq
     keychain
     lshw
     lua
