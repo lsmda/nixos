@@ -40,6 +40,7 @@ in
     ../../modules/system/pipewire.nix
     ../../modules/system/postgresql.nix
     ../../modules/system/sops.nix
+    ../../modules/system/virtualisation.nix
     ../../modules/system/xserver.nix
   ];
 
@@ -83,7 +84,6 @@ in
       ../../modules/home/bat.nix
       ../../modules/home/btop.nix
       ../../modules/home/dconf.nix
-      ../../modules/home/docker.nix
       ../../modules/home/fastfetch.nix
       ../../modules/home/ghostty.nix
       ../../modules/home/gpg.nix

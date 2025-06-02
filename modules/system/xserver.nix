@@ -26,10 +26,6 @@
   documentation.nixos.enable = false;
   environment.gnome.excludePackages = [ pkgs.gnome-tour ];
 
-  # enable virtual box
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ config.machine.username ];
-
   nix.gc = {
     automatic = true;
     dates = "daily";

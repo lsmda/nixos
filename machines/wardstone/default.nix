@@ -37,6 +37,7 @@ in
     ../../modules/system/samba.nix
     ../../modules/system/soft-serve.nix
     ../../modules/system/sops.nix
+    ../../modules/system/virtualisation.nix
   ];
 
   system.stateVersion = "25.05";
@@ -77,7 +78,6 @@ in
     imports = [
       ../../modules/home/bat.nix
       ../../modules/home/btop.nix
-      ../../modules/home/docker.nix
       ../../modules/home/fastfetch.nix
       ../../modules/home/gpg.nix
       ../../modules/home/helix.nix

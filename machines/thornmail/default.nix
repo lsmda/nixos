@@ -38,6 +38,7 @@ in
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/sops.nix
+    ../../modules/system/virtualisation.nix
     ../../modules/system/xserver.nix
   ];
 
@@ -57,13 +58,13 @@ in
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"
   '';
 
-  networking.wg-quick.interfaces.es_62.autostart = false;
+  networking.wg-quick.interfaces.es_62.autostart = true;
   networking.wg-quick.interfaces.es_62.configFile = secrets.es_62.path;
 
   networking.wg-quick.interfaces.ie_25.autostart = false;
   networking.wg-quick.interfaces.ie_25.configFile = secrets.ie_25.path;
 
-  networking.wg-quick.interfaces.uk_24.autostart = true;
+  networking.wg-quick.interfaces.uk_24.autostart = false;
   networking.wg-quick.interfaces.uk_24.configFile = secrets.uk_24.path;
 
   users.groups = lib.pipe user_groups [
@@ -86,7 +87,6 @@ in
       ../../modules/home/bat.nix
       ../../modules/home/btop.nix
       ../../modules/home/dconf.nix
-      ../../modules/home/docker.nix
       ../../modules/home/fastfetch.nix
       ../../modules/home/ghostty.nix
       ../../modules/home/gpg.nix

@@ -41,6 +41,7 @@ let
     age
     cargo
     cryfs
+    dive # tool for exploring docker images
     fastfetch
     fzf
     gcc
