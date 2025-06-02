@@ -1,7 +1,7 @@
 {
   programs.ghostty.enable = true;
   programs.ghostty.settings = {
-    font-size = 12;
+    font-size = 14;
     theme = "iceberg-dark";
 
     font-family = "JetBrainsMono Nerd Font";
@@ -32,7 +32,10 @@
       "+liga"
       "+calt"
       "ss01"
+      "ss02"
+      "ss03"
       "ss04"
+      "ss05"
     ];
 
     adjust-box-thickness = 1;
