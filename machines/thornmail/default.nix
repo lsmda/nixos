@@ -32,6 +32,7 @@ in
     ../../modules/system/locale.nix
     ../../modules/system/networking.nix
     ../../modules/system/nfs-client.nix
+    ../../modules/system/niri.nix
     ../../modules/system/nvidia.nix
     ../../modules/system/openssh.nix
     ../../modules/system/options.nix
@@ -97,6 +98,7 @@ in
       ../../modules/home/packages.nix
       ../../modules/home/ranger.nix
       ../../modules/home/starship.nix
+      ../../modules/home/wayland.nix
 
       (import ../../modules/home/git.nix { inherit config; })
       (import ../../modules/home/nushell.nix { inherit config; })
