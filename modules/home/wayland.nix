@@ -6,6 +6,7 @@
 }:
 
 let
+  interface_font = "Open Sans";
   hostname = config.machine.hostname;
 in
 
@@ -243,9 +244,9 @@ in
 
     style = ''
       * {
-        font-family: "Inter";
+        font-family: ${interface_font};
         font-size: 16px;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       window#waybar {
@@ -284,7 +285,7 @@ in
       dpi-aware=no
       width=20
       line-height=40
-      font=Inter Md:size=16
+      font=${interface_font} Md:size=14
       fields=name,categories
       icons-enabled=no
       lines=5

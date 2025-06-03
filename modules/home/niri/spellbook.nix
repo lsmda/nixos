@@ -22,6 +22,6 @@
   }
 
   output "eDP-1" {
-    scale 1.85
+    scale 1.6
   }
 ''
