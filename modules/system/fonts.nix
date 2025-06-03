@@ -9,11 +9,16 @@ in
   environment.sessionVariables.FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
 
   fonts.packages = with pkgs; [
+    #sans
+    open-sans
+
+    # serif
     charter
     consolas
-    inter
+
+    # monospace
+    jetbrains-mono
     nerd-fonts.jetbrains-mono
-    open-sans
   ];
 
   fonts.fontconfig = {
