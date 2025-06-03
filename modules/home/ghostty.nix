@@ -7,7 +7,7 @@
     font-family = "JetBrainsMono Nerd Font";
 
     background-blur = true;
-    background-opacity = 0.96;
+    background-opacity = 0.95;
 
     clipboard-paste-protection = true;
     clipboard-trim-trailing-spaces = true;

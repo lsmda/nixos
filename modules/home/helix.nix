@@ -196,7 +196,6 @@
           formatting.command = "nixfmt";
           options = {
             nixpkgs.expr = "import <nixpkgs> {}";
-            nixos.expr = "import <nixos> { configuration = /etc/nixos/configuration.nix; }";
           };
         };
       };
