@@ -155,7 +155,7 @@ in
 
       clock = {
         tooltip = false;
-        format = "{:%b %d // %H:%M}";
+        format = "{:%b %d  //  %H:%M}";
         interval = 60;
         tooltip-format = "<tt><small>{calendar}</small></tt>";
       };
@@ -173,9 +173,9 @@ in
       };
 
       pulseaudio = {
-        format = "{icon} {volume}% {format_source}";
-        format-bluetooth = "{icon}  {volume}% {format_source}";
-        format-bluetooth-muted = "󰝟 {icon} {format_source}";
+        format = "{icon}  {volume}%  {format_source}";
+        format-bluetooth = "{icon}   {volume}% {format_source}";
+        format-bluetooth-muted = "󰝟  {icon} {format_source}";
         format-icons = {
           car = "󰄋";
           default = [
@@ -208,11 +208,11 @@ in
 
       network = {
         format-alt = "{ifname}: {ipaddr}/{cidr}";
-        format-disconnected = "󰌙 Disconnected";
-        format-ethernet = "󰈀 {ipaddr}/{cidr}";
-        format-linked = "󰌚 {ifname} (No IP)";
-        format-wifi = "  {essid}";
-        tooltip-format = "󰌘 {ifname} via {gwaddr}";
+        format-disconnected = "󰌙  Disconnected";
+        format-ethernet = "󰈀  {ipaddr}/{cidr}";
+        format-linked = "󰌚  {ifname} (No IP)";
+        format-wifi = "   {essid}";
+        tooltip-format = "󰌘  {ifname} via {gwaddr}";
       };
 
       battery = {
@@ -264,7 +264,7 @@ in
       #clock {
         border-radius: 4px;
         background-color: rgba(0, 0, 0, 0.5);
-        color: rgba(200, 200, 200, 0.8);
+        color: rgba(200, 200, 200, 0.9);
         padding: 0.5rem 0.85rem;
       }
 
