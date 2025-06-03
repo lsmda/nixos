@@ -47,7 +47,7 @@ in
     Service = {
       Type = "notify";
       NotifyAccess = "all";
-      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
       StandardOutput = "journal";
     };
     Install.WantedBy = [ "niri.service" ];

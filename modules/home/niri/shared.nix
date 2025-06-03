@@ -5,6 +5,28 @@
   spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-m" "fill" "-i" "${../../../assets/00.jpg}"
   spawn-at-startup "${pkgs.wlsunset}/bin/wlsunset" "-l" "37-2" "-L" "-8.4" "-t" "3800" "-T" "4000" 
 
+  prefer-no-csd
+  screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
+
+  hotkey-overlay {
+    hide-not-bound
+    skip-at-startup
+  }
+
+  cursor {
+    xcursor-theme "BreezeX-RosePineDawn-Linux"
+    xcursor-size 22
+  }
+
+  environment {
+    DISPLAY ":0"
+    QT_QPA_PLATFORM "wayland"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    EGL_PLATFORM "wayland"
+    NIXOS_OZONE_WL "1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+  }
+
   layout {
     gaps 10
     center-focused-column "always"
@@ -50,23 +72,6 @@
       bottom -4
     }
   }
-
-  environment {
-    DISPLAY ":0"
-    QT_QPA_PLATFORM "wayland"
-    _JAVA_AWT_WM_NONREPARENTING "1"
-    EGL_PLATFORM "wayland"
-    NIXOS_OZONE_WL "1"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-  }
-
-  cursor {
-    xcursor-theme "BreezeX-RosePineDawn-Linux"
-    xcursor-size 22
-  }
-
-  prefer-no-csd
-  screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
 
   animations {
     slowdown 1.0
