@@ -94,7 +94,7 @@
     "org/gnome/desktop/interface" = {
       font-name = "Open Sans 12";
       document-font-name = "Open Sans 12";
-      monospace-font-name = "JetBrainsMono Nerd Font Mono 12";
+      monospace-font-name = "JetBrains Mono 12";
     };
 
     # just perfection extension

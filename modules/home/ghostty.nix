@@ -4,7 +4,7 @@
     font-size = 14;
     theme = "iceberg-dark";
 
-    font-family = "JetBrainsMono Nerd Font";
+    font-family = "JetBrains Mono";
 
     background-blur = true;
     background-opacity = 0.95;
@@ -30,12 +30,8 @@
 
     font-feature = [
       "+liga"
-      "+calt"
-      "ss01"
-      "ss02"
-      "ss03"
-      "ss04"
-      "ss05"
+      "+ss01"
+      "+ss02"
     ];
 
     adjust-box-thickness = 1;
