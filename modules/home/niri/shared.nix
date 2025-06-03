@@ -9,7 +9,6 @@
   screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
 
   hotkey-overlay {
-    hide-not-bound
     skip-at-startup
   }
 
