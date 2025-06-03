@@ -19,6 +19,5 @@
 
   output "DP-3" {
     mode "1920x1080@60.000"
-    variable-refresh-rate
   }
 ''
