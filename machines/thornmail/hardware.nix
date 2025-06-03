@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   modulesPath,
   pkgs,
@@ -16,6 +15,7 @@
     "sd_mod"
   ];
 
+  boot.kernelModules = [ "kvm-amd" ];
   boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   boot.loader.systemd-boot.enable = true;
@@ -36,7 +36,7 @@
     ];
   };
 
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = true;
   hardware.enableAllFirmware = true;
 
   nixpkgs.config.allowUnfree = true;
