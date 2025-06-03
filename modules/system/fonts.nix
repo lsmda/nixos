@@ -11,6 +11,7 @@ in
   fonts.packages = with pkgs; [
     #sans
     open-sans
+    noto-fonts-emoji
 
     # serif
     charter
