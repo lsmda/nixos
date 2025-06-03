@@ -13,6 +13,7 @@ in
     consolas
     inter
     nerd-fonts.jetbrains-mono
+    open-sans
   ];
 
   fonts.fontconfig = {
