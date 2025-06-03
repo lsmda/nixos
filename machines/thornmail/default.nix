@@ -111,6 +111,14 @@ in
       settings."org/gnome/desktop/screensaver".picture-uri = background;
     };
 
+    home.file.".Xresources".text = ''
+      Xft.antialias: 1
+      Xft.hinting: 1
+      Xft.rgba: rgb
+      Xft.hintstyle: hintslight
+      Xft.lcdfilter: lcddefault 
+    '';
+
     home.stateVersion = "25.05";
   };
 
