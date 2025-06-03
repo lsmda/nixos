@@ -174,8 +174,8 @@ in
 
       pulseaudio = {
         format = "{icon}  {volume}%  {format_source}";
-        format-bluetooth = "{icon}   {volume}% {format_source}";
-        format-bluetooth-muted = "󰝟  {icon} {format_source}";
+        format-bluetooth = "{icon}  {volume}%  {format_source}";
+        format-bluetooth-muted = "󰝟 {icon}  {format_source}";
         format-icons = {
           car = "󰄋";
           default = [
