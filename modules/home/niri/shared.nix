@@ -3,7 +3,7 @@
 ''
   spawn-at-startup "${pkgs.waybar}/bin/waybar"
   spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-m" "fill" "-i" "${../../../assets/00.jpg}"
-  spawn-at-startup "${pkgs.wlsunset}/bin/wlsunset" "-l" "37-2" "-L" "-8.4" "-t" "3400" "-T" "4000" 
+  spawn-at-startup "${pkgs.wlsunset}/bin/wlsunset" "-l" "37-2" "-L" "-8.4" "-t" "3800" "-T" "4000" 
 
   layout {
     gaps 10
