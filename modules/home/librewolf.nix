@@ -24,7 +24,7 @@
       "geo.enabled" = false;
       "dom.security.https_only_mode_ever_enabled" = true;
       "media.eme.enabled" = true;
-      "privacy.resistFingerprinting" = true;
+      "privacy.resistFingerprinting" = false;
       "network.captive-portal-service.enabled" = true;
       "security.enterprise_roots.enabled" = true;
     };
