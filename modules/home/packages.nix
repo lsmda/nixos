@@ -14,7 +14,6 @@ let
         "--enable-gpu-compositing"
         "--enable-gpu-rasterization"
         "--enable-native-gpu-memory-buffers"
-        "--use-vulkan"
         "--disable-features=UseChromeOSDirectVideoDecoder"
       ];
     })
@@ -38,7 +37,13 @@ let
     obsidian
     qbittorrent
     spotify
-    vscode-fhs
+    (vscode-fhs.override {
+      commandLineArgs = [
+        "--use-gl=desktop"
+        "--enable-gpu-compositing"
+        "--enable-gpu-rasterization"
+      ];
+    })
     winbox
     wlsunset # night light
     wpsoffice
