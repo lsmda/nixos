@@ -84,8 +84,6 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
-      ../../modules/home/bat.nix
-      ../../modules/home/btop.nix
       ../../modules/home/dconf.nix
       ../../modules/home/fastfetch.nix
       ../../modules/home/ghostty.nix
@@ -93,12 +91,10 @@ in
       ../../modules/home/gtk.nix
       ../../modules/home/helix.nix
       ../../modules/home/keybinds.nix
-      ../../modules/home/lazygit.nix
       ../../modules/home/librewolf.nix
       ../../modules/home/mpv.nix
       ../../modules/home/packages.nix
-      ../../modules/home/ranger.nix
-      ../../modules/home/starship.nix
+      ../../modules/home/shell.nix
 
       (import ../../modules/home/git.nix { inherit config; })
       (import ../../modules/home/nushell.nix { inherit config; })

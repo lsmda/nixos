@@ -13,7 +13,7 @@ in
     shellAliases = {
       ".." = "cd ..";
       dd = "sudo dockerd";
-      rr = "ranger";
+      yz = "yazi";
       ns = "nix-shell";
       ff = "fastfetch";
       cfs = "cryfs";
