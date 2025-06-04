@@ -1,27 +1,42 @@
+{ lib, ... }:
+
 {
-  nix = {
-    # run garbage collection whenever there is less than 500mb free space left
-    extraOptions = ''
-      min-free = ${toString (500 * 1024 * 1024)}
-    '';
-
-    #garbage collection
-    gc = {
-      automatic = true;
-      dates = "daily";
-      options = "--delete-older-than 3d";
+  options = {
+    machine.username = lib.mkOption {
+      type = lib.types.str;
+      description = "Name of user account";
     };
+    machine.hostname = lib.mkOption {
+      type = lib.types.str;
+      description = "Name of host machine";
+    };
+  };
 
-    # use pre-built cuda binaries
-    settings = {
-      experimental-features = [
-        "nix-command"
-        "pipe-operators"
-      ];
-      substituters = [ "https://cuda-maintainers.cachix.org" ];
-      trusted-public-keys = [
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-      ];
+  config = {
+    nix = {
+      # run garbage collection whenever there is less than 500mb free space left
+      extraOptions = ''
+        min-free = ${toString (500 * 1024 * 1024)}
+      '';
+
+      #garbage collection
+      gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 3d";
+      };
+
+      # use pre-built cuda binaries
+      settings = {
+        experimental-features = [
+          "nix-command"
+          "pipe-operators"
+        ];
+        substituters = [ "https://cuda-maintainers.cachix.org" ];
+        trusted-public-keys = [
+          "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        ];
+      };
     };
   };
 }

@@ -35,7 +35,6 @@ in
     ../../modules/system/niri.nix
     ../../modules/system/nvidia.nix
     ../../modules/system/openssh.nix
-    ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/settings.nix
     ../../modules/system/sops.nix

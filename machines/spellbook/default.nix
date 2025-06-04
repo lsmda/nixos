@@ -36,7 +36,6 @@ in
     ../../modules/system/nfs-client.nix
     ../../modules/system/niri.nix
     ../../modules/system/openssh.nix
-    ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/postgresql.nix
     ../../modules/system/settings.nix

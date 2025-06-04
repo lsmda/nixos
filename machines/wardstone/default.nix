@@ -33,7 +33,6 @@ in
     ../../modules/system/networking.nix
     ../../modules/system/nfs-server.nix
     ../../modules/system/openssh.nix
-    ../../modules/system/options.nix
     ../../modules/system/samba.nix
     ../../modules/system/settings.nix
     ../../modules/system/soft-serve.nix
