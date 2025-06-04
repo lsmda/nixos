@@ -14,7 +14,7 @@
 
   cursor {
     xcursor-theme "BreezeX-RosePineDawn-Linux"
-    xcursor-size 22
+    xcursor-size 32
   }
 
   environment {
