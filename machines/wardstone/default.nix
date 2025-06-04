@@ -35,6 +35,7 @@ in
     ../../modules/system/openssh.nix
     ../../modules/system/options.nix
     ../../modules/system/samba.nix
+    ../../modules/system/settings.nix
     ../../modules/system/soft-serve.nix
     ../../modules/system/sops.nix
     ../../modules/system/virtualisation.nix

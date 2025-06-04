@@ -37,6 +37,7 @@ in
     ../../modules/system/openssh.nix
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
+    ../../modules/system/settings.nix
     ../../modules/system/sops.nix
     ../../modules/system/virtualisation.nix
     ../../modules/system/xserver.nix

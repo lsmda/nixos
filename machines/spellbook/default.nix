@@ -39,6 +39,7 @@ in
     ../../modules/system/options.nix
     ../../modules/system/pipewire.nix
     ../../modules/system/postgresql.nix
+    ../../modules/system/settings.nix
     ../../modules/system/sops.nix
     ../../modules/system/virtualisation.nix
     ../../modules/system/xserver.nix
@@ -105,7 +106,6 @@ in
     dconf = {
       settings."org/gnome/desktop/background".picture-uri = background;
       settings."org/gnome/desktop/background".picture-uri-dark = background;
-      settings."org/gnome/desktop/interface".text-scaling-factor = mkForce 0.9;
       settings."org/gnome/desktop/screensaver".picture-uri = background;
       settings."org/gnome/nautilus/icon-view".default-zoom-level = mkForce "medium";
     };
