@@ -38,6 +38,7 @@
 
   hardware.cpu.amd.updateMicrocode = true;
   hardware.enableAllFirmware = true;
+  hardware.graphics.enable = true; # hardware acceleration
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
