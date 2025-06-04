@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 let
+  __vscode = (pkgs.vscode.override { commandLineArgs = [ "--use-gl=desktop" ]; }).fhs;
+
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
     (brave.override {
@@ -37,13 +39,7 @@ let
     obsidian
     qbittorrent
     spotify
-    (vscode-fhs.override {
-      commandLineArgs = [
-        "--use-gl=desktop"
-        "--enable-gpu-compositing"
-        "--enable-gpu-rasterization"
-      ];
-    })
+    __vscode
     winbox
     wlsunset # night light
     wpsoffice
