@@ -16,10 +16,10 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-    nvidiaSettings = true;
-    open = false;
     powerManagement.enable = false;
     powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 }

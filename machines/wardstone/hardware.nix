@@ -52,7 +52,8 @@
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 3;
+
+  boot.tmp.cleanOnBoot = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXOS_SD";
