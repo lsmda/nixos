@@ -51,6 +51,7 @@ let
     neovim
     nodejs
     nodePackages.pnpm
+    pciutils # lspci, etc.
     python3
     ripgrep
     rustc
