@@ -246,7 +246,7 @@ in
       * {
         font-family: ${interface_font};
         font-size: 16px;
-        font-weight: 500;
+        font-weight: 600;
       }
 
       window#waybar {
