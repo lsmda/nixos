@@ -74,6 +74,7 @@ let
     sops
     sqlite
     sqlitebrowser
+    tree
     unzip
     wget
     xclip
