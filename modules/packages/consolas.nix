@@ -16,9 +16,7 @@ pkgs.stdenv.mkDerivation rec {
   };
 
   installPhase = ''
-    runHook preInstall
     install -Dm644 fonts/Consolas.ttf -t $out/share/fonts/truetype
-    runHook postInstall
   '';
 
   meta = {

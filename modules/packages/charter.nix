@@ -25,7 +25,6 @@ pkgs.stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/share/fonts/{open,true}type
     find Charter\ */TTF*/Charter/ -name "*.ttf" -exec cp {} "$out/share/fonts/truetype/" \;
-    #find Charter\ */OTF*/Charter/ -name "*.otf" -exec cp {} "$out/share/fonts/opentype/" \;
   '';
 
   meta = with lib; {
