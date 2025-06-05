@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  charter = pkgs.callPackage ../pkgs/charter.nix { };
-  consolas = pkgs.callPackage ../pkgs/consolas.nix { };
+  charter = pkgs.callPackage ../packages/charter.nix { };
+  consolas = pkgs.callPackage ../packages/consolas.nix { };
 in
 
 {
