@@ -3,12 +3,15 @@
 let
   charter = pkgs.callPackage ../packages/charter.nix { };
   consolas = pkgs.callPackage ../packages/consolas.nix { };
+  __corefonts = pkgs.callPackage ../packages/corefonts/package.nix { };
 in
 
 {
   environment.sessionVariables.FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
 
   fonts.packages = with pkgs; [
+    __corefonts
+
     #sans
     open-sans
     noto-fonts-emoji
@@ -19,7 +22,7 @@ in
 
     # monospace
     jetbrains-mono
-    nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
   ];
 
   fonts.fontconfig = {
