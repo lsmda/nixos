@@ -8,11 +8,7 @@ let
     (brave.override {
       commandLineArgs = [
         "--enable-features=VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization"
-        "--enable-zero-copy"
         "--use-gl=desktop"
-        "--ignore-gpu-blocklist"
-        "--enable-oop-rasterization"
-        "--enable-raw-draw"
         "--enable-gpu-compositing"
         "--enable-gpu-rasterization"
         "--enable-native-gpu-memory-buffers"
