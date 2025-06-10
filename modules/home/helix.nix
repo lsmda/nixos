@@ -306,16 +306,6 @@
       ]
       ++ denoLanguages;
 
-    settings.theme = "forest";
-
-    themes.forest = {
-      inherits = "amberwood";
-      "ui.background" = { };
-      "ui.menu" = { };
-      "ui.popup" = { };
-      "ui.statusline" = { };
-      "ui.window" = { };
-      "ui.help" = { };
-    };
+    settings.theme = "base16_transparent";
   };
 }
