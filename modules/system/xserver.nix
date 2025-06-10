@@ -2,7 +2,7 @@
 
 {
   services = {
-    displayManager.defaultSession = "gnome";
+    displayManager.defaultSession = "niri";
 
     libinput = {
       enable = true;
