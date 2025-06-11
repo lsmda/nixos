@@ -75,7 +75,7 @@
       }
     '';
     settings = {
-      manager = {
+      mgr = {
         ratio = [
           0
           2
@@ -89,7 +89,7 @@
       };
     };
     theme = {
-      manager = {
+      mgr = {
         preview_hovered = {
           underline = false;
         };
