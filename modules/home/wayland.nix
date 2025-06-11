@@ -36,6 +36,34 @@ in
     wtype
   ];
 
+  systemd.user.services.swaybg = {
+    Unit = {
+      Description = "Wallpaper tool for Wayland compositors";
+      PartOf = "graphical-session.target";
+      After = "graphical-session.target";
+      Requisite = "graphical-session.target";
+    };
+    Service = {
+      ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${../../assets/background/00.jpg}";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "niri.service" ];
+  };
+
+  systemd.user.services.wlsunset = {
+    Unit = {
+      Description = "Day/night gamma adjustments for Wayland";
+      PartOf = "graphical-session.target";
+      After = "graphical-session.target";
+      Requisite = "graphical-session.target";
+    };
+    Service = {
+      ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3800 -T 4000";
+      Restart = "on-failure";
+    };
+    Install.WantedBy = [ "niri.service" ];
+  };
+
   systemd.user.services.xwayland-satellite = {
     Unit = {
       Description = "Xwayland outside your Wayland";
@@ -47,7 +75,7 @@ in
     Service = {
       Type = "notify";
       NotifyAccess = "all";
-      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite :0";
+      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
       StandardOutput = "journal";
     };
     Install.WantedBy = [ "niri.service" ];
@@ -84,24 +112,67 @@ in
         keybind = "r";
       }
       {
-        label = "hibernate";
-        action = "systemctl hibernate";
-        text = "Hibernate";
-        keybind = "h";
-      }
-      {
-        label = "suspend";
-        action = "systemctl suspend";
-        text = "Suspend";
-        keybind = "u";
-      }
-      {
         label = "shutdown";
         action = "systemctl poweroff";
         text = "Shutdown";
         keybind = "s";
       }
     ];
+    style = ''
+      * {
+        all: unset;
+        background-image: none;
+      }
+
+      window {
+        background: rgba(0, 0, 0, 0.9);
+      }
+
+      button {
+        font-family: ${interface_font};
+        font-size: 2rem;
+        background-color: rgba(50, 50, 50, 0.5);
+        color: #bbb;
+        border-radius: 0;
+        padding: 1rem;
+        margin: 0 0.5rem;
+      }
+
+      button:focus,
+      button:active,
+      button:hover {
+        background-color: rgba(80, 80, 80, 0.5);
+        border-radius: 0;
+      }
+
+      #lock {
+        background-image: image(url("${../../assets/icons/lock.png}"));
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100px;
+      }
+
+      #logout {
+        background-image: image(url("${../../assets/icons/logout.png}"));
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 110px;
+      }
+
+      #reboot {
+        background-image: image(url("${../../assets/icons/reboot.png}"));
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 110px;
+      }
+
+      #shutdown {
+        background-image: image(url("${../../assets/icons/shutdown.png}"));
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 110px;
+      }
+    '';
   };
 
   programs.waybar = {
@@ -241,7 +312,6 @@ in
         interval = 5;
       };
     };
-
     style = ''
       * {
         font-family: ${interface_font};

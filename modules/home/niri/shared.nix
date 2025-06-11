@@ -2,8 +2,6 @@
 
 ''
   spawn-at-startup "${pkgs.waybar}/bin/waybar"
-  spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-m" "fill" "-i" "${../../../assets/00.jpg}"
-  spawn-at-startup "${pkgs.wlsunset}/bin/wlsunset" "-l" "37-2" "-L" "-8.4" "-t" "3800" "-T" "4000" 
 
   prefer-no-csd
   screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
@@ -169,7 +167,7 @@
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    Mod+Shift+E { spawn "wlogout"; }
+    Mod+Shift+E { spawn "wlogout" "-b" "4"; }
     Ctrl+Alt+Delete { quit; }
   }
 ''

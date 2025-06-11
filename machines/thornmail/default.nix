@@ -9,7 +9,7 @@ let
   inherit (import ../../modules/utils) toAttribute;
 
   secrets = config.sops.secrets;
-  background = toString ../../assets/00.jpg;
+  background = toString ../../assets/background/00.jpg;
 
   user_groups = [
     "docker"
