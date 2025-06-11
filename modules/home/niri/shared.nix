@@ -167,7 +167,7 @@
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    Mod+Shift+E { spawn "wlogout" "-b" "4"; }
+    Mod+Escape { spawn "wlogout" "-b" "4"; }
     Ctrl+Alt+Delete { quit; }
   }
 ''
