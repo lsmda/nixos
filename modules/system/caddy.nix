@@ -26,7 +26,7 @@ in
     enable = true;
     virtualHosts = {
       "http://localhost:80".extraConfig = ''
-        respond "{\"status\": \"operational\", \"host\": \"${config.machine.hostname}\"}"
+        respond "{ \"status\": \"ok\" }"
       '';
       "http://localhost:5000".extraConfig = ''
         root * /var/www/lsmda.pm
