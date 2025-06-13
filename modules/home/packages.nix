@@ -46,6 +46,7 @@ let
   headless = with pkgs; [
     age
     cargo
+    cloudflared
     cryfs
     dive # tool for exploring docker images
     fastfetch
