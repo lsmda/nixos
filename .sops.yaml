@@ -21,3 +21,9 @@ creation_rules:
           - *spellbook
           - *thornmail
           - *wardstone
+  - path_regex: secrets/cloudflared/[^/]+$
+    key_groups:
+      - age:
+          - *spellbook
+          - *thornmail
+          - *wardstone

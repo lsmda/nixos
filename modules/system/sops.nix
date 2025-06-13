@@ -38,4 +38,7 @@ in
   sops.secrets."ie_36" = from_binary ../../secrets/wireguard/ie_36.conf;
   sops.secrets."uk_14" = from_binary ../../secrets/wireguard/uk_14.conf;
   sops.secrets."uk_24" = from_binary ../../secrets/wireguard/uk_24.conf;
+
+  sops.secrets."cloudflared/cert" = from_binary ../../secrets/cloudflared/cert.pem;
+  sops.secrets."cloudflared/lsmda.pm" = from_binary ../../secrets/cloudflared/lsmda.pm;
 }
