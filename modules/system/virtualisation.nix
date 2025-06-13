@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   virtualisation.docker = {
@@ -15,6 +15,7 @@
     };
   };
 
-  virtualisation.virtualbox.host.enable = true;
+  # enable on x86_64 architectures
+  virtualisation.virtualbox.host.enable = pkgs.stdenv.isx86_64;
   users.extraGroups.vboxusers.members = [ config.machine.username ];
 }
