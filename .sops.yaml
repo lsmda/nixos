@@ -3,25 +3,7 @@ keys:
   - &thornmail age1588vpcs2zagn3mhjrv97t6xvnzc4n7pfykulg4mcwe8h24dres5qq24usf
   - &wardstone age1qgdfyx67sed3rnd2esq8rc534rsvzdcdunyg7ftr786z5jrltc2sxjtewt
 creation_rules:
-  - path_regex: secrets/[^/]+\.(yaml)$
-    key_groups:
-      - age:
-          - *spellbook
-          - *thornmail
-          - *wardstone
-  - path_regex: secrets/wireguard/[^/]+$
-    key_groups:
-      - age:
-          - *spellbook
-          - *thornmail
-          - *wardstone
-  - path_regex: secrets/git/[^/]+$
-    key_groups:
-      - age:
-          - *spellbook
-          - *thornmail
-          - *wardstone
-  - path_regex: secrets/cloudflared/[^/]+$
+  - path_regex: secrets/*
     key_groups:
       - age:
           - *spellbook
