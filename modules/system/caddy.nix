@@ -46,12 +46,12 @@ in
       "http://localhost:5001".extraConfig = ''
         bind 127.0.0.1 [::1]
 
-        @resume {
-          header X-Forwarded-Host resume.lsmda.pm
+        @cv {
+          header X-Forwarded-Host cv.lsmda.pm
         }
 
-        handle @resume {
-          reverse_proxy http://localhost:5000
+        handle @cv {
+          redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
         }
 
         # refuse unknown subdomains
@@ -60,7 +60,7 @@ in
         }
 
         log {
-          output file /var/log/caddy/test.lsmda.pm
+          output file /var/log/caddy/cv.lsmda.pm
         }
       '';
     };
