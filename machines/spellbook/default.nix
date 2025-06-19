@@ -81,6 +81,7 @@ in
 
   home-manager.users.${config.machine.username} = {
     imports = [
+      ../../modules/home/browser.nix
       ../../modules/home/dconf.nix
       ../../modules/home/fastfetch.nix
       ../../modules/home/ghostty.nix
@@ -93,7 +94,8 @@ in
       ../../modules/home/packages.nix
       ../../modules/home/shell.nix
 
-      (import ../../modules/home/git.nix { inherit config; })
+      (import ../../modules/home/codecs.nix { inherit config pkgs; })
+      (import ../../modules/home/git.nix { inherit config pkgs; })
       (import ../../modules/home/nushell.nix { inherit config; })
       (import ../../modules/home/wayland.nix { inherit config lib pkgs; })
     ];

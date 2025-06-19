@@ -5,21 +5,9 @@ let
 
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
-    (brave.override {
-      commandLineArgs = [
-        "--enable-features=VaapiVideoEncoder,VaapiVideoDecoder,CanvasOopRasterization"
-        "--use-gl=desktop"
-        "--enable-gpu-compositing"
-        "--enable-gpu-rasterization"
-        "--enable-native-gpu-memory-buffers"
-        "--disable-features=UseChromeOSDirectVideoDecoder"
-      ];
-    })
     discord
-    firefox
     eog # image viewer
     ffmpegthumbnailer
-    git-credential-manager
     gnome-calculator
     gnome-text-editor
     gnome-tweaks
@@ -28,7 +16,6 @@ let
     gnomeExtensions.just-perfection
     gparted # disk utility
     impression # usb image burner
-    librewolf
     love # lua-based 2d game engine language
     mgba # gameboy emulator
     nautilus # file explorer
@@ -56,8 +43,8 @@ let
     go
     glow # render markdown on the CLI
     gocryptfs
-    jq
-    keychain
+    jq # CLI JSON processor
+    keychain # keys management tool (GPG, SSH)
     lshw
     lua
     neovim

@@ -1,10 +1,14 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   secrets = config.sops.secrets;
 in
 
 {
+  home.packages = with pkgs; [
+    git-credential-manager
+  ];
+
   programs.git = {
     enable = true;
 

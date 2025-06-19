@@ -82,7 +82,7 @@ in
       ../../modules/home/packages.nix
       ../../modules/home/shell.nix
 
-      (import ../../modules/home/git.nix { inherit config; })
+      (import ../../modules/home/git.nix { inherit config pkgs; })
       (import ../../modules/home/nushell.nix { inherit config; })
     ];
 
