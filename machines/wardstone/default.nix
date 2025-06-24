@@ -40,61 +40,63 @@ in
     ../../modules/system/virtualisation.nix
   ];
 
-  system.stateVersion = "25.05";
+  config = {
+    system.stateVersion = "25.05";
 
-  machine.username = "user";
-  machine.hostname = "wardstone";
+    machine.username = "user";
+    machine.hostname = "wardstone";
 
-  # initialize all user groups
-  users.groups = lib.pipe user_groups [
-    (map toAttribute)
-    builtins.listToAttrs
-  ];
-
-  users.users.${config.machine.username} = {
-    home = "/home/${config.machine.username}";
-    uid = 1000;
-    isNormalUser = true;
-    group = "users";
-    shell = pkgs.nushell;
-    hashedPasswordFile = secrets."password".path;
-    extraGroups = user_groups;
-    openssh.authorizedKeys.keys = [
-      keys.frostbite
-      keys.thornmail
-      keys.spellbook
-    ];
-  };
-
-  users.users.soft-serve = {
-    description = "soft-serve service user";
-    isSystemUser = true;
-    group = "soft-serve";
-    shell = pkgs.nushell;
-    hashedPasswordFile = secrets."password".path;
-  };
-
-  home-manager.users.${config.machine.username} = {
-    imports = [
-      ../../modules/home/fastfetch.nix
-      ../../modules/home/gpg.nix
-      ../../modules/home/helix.nix
-      ../../modules/home/packages.nix
-      ../../modules/home/shell.nix
-
-      (import ../../modules/home/git.nix { inherit config pkgs; })
-      (import ../../modules/home/nushell.nix { inherit config; })
+    # initialize all user groups
+    users.groups = lib.pipe user_groups [
+      (map toAttribute)
+      builtins.listToAttrs
     ];
 
-    programs.git.extraConfig = mkForce { };
+    users.users.${config.machine.username} = {
+      home = "/home/${config.machine.username}";
+      uid = 1000;
+      isNormalUser = true;
+      group = "users";
+      shell = pkgs.nushell;
+      hashedPasswordFile = secrets."password".path;
+      extraGroups = user_groups;
+      openssh.authorizedKeys.keys = [
+        keys.frostbite
+        keys.thornmail
+        keys.spellbook
+      ];
+    };
 
-    home.username = config.machine.username;
-    home.homeDirectory = "/home/${config.machine.username}";
+    users.users.soft-serve = {
+      description = "soft-serve service user";
+      isSystemUser = true;
+      group = "soft-serve";
+      shell = pkgs.nushell;
+      hashedPasswordFile = secrets."password".path;
+    };
 
-    home.stateVersion = "25.05";
+    home-manager.users.${config.machine.username} = {
+      imports = [
+        ../../modules/home/fastfetch.nix
+        ../../modules/home/gpg.nix
+        ../../modules/home/helix.nix
+        ../../modules/home/packages.nix
+        ../../modules/home/shell.nix
+
+        (import ../../modules/home/git.nix { inherit config pkgs; })
+        (import ../../modules/home/nushell.nix { inherit config; })
+      ];
+
+      programs.git.extraConfig = mkForce { };
+
+      home.username = config.machine.username;
+      home.homeDirectory = "/home/${config.machine.username}";
+
+      home.stateVersion = "25.05";
+    };
+
+    home-manager.useGlobalPkgs = true;
+    home-manager.useUserPackages = true;
+    home-manager.backupFileExtension = "backup";
   };
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.backupFileExtension = "backup";
 }
