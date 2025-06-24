@@ -33,15 +33,22 @@ in
     ++ (if config.hardware.nvidia.enabled then nvidia else [ ]);
 
   # Set environment variables for hardware acceleration
-  home.sessionVariables = {
-    # Enable NVIDIA hardware video acceleration
-    LIBVA_DRIVER_NAME = "nvidia";
-    VDPAU_DRIVER = "nvidia";
-
-    # FFmpeg hardware acceleration
-    FFMPEG_VAAPI = "1";
-    FFMPEG_VDPAU = "1";
-  };
+  home.sessionVariables =
+    {
+      # FFmpeg hardware acceleration
+      FFMPEG_VAAPI = "1";
+      FFMPEG_VDPAU = "1";
+    }
+    // (
+      if config.hardware.nvidia.enabled then
+        {
+          # Enable NVIDIA hardware video acceleration
+          LIBVA_DRIVER_NAME = "nvidia";
+          VDPAU_DRIVER = "nvidia";
+        }
+      else
+        { }
+    );
 
   # XDG MIME associations for video files
   xdg.mimeApps = {
