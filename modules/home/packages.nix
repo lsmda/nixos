@@ -32,6 +32,7 @@ let
   # packages that run on terminal interfaces (headless systems)
   headless = with pkgs; [
     age
+    caddy
     cargo
     cloudflared
     cryfs
