@@ -1,6 +1,7 @@
 { config, ... }:
 
 let
+  domain = "apollo.pm";
   secrets = config.sops.secrets;
 in
 
@@ -16,10 +17,10 @@ in
       "66b7e9d1-4801-4a7b-9422-62096ff78b25" = {
         credentialsFile = "${secrets."cloudflared/apollo.pm".path}";
         ingress = {
-          "apollo.pm" = "http://localhost:5001";
-          "*.apollo.pm" = "http://localhost:5001";
+          "${domain}" = "http://localhost";
+          "*.${domain}" = "http://localhost";
         };
-        originRequest.httpHostHeader = "localhost";
+        originRequest.originServerName = "${domain}";
         default = "http_status:404";
       };
     };
@@ -27,7 +28,7 @@ in
 
   services.caddy = {
     enable = true;
-    virtualHosts."http://localhost:5000".extraConfig = ''
+    virtualHosts."http://${domain}".extraConfig = ''
       bind 127.0.0.1 [::1]
 
       root * /var/www/lsmda.pm
@@ -35,29 +36,24 @@ in
       file_server
 
       log {
-        output file /var/log/caddy/lsmda.pm
+        output file /var/log/caddy/apollo.pm.log
         format json {
           time_format iso8601
         }
       }
     '';
-    virtualHosts."http://localhost:5001".extraConfig = ''
-        bind 127.0.0.1 [::1]
+    virtualHosts."http://*.${domain}".extraConfig = ''
+      bind 127.0.0.1 [::1]
 
-        @cv header X-Forwarded-Host cv.apollo.pm
-        handle @cv {
-          redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
-        }
+      @cv host cv.apollo.pm
+      handle @cv {
+        redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
+      }
 
-        @root header X-Forwarded-Host apollo.pm
-      	handle @root {
-      		reverse_proxy http://localhost:5000
-      	}
-
-        # refuse unknown domains
-        handle {
-          respond 404
-        }
+      # refuse unknown domains
+      handle {
+        respond 404
+      }
     '';
   };
 }
