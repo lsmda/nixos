@@ -20,7 +20,6 @@ in
           "${domain}" = "http://localhost";
           "*.${domain}" = "http://localhost";
         };
-        originRequest.originServerName = "${domain}";
         default = "http_status:404";
       };
     };
