@@ -13,11 +13,11 @@ in
   services.cloudflared = {
     enable = true;
     tunnels = {
-      "a12fef7a-4df6-40c8-beb7-5f2bca981024" = {
-        credentialsFile = "${secrets."cloudflared/lsmda.pm".path}";
+      "66b7e9d1-4801-4a7b-9422-62096ff78b25" = {
+        credentialsFile = "${secrets."cloudflared/apollo.pm".path}";
         ingress = {
-          "lsmda.pm" = "http://localhost:5000";
-          "*.lsmda.pm" = "http://localhost:5001";
+          "apollo.pm" = "http://localhost:5001";
+          "*.apollo.pm" = "http://localhost:5001";
         };
         originRequest.httpHostHeader = "localhost";
         default = "http_status:404";
@@ -27,42 +27,37 @@ in
 
   services.caddy = {
     enable = true;
-    virtualHosts = {
-      "http://localhost:80".extraConfig = ''
-        bind 127.0.0.1 [::1]
-        respond "{ \"status\": \"OK\" }"
-      '';
-      "http://localhost:5000".extraConfig = ''
-        bind 127.0.0.1 [::1]
+    virtualHosts."http://localhost:5000".extraConfig = ''
+      bind 127.0.0.1 [::1]
 
-        root * /var/www/lsmda.pm
-        encode gzip
-        file_server
+      root * /var/www/lsmda.pm
+      encode gzip
+      file_server
 
-        log {
-          output file /var/log/caddy/lsmda.pm
+      log {
+        output file /var/log/caddy/lsmda.pm
+        format json {
+          time_format iso8601
         }
-      '';
-      "http://localhost:5001".extraConfig = ''
+      }
+    '';
+    virtualHosts."http://localhost:5001".extraConfig = ''
         bind 127.0.0.1 [::1]
 
-        @cv {
-          header X-Forwarded-Host cv.lsmda.pm
-        }
-
+        @cv header X-Forwarded-Host cv.apollo.pm
         handle @cv {
           redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
         }
 
-        # refuse unknown subdomains
+        @root header X-Forwarded-Host apollo.pm
+      	handle @root {
+      		reverse_proxy http://localhost:5000
+      	}
+
+        # refuse unknown domains
         handle {
           respond 404
         }
-
-        log {
-          output file /var/log/caddy/cv.lsmda.pm
-        }
-      '';
-    };
+    '';
   };
 }
