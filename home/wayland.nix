@@ -85,7 +85,7 @@ in
       Requisite = "graphical-session.target";
     };
     Service = {
-      ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${../../assets/background/00.jpg}";
+      ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${../assets/background/00.jpg}";
       Restart = "on-failure";
     };
     Install.WantedBy = [ "niri.service" ];
@@ -353,28 +353,28 @@ in
       }
 
       #lock {
-        background-image: image(url("${../../assets/icons/lock.png}"));
+        background-image: image(url("${../assets/icons/lock.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100px;
       }
 
       #logout {
-        background-image: image(url("${../../assets/icons/logout.png}"));
+        background-image: image(url("${../assets/icons/logout.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110px;
       }
 
       #reboot {
-        background-image: image(url("${../../assets/icons/reboot.png}"));
+        background-image: image(url("${../assets/icons/reboot.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110px;
       }
 
       #shutdown {
-        background-image: image(url("${../../assets/icons/shutdown.png}"));
+        background-image: image(url("${../assets/icons/shutdown.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110px;
