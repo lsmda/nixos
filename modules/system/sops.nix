@@ -39,7 +39,6 @@ in
   sops.secrets."uk_14" = from_binary ../../secrets/wireguard/uk_14.conf;
   sops.secrets."uk_24" = from_binary ../../secrets/wireguard/uk_24.conf;
 
-  sops.secrets."cloudflared/cert" = from_binary ../../secrets/cloudflared/cert.pem;
-  sops.secrets."cloudflared/apollo.pm" = from_binary ../../secrets/cloudflared/apollo.pm;
-  sops.secrets."cloudflared/cf_token" = from_binary ../../secrets/cloudflared/cf_token;
+  sops.secrets."cloudflared/rpi-4" = from_binary ../../secrets/cloudflared/rpi-4;
+  sops.secrets."cloudflared/cert.pem" = from_binary ../../secrets/cloudflared/cert.pem;
 }

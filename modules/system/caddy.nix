@@ -14,8 +14,8 @@ in
   services.cloudflared = {
     enable = true;
     tunnels = {
-      "66b7e9d1-4801-4a7b-9422-62096ff78b25" = {
-        credentialsFile = "${secrets."cloudflared/apollo.pm".path}";
+      "rpi-4" = {
+        credentialsFile = "${secrets."cloudflared/rpi-4".path}";
         ingress = {
           "${domain}" = "http://localhost";
           "*.${domain}" = "http://localhost";
