@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../modules/utils) toAttribute;
+  inherit (import ../../utils) toAttribute;
 
   secrets = config.sops.secrets;
 
@@ -25,20 +25,20 @@ in
 
     ./hardware.nix
 
-    ../../modules/system/bluetooth.nix
-    ../../modules/system/fonts.nix
-    ../../modules/system/keyd.nix
-    ../../modules/system/locale.nix
-    ../../modules/system/networking.nix
-    ../../modules/system/nfs-client.nix
-    ../../modules/system/niri.nix
-    ../../modules/system/openssh.nix
-    ../../modules/system/pipewire.nix
-    ../../modules/system/postgresql.nix
-    ../../modules/system/settings.nix
-    ../../modules/system/sops.nix
-    ../../modules/system/virtualisation.nix
-    ../../modules/system/xserver.nix
+    ../../system/bluetooth.nix
+    ../../system/fonts.nix
+    ../../system/keyd.nix
+    ../../system/locale.nix
+    ../../system/networking.nix
+    ../../system/nfs-client.nix
+    ../../system/niri.nix
+    ../../system/openssh.nix
+    ../../system/pipewire.nix
+    ../../system/postgresql.nix
+    ../../system/settings.nix
+    ../../system/sops.nix
+    ../../system/virtualisation.nix
+    ../../system/xserver.nix
   ];
 
   config = {
@@ -79,23 +79,23 @@ in
 
     home-manager.users.${config.machine.username} = {
       imports = [
-        ../../modules/home/browser.nix
-        ../../modules/home/dconf.nix
-        ../../modules/home/fastfetch.nix
-        ../../modules/home/ghostty.nix
-        ../../modules/home/gpg.nix
-        ../../modules/home/gtk.nix
-        ../../modules/home/helix.nix
-        ../../modules/home/keybinds.nix
-        ../../modules/home/librewolf.nix
-        ../../modules/home/mpv.nix
-        ../../modules/home/packages.nix
-        ../../modules/home/shell.nix
+        ../../home/browser.nix
+        ../../home/dconf.nix
+        ../../home/fastfetch.nix
+        ../../home/ghostty.nix
+        ../../home/gpg.nix
+        ../../home/gtk.nix
+        ../../home/helix.nix
+        ../../home/keybinds.nix
+        ../../home/librewolf.nix
+        ../../home/mpv.nix
+        ../../home/packages.nix
+        ../../home/shell.nix
 
-        (import ../../modules/home/codecs.nix { inherit config pkgs; })
-        (import ../../modules/home/git.nix { inherit config pkgs; })
-        (import ../../modules/home/nushell.nix { inherit config; })
-        (import ../../modules/home/wayland.nix { inherit config lib pkgs; })
+        (import ../../home/codecs.nix { inherit config pkgs; })
+        (import ../../home/git.nix { inherit config pkgs; })
+        (import ../../home/nushell.nix { inherit config; })
+        (import ../../home/wayland.nix { inherit config lib pkgs; })
       ];
 
       home.stateVersion = "25.05";

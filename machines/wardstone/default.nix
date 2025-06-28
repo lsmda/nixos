@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../modules/utils) keys toAttribute;
+  inherit (import ../../utils) keys toAttribute;
   inherit (lib) mkForce;
 
   user_groups = [
@@ -26,18 +26,18 @@ in
 
     ./hardware.nix
 
-    ../../modules/system/caddy.nix
-    ../../modules/system/fonts.nix
-    ../../modules/system/keyd.nix
-    ../../modules/system/locale.nix
-    ../../modules/system/networking.nix
-    ../../modules/system/nfs-server.nix
-    ../../modules/system/openssh.nix
-    ../../modules/system/samba.nix
-    ../../modules/system/settings.nix
-    ../../modules/system/soft-serve.nix
-    ../../modules/system/sops.nix
-    ../../modules/system/virtualisation.nix
+    ../../system/caddy.nix
+    ../../system/fonts.nix
+    ../../system/keyd.nix
+    ../../system/locale.nix
+    ../../system/networking.nix
+    ../../system/nfs-server.nix
+    ../../system/openssh.nix
+    ../../system/samba.nix
+    ../../system/settings.nix
+    ../../system/soft-serve.nix
+    ../../system/sops.nix
+    ../../system/virtualisation.nix
   ];
 
   config = {
@@ -77,14 +77,14 @@ in
 
     home-manager.users.${config.machine.username} = {
       imports = [
-        ../../modules/home/fastfetch.nix
-        ../../modules/home/gpg.nix
-        ../../modules/home/helix.nix
-        ../../modules/home/packages.nix
-        ../../modules/home/shell.nix
+        ../../home/fastfetch.nix
+        ../../home/gpg.nix
+        ../../home/helix.nix
+        ../../home/packages.nix
+        ../../home/shell.nix
 
-        (import ../../modules/home/git.nix { inherit config pkgs; })
-        (import ../../modules/home/nushell.nix { inherit config; })
+        (import ../../home/git.nix { inherit config pkgs; })
+        (import ../../home/nushell.nix { inherit config; })
       ];
 
       programs.git.extraConfig = mkForce { };

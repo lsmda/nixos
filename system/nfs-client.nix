@@ -19,4 +19,9 @@ in
 {
   fileSystems."/mnt/files" = share "/files";
   fileSystems."/mnt/media" = share "/media";
+
+  systemd.tmpfiles.rules = [
+    "d /mnt/files 0644 ${config.machine.username} root"
+    "d /mnt/media 0644 ${config.machine.username} root"
+  ];
 }

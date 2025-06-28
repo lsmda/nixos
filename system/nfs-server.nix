@@ -20,4 +20,9 @@ in
       /srv/nfs/media   ${config.lan.network}/24(rw,no_subtree_check,sync)
     '';
   };
+
+  systemd.tmpfiles.rules = [
+    "d /srv/nfs/files 0644 ${config.machine.username} root"
+    "d /srv/nfs/media 0644 ${config.machine.username} root"
+  ];
 }
