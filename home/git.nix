@@ -40,13 +40,5 @@ in
 
       st = "status";
     };
-
-    includes = [
-      { path = toString secrets."git/main".path; }
-      {
-        condition = "hasconfig:remote.*.url:https://gitlab.com/*/digital/**";
-        path = toString secrets."git/work".path;
-      }
-    ];
   };
 }
