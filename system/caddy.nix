@@ -6,11 +6,6 @@ let
 in
 
 {
-  networking.firewall.allowedTCPPorts = [
-    80
-    443
-  ];
-
   services.cloudflared = {
     enable = true;
     tunnels = {
@@ -46,7 +41,7 @@ in
       file_server
 
       log {
-        output file /var/log/caddy/apollo.pm.log
+        output file /var/log/caddy/${domain}.log
         format json {
           time_format iso8601
         }
