@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   domain = "apollo.pm";
@@ -17,9 +17,10 @@ in
       "rpi-4" = {
         credentialsFile = "${secrets."cloudflared/rpi-4".path}";
         ingress = {
-          "${domain}" = "http://localhost";
-          "*.${domain}" = "http://localhost";
+          "${domain}" = "https://localhost";
+          "*.${domain}" = "https://localhost";
         };
+        originRequest.originServerName = "${domain}";
         default = "http_status:404";
       };
     };
@@ -27,9 +28,19 @@ in
 
   services.caddy = {
     enable = true;
-    virtualHosts."http://${domain}".extraConfig = ''
-      bind 127.0.0.1 [::1]
-
+    environmentFile = secrets."cloudflared/env".path;
+    package = pkgs.caddy.withPlugins {
+      plugins = [
+        "github.com/caddy-dns/cloudflare@v0.2.1"
+        "github.com/caddy-dns/acmedns@v0.4.1"
+      ];
+      hash = "sha256-S4q2svO89Cma/amoe57Xl/GVwY/FvAWJNpJw1UzeYk0=";
+    };
+    globalConfig = ''
+      default_bind 127.0.0.1 [::1]
+      acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+    '';
+    virtualHosts."https://${domain}".extraConfig = ''
       root * /var/www/lsmda.pm
       encode gzip
       file_server
@@ -41,10 +52,8 @@ in
         }
       }
     '';
-    virtualHosts."http://*.${domain}".extraConfig = ''
-      bind 127.0.0.1 [::1]
-
-      @cv host cv.apollo.pm
+    virtualHosts."https://*.${domain}".extraConfig = ''
+      @cv host cv.${domain}
       handle @cv {
         redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
       }
