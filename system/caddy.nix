@@ -12,8 +12,8 @@ in
       "rpi-4" = {
         credentialsFile = "${secrets."cloudflared/rpi-4".path}";
         ingress = {
-          "${domain}" = "https://localhost";
-          "*.${domain}" = "https://localhost";
+          "${domain}" = "https://127.0.0.1";
+          "*.${domain}" = "https://127.0.0.1";
         };
         originRequest.originServerName = "${domain}";
         default = "http_status:404";
