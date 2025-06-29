@@ -86,7 +86,7 @@ in
         (import ../../home/nushell.nix { inherit config; })
       ];
 
-      programs.git.extraConfig = mkForce { };
+      programs.git.extraConfig.credential = mkForce { };
 
       home.username = config.machine.username;
       home.homeDirectory = "/home/${config.machine.username}";
