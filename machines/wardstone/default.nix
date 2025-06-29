@@ -33,6 +33,7 @@ in
     ../../system/networking.nix
     ../../system/nfs-server.nix
     ../../system/openssh.nix
+    ../../system/postgresql.nix
     ../../system/samba.nix
     ../../system/settings.nix
     ../../system/soft-serve.nix
@@ -71,8 +72,6 @@ in
       description = "soft-serve service user";
       isSystemUser = true;
       group = "soft-serve";
-      shell = pkgs.nushell;
-      hashedPasswordFile = secrets."password".path;
     };
 
     home-manager.users.${config.machine.username} = {
