@@ -27,10 +27,6 @@ in
   sops.secrets."deepseek" = from_yaml ../secrets/system.yaml;
   sops.secrets."password" = from_yaml ../secrets/system.yaml;
 
-  # git credentials
-  sops.secrets."git/main" = from_binary ../secrets/git/main.conf;
-  sops.secrets."git/work" = from_binary ../secrets/git/work.conf;
-
   # wireguard configuration files
   sops.secrets."es_62" = from_binary ../secrets/wireguard/es_62.conf;
   sops.secrets."es_65" = from_binary ../secrets/wireguard/es_65.conf;

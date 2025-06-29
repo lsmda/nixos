@@ -13,6 +13,8 @@ in
     enable = true;
 
     extraConfig = {
+      user.name = "lsmda";
+      user.email = "contact@lsmda.pm";
       core.commentChar = ";";
       credential.credentialStore = "secretservice";
       credential.helper = "manager";
