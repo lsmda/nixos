@@ -40,7 +40,7 @@ in
       default_bind 127.0.0.1 [::1]
       acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
     '';
-    virtualHosts."https://${domain}".extraConfig = ''
+    virtualHosts."${domain}".extraConfig = ''
       root * /var/www/lsmda.pm
       encode gzip
       file_server
@@ -52,7 +52,7 @@ in
         }
       }
     '';
-    virtualHosts."https://*.${domain}".extraConfig = ''
+    virtualHosts."*.${domain}".extraConfig = ''
       @cv host cv.${domain}
       handle @cv {
         redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
