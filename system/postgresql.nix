@@ -16,15 +16,5 @@ in
 
   services.postgresql = {
     enable = true;
-    ensureDatabases = [ serviceUser ];
-    ensureUsers = [
-      {
-        name = serviceUser;
-        ensureDBOwnership = true;
-        ensureClauses.superuser = true;
-        ensureClauses.createrole = true;
-        ensureClauses.createdb = true;
-      }
-    ];
   };
 }
