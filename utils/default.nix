@@ -23,10 +23,7 @@ in
     wardstone = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOtrmraahn6VySFIkRReIY4KksV76zIja4SLP/H1/PBX contact@lsmda.pm";
   };
   usersGroups = [
-    "docker"
     "networkmanager"
-    "postgresql"
-    "soft-serve"
     "wheel"
   ];
 }
