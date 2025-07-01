@@ -12,7 +12,8 @@ let
   fromYaml = path: sopsFile path // { format = "yaml"; };
   fromBinary = path: sopsFile path // { format = "binary"; };
 
-  withOwner = owner: set: set // { owner = owner; };
+  groupExists = group: config.users.${group} or false;
+  withOwner = owner: set: set // { owner = (if groupExists owner then owner else "root"); };
 in
 
 # generate age key:
