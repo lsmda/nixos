@@ -6,16 +6,8 @@
 }:
 
 let
-  inherit (import ../../utils) toAttribute;
-
+  inherit (import ../../utils { inherit lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
-
-  user_groups = [
-    "docker"
-    "keyd"
-    "networkmanager"
-    "wheel"
-  ];
 in
 
 {
@@ -67,10 +59,7 @@ in
     networking.wg-quick.interfaces.uk_24.autostart = false;
     networking.wg-quick.interfaces.uk_24.configFile = secrets.uk_24.path;
 
-    users.groups = lib.pipe user_groups [
-      (map toAttribute)
-      builtins.listToAttrs
-    ];
+    users.groups = createUsersGroups usersGroups;
 
     users.users.${config.machine.username} = {
       home = "/home/${config.machine.username}";
@@ -79,7 +68,7 @@ in
       group = "users";
       shell = pkgs.nushell;
       hashedPasswordFile = secrets."password".path;
-      extraGroups = user_groups;
+      extraGroups = usersGroups;
     };
 
     home-manager.users.${config.machine.username} = {

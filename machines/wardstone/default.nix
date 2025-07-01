@@ -6,16 +6,8 @@
 }:
 
 let
-  inherit (import ../../utils) keys toAttribute;
+  inherit (import ../../utils { inherit lib; }) keys createUsersGroups usersGroups;
   inherit (lib) mkForce;
-
-  user_groups = [
-    "docker"
-    "networkmanager"
-    "soft-serve"
-    "wheel"
-  ];
-
   secrets = config.sops.secrets;
 in
 
@@ -47,11 +39,7 @@ in
     machine.username = "user";
     machine.hostname = "wardstone";
 
-    # initialize all user groups
-    users.groups = lib.pipe user_groups [
-      (map toAttribute)
-      builtins.listToAttrs
-    ];
+    users.groups = createUsersGroups usersGroups;
 
     users.users.${config.machine.username} = {
       home = "/home/${config.machine.username}";
@@ -60,18 +48,12 @@ in
       group = "users";
       shell = pkgs.nushell;
       hashedPasswordFile = secrets."password".path;
-      extraGroups = user_groups;
+      extraGroups = usersGroups;
       openssh.authorizedKeys.keys = [
         keys.frostbite
         keys.thornmail
         keys.spellbook
       ];
-    };
-
-    users.users.soft-serve = {
-      description = "soft-serve service user";
-      isSystemUser = true;
-      group = "soft-serve";
     };
 
     home-manager.users.${config.machine.username} = {
