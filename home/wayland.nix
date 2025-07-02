@@ -36,11 +36,6 @@ in
     wtype
   ];
 
-  home.file.".config/niri/config.kdl".text = lib.strings.concatStringsSep "\n" [
-    (import ./niri/shared.nix { inherit pkgs; })
-    (import ./niri/${hostname}.nix)
-  ];
-
   home.file.".config/fuzzel/fuzzel.ini" = {
     text = ''
       dpi-aware=no

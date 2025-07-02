@@ -77,6 +77,7 @@ in
         ../../home/helix.nix
         ../../home/keybinds.nix
         ../../home/mpv.nix
+        ../../home/niri.nix
         ../../home/packages.nix
         ../../home/shell.nix
 
