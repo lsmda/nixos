@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 let
   inherit (import ../utils { inherit lib; }) createUsersGroups;
@@ -16,5 +16,17 @@ in
 
   services.postgresql = {
     enable = true;
+    ensureUsers = [
+      {
+        name = config.machine.username;
+        ensureClauses = {
+          superuser = true;
+          replication = true;
+          createrole = true;
+          createdb = true;
+          bypassrls = true;
+        };
+      }
+    ];
   };
 }
