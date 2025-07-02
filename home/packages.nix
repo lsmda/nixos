@@ -20,6 +20,7 @@ let
     mgba # gameboy emulator
     nautilus # file explorer
     obsidian
+    pavucontrol
     qbittorrent
     spotify
     __vscode
