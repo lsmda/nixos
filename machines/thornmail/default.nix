@@ -85,6 +85,7 @@ in
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix
+        ../../home/zed.nix
 
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })

@@ -70,6 +70,7 @@ let
     unzip
     wget
     xclip
+    zed-editor-fhs
     zip
   ];
 in
