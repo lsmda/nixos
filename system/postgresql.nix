@@ -16,9 +16,11 @@ in
 
   services.postgresql = {
     enable = true;
+    ensureDatabases = [ config.machine.username ];
     ensureUsers = [
       {
         name = config.machine.username;
+        ensureDBOwnership = true;
         ensureClauses = {
           superuser = true;
           replication = true;
