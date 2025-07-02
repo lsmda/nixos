@@ -17,6 +17,7 @@
 
     [main]
     capslock = esc
+    esc = capslock
 
     [alt]
     q = home 
