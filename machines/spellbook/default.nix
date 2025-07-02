@@ -77,12 +77,12 @@ in
         ../../home/helix.nix
         ../../home/keybinds.nix
         ../../home/mpv.nix
-        ../../home/niri.nix
         ../../home/packages.nix
         ../../home/shell.nix
 
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
+        (import ../../home/niri.nix { inherit config lib pkgs; })
         (import ../../home/nushell.nix { inherit config; })
         (import ../../home/wayland.nix { inherit config lib pkgs; })
       ];

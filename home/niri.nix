@@ -6,13 +6,6 @@
 }:
 
 let
-  hostname = config.machine.hostname;
-
-  machine = {
-    spellbook = spellbook;
-    thornmail = thornmail;
-  };
-
   common = ''
     spawn-at-startup "${pkgs.waybar}/bin/waybar"
 
@@ -183,62 +176,63 @@ let
     }
   '';
 
-  spellbook = ''
-    input {
-      keyboard {
-        xkb {
-          layout "pt"
+  custom = {
+    spellbook = ''
+      input {
+        keyboard {
+          xkb {
+            layout "pt"
+          }
+          repeat-delay 400
+          repeat-rate 40
         }
-        repeat-delay 400
-        repeat-rate 40
-      }
 
-      touchpad {
-        tap
-        dwt
-        natural-scroll
-        accel-profile "adaptive"
-        accel-speed -0.1
-        scroll-method "two-finger"
-      }
-
-      disable-power-key-handling
-      warp-mouse-to-focus
-    }
-
-    output "eDP-1" {
-      scale 1.5
-    }
-  '';
-
-  thornmail = ''
-    input {
-      keyboard {
-        xkb {
-          layout "us"
+        touchpad {
+          tap
+          dwt
+          natural-scroll
+          accel-profile "adaptive"
+          accel-speed -0.1
+          scroll-method "two-finger"
         }
-        repeat-delay 400
-        repeat-rate 40
+
+        disable-power-key-handling
+        warp-mouse-to-focus
       }
 
-      mouse {
-        accel-profile "adaptive"
-        accel-speed -0.1
+      output "eDP-1" {
+        scale 1.5
+      }
+    '';
+    thornmail = ''
+      input {
+        keyboard {
+          xkb {
+            layout "us"
+          }
+          repeat-delay 400
+          repeat-rate 40
+        }
+
+        mouse {
+          accel-profile "adaptive"
+          accel-speed -0.1
+        }
+
+        disable-power-key-handling
+        warp-mouse-to-focus
       }
 
-      disable-power-key-handling
-      warp-mouse-to-focus
-    }
-
-    output "DP-3" {
-      mode "1920x1080@60.000"
-    }
-  '';
+      output "DP-3" {
+        mode "1920x1080@60.000"
+      }
+    '';
+  };
 in
 
 {
-  home.file.".config/niri/config.kdl".text = lib.strings.concatStringsSep "\n" [
+  home.file.".config/niri/config.kdl".text = lib.strings.concatStringsSep "\n\n" [
     common
-    machine.${hostname}
+    custom.${config.machine.hostname}
   ];
 }
