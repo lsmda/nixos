@@ -27,6 +27,7 @@ in
     ../../system/nvidia.nix
     ../../system/openssh.nix
     ../../system/pipewire.nix
+    ../../system/postgresql.nix
     ../../system/settings.nix
     ../../system/sops.nix
     ../../system/virtualisation.nix
