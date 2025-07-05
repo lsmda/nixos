@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  domain = "apollo.pm";
+  domain = "lsmda.pm";
   secrets = config.sops.secrets;
 in
 
@@ -36,7 +36,7 @@ in
       acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
     '';
     virtualHosts."${domain}".extraConfig = ''
-      root * /var/www/lsmda.pm
+      root * /var/www/${domain}
       encode gzip
       file_server
 
