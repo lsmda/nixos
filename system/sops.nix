@@ -11,9 +11,6 @@ let
 
   fromYaml = path: sopsFile path // { format = "yaml"; };
   fromBinary = path: sopsFile path // { format = "binary"; };
-
-  groupExists = group: config.users.${group} or false;
-  withOwner = owner: set: set // { owner = (if groupExists owner then owner else "root"); };
 in
 
 # generate age key:
@@ -41,8 +38,4 @@ in
   # cloudflare tunnel
   sops.secrets."cloudflared/env" = fromBinary ../secrets/cloudflared/env;
   sops.secrets."cloudflared/rpi-4" = fromBinary ../secrets/cloudflared/rpi-4;
-  sops.secrets."cloudflared/cert.pem" = fromBinary ../secrets/cloudflared/cert.pem;
-
-  sops.secrets."apollo.pm/key.pem" = withOwner "caddy" (fromBinary ../secrets/apollo.pm/key.pem);
-  sops.secrets."apollo.pm/cert.pem" = withOwner "caddy" (fromBinary ../secrets/apollo.pm/cert.pem);
 }
