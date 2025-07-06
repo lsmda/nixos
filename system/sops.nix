@@ -38,7 +38,7 @@ in
   sops.secrets."uk_24" = fromBinary ../secrets/wireguard/uk_24.conf;
 
   # cloudflare tunnel
-  sops.secrets."cloudflare/rpi-4" = fromBinary ../secrets/cloudflared/rpi-4;
+  sops.secrets."cloudflare/rpi-4" = fromBinary ../secrets/cloudflare/rpi-4;
 
   # lsmda.pm domain
   sops.secrets."lsmda.pm/key.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda.pm/key.pem);

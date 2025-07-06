@@ -10,7 +10,7 @@ in
     enable = true;
     tunnels = {
       "rpi-4" = {
-        credentialsFile = "${secrets."cloudflared/rpi-4".path}";
+        credentialsFile = "${secrets."cloudflare/rpi-4".path}";
         ingress = {
           "${domain}" = "https://127.0.0.1";
           "*.${domain}" = "https://127.0.0.1";
@@ -23,7 +23,6 @@ in
 
   services.caddy = {
     enable = true;
-    environmentFile = secrets."cloudflared/env".path;
     globalConfig = ''
       default_bind 127.0.0.1 [::1]
     '';
