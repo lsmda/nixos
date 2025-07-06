@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   domain = "lsmda.pm";
@@ -24,21 +24,15 @@ in
   services.caddy = {
     enable = true;
     environmentFile = secrets."cloudflared/env".path;
-    package = pkgs.caddy.withPlugins {
-      plugins = [
-        "github.com/caddy-dns/cloudflare@v0.2.1"
-        "github.com/caddy-dns/acmedns@v0.4.1"
-      ];
-      hash = "sha256-S4q2svO89Cma/amoe57Xl/GVwY/FvAWJNpJw1UzeYk0=";
-    };
     globalConfig = ''
       default_bind 127.0.0.1 [::1]
-      acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
     '';
     virtualHosts."${domain}".extraConfig = ''
       root * /var/www/${domain}
       encode gzip
       file_server
+
+      tls ${secrets."lsmda.pm/cert.pem".path} ${secrets."lsmda.pm/key.pem".path}
 
       log {
         output file /var/log/caddy/${domain}.log
@@ -48,6 +42,8 @@ in
       }
     '';
     virtualHosts."*.${domain}".extraConfig = ''
+      tls ${secrets."lsmda.pm/cert.pem".path} ${secrets."lsmda.pm/key.pem".path}
+
       @cv host cv.${domain}
       handle @cv {
         redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302

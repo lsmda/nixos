@@ -33,13 +33,7 @@ let
   # packages that run on terminal interfaces (headless systems)
   headless = with pkgs; [
     age
-    (pkgs.caddy.withPlugins {
-      plugins = [
-        "github.com/caddy-dns/cloudflare@v0.2.1"
-        "github.com/caddy-dns/acmedns@v0.4.1"
-      ];
-      hash = "sha256-S4q2svO89Cma/amoe57Xl/GVwY/FvAWJNpJw1UzeYk0=";
-    })
+    caddy
     cargo
     cloudflared
     cryfs

@@ -11,6 +11,8 @@ let
 
   fromYaml = path: sopsFile path // { format = "yaml"; };
   fromBinary = path: sopsFile path // { format = "binary"; };
+
+  withOwner = user: set: set // { owner = user; };
 in
 
 # generate age key:
@@ -36,6 +38,9 @@ in
   sops.secrets."uk_24" = fromBinary ../secrets/wireguard/uk_24.conf;
 
   # cloudflare tunnel
-  sops.secrets."cloudflared/env" = fromBinary ../secrets/cloudflared/env;
-  sops.secrets."cloudflared/rpi-4" = fromBinary ../secrets/cloudflared/rpi-4;
+  sops.secrets."cloudflare/rpi-4" = fromBinary ../secrets/cloudflared/rpi-4;
+
+  # lsmda.pm domain
+  sops.secrets."lsmda.pm/key.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda.pm/key.pem);
+  sops.secrets."lsmda.pm/cert.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda.pm/cert.pem);
 }
