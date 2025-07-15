@@ -22,7 +22,7 @@ in
   };
 
   systemd.tmpfiles.rules = [
-    "d /srv/nfs/files 0644 ${config.machine.username} root"
-    "d /srv/nfs/media 0644 ${config.machine.username} root"
+    "d /srv/nfs/files 0755 ${config.machine.username} root"
+    "d /srv/nfs/media 0755 ${config.machine.username} root"
   ];
 }

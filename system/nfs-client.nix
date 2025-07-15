@@ -21,7 +21,7 @@ in
   fileSystems."/mnt/media" = share "/media";
 
   systemd.tmpfiles.rules = [
-    "d /mnt/files 0644 ${config.machine.username} root"
-    "d /mnt/media 0644 ${config.machine.username} root"
+    "d /mnt/files 0755 ${config.machine.username} root"
+    "d /mnt/media 0755 ${config.machine.username} root"
   ];
 }
