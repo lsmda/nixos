@@ -23,7 +23,6 @@ in
     ../../system/locale.nix
     ../../system/networking.nix
     ../../system/nfs-client.nix
-    ../../system/niri.nix
     ../../system/openssh.nix
     ../../system/pipewire.nix
     ../../system/postgresql.nix
@@ -83,9 +82,7 @@ in
 
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
-        (import ../../home/niri.nix { inherit config lib pkgs; })
         (import ../../home/nushell.nix { inherit config; })
-        (import ../../home/wayland.nix { inherit config lib pkgs; })
       ];
 
       home.stateVersion = "25.05";
