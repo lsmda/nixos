@@ -44,7 +44,7 @@ in
       $env.PROMPT_COMMAND_RIGHT = ""
 
       $env.EDITOR = "hx"
-      $env.OPENAI_API_KEY = (open ${secrets."deepseek".path})
+      $env.DEEPSEEK_API_KEY = (open ${secrets."deepseek".path})
 
       $env.config.show_banner = false # disable welcome message
       $env.config.datetime_format = {}
