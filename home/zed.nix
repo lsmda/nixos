@@ -1,12 +1,16 @@
 {
   programs.zed-editor = {
     enable = true;
-    extensions = [ "base16" ];
+    extensions = [
+      "base16"
+      "angular"
+      "live-server"
+    ];
     userKeymaps = [
       {
         "bindings" = {
-          "alt-h" = "pane::GoBack";
-          "alt-l" = "pane::GoForward";
+          "alt-left" = "pane::GoBack";
+          "alt-right" = "pane::GoForward";
           "alt-w" = "workspace::ToggleBottomDock";
           "ctrl-e" = "workspace::ToggleRightDock";
           "ctrl-shift-e" = "project_panel::Open";
@@ -27,8 +31,8 @@
       "buffer_font_size" = 18;
       "theme" = {
         "mode" = "system";
-        "light" = "One Light";
-        "dark" = "Base16 Gruvbox Material Dark; Hard";
+        "light" = "Base16 Gruvbox Material Light, Soft";
+        "dark" = "Base16 Gruvbox Material Dark, Hard";
       };
       "base_keymap" = "VSCode";
       "cursor_shape" = "block";
