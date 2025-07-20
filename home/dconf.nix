@@ -1,5 +1,9 @@
 { lib, ... }:
 
+let
+  background = toString ../assets/background/00.jpg;
+in
+
 # use `dconf watch /` to track state changes, then set them here.
 
 {
@@ -55,7 +59,13 @@
 
     # appearence
     "org/gnome/desktop/background" = {
+      picture-uri = background;
+      picture-uri-dark = background;
       picture-options = "spanned";
+    };
+
+    "org/gnome/desktop/screensaver" = {
+      picture-uri = background;
     };
 
     "org/gnome/nautilus/icon-view" = {
@@ -83,7 +93,7 @@
     "org/gnome/desktop/interface" = {
       font-antialiasing = "rgba";
       font-hinting = "full";
-      text-scaling-factor = 1;
+      text-scaling-factor = 0.8;
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -103,7 +113,7 @@
       theme = true;
 
       # visibility
-      panel = false;
+      panel = true;
       panel-in-overview = true;
       activities-button = false;
       clock-menu = true;
