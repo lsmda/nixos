@@ -52,6 +52,7 @@ let
     neovim
     nodejs
     nodePackages.pnpm
+    nodePackages.yarn
     pciutils # lspci, etc.
     python3
     ripgrep
@@ -64,7 +65,6 @@ let
     unzip
     wget
     xclip
-    zed-editor-fhs
     zip
   ];
 in
