@@ -2,9 +2,10 @@
   programs.zed-editor = {
     enable = true;
     extensions = [
-      "base16"
       "angular"
+      "base16"
       "live-server"
+      "scss"
     ];
     userKeymaps = [
       {
