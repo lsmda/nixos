@@ -5,6 +5,7 @@ let
 
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
+    clockify
     discord
     eog # image viewer
     ffmpegthumbnailer
