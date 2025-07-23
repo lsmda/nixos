@@ -7,7 +7,7 @@
     font-family = "JetBrains Mono";
 
     background-blur = true;
-    background-opacity = 0.9;
+    background-opacity = 0.95;
 
     clipboard-paste-protection = true;
     clipboard-trim-trailing-spaces = true;
