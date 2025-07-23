@@ -2,39 +2,61 @@
 
 {
   home.packages = with pkgs; [
-    firefox
     librewolf
+    firefoxpwa
   ];
 
-  programs.brave = {
+  programs.firefox = {
     enable = true;
-    package = pkgs.brave.override {
-      commandLineArgs = [
-        # hardware video acceleration flags for h.265/hevc support
-        "--enable-features=VaapiVideoDecoder,VaapiVideoEncoder,VaapiIgnoreDriverChecks,PlatformHEVCDecoderSupport"
-        "--disable-features=UseChromeOSDirectVideoDecoder"
-        "--use-gl=desktop"
-        "--enable-gpu-rasterization"
-        "--enable-zero-copy"
-        "--enable-hardware-overlays"
-        "--enable-oop-rasterization"
-
-        # NVIDIA-specific acceleration
-        "--ignore-gpu-blocklist"
-        "--enable-gpu-sandbox"
-        "--enable-accelerated-video-decode"
-        "--enable-accelerated-video-encode"
-
-        # H.265/HEVC support
-        "--enable-features=PlatformHEVCDecoderSupport"
-      ];
-    };
-    extensions = [
-      { id = "ghmbeldphafepmbegfdlkpapadhbakde"; } # Proton Pass
-      { id = "fmkadmapgofadopljbjfkapdkoienihi"; } # React Developer Tools
-      { id = "lmhkpmbekcpmknklioeibfkpmmfibljd"; } # Redux DevTools
-      { id = "cjpalhdlnbpafiamejdnhcphjbkeiagm"; } # uBlock Origin
+    package = pkgs.firefox-devedition;
+    nativeMessagingHosts = with pkgs; [
+      firefoxpwa
     ];
+    policies = {
+      DisableTelemetry = true;
+      DisableFirefoxStudies = true;
+      EnableTrackingProtection = {
+        Value = true;
+        Locked = true;
+        Cryptomining = true;
+        Fingerprinting = true;
+      };
+      DisablePocket = true;
+      DisableFirefoxScreenshots = true;
+      OfferToSaveLogins = false;
+      PasswordManagerEnabled = false;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
+      DontCheckDefaultBrowser = true;
+      DisableFormHistory = true;
+      HardwareAcceleration = true;
+      DisableBuiltinPDFViewer = true;
+      SearchEngines = {
+        Default = "DuckDuckGo";
+      };
+      SkipTermsOfUse = true;
+      ExtensionSettings = {
+        # uBlock Origin
+        "uBlock0@raymondhill.net" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Proton Pass
+        "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+        # Progressive Web Apps for Firefox
+        "firefoxpwa@filips.si" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/file/4537285/pwas_for_firefox-2.15.0.xpi";
+          installation_mode = "force_installed";
+          private_browsing = true;
+        };
+      };
+      ManagedBookmarks = [ ];
+    };
   };
 
   programs.librewolf = {
