@@ -93,7 +93,7 @@ in
     "org/gnome/desktop/interface" = {
       font-antialiasing = "rgba";
       font-hinting = "full";
-      text-scaling-factor = 0.8;
+      text-scaling-factor = 1;
     };
 
     "org/gnome/desktop/wm/preferences" = {
