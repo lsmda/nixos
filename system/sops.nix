@@ -1,4 +1,4 @@
-{ config, ... }:
+{ lib, config, ... }:
 
 let
   user = config.machine.username;
@@ -12,7 +12,13 @@ let
   fromYaml = path: sopsFile path // { format = "yaml"; };
   fromBinary = path: sopsFile path // { format = "binary"; };
 
-  withOwner = user: set: set // { owner = user; };
+  withOwner =
+    user: set:
+    let
+      userExists = lib.hasAttr user config.users.users;
+      owner = if userExists then user else "root";
+    in
+    set // { owner = owner; };
 in
 
 # generate age key:
