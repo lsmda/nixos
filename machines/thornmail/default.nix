@@ -50,15 +50,6 @@ in
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="0852", ATTR{authorized}="0"
     '';
 
-    networking.wg-quick.interfaces.es_62.autostart = false;
-    networking.wg-quick.interfaces.es_62.configFile = secrets.es_62.path;
-
-    networking.wg-quick.interfaces.ie_25.autostart = false;
-    networking.wg-quick.interfaces.ie_25.configFile = secrets.ie_25.path;
-
-    networking.wg-quick.interfaces.uk_24.autostart = false;
-    networking.wg-quick.interfaces.uk_24.configFile = secrets.uk_24.path;
-
     users.groups = createUsersGroups usersGroups;
 
     users.users.${config.machine.username} = {
@@ -73,6 +64,7 @@ in
 
     home-manager.users.${config.machine.username} = {
       imports = [
+        ../../home/browser.nix
         ../../home/dconf.nix
         ../../home/fastfetch.nix
         ../../home/ghostty.nix
@@ -85,7 +77,6 @@ in
         ../../home/shell.nix
         ../../home/zed.nix
 
-        (import ../../home/browser.nix { inherit config lib pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })

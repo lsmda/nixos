@@ -6,6 +6,7 @@
 }:
 
 let
+  inherit (lib) mkForce;
   inherit (import ../../utils { inherit lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
@@ -44,15 +45,6 @@ in
     services.openssh.enable = true;
     programs.ssh.startAgent = true;
 
-    networking.wg-quick.interfaces.es_65.autostart = false;
-    networking.wg-quick.interfaces.es_65.configFile = secrets.es_65.path;
-
-    networking.wg-quick.interfaces.ie_36.autostart = false;
-    networking.wg-quick.interfaces.ie_36.configFile = secrets.ie_36.path;
-
-    networking.wg-quick.interfaces.uk_14.autostart = false;
-    networking.wg-quick.interfaces.uk_14.configFile = secrets.uk_14.path;
-
     users.groups = createUsersGroups usersGroups;
 
     users.users.${config.machine.username} = {
@@ -84,6 +76,10 @@ in
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
       ];
+
+      dconf.settings = {
+        "org/gnome/desktop/interface"."text-scaling-factor" = mkForce 0.8;
+      };
 
       home.stateVersion = "25.05";
     };
