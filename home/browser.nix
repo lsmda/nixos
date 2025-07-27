@@ -1,14 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
     librewolf
-    firefoxpwa # Support for PWAs
+    firefoxpwa
   ];
 
   programs.firefox = {
@@ -17,187 +12,152 @@
     nativeMessagingHosts = with pkgs; [
       firefoxpwa
     ];
-    profiles.${config.machine.username} = {
+    profiles.default = {
       id = 0;
-      name = config.machine.username;
+      name = "default";
       isDefault = true;
-      bookmarks = {
-        force = true;
-        settings = [
-          {
-            name = "Homepage";
-            url = "https://nixos.org/";
-          }
-        ];
+      settings = {
+        "apz.gtk.kinetic_scroll.enabled" = false; # Disable kinetic scrolling for smoother scroll behavior
+        "browser.aboutConfig.showWarning" = false; # Disable warning when accessing about:config
+        "browser.in-content.dark-mode" = true; # Enable dark mode for browser content
+        "browser.startup.page" = 3; # Set startup page to restore previous session
+        "browser.tabs.closeTabByDblclick" = true; # Enable closing tabs with double-click
+        "browser.tabs.groups.dragOverThresholdPercent" = 10; # Set threshold for tab group dragging
+        "browser.tabs.loadInBackground" = true; # Load tabs in the background automatically
+        "browser.tabs.tabMinWidth" = 75; # Set minimum tab width to prevent scrolling
+        "browser.toolbars.bookmarks.visibility" = true; # Always show bookmarks toolbar
+        "browser.urlbar.placeholderName" = "DuckDuckGo"; # Set default search engine placeholder to DuckDuckGo
+        "browser.urlbar.placeholderName.private" = "DuckDuckGo"; # Set private browsing search engine placeholder to DuckDuckGo
+        "browser.urlbar.shortcuts.bookmarks" = false; # Disable bookmark suggestions in URL bar
+        "browser.urlbar.shortcuts.history" = false; # Disable history suggestions in URL bar
+        "browser.urlbar.shortcuts.tabs" = false; # Disable tab suggestions in URL bar
+        "browser.urlbar.suggest.calculator" = true; # Enable calculator suggestions in URL bar
+        "browser.urlbar.suggest.searches" = true; # Enable basic search suggestions in URL bar
+        "browser.urlbar.trimHttps" = true; # Trim HTTPS from URL bar for cleaner display
+        "browser.urlbar.unitConversion.enabled" = true; # Enable unit conversion in URL bar
+        "browser.warnOnQuitShortcut" = false; # Disable warning when quitting with shortcut
+        "cookiebanners.service.mode" = 2; # Enable strict cookie banner blocking
+        "cookiebanners.service.mode.privateBrowsing" = 2; # Enable strict cookie banner blocking in private browsing
+        "dom.w3c_touch_events.enabled" = 1; # Enable W3C touch events
+        "extensions.autoDisableScopes" = 0; # Automatically enable all extensions
+        "extensions.update.enabled" = false; # Disable automatic extension updates
+        "gfx.webrender.all" = true; # Enable WebRender for improved rendering performance
+        "layers.acceleration.force-enabled" = true; # Force-enable layer acceleration
+        "media.av1.enabled" = false; # Disable AV1 video codec
+        "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration via FFmpeg VAAPI
+        "media.hardware-video-decoding.force-enabled" = true; # Force-enable hardware video decoding
+        "media.rdd-ffmpeg.enabled" = true; # Enable FFmpeg in Remote Data Decoder
+        "ui.systemUsesDarkTheme" = true; # Enable system-wide dark theme
+        "widget.dmabuf.force-enabled" = true; # Force-enable DMA-BUF for better performance
+        "widget.use-xdg-desktop-portal" = true; # Enable XDG desktop portal integration
+        "widget.use-xdg-desktop-portal.file-picker" = 1; # Use GTK file picker via XDG portal
+        "widget.use-xdg-desktop-portal.mime-handler" = 1; # Use XDG portal for MIME handling
       };
     };
     policies = {
-      DontCheckDefaultBrowser = true;
-      DisableTelemetry = true;
-      DisableFirefoxStudies = true;
-      DisablePocket = true;
-      DisableFirefoxScreenshots = true;
-      DisableFirefoxAccounts = true;
-      NoDefaultBookmarks = true;
-
+      AutofillAddressEnabled = false;
+      AutofillCreditCardEnabled = false;
       CaptivePortal = false;
-
-      DisplayBookmarksToolbar = true;
-      DisplayMenuBar = "never"; # Previously appeared when pressing alt
-
-      OverrideFirstRunPage = "";
-      PictureInPicture.Enabled = false;
-      PromptForDownloadLocation = false;
-
-      HardwareAcceleration = true;
-      TranslateEnabled = true;
-
-      Homepage.StartPage = "previous-session";
-
-      FirefoxSuggest = {
-        WebSuggestions = false;
-        SponsoredSuggestions = false;
-        ImproveSuggest = false;
-      };
-
+      DisableAccounts = true;
+      DisableBuiltinPDFViewer = true;
+      DisableFirefoxAccounts = true;
+      DisableFirefoxScreenshots = true;
+      DisableFirefoxStudies = true;
+      DisableFormHistory = true;
+      DisablePocket = true;
+      DisableProfileImport = true;
+      DisableProfileRefresh = true;
+      DisableSetDesktopBackground = true;
+      DisableTelemetry = true;
+      DisplayBookmarksToolbar = "never";
+      DisplayMenuBar = "never";
+      DontCheckDefaultBrowser = true;
       EnableTrackingProtection = {
         Value = true;
-        Locked = true;
         Cryptomining = true;
         Fingerprinting = true;
+        EmailTracking = true;
+        Locked = true;
       };
-
-      # Make new tab only show search
+      Extensions = {
+        Install = [
+          "https://addons.mozilla.org/firefox/downloads/latest/consent-o-matic/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/lastpass-password-manager/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/3879908/perfectdarktheme-1.1.xpi"
+          "https://addons.mozilla.org/firefox/downloads/file/4537285/pwas_for_firefox-2.15.0.xpi"
+        ];
+        Locked = true;
+      };
       FirefoxHome = {
-        Search = true;
+        Search = false;
         TopSites = false;
         SponsoredTopSites = false;
         Highlights = false;
         Pocket = false;
         SponsoredPocket = false;
         Snippets = false;
+        Locked = true;
       };
-
-      UserMessaging = {
-        UrlbarInterventions = false;
-        ExtensionRecommendations = false;
-        SkipOnboarding = true;
+      FirefoxSuggest = {
+        WebSuggestions = false;
+        SponsoredSuggestions = false;
+        ImproveSuggest = false;
+        Locked = true;
       };
-
+      HardwareAcceleration = true;
+      Homepage = {
+        StartPage = "previous-session";
+        Locked = true;
+      };
+      NewTabPage = false;
       OfferToSaveLogins = false;
-      PasswordManagerEnabled = false;
+      OverrideFirstRunPage = "";
       OverridePostUpdatePage = "";
-      DisableFormHistory = true;
-      DisableBuiltinPDFViewer = true;
+      PasswordManagerEnabled = false;
+      PictureInPicture = {
+        Enabled = false;
+        Locked = true;
+      };
+      PopupBlocking = {
+        "Default" = true;
+      };
+      PrimaryPassword = false;
+      PromptForDownloadLocation = true;
+      SanitizeOnShutdown = {
+        Cache = true;
+        Cookies = false;
+        Downloads = true;
+        FormData = true;
+        History = false;
+        Sessions = false;
+        SiteSettings = false;
+        Locked = true;
+      };
+      SearchBar = "unified";
       SearchEngines = {
         Default = "DuckDuckGo";
+        Remove = [
+          "Google"
+          "Bing"
+          "Yahoo"
+          "Amazon.com"
+          "eBay"
+          "Wikipedia (en)"
+        ];
       };
       SkipTermsOfUse = true;
-      ExtensionSettings = {
-        # uBlock Origin
-        "uBlock0@raymondhill.net" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
-          installation_mode = "force_installed";
-          private_browsing = true;
-        };
-        # Proton Pass
-        "78272b6fa58f4a1abaac99321d503a20@proton.me" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/proton-pass/latest.xpi";
-          installation_mode = "force_installed";
-          private_browsing = true;
-        };
-        # Progressive Web Apps for Firefox
-        "firefoxpwa@filips.si" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/file/4537285/pwas_for_firefox-2.15.0.xpi";
-          installation_mode = "force_installed";
-          private_browsing = true;
-        };
+      TranslateEnabled = false;
+      UserMessaging = {
+        "WhatsNew" = false;
+        "ExtensionRecommendations" = false;
+        "FeatureRecommendations" = false;
+        "UrlbarInterventions" = false;
+        "SkipOnboarding" = true;
+        "MoreFromMozilla" = false;
+        "Locked" = false;
       };
-    };
-    policies.Preferences = {
-      "browser.startup.page" = 3;
-      "browser.urlbar.suggest.calculator" = true;
-      "browser.urlbar.unitConversion.enabled" = true;
-      "browser.urlbar.trimHttps" = true;
-      "browser.urlbar.suggest.searches" = true; # Need this for basic search suggestions
-      "browser.urlbar.shortcuts.bookmarks" = false;
-      "browser.urlbar.shortcuts.history" = false;
-      "browser.urlbar.shortcuts.tabs" = false;
-      "browser.tabs.tabMinWidth" = 75; # Make tabs able to be smaller to prevent scrolling
-      "browser.urlbar.placeholderName" = "DuckDuckGo";
-      "browser.urlbar.placeholderName.private" = "DuckDuckGo";
-      "browser.aboutConfig.showWarning" = false; # No warning when going to config
-      "browser.warnOnQuitShortcut" = false;
-      "browser.tabs.groups.dragOverThresholdPercent" = 10;
-      "browser.tabs.loadInBackground" = true; # Load tabs automatically
-      "browser.tabs.closeTabByDblclick" = true;
-      "browser.toolbars.bookmarks.visibility" = "always";
-
-      "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration
-      "media.av1.enabled" = false;
-      "media.hardware-video-decoding.force-enabled" = true;
-      "media.rdd-ffmpeg.enabled" = true;
-
-      "layers.acceleration.force-enabled" = true;
-      "gfx.webrender.all" = true;
-
-      "browser.in-content.dark-mode" = true; # Use dark mode
-      "ui.systemUsesDarkTheme" = true;
-
-      "extensions.autoDisableScopes" = 0; # Automatically enable extensions
-      "extensions.update.enabled" = false;
-
-      "widget.dmabuf.force-enabled" = true;
-      "dom.w3c_touch_events.enabled" = 1;
-
-      "widget.use-xdg-desktop-portal" = true;
-      "widget.use-xdg-desktop-portal.file-picker" = 1; # Use new gtk file picker instead of legacy one
-      "widget.use-xdg-desktop-portal.mime-handler" = 1;
-
-      "apz.gtk.kinetic_scroll.enabled" = false;
-    };
-  };
-
-  programs.librewolf = {
-    enable = true;
-    settings = {
-      "identity.fxaccounts.enabled" = false;
-      "image.jxl.enabled" = true; # Enable JPEG XL support
-      "media.ffmpeg.vaapi.enabled" = true; # Enable VA-API hard accelaration
-      "middlemouse.paste" = false;
-      "svg.context-properties.content.enabled" = true;
-      "webgl.disabled" = false;
-      "browser.download.panel.shown" = true;
-      "network.http.referer.XOriginPolicy" = 2;
-      "security.OCSP.require" = false; # disable ocsp hard-fail
-      "widget.use-xdg-desktop-portal.mime-handler" = 1; # set system file dialog
-      "dom.w3c.touch_events.enabled" = true; # touch support aktivieren
-      "browser.backspace_action" = 0; # Browser Backspace enable
-      "toolkit.legacyUserProfileCustomizations.stylesheets" = true; # enable theming
-      "general.autoScroll" = true; # enable autoscroll
-      "media.navigator.enabled" = false;
-      "xpinstall.signatures.required" = false;
-      "intl.accept_languages" = "en-US";
-      "widget.use-xdg-desktop-portal.file-pcker" = 1;
-      "privacy.firstparty.isolate" = false;
-      "geo.enabled" = false;
-      "dom.security.https_only_mode_ever_enabled" = true;
-      "media.eme.enabled" = true;
-      "privacy.resistFingerprinting" = false;
-      "network.captive-portal-service.enabled" = true;
-      "security.enterprise_roots.enabled" = true;
-    };
-  };
-
-  # configure brave as the default browser
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/html" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/http" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/https" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/about" = [ "brave-browser.desktop" ];
-      "x-scheme-handler/unknown" = [ "brave-browser.desktop" ];
     };
   };
 }
