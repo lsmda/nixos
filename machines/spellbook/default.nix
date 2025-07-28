@@ -42,9 +42,6 @@ in
     console.keyMap = "pt-latin1";
     services.xserver.xkb.layout = "pt";
 
-    services.openssh.enable = true;
-    programs.ssh.startAgent = true;
-
     users.groups = createUsersGroups usersGroups;
 
     users.users.${config.machine.username} = {
@@ -59,7 +56,6 @@ in
 
     home-manager.users.${config.machine.username} = {
       imports = [
-        ../../home/browser.nix
         ../../home/dconf.nix
         ../../home/fastfetch.nix
         ../../home/ghostty.nix
@@ -72,6 +68,7 @@ in
         ../../home/shell.nix
         ../../home/zed.nix
 
+        (import ../../home/browser.nix { inherit config pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
