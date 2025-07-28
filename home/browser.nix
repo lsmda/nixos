@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -25,7 +25,7 @@
         "browser.tabs.groups.dragOverThresholdPercent" = 10; # Set threshold for tab group dragging
         "browser.tabs.loadInBackground" = true; # Load tabs in the background automatically
         "browser.tabs.tabMinWidth" = 75; # Set minimum tab width to prevent scrolling
-        "browser.toolbars.bookmarks.visibility" = "newtab"; # Always show bookmarks toolbar
+        "browser.toolbars.bookmarks.visibility" = true; # Always show bookmarks toolbar
         "browser.urlbar.placeholderName" = "DuckDuckGo"; # Set default search engine placeholder to DuckDuckGo
         "browser.urlbar.placeholderName.private" = "DuckDuckGo"; # Set private browsing search engine placeholder to DuckDuckGo
         "browser.urlbar.shortcuts.bookmarks" = false; # Disable bookmark suggestions in URL bar
