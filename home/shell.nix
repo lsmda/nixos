@@ -89,7 +89,7 @@
       };
     };
     theme = {
-      manager = {
+      mgr = {
         preview_hovered = {
           underline = false;
         };
