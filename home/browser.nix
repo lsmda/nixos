@@ -16,6 +16,33 @@
       id = 0;
       name = "default";
       isDefault = true;
+      search.force = true;
+      search.engines = {
+        nix-packages = {
+          urls = [
+            {
+              template = "https://search.nixos.org/packages";
+              params = [
+                {
+                  name = "type";
+                  value = "packages";
+                }
+                {
+                  name = "channel";
+                  value = config.system.stateVersion;
+                }
+                {
+                  name = "query";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@np" ];
+        };
+      };
       settings = {
         "apz.gtk.kinetic_scroll.enabled" = false; # Disable kinetic scrolling for smoother scroll behavior
         "browser.aboutConfig.showWarning" = false; # Disable warning when accessing about:config
