@@ -19,6 +19,43 @@
       search = {
         force = true;
         engines = {
+          nix = {
+            urls = [
+              {
+                template = "https://github.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "lang%3Anix+{searchTerms}";
+                  }
+                  {
+                    name = "type";
+                    value = "code";
+                  }
+                ];
+              }
+            ];
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
+            definedAliases = [ "@nix" ];
+          };
+          ts = {
+            urls = [
+              {
+                template = "https://github.com/search";
+                params = [
+                  {
+                    name = "q";
+                    value = "lang%3Atypescript+{searchTerms}";
+                  }
+                  {
+                    name = "type";
+                    value = "code";
+                  }
+                ];
+              }
+            ];
+            definedAliases = [ "@ts" ];
+          };
           home-manager = {
             urls = [
               {
@@ -35,7 +72,7 @@
                 ];
               }
             ];
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
             definedAliases = [ "@home" ];
           };
           nix-packages = {
@@ -58,7 +95,7 @@
                 ];
               }
             ];
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
             definedAliases = [ "@pkg" ];
           };
           nix-options = {
@@ -81,7 +118,7 @@
                 ];
               }
             ];
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
             definedAliases = [ "@opt" ];
           };
           noogle = {
@@ -96,7 +133,7 @@
                 ];
               }
             ];
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake-white.svg";
             definedAliases = [ "@noogle" ];
           };
         };
