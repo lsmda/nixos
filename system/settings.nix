@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ config, lib, ... }:
 
 {
   options = {
@@ -26,8 +26,8 @@
         options = "--delete-older-than 3d";
       };
 
-      # use pre-built cuda binaries
-      settings = {
+      # use pre-built cuda binaries on NVIDIA system
+      settings = lib.mkIf config.hardware.nvidia.enabled {
         experimental-features = [
           "nix-command"
           "pipe-operators"
