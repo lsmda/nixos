@@ -10,6 +10,12 @@ let
     from = 5000;
     to = 5010;
   };
+
+  moshRange = {
+    from = 60000;
+    to = 61000;
+  };
+
 in
 
 {
@@ -41,7 +47,7 @@ in
     networking.firewall.allowedUDPPorts = [ ];
 
     networking.firewall.allowedTCPPortRanges = [ localDevRange ];
-    networking.firewall.allowedUDPPortRanges = [ ];
+    networking.firewall.allowedUDPPortRanges = [ moshRange ];
 
     networking.hostName = config.machine.hostname;
     networking.networkmanager.enable = true;

@@ -7,6 +7,9 @@
   # use ssh-add to add a key to the agent.
   programs.ssh.startAgent = true;
 
+  # faster version os SSH
+  programs.mosh.enable = true;
+
   services.openssh = {
     enable = true;
     settings = {
