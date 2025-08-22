@@ -49,22 +49,4 @@ in
       else
         { }
     );
-
-  # XDG MIME associations for video files
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      # H.265/HEVC video files
-      "video/x-h265" = [ "mpv" ];
-      "video/h265" = [ "mpv" ];
-      "video/hevc" = [ "mpv" ];
-
-      # Other video formats
-      "video/mp4" = [ "mpv" ];
-      "video/x-matroska" = [ "mpv" ];
-      "video/webm" = [ "mpv" ];
-      "video/x-msvideo" = [ "mpv" ];
-      "video/quicktime" = [ "mpv" ];
-    };
-  };
 }
