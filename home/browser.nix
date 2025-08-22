@@ -166,7 +166,9 @@
         "gfx.webrender.all" = true; # Enable WebRender for improved rendering performance
         "layers.acceleration.force-enabled" = true; # Force-enable layer acceleration
         "media.av1.enabled" = false; # Disable AV1 video codec
+        "media.eme.enabled" = true; # DRM (Spotify web player)
         "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration via FFmpeg VAAPI
+        "media.gmp-widevinecdm.enabled" = true; # DRM (Spotify web player)
         "media.hardware-video-decoding.force-enabled" = true; # Force-enable hardware video decoding
         "media.rdd-ffmpeg.enabled" = true; # Enable FFmpeg in Remote Data Decoder
         "ui.systemUsesDarkTheme" = true; # Enable system-wide dark theme
