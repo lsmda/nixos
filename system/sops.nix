@@ -2,23 +2,7 @@
 
 let
   user = config.machine.username;
-
-  sopsFile = path: {
-    mode = "0400";
-    owner = user;
-    sopsFile = path;
-  };
-
-  fromYaml = path: sopsFile path // { format = "yaml"; };
-  fromBinary = path: sopsFile path // { format = "binary"; };
-
-  withOwner =
-    user: set:
-    let
-      userExists = lib.hasAttr user config.users.users;
-      owner = if userExists then user else "root";
-    in
-    set // { owner = owner; };
+  inherit (import ../utils { inherit config lib; }) fromBinary fromYaml withOwner;
 in
 
 # generate age key:

@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../utils { inherit lib; }) createUsersGroups usersGroups;
+  inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
 

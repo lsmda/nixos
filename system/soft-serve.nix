@@ -1,7 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (import ../utils { inherit lib; }) keys createUsersGroups;
+  inherit (import ../utils { inherit config lib; }) keys createUsersGroups;
   serviceUser = "soft-serve";
 
   SSH_LISTEN_ADDR = 23231;

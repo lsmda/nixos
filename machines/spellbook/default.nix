@@ -7,7 +7,7 @@
 
 let
   inherit (lib) mkForce;
-  inherit (import ../../utils { inherit lib; }) createUsersGroups usersGroups;
+  inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
 
@@ -21,6 +21,7 @@ in
     ../../system/bluetooth.nix
     ../../system/fonts.nix
     ../../system/keyd.nix
+    ../../system/kimai.nix
     ../../system/locale.nix
     ../../system/networking.nix
     ../../system/nfs-client.nix

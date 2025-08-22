@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (import ../utils { inherit lib; }) createUsersGroups;
+  inherit (import ../utils { inherit config lib; }) createUsersGroups;
   serviceUser = "postgresql";
 in
 

@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../utils { inherit lib; }) keys createUsersGroups usersGroups;
+  inherit (import ../../utils { inherit config lib; }) keys createUsersGroups usersGroups;
   inherit (lib) mkForce;
   secrets = config.sops.secrets;
 in
