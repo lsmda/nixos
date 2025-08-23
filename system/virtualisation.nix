@@ -7,23 +7,20 @@
 
 let
   inherit (import ../utils { inherit config lib; }) createUsersGroups;
-  serviceUser = "docker";
 in
 
 {
-  users.groups = createUsersGroups [ serviceUser ];
+  users.groups = createUsersGroups [ "podman" ];
 
-  virtualisation.docker = {
-    enable = true;
-    daemon.settings = {
-      dns = [
-        "1.1.1.1"
-        "8.8.8.8"
-      ];
-    };
-    rootless = {
+  virtualisation = {
+    containers.enable = true;
+    oci-containers.backend = "podman";
+    podman = {
       enable = true;
-      setSocketVariable = true;
+      autoPrune.enable = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
+      defaultNetwork.settings.dns_enabled = true;
     };
   };
 
