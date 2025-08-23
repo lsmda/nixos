@@ -9,7 +9,7 @@ in
   users.groups = createUsersGroups [ serviceUser ];
 
   users.users.${serviceUser} = {
-    description = "PostgreSQL Service User";
+    description = "Service user for PostgreSQL";
     isSystemUser = true;
     group = serviceUser;
   };
