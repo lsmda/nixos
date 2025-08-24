@@ -21,7 +21,6 @@ in
     ../../system/bluetooth.nix
     ../../system/fonts.nix
     ../../system/keyd.nix
-    ../../system/kimai.nix
     ../../system/locale.nix
     ../../system/networking.nix
     ../../system/nfs-client.nix

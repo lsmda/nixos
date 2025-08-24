@@ -48,6 +48,11 @@ in
         redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
       }
 
+      @kimai host kimai.${domain}
+      handle @kimai {
+        reverse_proxy http://localhost:8001
+      }
+
       # refuse unknown domains
       handle {
         respond 404

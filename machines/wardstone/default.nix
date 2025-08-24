@@ -21,6 +21,7 @@ in
     ../../system/caddy.nix
     ../../system/fonts.nix
     ../../system/keyd.nix
+    ../../system/kimai.nix
     ../../system/locale.nix
     ../../system/networking.nix
     ../../system/nfs-server.nix

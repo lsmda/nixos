@@ -50,6 +50,7 @@ let
     keychain # keys management tool (GPG, SSH)
     lshw
     lua
+    mariadb
     neovim
     nodejs
     nodePackages.pnpm
