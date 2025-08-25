@@ -50,7 +50,7 @@ in
 
       @kimai host kimai.${domain}
       handle @kimai {
-        reverse_proxy http://localhost:8001
+        reverse_proxy localhost:8001
       }
 
       # refuse unknown domains

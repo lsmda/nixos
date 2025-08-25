@@ -8,6 +8,11 @@ in
 
 {
   inherit keys;
-  inherit (sops) fromBinary fromYaml withOwner;
+  inherit (sops)
+    fromBinary
+    fromDotenv
+    fromYaml
+    withOwner
+    ;
   inherit (users) createUsersGroups usersGroups;
 }

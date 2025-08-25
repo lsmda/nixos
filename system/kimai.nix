@@ -20,7 +20,9 @@ in
       "8001:8001"
     ];
     volumes = [
+      "/mnt/kimai/cache:/opt/kimai/var/cache"
       "/mnt/kimai/data:/opt/kimai/var/data"
+      "/mnt/kimai/packages:/opt/kimai/config/packages"
       "/mnt/kimai/plugins:/opt/kimai/var/plugins"
     ];
   };
@@ -41,7 +43,9 @@ in
   };
 
   systemd.tmpfiles.rules = [
+    "d /mnt/kimai/cache 0755 root root"
     "d /mnt/kimai/data 0755 root root"
+    "d /mnt/kimai/packages 0755 root root"
     "d /mnt/kimai/plugins 0755 root root"
     "d /mnt/kimai-db 0755 root root"
   ];

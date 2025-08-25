@@ -9,6 +9,7 @@ let
 
   fromYaml = path: sopsFile path // { format = "yaml"; };
   fromBinary = path: sopsFile path // { format = "binary"; };
+  fromDotenv = path: sopsFile path // { format = "dotenv"; };
 
   withOwner =
     user: set:
@@ -20,5 +21,10 @@ let
 in
 
 {
-  inherit fromBinary fromYaml withOwner;
+  inherit
+    fromBinary
+    fromDotenv
+    fromYaml
+    withOwner
+    ;
 }
