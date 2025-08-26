@@ -24,10 +24,12 @@
         automatic = true;
         dates = "daily";
         options = "--delete-older-than 3d";
+        persistent = true;
       };
 
       # use pre-built cuda binaries on NVIDIA system
-      settings = lib.mkIf config.hardware.nvidia.enabled {
+      settings = {
+        download-buffer-size = 262144000; # 250 MB (250 * 1024 * 1024)
         experimental-features = [
           "nix-command"
           "pipe-operators"
