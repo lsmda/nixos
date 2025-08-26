@@ -16,13 +16,13 @@ in
   };
 
   config = {
-    sops.secrets."www/cv" = fromYaml ../secrets/system.yaml;
-
-    sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
     sops.secrets."cloudflare/rpi-4" = fromBinary ../secrets/cloudflare/rpi-4;
 
     sops.secrets."${fqdn}/key.pem" = withOwner "caddy" (fromBinary ../secrets/${fqdn}/key.pem);
     sops.secrets."${fqdn}/cert.pem" = withOwner "caddy" (fromBinary ../secrets/${fqdn}/cert.pem);
+
+    sops.secrets."www/cv" = fromYaml ../secrets/system.yaml;
+    sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
 
     www.fqdn = "lsmda.pm";
 
