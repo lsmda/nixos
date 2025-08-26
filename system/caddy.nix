@@ -1,62 +1,77 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 let
-  domain = "lsmda.pm";
+  inherit (import ../utils { inherit config lib; }) fromYaml;
+
+  fqdn = config.www.fqdn;
   secrets = config.sops.secrets;
 in
 
 {
-  services.cloudflared = {
-    enable = true;
-    tunnels = {
-      "rpi-4" = {
-        credentialsFile = "${secrets."cloudflare/rpi-4".path}";
-        ingress = {
-          "${domain}" = "https://127.0.0.1";
-          "*.${domain}" = "https://127.0.0.1";
-        };
-        originRequest.originServerName = "${domain}";
-        default = "http_status:404";
-      };
+  options = {
+    www.fqdn = lib.mkOption {
+      type = lib.types.str;
+      description = "Public domain name.";
     };
   };
 
-  services.caddy = {
-    enable = true;
-    globalConfig = ''
-      default_bind 127.0.0.1 [::1]
-    '';
-    virtualHosts."${domain}".extraConfig = ''
-      root * /var/www/${domain}
-      encode gzip
-      file_server
+  config = {
+    sops.secrets."www/cv" = fromYaml ../secrets/system.yaml;
+    sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
 
-      tls ${secrets."lsmda.pm/cert.pem".path} ${secrets."lsmda.pm/key.pem".path}
+    www.fqdn = secrets."www/lsmda";
 
-      log {
-        output file /var/log/caddy/${domain}.log
-        format json {
-          time_format iso8601
+    services.cloudflared = {
+      enable = true;
+      tunnels = {
+        "rpi-4" = {
+          credentialsFile = "${secrets."cloudflare/rpi-4".path}";
+          ingress = {
+            "${fqdn}" = "https://127.0.0.1";
+            "*.${fqdn}" = "https://127.0.0.1";
+          };
+          originRequest.originServerName = "${fqdn}";
+          default = "http_status:404";
+        };
+      };
+    };
+
+    services.caddy = {
+      enable = true;
+      globalConfig = ''
+        default_bind 127.0.0.1 [::1]
+
+        (certs) {
+          tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
         }
-      }
-    '';
-    virtualHosts."*.${domain}".extraConfig = ''
-      tls ${secrets."lsmda.pm/cert.pem".path} ${secrets."lsmda.pm/key.pem".path}
+      '';
+      virtualHosts."${fqdn}".extraConfig = ''
+        import (certs)
 
-      @cv host cv.${domain}
-      handle @cv {
-        redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
-      }
+        root * /var/www/${fqdn}
+        encode gzip
+        file_server
 
-      @kimai host kimai.${domain}
-      handle @kimai {
-        reverse_proxy localhost:8001
-      }
+        log {
+          output file /var/log/${fqdn}.log
+          format json {
+            time_format iso8601
+          }
+        }
+      '';
+      virtualHosts."*.${fqdn}".extraConfig = ''
+        import (certs)
 
-      # refuse unknown domains
-      handle {
-        respond 404
-      }
-    '';
+        @cv host cv.${fqdn}
+        handle @cv {
+          redir ${secrets."www/cv"} 302
+        }
+
+        # refuse unknown domains
+        handle {
+          respond 404
+        }
+      '';
+    };
   };
 }
