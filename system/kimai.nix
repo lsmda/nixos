@@ -48,12 +48,12 @@ in
     };
 
     services.caddy.virtualHosts."kimai.${fqdn}".extraConfig = ''
-      import (certs)
+      tls ${secrets."lsmda/cert.pem".path} ${secrets."lsmda/key.pem".path}
             
       reverse_proxy localhost:8001
 
       log {
-        output file /var/log/kimai.${fqdn}.log
+        output file /var/log/caddy/kimai.${fqdn}.log
         format json {
           time_format iso8601
         }

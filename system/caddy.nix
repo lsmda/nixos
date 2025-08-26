@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (import ../utils { inherit config lib; }) fromYaml;
+  inherit (import ../utils { inherit config lib; }) fromBinary fromYaml withOwner;
 
   fqdn = config.www.fqdn;
   secrets = config.sops.secrets;
@@ -19,7 +19,12 @@ in
     sops.secrets."www/cv" = fromYaml ../secrets/system.yaml;
     sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
 
-    www.fqdn = secrets."www/lsmda";
+    sops.secrets."cloudflare/rpi-4" = fromBinary ../secrets/cloudflare/rpi-4;
+
+    sops.secrets."lsmda/key.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda/key.pem);
+    sops.secrets."lsmda/cert.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda/cert.pem);
+
+    www.fqdn = "lsmda.pm";
 
     services.cloudflared = {
       enable = true;
@@ -40,31 +45,27 @@ in
       enable = true;
       globalConfig = ''
         default_bind 127.0.0.1 [::1]
-
-        (certs) {
-          tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
-        }
       '';
       virtualHosts."${fqdn}".extraConfig = ''
-        import (certs)
+        tls ${secrets."lsmda/cert.pem".path} ${secrets."lsmda/key.pem".path}
 
         root * /var/www/${fqdn}
         encode gzip
         file_server
 
         log {
-          output file /var/log/${fqdn}.log
+          output file /var/log/caddy/${fqdn}.log
           format json {
             time_format iso8601
           }
         }
       '';
       virtualHosts."*.${fqdn}".extraConfig = ''
-        import (certs)
+        tls ${secrets."lsmda/cert.pem".path} ${secrets."lsmda/key.pem".path}
 
         @cv host cv.${fqdn}
         handle @cv {
-          redir ${secrets."www/cv"} 302
+          redir https://drive.proton.me/urls/RW1W0VRESW#YrGkMQLX4nsc 302
         }
 
         # refuse unknown domains
