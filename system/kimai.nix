@@ -24,7 +24,6 @@ in
       # kimai configuration file
       "${secrets."kimai-local".path}:/opt/kimai/config/packages/local.yaml:ro"
 
-      "/var/lib/kimai/cache:/opt/kimai/var/cache"
       "/var/lib/kimai/data:/opt/kimai/var/data"
       "/var/lib/kimai/plugins:/opt/kimai/var/plugins"
     ];
@@ -47,7 +46,6 @@ in
 
   systemd.tmpfiles.rules = [
     # web UI
-    "d /var/lib/kimai/cache 0770 root root - -"
     "d /var/lib/kimai/data 0770 root root - -"
     "d /var/lib/kimai/plugins 0770 root root - -"
 
