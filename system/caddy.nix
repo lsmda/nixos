@@ -17,12 +17,12 @@ in
 
   config = {
     sops.secrets."www/cv" = fromYaml ../secrets/system.yaml;
-    sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
 
+    sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
     sops.secrets."cloudflare/rpi-4" = fromBinary ../secrets/cloudflare/rpi-4;
 
-    sops.secrets."lsmda/key.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda/key.pem);
-    sops.secrets."lsmda/cert.pem" = withOwner "caddy" (fromBinary ../secrets/lsmda/cert.pem);
+    sops.secrets."${fqdn}/key.pem" = withOwner "caddy" (fromBinary ../secrets/${fqdn}/key.pem);
+    sops.secrets."${fqdn}/cert.pem" = withOwner "caddy" (fromBinary ../secrets/${fqdn}/cert.pem);
 
     www.fqdn = "lsmda.pm";
 
@@ -47,7 +47,7 @@ in
         default_bind 127.0.0.1 [::1]
       '';
       virtualHosts."${fqdn}".extraConfig = ''
-        tls ${secrets."lsmda/cert.pem".path} ${secrets."lsmda/key.pem".path}
+        tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
 
         root * /var/www/${fqdn}
         encode gzip
@@ -61,7 +61,7 @@ in
         }
       '';
       virtualHosts."*.${fqdn}".extraConfig = ''
-        tls ${secrets."lsmda/cert.pem".path} ${secrets."lsmda/key.pem".path}
+        tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
 
         @cv host cv.${fqdn}
         handle @cv {

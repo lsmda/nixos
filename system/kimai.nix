@@ -48,7 +48,7 @@ in
     };
 
     services.caddy.virtualHosts."kimai.${fqdn}".extraConfig = ''
-      tls ${secrets."lsmda/cert.pem".path} ${secrets."lsmda/key.pem".path}
+      tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
             
       reverse_proxy localhost:8001
 
