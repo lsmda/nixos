@@ -9,9 +9,17 @@ in
 
 {
   config = {
-    sops.secrets."kimai" = fromBinary ../secrets/kimai/kimai;
-    sops.secrets."kimai-db" = fromBinary ../secrets/kimai/kimai-db;
-    sops.secrets."local.yaml" = fromYamlFile ../secrets/kimai/local.yaml;
+    sops.secrets."kimai" = fromBinary ../secrets/kimai/kimai // {
+      restartUnits = [ "podman-kimai.service" ];
+    };
+
+    sops.secrets."local.yaml" = fromYamlFile ../secrets/kimai/local.yaml // {
+      restartUnits = [ "podman-kimai.service" ];
+    };
+
+    sops.secrets."kimai-db" = fromBinary ../secrets/kimai/kimai-db // {
+      restartUnits = [ "podman-kimai-db.service" ];
+    };
 
     virtualisation.oci-containers.containers."kimai" = {
       image = "kimai/kimai2:apache";
