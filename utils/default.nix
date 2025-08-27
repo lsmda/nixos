@@ -12,6 +12,7 @@ in
     fromBinary
     fromDotenv
     fromYaml
+    fromYamlFile
     withOwner
     ;
   inherit (users) createUsersGroups usersGroups;

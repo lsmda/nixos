@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (import ../utils { inherit config lib; }) fromBinary;
+  inherit (import ../utils { inherit config lib; }) fromBinary fromYamlFile;
 
   fqdn = config.www.fqdn;
   secrets = config.sops.secrets;
@@ -11,7 +11,7 @@ in
   config = {
     sops.secrets."kimai" = fromBinary ../secrets/kimai/kimai;
     sops.secrets."kimai-db" = fromBinary ../secrets/kimai/kimai-db;
-    sops.secrets."kimai-local" = fromBinary ../secrets/kimai/kimai-local;
+    sops.secrets."local.yaml" = fromYamlFile ../secrets/kimai/local.yaml;
 
     virtualisation.oci-containers.containers."kimai" = {
       image = "kimai/kimai2:apache";
@@ -25,7 +25,7 @@ in
       ];
       volumes = [
         # kimai configuration file
-        "${secrets."kimai-local".path}:/opt/kimai/config/packages/local.yaml:ro"
+        "${secrets."local.yaml".path}:/opt/kimai/config/packages/local.yaml:ro"
 
         "/var/lib/kimai/data:/opt/kimai/var/data"
         "/var/lib/kimai/plugins:/opt/kimai/var/plugins"

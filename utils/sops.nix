@@ -7,9 +7,17 @@ let
     owner = config.machine.username;
   };
 
-  fromYaml = path: sopsFile path // { format = "yaml"; };
   fromBinary = path: sopsFile path // { format = "binary"; };
   fromDotenv = path: sopsFile path // { format = "dotenv"; };
+
+  fromYaml = path: sopsFile path // { format = "yaml"; };
+  fromYamlFile =
+    path:
+    sopsFile path
+    // {
+      format = "yaml";
+      key = "";
+    };
 
   withOwner =
     user: set:
@@ -25,6 +33,7 @@ in
     fromBinary
     fromDotenv
     fromYaml
+    fromYamlFile
     withOwner
     ;
 }
