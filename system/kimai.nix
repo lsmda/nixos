@@ -47,6 +47,15 @@ in
       ];
     };
 
+    systemd.tmpfiles.rules = [
+      # web UI
+      "d /var/lib/kimai/data 0770 root root - -"
+      "d /var/lib/kimai/plugins 0770 root root - -"
+
+      # database
+      "d /var/lib/kimai-db 0770 root root - -"
+    ];
+
     services.caddy.virtualHosts."kimai.${fqdn}".extraConfig = ''
       tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
             
@@ -59,14 +68,5 @@ in
         }
       }
     '';
-
-    systemd.tmpfiles.rules = [
-      # web UI
-      "d /var/lib/kimai/data 0770 root root - -"
-      "d /var/lib/kimai/plugins 0770 root root - -"
-
-      # database
-      "d /var/lib/kimai-db 0770 root root - -"
-    ];
   };
 }
