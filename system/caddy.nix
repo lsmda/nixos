@@ -3,7 +3,7 @@
 let
   inherit (import ../utils { inherit config lib; }) fromBinary fromYaml withOwner;
 
-  fqdn = config.www.fqdn;
+  fqdn = "lsmda.pm";
   secrets = config.sops.secrets;
 in
 
@@ -24,7 +24,7 @@ in
     sops.secrets."www/cv" = fromYaml ../secrets/system.yaml;
     sops.secrets."www/lsmda" = fromYaml ../secrets/system.yaml;
 
-    www.fqdn = "lsmda.pm";
+    www.fqdn = fqdn;
 
     services.cloudflared = {
       enable = true;
