@@ -52,7 +52,6 @@
         };
       };
       printing.enable = false;
-      xserver.enable = pkgs.stdenv.isx86_64;
     };
   };
 }

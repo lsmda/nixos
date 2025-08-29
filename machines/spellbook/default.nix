@@ -20,6 +20,7 @@ in
 
     ../../system/bluetooth.nix
     ../../system/fonts.nix
+    # ../../system/gnome.nix
     ../../system/kde.nix
     ../../system/keyd.nix
     ../../system/locale.nix
@@ -31,7 +32,6 @@ in
     ../../system/settings.nix
     ../../system/sops.nix
     ../../system/virtualisation.nix
-    ../../system/xserver.nix
   ];
 
   config = {
