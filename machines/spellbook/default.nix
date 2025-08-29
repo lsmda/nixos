@@ -18,7 +18,6 @@ in
 
     ./hardware.nix
 
-    ../../system/kimai.nix
     ../../system/bluetooth.nix
     ../../system/fonts.nix
     ../../system/kde.nix
