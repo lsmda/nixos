@@ -7,21 +7,23 @@ let
 in
 
 {
-  environment.sessionVariables.FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
+  config = {
+    environment.sessionVariables.FREETYPE_PROPERTIES = "cff:no-stem-darkening=0 autofitter:no-stem-darkening=0";
 
-  fonts.packages = with pkgs; [
-    __corefonts
+    fonts.packages = with pkgs; [
+      __corefonts
 
-    #sans
-    open-sans
-    noto-fonts-emoji
+      #sans
+      open-sans
+      noto-fonts-emoji
 
-    # serif
-    charter
-    consolas
+      # serif
+      charter
+      consolas
 
-    # monospace
-    jetbrains-mono
-    nerd-fonts.symbols-only
-  ];
+      # monospace
+      jetbrains-mono
+      nerd-fonts.symbols-only
+    ];
+  };
 }

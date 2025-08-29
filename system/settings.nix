@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ lib, pkgs, ... }:
 
 {
   options = {
@@ -13,6 +13,8 @@
   };
 
   config = {
+    documentation.nixos.enable = false;
+
     nix = {
       # run garbage collection whenever there is less than 500mb free space left
       extraOptions = ''
@@ -39,6 +41,18 @@
           "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         ];
       };
+    };
+
+    services = {
+      libinput = {
+        enable = pkgs.stdenv.isx86_64;
+        touchpad = {
+          naturalScrolling = true;
+          disableWhileTyping = true;
+        };
+      };
+      printing.enable = false;
+      xserver.enable = pkgs.stdenv.isx86_64;
     };
   };
 }

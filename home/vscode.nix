@@ -506,18 +506,22 @@ let
 in
 
 {
-  programs.vscode = {
-    enable = true;
-    mutableExtensionsDir = false;
-    package = pkgs.vscode.override {
-      commandLineArgs = [ "--use-gl=desktop" ];
-    };
-    profiles.default = {
-      enableExtensionUpdateCheck = false;
-      enableUpdateCheck = false;
-      extensions = extensions;
-      keybindings = keybindings;
-      userSettings = userSettings;
+  config = {
+    programs.vscode = {
+      enable = true;
+      mutableExtensionsDir = false;
+
+      package = pkgs.vscode.override {
+        commandLineArgs = [ "--use-gl=desktop" ];
+      };
+
+      profiles.default = {
+        enableExtensionUpdateCheck = false;
+        enableUpdateCheck = false;
+        extensions = extensions;
+        keybindings = keybindings;
+        userSettings = userSettings;
+      };
     };
   };
 }

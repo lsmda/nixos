@@ -68,5 +68,7 @@ let
 in
 
 {
-  home.packages = headless ++ (if pkgs.stdenv.isx86_64 then desktop else [ ]);
+  config = {
+    home.packages = headless ++ (if pkgs.stdenv.isx86_64 then desktop else [ ]);
+  };
 }

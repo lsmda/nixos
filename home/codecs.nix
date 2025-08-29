@@ -9,32 +9,32 @@ let
 in
 
 {
-  # Install comprehensive media codec support including H.265/HEVC
-  home.packages =
-    with pkgs;
-    [
-      # FFmpeg with full codec support
-      ffmpeg-full
+  config = {
+    # Install comprehensive media codec support including H.265/HEVC
+    home.packages =
+      with pkgs;
+      [
+        # FFmpeg with full codec support
+        ffmpeg-full
 
-      # x264 and x265 encoders/decoders
-      x264
-      x265
+        # x264 and x265 encoders/decoders
+        x264
+        x265
 
-      # Additional media libraries
-      libva # Video Acceleration API
-      libva-utils # VA-API utilities for testing
-      intel-media-driver # Intel hardware video acceleration
-      intel-vaapi-driver # Legacy Intel VA-API driver
-      mesa # Mesa drivers for video acceleration
+        # Additional media libraries
+        libva # Video Acceleration API
+        libva-utils # VA-API utilities for testing
+        intel-media-driver # Intel hardware video acceleration
+        intel-vaapi-driver # Legacy Intel VA-API driver
+        mesa # Mesa drivers for video acceleration
 
-      # Media players with codec support
-      vlc # VLC media player with extensive codec support
-    ]
-    ++ (if config.hardware.nvidia.enabled then nvidia else [ ]);
+        # Media players with codec support
+        vlc # VLC media player with extensive codec support
+      ]
+      ++ (if config.hardware.nvidia.enabled then nvidia else [ ]);
 
-  # Set environment variables for hardware acceleration
-  home.sessionVariables =
-    {
+    # Set environment variables for hardware acceleration
+    home.sessionVariables = {
       # FFmpeg hardware acceleration
       FFMPEG_VAAPI = "1";
       FFMPEG_VDPAU = "1";
@@ -49,4 +49,5 @@ in
       else
         { }
     );
+  };
 }
