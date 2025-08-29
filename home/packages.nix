@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 let
-  __vscode = (pkgs.vscode.override { commandLineArgs = [ "--use-gl=desktop" ]; }).fhs;
-
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
     discord
@@ -23,7 +21,6 @@ let
     pavucontrol
     qbittorrent
     spotify
-    __vscode
     winbox
     wlsunset # night light
     wpsoffice
@@ -45,7 +42,7 @@ let
     go
     glow # render markdown on the CLI
     gocryptfs
-    jq # CLI JSON processor
+    jq # cli JSON processor
     keychain # keys management tool (GPG, SSH)
     lshw
     lua
@@ -58,7 +55,7 @@ let
     python3
     ripgrep
     rustc
-    soft-serve # Self-hosted Git server
+    soft-serve # self-hosted Git server
     sops
     sqlite
     sqlitebrowser

@@ -71,6 +71,7 @@ in
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix
+        ../../home/vscode.nix
         ../../home/zed.nix
 
         (import ../../home/browser.nix { inherit config pkgs; })
