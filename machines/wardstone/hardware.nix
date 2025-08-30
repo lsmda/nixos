@@ -1,11 +1,21 @@
-{ lib, modulesPath, ... }:
+{
+  lib,
+  modulesPath,
+  pkgs,
+  ...
+}:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   config = {
+    boot.initrd.availableKernelModules = [ "xhci_pci" ];
+
     # enable bbr module
     boot.kernelModules = [ "tcp_bbr" ];
+
+    boot.loader.grub.enable = false;
+    boot.loader.generic-extlinux-compatible.enable = lib.mkDefault true;
 
     # network hardening and performance
     boot.kernel.sysctl = {
@@ -43,11 +53,6 @@
       "net.core.default_qdisc" = "cake";
     };
 
-    boot.initrd.availableKernelModules = [ "xhci_pci" ];
-
-    boot.loader.grub.enable = false;
-    boot.loader.generic-extlinux-compatible.enable = lib.mkDefault true;
-
     fileSystems."/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
       fsType = "ext4";
@@ -66,6 +71,8 @@
 
     hardware.enableAllFirmware = true;
     hardware.graphics.enable = true; # hardware acceleration
+
+    boot.kernelPackages = pkgs.linuxKernel.rpiPackages.linux_rpi4;
 
     nixpkgs.config.allowUnfree = true;
     nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";

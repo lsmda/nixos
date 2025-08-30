@@ -18,7 +18,6 @@ in
 
     ./hardware.nix
 
-    ../../system/boot.nix
     ../../system/caddy.nix
     ../../system/fonts.nix
     ../../system/keyd.nix

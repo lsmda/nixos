@@ -1,4 +1,9 @@
-{ lib, modulesPath, ... }:
+{
+  lib,
+  modulesPath,
+  pkgs,
+  ...
+}:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -30,6 +35,8 @@
     hardware.cpu.amd.updateMicrocode = true;
     hardware.enableAllFirmware = true;
     hardware.graphics.enable = true; # hardware acceleration
+
+    boot.kernelPackages = pkgs.linuxPackages_zen;
 
     nixpkgs.config.allowUnfree = true;
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
