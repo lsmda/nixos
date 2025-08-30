@@ -9,15 +9,8 @@ let
 
   fromBinary = path: sopsFile path // { format = "binary"; };
   fromDotenv = path: sopsFile path // { format = "dotenv"; };
-
+  fromFile = set: set // { key = ""; };
   fromYaml = path: sopsFile path // { format = "yaml"; };
-  fromYamlFile =
-    path:
-    sopsFile path
-    // {
-      format = "yaml";
-      key = "";
-    };
 
   withOwner =
     user: set:
@@ -32,8 +25,8 @@ in
   inherit
     fromBinary
     fromDotenv
+    fromFile
     fromYaml
-    fromYamlFile
     withOwner
     ;
 }

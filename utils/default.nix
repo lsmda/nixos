@@ -11,8 +11,8 @@ in
   inherit (sops)
     fromBinary
     fromDotenv
+    fromFile
     fromYaml
-    fromYamlFile
     withOwner
     ;
   inherit (users) createUsersGroups usersGroups;

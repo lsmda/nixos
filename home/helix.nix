@@ -37,7 +37,7 @@
         default-line-ending = "lf";
         scrolloff = 50;
         color-modes = true;
-        soft-wrap.enable = true;
+        soft-wrap.enable = false;
 
         completion-replace = true;
         completion-timeout = 250;

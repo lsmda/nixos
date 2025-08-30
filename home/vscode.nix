@@ -6,7 +6,7 @@ let
     angular.ng-template
     bradlc.vscode-tailwindcss
     charliermarsh.ruff
-    cweijan.vscode-database-client2
+    # cweijan.vscode-database-client2
     esbenp.prettier-vscode
     formulahendry.auto-rename-tag
     # monokai.theme-monokai-pro-vscode
@@ -434,31 +434,32 @@ let
       editor.bracketPairColorization.enabled = false;
       editor.cursorBlinking = "smooth";
       editor.cursorStyle = "block";
-      editor.fontFamily = "'JetBrains Mono', 'Symbols Nerd Font', Consolas, monospace";
+      editor.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
       editor.fontLigatures = true;
-      editor.fontSize = 12;
-      editor.fontWeight = 500;
+      editor.fontSize = 13;
+      editor.fontWeight = 400;
       editor.formatOnSave = true;
       editor.guides.bracketPairs = "active";
       editor.hover.enabled = false;
-      editor.letterSpacing = 1.2;
-      editor.lineHeight = 1.75;
+      # editor.letterSpacing = 1;
+      editor.lineHeight = 1.4;
       editor.linkedEditing = true;
       editor.minimap.enabled = false;
       editor.minimap.renderCharacters = false;
       editor.snippetSuggestions = "top";
       editor.suggest.insertMode = "replace";
       editor.tabSize = 2;
+      editor.tokenColorCustomizations.comments.fontStyle = "";
     }
     // {
       terminal.integrated.commandsToSkipShell = [ "workbench.action.toggleSidebarVisibility" ];
       terminal.integrated.cursorBlinking = true;
       terminal.integrated.cursorStyle = "block";
-      terminal.integrated.fontFamily = "'JetBrains Mono', 'Symbols Nerd Font', Consolas, monospace";
-      terminal.integrated.fontSize = 12;
-      terminal.integrated.fontWeight = 500;
-      terminal.integrated.letterSpacing = 1;
-      terminal.integrated.lineHeight = 1.3;
+      terminal.integrated.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
+      terminal.integrated.fontSize = 13;
+      terminal.integrated.fontWeight = 400;
+      # terminal.integrated.letterSpacing = 1;
+      terminal.integrated.lineHeight = 1.4;
     }
     // {
       workbench.activityBar.location = "bottom";
@@ -477,13 +478,13 @@ let
       chat.agent.enabled = false;
       chat.commandCenter.enabled = false;
       chat.editor.fontSize = 11;
-      database-client.autoSync = true;
       debug.console.fontSize = 11;
       emmet.showSuggestionsAsSnippets = true;
       emmet.triggerExpansionOnTab = true;
       explorer.confirmDelete = false;
       explorer.confirmDragAndDrop = false;
       explorer.confirmPasteNative = false;
+      extensions.autoCheckUpdates = false;
       extensions.ignoreRecommendations = true;
       files.autoSave = "afterDelay";
       files.autoSaveDelay = 500;
@@ -498,7 +499,7 @@ let
       typescript.preferGoToSourceDefinition = true;
       typescript.preferences.preferTypeOnlyAutoImports = true;
       typescript.updateImportsOnFileMove.enabled = "always";
-      update.mode = "manual";
+      update.mode = "none";
       update.showReleaseNotes = false;
       window.menuBarVisibility = "toggle";
     }
