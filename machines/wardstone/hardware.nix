@@ -46,7 +46,7 @@
     boot.initrd.availableKernelModules = [ "xhci_pci" ];
 
     boot.loader.grub.enable = false;
-    boot.loader.generic-extlinux-compatible.enable = true;
+    boot.loader.generic-extlinux-compatible.enable = lib.mkDefault true;
 
     fileSystems."/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
