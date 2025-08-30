@@ -18,6 +18,7 @@ in
     ./hardware.nix
 
     ../../system/bluetooth.nix
+    ../../system/boot.nix
     ../../system/fonts.nix
     ../../system/gnome.nix
     ../../system/kde.nix

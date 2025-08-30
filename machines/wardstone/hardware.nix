@@ -1,9 +1,4 @@
-{
-  lib,
-  modulesPath,
-  pkgs,
-  ...
-}:
+{ lib, modulesPath, ... }:
 
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
@@ -49,12 +44,9 @@
     };
 
     boot.initrd.availableKernelModules = [ "xhci_pci" ];
-    boot.kernelPackages = pkgs.linuxKernel.packages.linux_rpi4;
 
     boot.loader.grub.enable = false;
     boot.loader.generic-extlinux-compatible.enable = true;
-
-    boot.tmp.cleanOnBoot = true;
 
     fileSystems."/" = {
       device = "/dev/disk/by-label/NIXOS_SD";
