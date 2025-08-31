@@ -28,44 +28,23 @@ in
       restartUnits = [ "podman-kimai.service" ];
     };
 
-    virtualisation.oci-containers.containers."kimai" =
-      let
-        importBundlePlugin = pkgs.stdenv.mkDerivation {
-          name = "ImportBundle-2.20.0";
-          src = ../assets/ImportBundle-2.20.0.zip;
+    virtualisation.oci-containers.containers."kimai" = {
+      image = "kimai/kimai2:apache";
+      autoStart = true;
+      dependsOn = [ "kimai-db" ];
+      environmentFiles = [
+        secrets."kimai".path
+      ];
+      ports = [
+        "8001:8001"
+      ];
+      volumes = [
+        "${secrets."local.yaml".path}:/opt/kimai/config/packages/local.yaml:ro"
 
-          nativeBuildInputs = [
-            pkgs.unzip
-          ];
-
-          unpackPhase = ''
-            unzip $src;
-          '';
-
-          installPhase = ''
-            mkdir -p $out
-            cp -r ImportBundle-2.20.0 $out
-          '';
-        };
-      in
-      {
-        image = "kimai/kimai2:apache";
-        autoStart = true;
-        dependsOn = [ "kimai-db" ];
-        environmentFiles = [
-          secrets."kimai".path
-        ];
-        ports = [
-          "8001:8001"
-        ];
-        volumes = [
-          "${importBundlePlugin}:/opt/kimai/var/plugins/ImportBundle-2.20.0"
-          "${secrets."local.yaml".path}:/opt/kimai/config/packages/local.yaml:ro"
-
-          "/var/lib/kimai/data:/opt/kimai/var/data"
-          "/var/lib/kimai/plugins:/opt/kimai/var/plugins"
-        ];
-      };
+        "/var/lib/kimai/data:/opt/kimai/var/data"
+        "/var/lib/kimai/plugins:/opt/kimai/var/plugins"
+      ];
+    };
 
     virtualisation.oci-containers.containers."kimai-db" = {
       image = "mysql:9.4";
@@ -82,14 +61,37 @@ in
       ];
     };
 
-    systemd.tmpfiles.rules = [
-      # web UI
-      "d /var/lib/kimai/data 0770 root root - -"
-      "d /var/lib/kimai/plugins 0770 root root - -"
+    systemd.tmpfiles.rules =
+      let
+        importBundlePlugin = pkgs.stdenv.mkDerivation {
+          name = "ImportBundle-2.20.0";
+          src = ../assets/ImportBundle-2.20.0.zip;
 
-      # database
-      "d /var/lib/kimai-db 0770 root root - -"
-    ];
+          nativeBuildInputs = [
+            pkgs.unzip
+          ];
+
+          unpackPhase = ''
+            unzip $src;
+          '';
+
+          installPhase = ''
+            mkdir -p $out
+            cp -r ImportBundle-2.20.0/* $out
+          '';
+        };
+      in
+      [
+        # web UI
+        "d /var/lib/kimai/data 0770 root root - -"
+        "d /var/lib/kimai/plugins 0770 root root - -"
+
+        # plugins
+        "C /var/lib/kimai/plugins/ImportBundle-2.20.0 0770 root root - ${importBundlePlugin}"
+
+        # database
+        "d /var/lib/kimai-db 0770 root root - -"
+      ];
 
     services.restic.backups = {
       kimai = {
