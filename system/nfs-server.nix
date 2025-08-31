@@ -25,6 +25,10 @@ in
     };
 
     systemd.tmpfiles.rules = [
+      "d /mnt/hyperx/files 0755 ${config.machine.username} root"
+      "d /mnt/hyperx/media 0755 ${config.machine.username} root"
+      "d /mnt/hyperx/store 0755 ${config.machine.username} root"
+
       "d /srv/nfs/files 0755 ${config.machine.username} root"
       "d /srv/nfs/media 0755 ${config.machine.username} root"
       "d /srv/nfs/store 0755 ${config.machine.username} root"
