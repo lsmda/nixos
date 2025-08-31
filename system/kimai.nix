@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (import ../utils { inherit config lib; }) fromBinary fromFile fromYaml;
@@ -15,32 +20,52 @@ in
       restartUnits = [ "podman-kimai.service" ];
     };
 
-    sops.secrets."local.yaml" = fromFile (fromYaml ../secrets/kimai/local.yaml) // {
-      restartUnits = [ "podman-kimai.service" ];
-    };
-
     sops.secrets."kimai-db" = fromBinary ../secrets/kimai/kimai-db // {
       restartUnits = [ "podman-kimai-db.service" ];
     };
 
-    virtualisation.oci-containers.containers."kimai" = {
-      image = "kimai/kimai2:apache";
-      autoStart = true;
-      dependsOn = [ "kimai-db" ];
-      environmentFiles = [
-        secrets."kimai".path
-      ];
-      ports = [
-        "8001:8001"
-      ];
-      volumes = [
-        # kimai configuration file
-        "${secrets."local.yaml".path}:/opt/kimai/config/packages/local.yaml:ro"
-
-        "/var/lib/kimai/data:/opt/kimai/var/data"
-        "/var/lib/kimai/plugins:/opt/kimai/var/plugins"
-      ];
+    sops.secrets."local.yaml" = fromFile (fromYaml ../secrets/kimai/local.yaml) // {
+      restartUnits = [ "podman-kimai.service" ];
     };
+
+    virtualisation.oci-containers.containers."kimai" =
+      let
+        importBundlePlugin = pkgs.stdenv.mkDerivation {
+          name = "ImportBundle-2.20.0";
+          src = ../assets/ImportBundle-2.20.0.zip;
+
+          nativeBuildInputs = [
+            pkgs.unzip
+          ];
+
+          unpackPhase = ''
+            unzip $src;
+          '';
+
+          installPhase = ''
+            mkdir -p $out
+            cp -r ImportBundle-2.20.0 $out
+          '';
+        };
+      in
+      {
+        image = "kimai/kimai2:apache";
+        autoStart = true;
+        dependsOn = [ "kimai-db" ];
+        environmentFiles = [
+          secrets."kimai".path
+        ];
+        ports = [
+          "8001:8001"
+        ];
+        volumes = [
+          "${importBundlePlugin}:/opt/kimai/var/plugins/ImportBundle-2.20.0"
+          "${secrets."local.yaml".path}:/opt/kimai/config/packages/local.yaml:ro"
+
+          "/var/lib/kimai/data:/opt/kimai/var/data"
+          "/var/lib/kimai/plugins:/opt/kimai/var/plugins"
+        ];
+      };
 
     virtualisation.oci-containers.containers."kimai-db" = {
       image = "mysql:9.4";
