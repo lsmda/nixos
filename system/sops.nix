@@ -2,7 +2,7 @@
 
 let
   user = config.machine.username;
-  inherit (import ../utils { inherit config lib; }) fromBinary fromYaml withOwner;
+  inherit (import ../utils { inherit config lib; }) fromBinary fromYaml;
 in
 
 # generate age key:
