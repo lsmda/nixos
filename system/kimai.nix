@@ -80,6 +80,12 @@ in
           "/var/lib/kimai-db"
         ];
 
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 2"
+          "--keep-monthly 1"
+        ];
+
         timerConfig = {
           OnCalendar = "01:00";
           RandomizedDelaySec = "30m";
