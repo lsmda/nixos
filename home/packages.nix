@@ -53,6 +53,7 @@ let
     nodePackages.yarn
     pciutils # lspci, etc.
     python3
+    restic
     ripgrep
     rustc
     soft-serve # self-hosted Git server

@@ -76,5 +76,25 @@ in
         }
       }
     '';
+
+    services.restic.backups = {
+      kimai = {
+        initialize = true;
+        passwordFile = secrets."password".path;
+        repository = "/srv/nfs/store/kimai";
+
+        paths = [
+          "/var/lib/kimai/data"
+          "/var/lib/kimai/plugins"
+          "/var/lib/kimai-db"
+        ];
+
+        user = "root";
+        timerConfig = {
+          OnCalendar = "00:00";
+          RandomizedDelaySec = "30m";
+        };
+      };
+    };
   };
 }
