@@ -9,11 +9,13 @@ in
 
 {
   config = {
+    sops.secrets."restic/password" = fromYaml ../secrets/system.yaml;
+
     sops.secrets."kimai" = fromBinary ../secrets/kimai/kimai // {
       restartUnits = [ "podman-kimai.service" ];
     };
 
-    sops.secrets."local.yaml" = (fromFile (fromYaml ../secrets/kimai/local.yaml)) // {
+    sops.secrets."local.yaml" = fromFile (fromYaml ../secrets/kimai/local.yaml) // {
       restartUnits = [ "podman-kimai.service" ];
     };
 
@@ -64,6 +66,27 @@ in
       "d /var/lib/kimai-db 0770 root root - -"
     ];
 
+    services.restic.backups = {
+      kimai = {
+        initialize = true;
+        repository = "/srv/nfs/store/kimai";
+
+        user = "root";
+        passwordFile = secrets."restic/password".path;
+
+        paths = [
+          "/var/lib/kimai/data"
+          "/var/lib/kimai/plugins"
+          "/var/lib/kimai-db"
+        ];
+
+        timerConfig = {
+          OnCalendar = "01:00";
+          RandomizedDelaySec = "30m";
+        };
+      };
+    };
+
     services.caddy.virtualHosts."kimai.${fqdn}".extraConfig = ''
       tls ${secrets."${fqdn}/cert.pem".path} ${secrets."${fqdn}/key.pem".path}
             
@@ -76,25 +99,5 @@ in
         }
       }
     '';
-
-    services.restic.backups = {
-      kimai = {
-        initialize = true;
-        passwordFile = secrets."password".path;
-        repository = "/srv/nfs/store/kimai";
-
-        paths = [
-          "/var/lib/kimai/data"
-          "/var/lib/kimai/plugins"
-          "/var/lib/kimai-db"
-        ];
-
-        user = "root";
-        timerConfig = {
-          OnCalendar = "00:00";
-          RandomizedDelaySec = "30m";
-        };
-      };
-    };
   };
 }
