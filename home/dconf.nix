@@ -91,6 +91,10 @@ in
       };
 
       # gnome tweaks extension
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+      };
+
       "org/gnome/desktop/interface" = {
         font-antialiasing = "rgba";
         font-hinting = "full";
