@@ -20,10 +20,12 @@ in
   config = {
     fileSystems."/mnt/files" = share "/files";
     fileSystems."/mnt/media" = share "/media";
+    fileSystems."/mnt/store" = share "/store";
 
     systemd.tmpfiles.rules = [
       "d /mnt/files 0755 ${config.machine.username} root"
       "d /mnt/media 0755 ${config.machine.username} root"
+      "d /mnt/store 0755 ${config.machine.username} root"
     ];
   };
 }
