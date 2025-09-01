@@ -452,7 +452,9 @@ let
       editor.tokenColorCustomizations.comments.fontStyle = "";
     }
     // {
-      terminal.integrated.commandsToSkipShell = [ "workbench.action.toggleSidebarVisibility" ];
+      terminal.integrated.commandsToSkipShell = [
+        "workbench.action.toggleSidebarVisibility"
+      ];
       terminal.integrated.cursorBlinking = true;
       terminal.integrated.cursorStyle = "block";
       terminal.integrated.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
@@ -510,7 +512,7 @@ in
   config = {
     programs.vscode = {
       enable = true;
-      mutableExtensionsDir = false;
+      mutableExtensionsDir = true;
 
       package = pkgs.vscode.override {
         commandLineArgs = [ "--use-gl=desktop" ];
