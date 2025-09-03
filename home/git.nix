@@ -1,4 +1,39 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+
+let
+  gitDerivation = pkgs.stdenv.mkDerivation rec {
+    name = "git-credentials";
+
+    src = ../secrets/git/credentials.json;
+    ageKeyFile = /home/${config.machine.username}/.config/sops/age/keys.txt;
+
+    nativeBuildInputs = [
+      pkgs.sops
+    ];
+
+    unpackPhase = ''
+      echo "Skipping default unpack phase"
+    '';
+
+    buildPhase = ''
+      echo "Copying age key file..."
+      tmpdir=$(mktemp -d)
+      cp ${ageKeyFile} "$tmpdir/age-key.txt"
+
+      echo "Decrypting the zip file..."
+      export SOPS_AGE_KEY_FILE=$tmpdir/age-key.txt
+      sops -d $src > credentials.json
+      echo "Decryption successful."
+      rm -rf "$tmpdir"
+    '';
+
+    installPhase = ''
+      mv credentials.json $out
+    '';
+  };
+
+  credentials = builtins.fromJSON (builtins.readFile gitDerivation);
+in
 
 {
   config = {
@@ -10,8 +45,8 @@
       enable = true;
 
       extraConfig = {
-        user.name = "lsmda";
-        user.email = "contact@lsmda.pm";
+        user.name = credentials.name;
+        user.email = credentials.email;
         core.commentChar = ";";
         credential.credentialStore = "secretservice";
         credential.helper = "manager";
@@ -25,6 +60,9 @@
         cf = "config";
         ch = "checkout";
         cm = "commit";
+        cp = "cherry-pick";
+
+        df = "diff";
 
         ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\ %Creset%s%Cblue\\\ [%cn]\" --decorate --numstat";
         ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\ %Creset%s%Cblue\\\ [%cn]\" --decorate";
@@ -35,6 +73,7 @@
         rs = "reset";
         rt = "restore";
 
+        sh = "stash";
         st = "status";
       };
     };
