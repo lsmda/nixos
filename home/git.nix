@@ -64,10 +64,15 @@ in
 
         df = "diff";
 
+        ft = "fetch";
+
         ll = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\ %Creset%s%Cblue\\\ [%cn]\" --decorate --numstat";
         ls = "log --pretty=format:\"%C(yellow)%h%Cred%d\\\ %Creset%s%Cblue\\\ [%cn]\" --decorate";
 
         mr = "merge";
+
+        pl = "pull";
+        ps = "push";
 
         rb = "rebase";
         rs = "reset";
