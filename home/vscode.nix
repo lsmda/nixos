@@ -498,6 +498,9 @@ let
       scm.inputFontSize = 11;
       security.workspace.trust.untrustedFiles = "open";
       settingsSync.ignoredSettings = [ "-window.zoomLevel" ];
+      "[typescript]" = {
+        editor.defaultFormatter = "esbenp.prettier-vscode";
+      };
       typescript.preferGoToSourceDefinition = true;
       typescript.preferences.preferTypeOnlyAutoImports = true;
       typescript.updateImportsOnFileMove.enabled = "always";
