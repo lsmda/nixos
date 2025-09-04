@@ -6,6 +6,7 @@
 }:
 
 let
+  inherit (lib) mkForce;
   inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
@@ -21,7 +22,6 @@ in
     ../../system/boot.nix
     ../../system/fonts.nix
     ../../system/gnome.nix
-    ../../system/kde.nix
     ../../system/keyd.nix
     ../../system/locale.nix
     ../../system/networking.nix
@@ -81,6 +81,10 @@ in
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
       ];
+
+      dconf.settings = {
+        "org/gnome/desktop/interface"."text-scaling-factor" = mkForce 1.1;
+      };
 
       home.stateVersion = "25.05";
     };
