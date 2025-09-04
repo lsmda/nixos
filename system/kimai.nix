@@ -1,9 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, lib, ... }:
 
 let
   inherit (import ../utils { inherit config lib; }) fromBinary fromFile fromYaml;
@@ -61,37 +56,14 @@ in
       ];
     };
 
-    systemd.tmpfiles.rules =
-      let
-        importBundlePlugin = pkgs.stdenv.mkDerivation {
-          name = "ImportBundle-2.20.0";
-          src = ../assets/ImportBundle-2.20.0.zip;
+    systemd.tmpfiles.rules = [
+      # web UI
+      "d /var/lib/kimai/data 0770 www-data www-data - -"
+      "d /var/lib/kimai/plugins 0770 www-data www-data - -"
 
-          nativeBuildInputs = [
-            pkgs.unzip
-          ];
-
-          unpackPhase = ''
-            unzip $src;
-          '';
-
-          installPhase = ''
-            mkdir -p $out
-            cp -r ImportBundle-2.20.0/* $out
-          '';
-        };
-      in
-      [
-        # web UI
-        "d /var/lib/kimai/data 0770 root root - -"
-        "d /var/lib/kimai/plugins 0770 root root - -"
-
-        # plugins
-        "C /var/lib/kimai/plugins/ImportBundle-2.20.0 0770 root root - ${importBundlePlugin}"
-
-        # database
-        "d /var/lib/kimai-db 0770 root root - -"
-      ];
+      # database
+      "d /var/lib/kimai-db 0770 www-data www-data - -"
+    ];
 
     services.restic.backups = {
       kimai = {
