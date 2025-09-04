@@ -64,10 +64,10 @@ in
         ../../home/helix.nix
         ../../home/packages.nix
         ../../home/shell.nix
-        ../../home/ssh.nix
 
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
+        (import ../../home/ssh.nix { inherit config pkgs; })
       ];
 
       programs.git.extraConfig.credential = mkForce { };

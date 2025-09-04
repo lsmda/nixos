@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  fqdn = config.fqdn;
+  fqdn = config.www.fqdn;
 in
 
 {
