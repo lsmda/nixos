@@ -65,6 +65,7 @@
       options = [
         "noatime"
         "nofail"
+        "x-systemd.automount"
         "x-systemd.before=local-fs.target"
       ];
     };

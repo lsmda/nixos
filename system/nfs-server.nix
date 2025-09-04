@@ -4,7 +4,12 @@ let
   share = path: {
     device = path;
     fsType = "none";
-    options = [ "bind" ];
+    options = [
+      "bind"
+      "noauto"
+      "x-systemd.automount"
+      "x-systemd.mount-timeout=10"
+    ];
   };
 in
 

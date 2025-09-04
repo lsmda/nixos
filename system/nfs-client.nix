@@ -2,11 +2,11 @@
 
 let
   options = [
-    "noauto" # disable auto-mount on boot
-    "rw" # read-write permissions
-    "x-gvfs-show" # show mounted file systems on file explorer
-    "x-systemd.automount" # enable on-demand mounting
-    "x-systemd.mount-timeout=5" # ignore pending mounts after 5sec
+    "noauto"
+    "rw"
+    "x-gvfs-show"
+    "x-systemd.automount"
+    "x-systemd.mount-timeout=10"
   ];
 
   share = path: {
