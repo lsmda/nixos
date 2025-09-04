@@ -15,6 +15,8 @@ in
 
 {
   config = {
+    networking.firewall.allowedTCPPorts = [ 2049 ];
+
     fileSystems."/srv/nfs/files" = share "/mnt/hyperx/files";
     fileSystems."/srv/nfs/media" = share "/mnt/hyperx/media";
     fileSystems."/srv/nfs/store" = share "/mnt/hyperx/store";

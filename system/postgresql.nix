@@ -7,6 +7,8 @@ in
 
 {
   config = {
+    networking.firewall.allowedTCPPorts = [ 5432 ];
+
     users.groups = createUsersGroups [ serviceUser ];
 
     users.users.${serviceUser} = {

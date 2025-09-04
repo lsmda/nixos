@@ -1,23 +1,5 @@
 { config, lib, ... }:
 
-let
-  allowedPorts = [
-    5432 # postgresql
-    2049 # nfs
-  ];
-
-  localDevRange = {
-    from = 5000;
-    to = 5010;
-  };
-
-  moshRange = {
-    from = 60000;
-    to = 61000;
-  };
-
-in
-
 {
   options = {
     lan.network = lib.mkOption {
@@ -43,11 +25,18 @@ in
     lan.storage = "192.168.0.5";
 
     networking.firewall.enable = true;
-    networking.firewall.allowedTCPPorts = allowedPorts;
+
+    networking.firewall.allowedTCPPorts = [ ];
     networking.firewall.allowedUDPPorts = [ ];
 
-    networking.firewall.allowedTCPPortRanges = [ localDevRange ];
-    networking.firewall.allowedUDPPortRanges = [ moshRange ];
+    networking.firewall.allowedTCPPortRanges = [
+      {
+        # localhost development
+        from = 5000;
+        to = 5010;
+      }
+    ];
+    networking.firewall.allowedUDPPortRanges = [ ];
 
     networking.hostName = config.machine.hostname;
     networking.networkmanager.enable = true;

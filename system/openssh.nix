@@ -1,5 +1,14 @@
 {
   config = {
+    networking.firewall.allowedTCPPorts = [ 22 ];
+    networking.firewall.allowedUDPPortRanges = [
+      {
+        # mosh
+        from = 60000;
+        to = 61000;
+      }
+    ];
+
     # whether to start the openssh agent when you log in.
     #
     # the openssh agent remembers private keys for you so that you don’t
