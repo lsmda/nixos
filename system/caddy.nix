@@ -34,6 +34,7 @@ in
           ingress = {
             "${fqdn}" = "https://127.0.0.1";
             "*.${fqdn}" = "https://127.0.0.1";
+            "ssh.${fqdn}" = "ssh://127.0.0.1:22";
           };
           originRequest.originServerName = "${fqdn}";
           default = "http_status:404";
