@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  fqdn = config.www.fqdn;
+  fqdn = config.www.fqdn or "lsmda.pm";
 in
 
 {
