@@ -58,11 +58,11 @@ in
 
     systemd.tmpfiles.rules = [
       # web UI
-      "d /var/lib/kimai/data 0770 www-data www-data - -"
-      "d /var/lib/kimai/plugins 0770 www-data www-data - -"
+      "d /var/lib/kimai/data 0770 root root - -"
+      "d /var/lib/kimai/plugins 0770 root root - -"
 
       # database
-      "d /var/lib/kimai-db 0770 www-data www-data - -"
+      "d /var/lib/kimai-db 0770 root root - -"
     ];
 
     services.restic.backups = {
@@ -87,7 +87,7 @@ in
 
         timerConfig = {
           OnCalendar = "01:00";
-          RandomizedDelaySec = "30m";
+          RandomizedDelaySec = "10m";
         };
       };
     };
