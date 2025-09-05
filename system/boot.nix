@@ -8,9 +8,6 @@
       loader.systemd-boot.enable = true;
       loader.systemd-boot.configurationLimit = 3;
 
-      plymouth.enable = true;
-      plymouth.theme = "breeze";
-
       tmp.cleanOnBoot = true;
     };
   };
