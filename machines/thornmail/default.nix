@@ -80,6 +80,7 @@ in
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
+        (import ../../home/ssh.nix { inherit config pkgs; })
       ];
 
       dconf.settings = {
