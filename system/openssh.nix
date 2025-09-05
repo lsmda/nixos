@@ -1,6 +1,6 @@
 {
   config = {
-    networking.firewall.allowedTCPPorts = [ 22 ];
+    networking.firewall.allowedTCPPorts = [ ];
     networking.firewall.allowedUDPPortRanges = [
       {
         # mosh

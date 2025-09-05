@@ -33,7 +33,8 @@ in
           credentialsFile = "${secrets."cloudflare/rpi-4".path}";
           ingress = {
             "${fqdn}" = "https://127.0.0.1";
-            "*.${fqdn}" = "https://127.0.0.1";
+            "cv.${fqdn}" = "https://127.0.0.1";
+            "kimai.${fqdn}" = "https://127.0.0.1";
             "ssh.${fqdn}" = "ssh://127.0.0.1:22";
           };
           originRequest.originServerName = "${fqdn}";
