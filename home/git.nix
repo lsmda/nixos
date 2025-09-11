@@ -47,7 +47,6 @@ in
       extraConfig = {
         user.name = credentials.name;
         user.email = credentials.email;
-        core.commentChar = ";";
         credential.credentialStore = "secretservice";
         credential.helper = "manager";
         init.defaultBranch = "main";
@@ -59,6 +58,7 @@ in
 
         cf = "config";
         ch = "checkout";
+        cl = "clean";
         cm = "commit";
         cp = "cherry-pick";
 
