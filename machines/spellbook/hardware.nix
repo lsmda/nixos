@@ -36,7 +36,7 @@
     hardware.enableAllFirmware = true;
     hardware.graphics.enable = true; # hardware acceleration
 
-    boot.kernelPackages = pkgs.linuxPackages_zen;
+    boot.kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
     nixpkgs.config.allowUnfree = true;
     nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
