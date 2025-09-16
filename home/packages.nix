@@ -14,6 +14,7 @@ let
     gnomeExtensions.just-perfection
     gparted # disk utility
     impression # usb image burner
+    jetbrains.idea-community
     love # lua-based 2d game engine language
     mgba # gameboy emulator
     nautilus # file explorer
