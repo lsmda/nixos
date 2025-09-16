@@ -15,6 +15,7 @@ let
     gparted # disk utility
     impression # usb image burner
     jetbrains.idea-community
+    jetbrains.webstorm
     love # lua-based 2d game engine language
     mgba # gameboy emulator
     nautilus # file explorer
