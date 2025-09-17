@@ -71,9 +71,11 @@ in
         ../../home/gtk.nix
         ../../home/helix.nix
         ../../home/keybinds.nix
+        ../../home/kimai.nix
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix
+        ../../home/teams.nix
         ../../home/vscode.nix
         ../../home/zed.nix
 
