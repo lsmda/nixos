@@ -6,7 +6,7 @@
 
 let
   pname = "obsidian";
-  version = "1.9.10";
+  version = "1.9.12";
   appname = "Obsidian";
   meta = with lib; {
     description = "Powerful knowledge base that works on top of a local folder of plain text Markdown files";
