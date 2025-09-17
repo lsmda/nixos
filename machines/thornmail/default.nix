@@ -20,6 +20,7 @@ in
 
     ../../system/bluetooth.nix
     ../../system/boot.nix
+    ../../system/environment.nix
     ../../system/fonts.nix
     ../../system/gnome.nix
     ../../system/keyd.nix
