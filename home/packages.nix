@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 let
+  obsidian = import ../packages/obsidian.nix { inherit lib pkgs; };
+
   # packages that require a desktop environment (gnome, kde, etc.)
   desktop = with pkgs; [
     discord
