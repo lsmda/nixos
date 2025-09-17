@@ -334,7 +334,6 @@
             "https://addons.mozilla.org/firefox/downloads/latest/lastpass-password-manager/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi"
             "https://addons.mozilla.org/firefox/downloads/file/3879908/perfectdarktheme-1.1.xpi"
-            "https://addons.mozilla.org/firefox/downloads/file/4537285/pwas_for_firefox-2.15.0.xpi"
           ];
         };
         FirefoxHome = {
