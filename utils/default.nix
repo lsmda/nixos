@@ -2,8 +2,8 @@
 
 let
   keys = import ./keys.nix;
-  sops = (import ./sops.nix { inherit config lib; });
-  users = (import ./users.nix { inherit lib; });
+  sops = import ./sops.nix { inherit config lib; };
+  users = import ./users.nix { inherit lib; };
 in
 
 {

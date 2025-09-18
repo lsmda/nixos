@@ -65,17 +65,16 @@ in
     home-manager.users.${config.machine.username} = {
       imports = [
         ../../home/dconf.nix
+        ../../home/desktop.nix
         ../../home/fastfetch.nix
         ../../home/ghostty.nix
         ../../home/gpg.nix
         ../../home/gtk.nix
         ../../home/helix.nix
         ../../home/keybinds.nix
-        ../../home/kimai.nix
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix
-        ../../home/teams.nix
         ../../home/vscode.nix
         ../../home/zed.nix
 
