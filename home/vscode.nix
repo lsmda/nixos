@@ -494,6 +494,7 @@ let
       git.confirmSync = false;
       javascript.updateImportsOnFileMove.enabled = "always";
       markdown.preview.fontSize = 11;
+      redhat.telemetry.enabled = false;
       remote.autoForwardPortsSource = "hybrid";
       scm.inputFontSize = 11;
       security.workspace.trust.untrustedFiles = "open";
