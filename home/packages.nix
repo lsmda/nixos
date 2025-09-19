@@ -3,33 +3,41 @@
 let
   obsidian = import ../packages/obsidian.nix { inherit lib pkgs; };
 
-  # packages that require a desktop environment (gnome, kde, etc.)
-  desktop = with pkgs; [
-    discord
-    eog # image viewer
-    ffmpegthumbnailer
-    gnome-calculator
-    gnome-text-editor
-    gnome-tweaks
-    gnomeExtensions.alttab-scroll-workaround
-    gnomeExtensions.appindicator
-    gnomeExtensions.just-perfection
-    gparted # disk utility
-    impression # usb image burner
-    jetbrains.idea-community
-    jetbrains.webstorm
-    love # lua-based 2d game engine language
-    mgba # gameboy emulator
-    nautilus # file explorer
-    obsidian
-    pavucontrol
-    qbittorrent
-    spotify
-    winbox
-    wlsunset # night light
-    wpsoffice
-    zotero
+  java = with pkgs; [
+    openjdk17
+    maven
   ];
+
+  # packages that require a desktop environment (gnome, kde, etc.)
+  desktop =
+    with pkgs;
+    [
+      discord
+      eog # image viewer
+      ffmpegthumbnailer
+      gnome-calculator
+      gnome-text-editor
+      gnome-tweaks
+      gnomeExtensions.alttab-scroll-workaround
+      gnomeExtensions.appindicator
+      gnomeExtensions.just-perfection
+      gparted # disk utility
+      impression # usb image burner
+      jetbrains.idea-community
+      jetbrains.webstorm
+      love # lua-based 2d game engine language
+      mgba # gameboy emulator
+      nautilus # file explorer
+      obsidian
+      pavucontrol
+      qbittorrent
+      spotify
+      winbox
+      wlsunset # night light
+      wpsoffice
+      zotero
+    ]
+    ++ java;
 
   # packages that run on terminal interfaces (headless systems)
   headless = with pkgs; [
