@@ -6,6 +6,8 @@
       TOLGAOS = "true";
     };
 
+    programs.nix-ld.enable = true;
+
     # Enables simultaneous use of processor threads.
     security = {
       allowSimultaneousMultithreading = true; # Allow simultaneous multithreading (SMT).
