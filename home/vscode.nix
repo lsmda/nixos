@@ -436,7 +436,7 @@ let
       editor.cursorStyle = "block";
       editor.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
       editor.fontLigatures = true;
-      editor.fontSize = 13;
+      editor.fontSize = 12;
       editor.fontWeight = 400;
       editor.formatOnSave = true;
       editor.guides.bracketPairs = "active";
@@ -458,7 +458,7 @@ let
       terminal.integrated.cursorBlinking = true;
       terminal.integrated.cursorStyle = "block";
       terminal.integrated.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
-      terminal.integrated.fontSize = 13;
+      terminal.integrated.fontSize = 12;
       terminal.integrated.fontWeight = 400;
       # terminal.integrated.letterSpacing = 1;
       terminal.integrated.lineHeight = 1.4;
