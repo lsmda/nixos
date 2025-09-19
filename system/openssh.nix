@@ -26,6 +26,7 @@
         PermitRootLogin = "no";
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
+        StreamLocalBindUnlink = "yes"; # auto remove stale sockets
       };
     };
   };
