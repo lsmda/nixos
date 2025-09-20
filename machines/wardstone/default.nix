@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../../utils { inherit config lib; }) keys createUsersGroups usersGroups;
+  inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   inherit (lib) mkForce;
   secrets = config.sops.secrets;
 in
@@ -51,9 +51,9 @@ in
       hashedPasswordFile = secrets."password".path;
       extraGroups = usersGroups;
       openssh.authorizedKeys.keys = [
-        keys.frostbite
-        keys.thornmail
-        keys.spellbook
+        config.ssh-key.frostbite
+        config.ssh-key.thornmail
+        config.ssh-key.spellbook
       ];
     };
 

@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../utils { inherit config lib; }) keys createUsersGroups;
+  inherit (import ../utils { inherit config lib; }) createUsersGroups;
   serviceUser = "soft-serve";
 
   SSH_LISTEN_ADDR = 23231;
@@ -50,7 +50,7 @@ in
         SOFT_SERVE_STATS_LISTEN_ADDR = ":${toString STATS_LISTEN_ADDR}";
 
         SOFT_SERVE_DATA_PATH = "/srv/${serviceUser}";
-        SOFT_SERVE_INITIAL_ADMIN_KEYS = keys.wardstone;
+        SOFT_SERVE_INITIAL_ADMIN_KEYS = config.ssh-key.wardstone;
       };
 
     };
