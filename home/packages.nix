@@ -8,7 +8,6 @@ let
       ffmpegthumbnailer
       love # lua-based 2d game engine language
       mgba # gameboy emulator
-      obsidian
       pavucontrol
       qbittorrent
       spotify
