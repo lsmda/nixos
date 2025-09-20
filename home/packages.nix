@@ -1,20 +1,25 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
-  obsidian = import ../packages/obsidian.nix { inherit lib pkgs; };
-
-  java = with pkgs; [
-    openjdk17
-    maven
-  ];
-
-  # packages that require a desktop environment (gnome, kde, etc.)
-  desktop =
+  gui =
     with pkgs;
     [
       discord
-      eog # image viewer
       ffmpegthumbnailer
+      love # lua-based 2d game engine language
+      mgba # gameboy emulator
+      obsidian
+      pavucontrol
+      qbittorrent
+      spotify
+      wlsunset # night light
+      wpsoffice
+      zotero
+    ]
+
+    # gnome tools
+    ++ [
+      eog # image viewer
       gnome-calculator
       gnome-text-editor
       gnome-tweaks
@@ -23,36 +28,31 @@ let
       gnomeExtensions.just-perfection
       gparted # disk utility
       impression # usb image burner
+      nautilus # file explorer
+
+    ]
+
+    # java development
+    ++ [
       jetbrains.idea-community
       jetbrains.webstorm
-      love # lua-based 2d game engine language
-      mgba # gameboy emulator
-      nautilus # file explorer
-      obsidian
-      pavucontrol
-      qbittorrent
-      spotify
-      winbox
-      wlsunset # night light
-      wpsoffice
-      zotero
-    ]
-    ++ java;
+      maven
+      openjdk17
+    ];
 
-  # packages that run on terminal interfaces (headless systems)
-  headless = with pkgs; [
+  cli = with pkgs; [
     age
     caddy
     cargo
     cloudflared
     cryfs
-    dive # tool for exploring docker images
+    dive # explore docker images
     fastfetch
     fzf
     gcc
     gnumake
     go
-    glow # render markdown on the CLI
+    glow # render markdown on CLI
     gocryptfs
     jq # cli JSON processor
     keychain # keys management tool (GPG, SSH)
@@ -68,7 +68,7 @@ let
     restic
     ripgrep
     rustc
-    soft-serve # self-hosted Git server
+    soft-serve # self-hosted git server
     sops
     sqlite
     sqlitebrowser
@@ -81,7 +81,11 @@ let
 in
 
 {
+  imports = [
+    ../packages/obsidian.nix
+  ];
+
   config = {
-    home.packages = headless ++ (if pkgs.stdenv.isx86_64 then desktop else [ ]);
+    home.packages = cli ++ (if pkgs.stdenv.isx86_64 then gui else [ ]);
   };
 }
