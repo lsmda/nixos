@@ -71,7 +71,6 @@ in
         ../../home/gpg.nix
         ../../home/gtk.nix
         ../../home/helix.nix
-        ../../home/keybinds.nix
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix

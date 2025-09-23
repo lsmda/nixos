@@ -65,7 +65,6 @@ in
         ../../home/gpg.nix
         ../../home/gtk.nix
         ../../home/helix.nix
-        ../../home/keybinds.nix
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix
@@ -76,6 +75,7 @@ in
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
+        (import ../../home/ssh.nix { inherit config pkgs; })
       ];
 
       dconf.settings = {
