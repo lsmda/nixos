@@ -10,7 +10,7 @@
           scripts = [
             pkgs.mpvScripts.autoload
             pkgs.mpvScripts.memo
-            pkgs.mpvScripts.modernx
+            pkgs.mpvScripts.modernz
             pkgs.mpvScripts.mpris
             pkgs.mpvScripts.thumbfast
           ];
@@ -32,21 +32,18 @@
         "," = "frame-back-step";
 
         s = "screenshot";
-
         SPACE = "cycle pause";
-
         "ctrl+w" = "quit";
       };
 
       config = {
-        # start in fullscreen mode by default.
-        fs = "yes";
-
         # disable the on screen controller (osc).
         osc = "no";
 
+        profile = "gpu-hq";
         # uses gpu-accelerated video output by default.
         vo = "gpu";
+        gpu-api = "vulkan";
 
         # enables best hw decoder; turn off for software decoding
         hwdec = "yes";
@@ -87,5 +84,24 @@
         hwdec = true;
       };
     };
+
+    home.file.".config/mpv/script-opts/modernz.conf".text = ''
+      # Language and display
+      # set language (for available options, see: https://github.com/Samillion/ModernZ/blob/main/docs/TRANSLATIONS.md)
+      language=en
+      # set icon theme. accepts fluent or material
+      icon_theme=material
+      # font for the OSC (default: mpv-osd-symbols or the one set in mpv.conf)
+      font=mpv-osd-symbols
+
+      ontop_button=yes
+      loop_button=yes
+      info_button=yes
+      fullscreen_button=yes
+
+      # Colors and style
+      # accent color of the OSC and title bar
+      seekbarfg_color=#ffffff
+    '';
   };
 }
