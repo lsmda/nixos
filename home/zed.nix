@@ -30,7 +30,9 @@
       ];
       userSettings = {
         "ui_font_size" = 20;
+        "ui_font_family" = "Berkeley Mono";
         "buffer_font_size" = 18;
+        "buffer_font_family" = "Berkeley Mono";
         "theme" = {
           "mode" = "system";
           "light" = "Base16 Gruvbox Material Light, Soft";
@@ -74,6 +76,9 @@
         "extend_comment_on_newline" = false;
         "preferred_line_length" = 100;
         "tab_size" = 2;
+        "terminal" = {
+          "font_family" = "Berkeley Mono";
+        };
       };
     };
   };
