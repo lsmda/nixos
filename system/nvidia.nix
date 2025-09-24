@@ -8,7 +8,6 @@
     ];
 
     hardware.nvidia = {
-      enabled = true;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
       open = true;
