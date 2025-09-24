@@ -518,10 +518,6 @@ in
       enable = true;
       mutableExtensionsDir = true;
 
-      # package = pkgs.vscode.override {
-      #   commandLineArgs = [ "--use-gl=desktop" ];
-      # };
-
       profiles.default = {
         enableExtensionUpdateCheck = false;
         enableUpdateCheck = false;
