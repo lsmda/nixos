@@ -94,7 +94,7 @@ let
 in
 
 {
-  config.home.packages = [
+  config.home.packages = lib.mkIf pkgs.stdenv.isx86_64 [
     obsidian
   ];
 }
