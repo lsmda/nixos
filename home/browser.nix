@@ -164,7 +164,9 @@
           "dom.w3c_touch_events.enabled" = 1; # Enable W3C touch events
           "extensions.autoDisableScopes" = 0; # Automatically enable all extensions
           "extensions.update.enabled" = false; # Disable automatic extension updates
+          "general.useragent.locale" = "en-INT";
           "gfx.webrender.all" = true; # Enable WebRender for improved rendering performance
+          "intl.locale.requested" = "en-INT";
           "layers.acceleration.force-enabled" = true; # Force-enable layer acceleration
           "media.av1.enabled" = false; # Disable AV1 video codec
           "media.ffmpeg.vaapi.enabled" = true; # Enable hardware acceleration via FFmpeg VAAPI
