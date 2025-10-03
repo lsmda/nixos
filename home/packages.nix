@@ -75,6 +75,7 @@ let
     unzip
     wget
     xclip
+    yt-dlp
     zip
   ];
 in
@@ -82,6 +83,7 @@ in
 {
   imports = [
     ../packages/obsidian.nix
+    ../packages/quickshell.nix
   ];
 
   config = {
