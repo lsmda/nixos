@@ -17,6 +17,8 @@
         prettierd
         vscode-langservers-extracted
 
+        kdlfmt
+
         # nix
         nil
         nixd
@@ -303,6 +305,25 @@
             auto-format = true;
             formatter.command = "gofumpt";
             language-servers = [ "gopls" ];
+          }
+          {
+            name = "kdl";
+            formatter = {
+              command = "kdlfmt";
+              args = [
+                "format"
+                "-"
+              ];
+            };
+            scope = "source.kdl";
+            injection-regex = "kdl";
+            file-types = [ "kdl" ];
+            roots = [ ];
+            comment-token = "//";
+            indent = {
+              tab-width = 2;
+              unit = "  ";
+            };
           }
         ]
         ++ denoLanguages;

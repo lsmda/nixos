@@ -22,11 +22,11 @@ in
     ../../system/boot.nix
     ../../system/environment.nix
     ../../system/fonts.nix
-    ../../system/gnome.nix
     ../../system/keyd.nix
     ../../system/locale.nix
     ../../system/networking.nix
     ../../system/nfs-client.nix
+    ../../system/niri.nix
     ../../system/nvidia.nix
     ../../system/openssh.nix
     ../../system/pipewire.nix
@@ -76,10 +76,12 @@ in
         ../../home/shell.nix
         ../../home/vscode.nix
         ../../home/zed.nix
+        ../../home/wayland.nix
 
         (import ../../home/browser.nix { inherit config pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
+        (import ../../home/niri/default.nix { inherit config lib pkgs; })
         (import ../../home/nushell.nix { inherit config; })
         (import ../../home/ssh.nix { inherit config pkgs; })
       ];
