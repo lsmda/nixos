@@ -1,9 +1,28 @@
 {
   config = {
     environment.variables = {
-      LIBVA_DRIVER_NAME = "intel"; # Force Intel i965 driver
-      TOLGAOS_VERSION = "2.2";
-      TOLGAOS = "true";
+      MOZ_ENABLE_WAYLAND = 1;
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+
+      # LIBVA_DRIVER_NAME = "intel"; # Force Intel i965 driver
+      # NIXOS_OZONE_WL = "1";
+
+      # Qt theming
+      QT_QPA_PLATFORM = "wayland";
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+      QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+
+      XDG_SESSION_TYPE = "wayland";
+      XDG_CURRENT_DESKTOP = "niri";
+
+      # Electron & Chromium
+      NIXOS_OZONE_WL = "1";
+
+      # NVIDIA-specific
+      LIBVA_DRIVER_NAME = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      WLR_NO_HARDWARE_CURSORS = "1";
     };
 
     programs.nix-ld.enable = true;

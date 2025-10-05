@@ -1,4 +1,5 @@
 spawn-at-startup "${pkgs.waybar}/bin/waybar"
+spawn-at-startup "xwayland-satellite"
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
 hotkey-overlay {
@@ -10,11 +11,23 @@ cursor {
 }
 environment {
     DISPLAY ":0"
-    QT_QPA_PLATFORM "wayland"
     _JAVA_AWT_WM_NONREPARENTING "1"
     EGL_PLATFORM "wayland"
-    NIXOS_OZONE_WL "1"
+    MOZ_ENABLE_WAYLAND "1"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+    // Qt theming
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
+    XDG_SESSION_TYPE "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+    // Electron & Chromium
+    NIXOS_OZONE_WL "1"
+    // NVIDIA-specific
+    LIBVA_DRIVER_NAME "nvidia"
+    GBM_BACKEND "nvidia-drm"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
+    WLR_NO_HARDWARE_CURSORS "1"
 }
 layout {
     gaps 10

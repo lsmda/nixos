@@ -14,6 +14,10 @@ let
       wlsunset # night light
       wpsoffice
       zotero
+      xwayland-satellite
+      wayland
+      wayland-protocols
+      wayland-utils
     ]
 
     # gnome tools

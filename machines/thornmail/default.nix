@@ -81,7 +81,7 @@ in
         (import ../../home/browser.nix { inherit config pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
-        (import ../../home/niri/default.nix { inherit config lib pkgs; })
+        (import ../../home/niri/default.nix { inherit config lib; })
         (import ../../home/nushell.nix { inherit config; })
         (import ../../home/ssh.nix { inherit config pkgs; })
       ];
