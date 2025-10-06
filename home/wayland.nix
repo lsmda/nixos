@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 let
-  interface_font = "Open Sans";
+  interface_font = "Berkeley Mono";
 in
 
 {
@@ -181,7 +181,7 @@ in
       };
 
       pulseaudio = {
-        format = "{icon}  {volume}%";
+        format = "{icon} {volume}%";
         format-icons = {
           default = [
             "󰕿"
@@ -197,7 +197,7 @@ in
 
       "pulseaudio#microphone" = {
         format = "{format_source}";
-        format-source = "  {volume}%";
+        format-source = " {volume}%";
         format-source-muted = "󰍭";
         on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
         on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%-";
@@ -206,11 +206,11 @@ in
 
       network = {
         format-alt = "{ifname}: {ipaddr}/{cidr}";
-        format-disconnected = "󰌙  Disconnected";
-        format-ethernet = "󰈀  {ipaddr}/{cidr}";
-        format-linked = "󰌚  {ifname} (No IP)";
-        format-wifi = "   {essid}";
-        tooltip-format = "󰌘  {ifname} via {gwaddr}";
+        format-disconnected = "󰌙Disconnected";
+        format-ethernet = "󰈀{ipaddr}/{cidr}";
+        format-linked = "󰌚{ifname} (No IP)";
+        format-wifi = " {essid}";
+        tooltip-format = "󰌘{ifname} via {gwaddr}";
       };
 
       battery = {
