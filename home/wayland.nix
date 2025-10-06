@@ -170,6 +170,7 @@ in
       modules-right = [
         "tray"
         "pulseaudio"
+        "pulseaudio#microphone"
         "network"
         "battery"
       ];
@@ -180,37 +181,27 @@ in
       };
 
       pulseaudio = {
-        format = "{icon}  {volume}%  {format_source}";
-        format-bluetooth = "{icon}  {volume}%  {format_source}";
-        format-bluetooth-muted = "󰝟 {icon}  {format_source}";
+        format = "{icon}  {volume}%";
         format-icons = {
-          car = "󰄋";
           default = [
             "󰕿"
             "󰖀"
             "󰕾"
           ];
-          hands-free = "󰗋";
-          headphone = "󰋋";
-          headset = "󰋎";
-          phone = "󰏲";
-          portable = "󰄜";
         };
-        format-muted = "󰝟 {format_source}";
-        format-source = " {volume}%";
-        format-source-muted = "";
-        on-click = "pwvucontrol";
-        scroll-step = 1;
+        format-muted = "󰝟";
+        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%-";
+        on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+";
       };
 
-      "pulseaudio#mic" = {
+      "pulseaudio#microphone" = {
         format = "{format_source}";
-        format-source = "";
+        format-source = "  {volume}%";
         format-source-muted = "󰍭";
-        tooltip-format = "{volume}% {format_source}";
-        on-click = "pavucontrol";
-        on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%+";
-        on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%-";
+        on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+        on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%-";
+        on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%+";
       };
 
       network = {
