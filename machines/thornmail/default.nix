@@ -75,8 +75,8 @@ in
         ../../home/packages.nix
         ../../home/shell.nix
         ../../home/vscode.nix
-        ../../home/zed.nix
         ../../home/wayland.nix
+        ../../home/zed.nix
 
         (import ../../home/browser.nix { inherit config pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })

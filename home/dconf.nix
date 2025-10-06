@@ -122,7 +122,7 @@ in
       "org/gnome/desktop/interface" = {
         font-antialiasing = "rgba";
         font-hinting = "full";
-        text-scaling-factor = 1;
+        text-scaling-factor = 1.1;
       };
 
       "org/gnome/desktop/wm/preferences" = {

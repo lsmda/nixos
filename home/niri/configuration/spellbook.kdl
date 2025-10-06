@@ -1,7 +1,7 @@
 input {
     keyboard {
         xkb {
-            layout pt
+            layout "pt"
         }
         repeat-delay 400
         repeat-rate 40
@@ -10,13 +10,14 @@ input {
         tap
         dwt
         natural-scroll
-        accel-profile adaptive
+        accel-profile "adaptive"
         accel-speed -0.1
-        scroll-method two-finger
+        scroll-method "two-finger"
     }
     disable-power-key-handling
     warp-mouse-to-focus
 }
-output eDP-1 {
-    scale 1.5
+output "eDP-1" {
+    mode "1920x1280@60.001"
+    scale 1.65
 }

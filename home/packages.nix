@@ -4,6 +4,7 @@ let
   gui =
     with pkgs;
     [
+      ashpd-demo # XDG portals tester
       discord
       ffmpegthumbnailer
       love # lua-based 2d game engine language

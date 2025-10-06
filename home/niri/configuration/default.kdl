@@ -1,4 +1,4 @@
-spawn-at-startup "${pkgs.waybar}/bin/waybar"
+spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"

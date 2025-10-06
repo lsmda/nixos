@@ -22,10 +22,10 @@ in
     ../../system/boot.nix
     ../../system/environment.nix
     ../../system/fonts.nix
-    ../../system/gnome.nix
     ../../system/keyd.nix
     ../../system/locale.nix
     ../../system/networking.nix
+    ../../system/niri.nix
     ../../system/nfs-client.nix
     ../../system/openssh.nix
     ../../system/pipewire.nix
@@ -69,18 +69,17 @@ in
         ../../home/packages.nix
         ../../home/shell.nix
         ../../home/vscode.nix
+        ../../home/wayland.nix
         ../../home/zed.nix
 
         (import ../../home/browser.nix { inherit config pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
+        (import ../../home/niri/default.nix { inherit config lib; })
+        (import ../../home/ssh.nix { inherit config pkgs; })
         (import ../../home/ssh.nix { inherit config pkgs; })
       ];
-
-      dconf.settings = {
-        "org/gnome/desktop/interface"."text-scaling-factor" = mkForce 0.8;
-      };
 
       home.stateVersion = "25.05";
     };

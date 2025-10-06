@@ -4,9 +4,6 @@
       MOZ_ENABLE_WAYLAND = 1;
       ELECTRON_OZONE_PLATFORM_HINT = "auto";
 
-      # LIBVA_DRIVER_NAME = "intel"; # Force Intel i965 driver
-      # NIXOS_OZONE_WL = "1";
-
       # Qt theming
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt6ct";
@@ -19,7 +16,7 @@
       NIXOS_OZONE_WL = "1";
 
       # NVIDIA-specific
-      LIBVA_DRIVER_NAME = "nvidia";
+      LIBVA_DRIVER_NAME = "intel";
       GBM_BACKEND = "nvidia-drm";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       WLR_NO_HARDWARE_CURSORS = "1";
