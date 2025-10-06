@@ -315,10 +315,7 @@
                 "-"
               ];
             };
-            scope = "source.kdl";
-            injection-regex = "kdl";
             file-types = [ "kdl" ];
-            roots = [ ];
             comment-token = "//";
             indent = {
               tab-width = 2;
