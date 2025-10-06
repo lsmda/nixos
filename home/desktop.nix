@@ -53,7 +53,7 @@ let
   kimai = makeDesktopIcon {
     name = "kimai";
     desktopName = "Kimai";
-    exec = "firefox --new-window https://kimai.lsmda.pm";
+    exec = "xdg-open https://kimai.lsmda.pm";
     categories = [
       "Network"
       "WebBrowser"
@@ -66,7 +66,7 @@ let
   teams = makeDesktopIcon {
     name = "teams";
     desktopName = "Microsoft Teams";
-    exec = "firefox --new-window https://teams.microsoft.com/v2";
+    exec = "xdg-open https://teams.microsoft.com/v2";
     categories = [
       "Network"
       "WebBrowser"
