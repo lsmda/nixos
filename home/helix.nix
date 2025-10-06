@@ -135,6 +135,16 @@
               ":redraw"
               ":reload-all"
             ];
+
+            space = [
+              ":write-all"
+              ":new"
+              ":insert-output yazi-picker open %{buffer_name}"
+              ":buffer-close!"
+              ":redraw"
+              ":reload-all"
+            ];
+
             q = ":quit";
             Q = ":quit-all!";
             r = {
@@ -144,6 +154,10 @@
             s = {
               j = ":hsplit";
               l = ":vsplit";
+            };
+            t = {
+              s = ":toggle-option soft-wrap.enable";
+              u = "switch_case";
             };
             w = [
               ":fmt"
@@ -327,5 +341,23 @@
 
       settings.theme = "base16_transparent";
     };
+
+    home.packages = with pkgs; [
+      zellij
+
+      # Script from: https://yazi-rs.github.io/docs/tips/#helix-with-zellij
+      (writeShellScriptBin "yazi-picker" ''
+        paths=$(yazi "$2" --chooser-file=/dev/stdout | while read -r; do printf "%q " "$REPLY"; done)
+
+        if [[ -n "$paths" ]]; then
+        	zellij action toggle-floating-panes
+        	zellij action write 27 # send <Escape> key
+        	zellij action write-chars ":$1 $paths"
+        	zellij action write 13 # send <Enter> key
+        else
+        	zellij action toggle-floating-panes
+        fi
+      '')
+    ];
   };
 }
