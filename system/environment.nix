@@ -16,10 +16,12 @@
       NIXOS_OZONE_WL = "1";
 
       # NVIDIA-specific
-      LIBVA_DRIVER_NAME = "intel";
       GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       WLR_NO_HARDWARE_CURSORS = "1";
+      LIBVA_DRIVER_NAME = "nvidia";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      NVD_BACKEND = "direct"; # For hardware video acceleration
+      _JAVA_AWT_WM_NONREPARENTING = "1";
     };
 
     programs.nix-ld.enable = true;
