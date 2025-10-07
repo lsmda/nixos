@@ -68,14 +68,13 @@ in
         ../../home/packages.nix
         ../../home/shell.nix
         ../../home/vscode.nix
-        ../../home/wayland.nix
         ../../home/zed.nix
 
         (import ../../home/browser.nix { inherit config pkgs; })
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
-        (import ../../home/niri/default.nix { inherit config lib; })
+        (import ../../home/niri/default.nix { inherit config lib pkgs; })
         (import ../../home/ssh.nix { inherit config pkgs; })
       ];
 

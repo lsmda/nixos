@@ -9,9 +9,9 @@ input {
     touchpad {
         tap
         dwt
-        // natural-scroll
-        accel-profile "adaptive"
         accel-speed -0.1
+        natural-scroll
+        accel-profile "flat"
         scroll-method "two-finger"
     }
     disable-power-key-handling
