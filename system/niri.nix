@@ -16,15 +16,14 @@
 
     xdg.portal = {
       enable = true;
-      wlr.enable = true;
+      xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gnome
-        xdg-desktop-portal-wlr
       ];
-      config.common.default = [
-        "gnome" # Primary (file chooser, etc)
-        "wlr" # Fallback (screencast)
-      ];
+      config.common = {
+        default = "gnome";
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+      };
     };
   };
 }
