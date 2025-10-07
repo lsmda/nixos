@@ -15,6 +15,7 @@ environment {
     EGL_PLATFORM "wayland"
     MOZ_ENABLE_WAYLAND "1"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+    _JAVA_AWT_WM_NONREPARENTING "1"
     // Qt theming
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "qt6ct"
@@ -28,6 +29,7 @@ environment {
     GBM_BACKEND "nvidia-drm"
     __GLX_VENDOR_LIBRARY_NAME "nvidia"
     WLR_NO_HARDWARE_CURSORS "1"
+    NVD_BACKEND "direct"
 }
 layout {
     gaps 10
@@ -50,7 +52,7 @@ layout {
     border {
         width 4
         inactive-color "#333"
-        active-color "#ae97c9"
+        active-color "#b4befe"
     }
     shadow {
         on
@@ -60,10 +62,10 @@ layout {
         color "#111c"
     }
     struts {
-        left -4
-        right -4
-        top -9
-        bottom -4
+        left -2
+        right -2
+        top -10
+        bottom -2
     }
 }
 animations {
@@ -97,8 +99,10 @@ animations {
     }
 }
 window-rule {
-    geometry-corner-radius 10
+    geometry-corner-radius 2
     clip-to-geometry true
+    open-maximized false
+    open-fullscreen false
 }
 binds {
     Mod+Tab {
