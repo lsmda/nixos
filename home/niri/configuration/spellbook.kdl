@@ -9,7 +9,7 @@ input {
     touchpad {
         tap
         dwt
-        natural-scroll
+        // natural-scroll
         accel-profile "adaptive"
         accel-speed -0.1
         scroll-method "two-finger"
