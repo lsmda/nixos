@@ -1,0 +1,203 @@
+{ pkgs, ... }:
+
+{
+  imports = [
+    ./modules/backlight/default.nix
+    ./modules/battery/default.nix
+    ./modules/bluetooth/default.nix
+    ./modules/clock/default.nix
+    ./modules/cpu/default.nix
+    ./modules/distro/default.nix
+    ./modules/memory/default.nix
+    ./modules/mpris/default.nix
+    ./modules/network/default.nix
+    ./modules/power-menu/default.nix
+    ./modules/pulseaudio/default.nix
+    ./modules/temperature/default.nix
+  ];
+
+  config = {
+    home.packages = with pkgs; [
+      libnotify # notify-send
+    ];
+
+    programs.waybar = {
+      enable = true;
+      settings.main = {
+        "modules-left" = [ ];
+
+        "modules-center" = [
+          "temperature"
+          "memory"
+          "cpu"
+          "custom/distro"
+          "clock#time"
+          "clock#date"
+          "network"
+          "bluetooth"
+        ];
+
+        "modules-right" = [
+          "mpris"
+          "group/pulseaudio"
+          # "backlight"
+          # "battery"
+          "custom/power_menu"
+        ];
+
+        layer = "top";
+        height = 0;
+        width = 0;
+        margin = "8";
+        spacing = 0;
+        mode = "dock";
+        reload_style_on_change = true;
+      };
+      style = ''
+        /* catppuccin-mocha */
+
+        @define-color rosewater		#f5e0dc;
+        @define-color flamingo		#f2cdcd;
+        @define-color pink			#f5c2e7;
+        @define-color mauve			#cba6f7;
+        @define-color red			#f38ba8;
+        @define-color maroon		#eba0ac;
+        @define-color peach			#fab387;
+        @define-color yellow		#f9e2af;
+        @define-color green			#a6e3a1;
+        @define-color teal			#94e2d5;
+        @define-color sky			#89dceb;
+        @define-color sapphire		#74c7ec;
+        @define-color blue			#89b4fa;
+        @define-color lavender		#b4befe;
+        @define-color text			#cdd6f4;
+        @define-color subtext1		#bac2de;
+        @define-color subtext0		#a6adc8;
+        @define-color overlay2		#9399b2;
+        @define-color overlay1		#7f849c;
+        @define-color overlay0		#6c7086;
+        @define-color surface2		#585b70;
+        @define-color surface1		#45475a;
+        @define-color surface0		#313244;
+        @define-color base			#1e1e2e;
+        @define-color mantle		#181825;
+        @define-color crust			#11111b;
+
+        /*
+        	br - border
+        	bg - background
+        	fg - foreground
+        */
+
+        /* main colors */
+
+        @define-color accent		@lavender;
+        @define-color main-br		@subtext0;
+        @define-color main-bg		@crust;
+        @define-color main-fg		@text;
+        @define-color hover-bg		@base;
+        @define-color hover-fg		alpha(@main-fg, 0.75);
+        @define-color outline		shade(@main-bg, 0.5);
+
+        /* module colors */
+
+        @define-color workspaces	@mantle;
+        @define-color temperature	@mantle;
+        @define-color memory		@base;
+        @define-color cpu			@surface0;
+        @define-color time			@surface0;
+        @define-color date			@base;
+        @define-color tray			@mantle;
+        @define-color volume		@mantle;
+        @define-color backlight		@base;
+        @define-color battery		@surface0;
+
+        /* state colors */
+
+        @define-color warning		@yellow;
+        @define-color critical		@red;
+        @define-color charging		@green;
+                
+        /* ----------------------- */
+        /* -------- style -------- */
+        /* ----------------------- */
+
+        * {
+        	font-family: "Berkeley Mono";
+        	font-weight: bold;
+        	font-size: 16px;
+        	color: @main-fg;
+        }
+
+        /* main outline */
+
+        window#waybar {
+        	background-color: @outline;
+        	background-color: @main-bg;
+          border-radius: 4px;
+        }
+
+        /* main background */
+
+        window#waybar > box {
+        	margin: 4px;
+        	background-color: @main-bg;
+        }
+
+        /* hoverables */
+
+        #custom-theme_switcher:hover,
+        #idle_inhibitor:hover,
+        #clock.date:hover,
+        #network:hover,
+        #bluetooth:hover,
+        #custom-system_update:hover,
+        #mpris:hover,
+        #pulseaudio:hover,
+        #wireplumber:hover {
+        	color: @hover-fg;
+        }
+
+        /* states */
+
+        .deactivated,
+        .paused,
+        #pulseaudio.output.muted,
+        #pulseaudio.input.source-muted,
+        #wireplumber.muted {
+        	color: @hover-fg;
+        }
+        .warning { color: @warning; }
+        .critical { color: @critical; }
+        .charging { color: @charging; }
+
+        /* buttons */
+
+        button {
+        	border-radius: 16px;
+        	padding: 0 10px;
+        }
+        button:hover {
+        	background-color: @hover-bg;
+        	color: @hover-fg;
+        }
+
+        /* tooltips */
+
+        tooltip {
+        	border: 2px solid @main-br;
+        	border-radius: 10px;
+        	background-color: @main-bg;
+        }
+        tooltip label {
+        	margin: 2px 4px;
+        	font-weight: normal;
+        }
+        tooltip decoration {
+        	border: none;
+        	background-color: transparent;
+        }
+      '';
+    };
+  };
+}

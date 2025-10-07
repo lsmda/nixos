@@ -4,6 +4,7 @@ let
   gui =
     with pkgs;
     [
+      pulseaudio
       ashpd-demo # XDG portals tester
       discord
       ffmpegthumbnailer
@@ -42,6 +43,13 @@ let
       jetbrains.webstorm
       maven
       openjdk17
+    ]
+
+    # Nvidia
+    ++ [
+      egl-wayland
+      nvidia-vaapi-driver
+      libvdpau-va-gl
     ];
 
   cli = with pkgs; [

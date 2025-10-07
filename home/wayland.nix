@@ -5,29 +5,16 @@ let
 in
 
 {
+  imports = [
+    ./waybar/default.nix
+  ];
+
   home.packages = with pkgs; [
     fuzzel # application launcher
-    swaybg # background
-    swaylock # lock screen
-    xwayland-satellite # x11 support
-    xdg-desktop-portal-gnome # screen sharing
-    xdg-utils
     networkmanagerapplet # network manager
-    playerctl # media player controller
-    swaynotificationcenter # notifications manager
-
-    # screenshots
-    grim
-    slurp
-
-    wdisplays
-    waypipe
-    wev
-    wf-recorder
+    swaynotificationcenter
+    flameshot # screenshot tool
     wl-clipboard
-    wl-mirror
-    wlr-randr
-    wtype
   ];
 
   home.file.".config/fuzzel/fuzzel.ini" = {
@@ -88,7 +75,7 @@ in
       Requisite = "graphical-session.target";
     };
     Service = {
-      ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3800 -T 4000";
+      ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3500 -T 3600";
       Restart = "on-failure";
     };
     Install.WantedBy = [ "niri.service" ];
@@ -105,176 +92,12 @@ in
     Service = {
       Type = "notify";
       NotifyAccess = "all";
-      ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+      ExecStart = "${pkgs.writeShellScript "xwayland-satellite" ''
+        "${pkgs.xwayland-satellite}/bin/xwayland-satellite"
+      ''}";
       StandardOutput = "journal";
     };
     Install.WantedBy = [ "niri.service" ];
-  };
-
-  programs.waybar = {
-    enable = true;
-    settings.main = {
-      layer = "top";
-      margin = "6 8.5 6 8.5";
-      spacing = 6;
-
-      modules-left = [
-        "custom/swaync"
-        "custom/spotify"
-      ];
-
-      "custom/swaync" = {
-        tooltip = false;
-        format = "{icon}";
-        format-icons = {
-          none = "󰂜";
-          notification = "<span foreground='red'><sup></sup></span>";
-          none-cc-open = "󰂚";
-          dnd-notification = "<span foreground='red'><sup></sup></span>";
-          dnd-none = "";
-          inhibited-notification = "<span foreground='red'><sup></sup></span>";
-          inhibited-none = "";
-          dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>";
-          dnd-inhibited-none = "";
-        };
-        return-type = "json";
-        exec-if = "which swaync-client";
-        exec = "swaync-client -swb";
-        on-click = "swaync-client -t -sw";
-        on-click-right = "swaync-client -d -sw";
-        escape = true;
-      };
-
-      "custom/spotify" = {
-        tooltip = false;
-        exec-if = "pgrep spotify";
-        exec = "playerctl -p spotify -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F";
-        format = "  {}";
-        return-type = "json";
-        on-click = "playerctl -p spotify play-pause";
-        on-scroll-up = "playerctl -p spotify next";
-        on-scroll-down = "playerctl -p spotify previous";
-      };
-
-      modules-center = [
-        "clock"
-      ];
-
-      clock = {
-        tooltip = false;
-        format = "{:%Y-%m-%d %H:%M}";
-        interval = 60;
-        tooltip-format = "<tt><small>{calendar}</small></tt>";
-      };
-
-      modules-right = [
-        "tray"
-        "pulseaudio"
-        "pulseaudio#microphone"
-        "network"
-        "battery"
-      ];
-
-      tray = {
-        icon-size = 18;
-        spacing = 8;
-      };
-
-      pulseaudio = {
-        format = "{icon} {volume}%";
-        format-icons = {
-          default = [
-            "󰕿"
-            "󰖀"
-            "󰕾"
-          ];
-        };
-        format-muted = "󰝟";
-        on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%-";
-        on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 1%+";
-      };
-
-      "pulseaudio#microphone" = {
-        format = "{format_source}";
-        format-source = " {volume}%";
-        format-source-muted = "󰍭";
-        on-click = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-        on-scroll-up = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%-";
-        on-scroll-down = "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 1%+";
-      };
-
-      network = {
-        format-alt = "{ifname}: {ipaddr}/{cidr}";
-        format-disconnected = "󰌙Disconnected";
-        format-ethernet = "󰈀{ipaddr}/{cidr}";
-        format-linked = "󰌚{ifname} (No IP)";
-        format-wifi = " {essid}";
-        tooltip-format = "󰌘{ifname} via {gwaddr}";
-      };
-
-      battery = {
-        states = {
-          good = 95;
-          warning = 30;
-          critical = 15;
-        };
-        format = "{capacity}% {icon}";
-        format-charging = "<b>{capacity}% {icon} </b>";
-        format-full = "<span color='#82A55F'><b>{capacity}% {icon}</b></span>";
-        format-icons = [
-          "󰁻"
-          "󰁻"
-          "󰁼"
-          "󰁼"
-          "󰁾"
-          "󰁾"
-          "󰂀"
-          "󰂀"
-          "󰂂"
-          "󰂂"
-          "󰁹"
-        ];
-        tooltip-format = "{timeTo} | {power} W";
-        interval = 5;
-      };
-    };
-    style = ''
-      * {
-        font-family: ${interface_font};
-        font-size: 16px;
-        font-weight: 600;
-      }
-
-      window#waybar {
-        transition-property: background-color;
-        transition-duration: 0.5s;
-        background: transparent;
-      }
-
-      #custom-swaync,
-      #custom-spotify,
-      #tray,
-      #pulseaudio,
-      #network,
-      #battery,
-      #clock {
-        border-radius: 4px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: rgba(200, 200, 200, 0.9);
-        padding: 0.5rem 0.85rem;
-      }
-
-      #custom-swaync {
-        min-width: 1.6rem;
-      }
-
-      #custom-swaync menu,
-      #tray menu {
-        background: rgb(30, 30, 30);
-        color: rgb(250, 250, 250);
-      }
-    '';
   };
 
   programs.wlogout = {
