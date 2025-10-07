@@ -61,7 +61,7 @@ in
       imports = [
         ../../home/fastfetch.nix
         ../../home/gpg.nix
-        ../../home/helix.nix
+        ../../home/helix
         ../../home/packages.nix
         ../../home/shell.nix
 

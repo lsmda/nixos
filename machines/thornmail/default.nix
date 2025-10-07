@@ -70,7 +70,7 @@ in
         ../../home/ghostty.nix
         ../../home/gpg.nix
         ../../home/gtk.nix
-        ../../home/helix.nix
+        ../../home/helix
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix

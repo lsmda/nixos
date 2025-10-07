@@ -6,7 +6,6 @@
 }:
 
 let
-  inherit (lib) mkForce;
   inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
@@ -64,7 +63,7 @@ in
         ../../home/ghostty.nix
         ../../home/gpg.nix
         ../../home/gtk.nix
-        ../../home/helix.nix
+        ../../home/helix
         ../../home/mpv.nix
         ../../home/packages.nix
         ../../home/shell.nix
@@ -77,7 +76,6 @@ in
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
         (import ../../home/niri/default.nix { inherit config lib; })
-        (import ../../home/ssh.nix { inherit config pkgs; })
         (import ../../home/ssh.nix { inherit config pkgs; })
       ];
 
