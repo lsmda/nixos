@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 let
-  blame_line = pkgs.writeShellScript "blame_line" builtins.readFile ./scripts/blame_line.sh;
-  blame_file = pkgs.writeShellScript "blame_file" builtins.readFile ./scripts/blame_file.sh;
-  git_hunk = pkgs.writeShellScript "git_hunk" builtins.readFile ./scripts/git_hunk.sh;
+  blame_line = pkgs.writeShellScript "blame_line" (builtins.readFile ./scripts/blame_line.sh);
+  blame_file = pkgs.writeShellScript "blame_file" (builtins.readFile ./scripts/blame_file.sh);
+  git_hunk = pkgs.writeShellScript "git_hunk" (builtins.readFile ./scripts/git_hunk.sh);
 in
 
 {
