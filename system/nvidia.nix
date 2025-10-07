@@ -1,20 +1,53 @@
 { config, ... }:
 
+let
+  limitFreeBufferPool = builtins.toJSON {
+    rules = [
+      {
+        pattern = {
+          feature = "procname";
+          matches = "niri";
+        };
+        profile = "Limit Free Buffer Pool On Wayland Compositors";
+      }
+    ];
+    profiles = [
+      {
+        name = "Limit Free Buffer Pool On Wayland Compositors";
+        settings = [
+          {
+            key = "GLVidHeapReuseRatio";
+            value = 0;
+          }
+        ];
+      }
+    ];
+  };
+in
+
 {
   config = {
     boot.kernelModules = [
-      "nvidia-drm.modeset=1" # Enable kernel modesetting for NVIDIA graphics
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
       "video.allow_duplicates=1" # Allow duplicate frames or similar, helps smooth video playback
     ];
 
     hardware.nvidia = {
+      modesetting.enable = true;
+      open = true;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
       powerManagement.enable = false;
       powerManagement.finegrained = false;
-      open = true;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.production;
     };
 
     services.xserver.videoDrivers = [ "nvidia" ];
+
+    environment.etc = {
+      # https://yalter.github.io/niri/Nvidia.html#high-vram-usage-fix
+      "nvidia/nvidia-application-profiles-rc.d/50-limit-free-buffer-pool".text = limitFreeBufferPool;
+    };
   };
 }
