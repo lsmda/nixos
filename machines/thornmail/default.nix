@@ -80,7 +80,7 @@ in
         (import ../../home/browser { inherit config pkgs; })
         (import ../../home/codecs { inherit config pkgs; })
         (import ../../home/git { inherit config pkgs; })
-        (import ../../home/niri/default { inherit config lib pkgs; })
+        (import ../../home/niri { inherit config pkgs; })
         (import ../../home/nushell { inherit config; })
         (import ../../home/ssh { inherit config pkgs; })
       ];
