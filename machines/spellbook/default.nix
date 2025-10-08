@@ -1,11 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
+  inherit (pkgs) lib;
   inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
@@ -74,7 +70,7 @@ in
         (import ../../home/codecs.nix { inherit config pkgs; })
         (import ../../home/git.nix { inherit config pkgs; })
         (import ../../home/nushell.nix { inherit config; })
-        (import ../../home/niri/default.nix { inherit config lib pkgs; })
+        (import ../../home/niri { inherit config pkgs; })
         (import ../../home/ssh.nix { inherit config pkgs; })
       ];
 

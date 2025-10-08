@@ -1,13 +1,9 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
   default = builtins.readFile ./configuration/default.kdl;
   hostname = builtins.readFile ./configuration/${config.machine.hostname}.kdl;
+  inherit (pkgs) lib;
 in
 
 {
@@ -42,7 +38,7 @@ in
         Requisite = "graphical-session.target";
       };
       Service = {
-        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${../assets/00.jpg}";
+        ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -i ${../../assets/00.jpg}";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "niri.service" ];

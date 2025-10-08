@@ -1,7 +1,13 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
+
+let
+  theme = config.machine.theme;
+in
 
 {
   imports = [
+    ../../system/theme.nix
+
     ./modules/backlight/default.nix
     ./modules/battery/default.nix
     ./modules/bluetooth/default.nix
@@ -56,32 +62,32 @@
       style = ''
         /* catppuccin-mocha */
 
-        @define-color rosewater		#f5e0dc;
-        @define-color flamingo		#f2cdcd;
-        @define-color pink			#f5c2e7;
-        @define-color mauve			#cba6f7;
-        @define-color red			#f38ba8;
-        @define-color maroon		#eba0ac;
-        @define-color peach			#fab387;
-        @define-color yellow		#f9e2af;
-        @define-color green			#a6e3a1;
-        @define-color teal			#94e2d5;
-        @define-color sky			#89dceb;
-        @define-color sapphire		#74c7ec;
-        @define-color blue			#89b4fa;
-        @define-color lavender		#b4befe;
-        @define-color text			#cdd6f4;
-        @define-color subtext1		#bac2de;
-        @define-color subtext0		#a6adc8;
-        @define-color overlay2		#9399b2;
-        @define-color overlay1		#7f849c;
-        @define-color overlay0		#6c7086;
-        @define-color surface2		#585b70;
-        @define-color surface1		#45475a;
-        @define-color surface0		#313244;
-        @define-color base			#1e1e2e;
-        @define-color mantle		#181825;
-        @define-color crust			#11111b;
+        @define-color rosewater		#${theme.rosewater};
+        @define-color flamingo		#${theme.flamingo};
+        @define-color pink			#${theme.pink};
+        @define-color mauve			#${theme.mauve};
+        @define-color red			#${theme.red};
+        @define-color maroon		#${theme.maroon};
+        @define-color peach			#${theme.peach};
+        @define-color yellow		#${theme.yellow};
+        @define-color green			#${theme.green};
+        @define-color teal			#${theme.teal};
+        @define-color sky			#${theme.sky};
+        @define-color sapphire		#${theme.sapphire};
+        @define-color blue			#${theme.blue};
+        @define-color lavender		#${theme.lavender};
+        @define-color text			#${theme.text};
+        @define-color subtext1		#${theme.subtext1};
+        @define-color subtext0		#${theme.subtext0};
+        @define-color overlay2		#${theme.overlay2};
+        @define-color overlay1		#${theme.overlay1};
+        @define-color overlay0		#${theme.overlay0};
+        @define-color surface2		#${theme.surface2};
+        @define-color surface1		#${theme.surface1};
+        @define-color surface0		#${theme.surface0};
+        @define-color base			#${theme.base};
+        @define-color mantle		#${theme.mantle};
+        @define-color crust			#${theme.crust};
 
         /*
         	br - border
@@ -95,8 +101,8 @@
         @define-color main-br		@subtext0;
         @define-color main-bg		@crust;
         @define-color main-fg		@text;
-        @define-color hover-bg		@base;
-        @define-color hover-fg		alpha(@main-fg, 0.75);
+        @define-color hover-bg	@base;
+        @define-color hover-fg	alpha(@main-fg, 0.75);
         @define-color outline		shade(@main-bg, 0.5);
 
         /* module colors */
@@ -133,7 +139,6 @@
 
         window#waybar {
         	background-color: @outline;
-        	background-color: @main-bg;
           border-radius: 4px;
         }
 
