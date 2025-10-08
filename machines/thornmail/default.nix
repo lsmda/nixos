@@ -1,12 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
-  inherit (lib) mkForce;
+  inherit (pkgs) lib;
   inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
@@ -86,7 +81,7 @@ in
       ];
 
       dconf.settings = {
-        "org/gnome/desktop/interface"."text-scaling-factor" = mkForce 1.1;
+        "org/gnome/desktop/interface"."text-scaling-factor" = lib.mkForce 1.1;
       };
 
       home.stateVersion = "25.05";
