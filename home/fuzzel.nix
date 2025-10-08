@@ -1,11 +1,21 @@
+{ config, ... }:
+
+let
+  theme = config.machine.theme;
+in
+
 {
+  imports = [
+    ../system/theme.nix
+  ];
+
   config = {
     programs.fuzzel = {
       enable = true;
       settings = {
         main = {
           dpi-aware = "no";
-          width = 20;
+          width = 30;
           line-height = 40;
           font = "Berkeley Mono:size=14";
           fields = "name,categories";
@@ -14,20 +24,21 @@
           horizontal-pad = 30;
           vertical-pad = 30;
           inner-pad = 15;
-          prompt = "$ ";
+          prompt = "";
         };
         colors = {
-          border = "ffffffff";
-          text = "bbbbbbcc";
-          background = "000000cc";
-          selection = "444444cc";
-          selection-text = "bbbbbbcc";
-          input = "bbbbbbcc";
-          match = "ffffffcc";
-          selection-match = "ffffffcc";
-          prompt = "bbbbbbcc";
+          border = "${theme.lavender}ff";
+          background = "${theme.crust}ff";
+          input = "${theme.text}ff";
+          prompt = "${theme.text}ff";
+          text = "${theme.text}ff";
+          selection = "${theme.lavender}ff";
+          selection-text = "${theme.crust}ff";
+          match = "${theme.text}ff";
+          selection-match = "${theme.base}ff";
         };
         border = {
+          width = 6;
           radius = 0;
         };
         dmenu = {
