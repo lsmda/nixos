@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ../packages/berkeley-mono.nix
-    ../packages/charter.nix
-    ../packages/consolas.nix
-    ../packages/corefonts.nix
+    ../../packages/berkeley-mono
+    ../../packages/charter
+    ../../packages/consolas
+    ../../packages/corefonts
   ];
 
   config = {

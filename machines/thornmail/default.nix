@@ -18,22 +18,22 @@ in
 
     ./hardware.nix
 
-    ../../system/bluetooth.nix
-    ../../system/boot.nix
-    ../../system/environment.nix
-    ../../system/fonts.nix
-    ../../system/keyd.nix
-    ../../system/locale.nix
-    ../../system/networking.nix
-    ../../system/nfs-client.nix
-    ../../system/niri.nix
-    ../../system/nvidia.nix
-    ../../system/openssh.nix
-    ../../system/pipewire.nix
-    ../../system/postgresql.nix
-    ../../system/settings.nix
-    ../../system/sops.nix
-    ../../system/virtualisation.nix
+    ../../system/bluetooth
+    ../../system/boot
+    ../../system/environment
+    ../../system/fonts
+    ../../system/keyd
+    ../../system/locale
+    ../../system/networking
+    ../../system/nfs-client
+    ../../system/niri
+    ../../system/nvidia
+    ../../system/openssh
+    ../../system/pipewire
+    ../../system/postgresql
+    ../../system/settings
+    ../../system/sops
+    ../../system/virtualisation
   ];
 
   config = {
@@ -64,25 +64,25 @@ in
 
     home-manager.users.${config.machine.username} = {
       imports = [
-        ../../home/dconf.nix
-        ../../home/desktop.nix
-        ../../home/fastfetch.nix
-        ../../home/ghostty.nix
-        ../../home/gpg.nix
-        ../../home/gtk.nix
+        ../../home/dconf
+        ../../home/desktop
+        ../../home/fastfetch
+        ../../home/ghostty
+        ../../home/gpg
+        ../../home/gtk
         ../../home/helix
-        ../../home/mpv.nix
-        ../../home/packages.nix
-        ../../home/shell.nix
-        ../../home/vscode.nix
-        ../../home/zed.nix
+        ../../home/mpv
+        ../../home/packages
+        ../../home/shell
+        ../../home/vscode
+        ../../home/zed
 
-        (import ../../home/browser.nix { inherit config pkgs; })
-        (import ../../home/codecs.nix { inherit config pkgs; })
-        (import ../../home/git.nix { inherit config pkgs; })
-        (import ../../home/niri/default.nix { inherit config lib pkgs; })
-        (import ../../home/nushell.nix { inherit config; })
-        (import ../../home/ssh.nix { inherit config pkgs; })
+        (import ../../home/browser { inherit config pkgs; })
+        (import ../../home/codecs { inherit config pkgs; })
+        (import ../../home/git { inherit config pkgs; })
+        (import ../../home/niri/default { inherit config lib pkgs; })
+        (import ../../home/nushell { inherit config; })
+        (import ../../home/ssh { inherit config pkgs; })
       ];
 
       dconf.settings = {

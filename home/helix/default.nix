@@ -2,11 +2,14 @@
 
 {
   imports = [
-    ./keybinds.nix
+    ./keys.nix
     ./languages.nix
   ];
 
   config = {
+    home.packages = with pkgs; [
+      scooter
+    ];
     programs.helix = {
       enable = true;
       defaultEditor = true;

@@ -27,6 +27,12 @@
         gui.showBottomLine = false;
         gui.nerdFontsVersion = 3;
         gui.border = "single";
+        quitOnTopLevelReturn = true;
+        keybinding = {
+          universal = {
+            quit = "<esc>";
+          };
+        };
       };
     };
 
@@ -75,6 +81,17 @@
           type = ui.Border.PLAIN,
         }
       '';
+      keymap = {
+        mgr = {
+          prepend_keymap = [
+            {
+              on = [ "<Esc>" ];
+              run = "close";
+              desc = "Close.";
+            }
+          ];
+        };
+      };
       settings = {
         mgr = {
           ratio = [

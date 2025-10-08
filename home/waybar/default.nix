@@ -6,26 +6,28 @@ in
 
 {
   imports = [
-    ../../system/theme.nix
+    ../../system/theme
 
-    ./modules/backlight/default.nix
-    ./modules/battery/default.nix
-    ./modules/bluetooth/default.nix
-    ./modules/clock/default.nix
-    ./modules/cpu/default.nix
-    ./modules/distro/default.nix
-    ./modules/memory/default.nix
-    ./modules/mpris/default.nix
-    ./modules/network/default.nix
-    ./modules/power-menu/default.nix
-    ./modules/pulseaudio/default.nix
-    ./modules/temperature/default.nix
+    ./modules/backlight
+    ./modules/battery
+    ./modules/bluetooth
+    ./modules/clock
+    ./modules/cpu
+    ./modules/distro
+    ./modules/memory
+    ./modules/mpris
+    ./modules/network
+    ./modules/power-menu
+    ./modules/pulseaudio
+    ./modules/temperature
   ];
 
   config.programs.waybar = {
     enable = true;
     settings.main = {
-      "modules-left" = [ ];
+      "modules-left" = [
+        "mpris"
+      ];
 
       "modules-center" = [
         "temperature"
@@ -39,10 +41,9 @@ in
       ];
 
       "modules-right" = [
-        "mpris"
         "group/pulseaudio"
-        # "backlight"
-        # "battery"
+        "backlight"
+        "battery"
         "custom/power_menu"
       ];
 

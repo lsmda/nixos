@@ -68,7 +68,6 @@ toggle-mute() {
 	esac
 
 	icon=$(get-icon "$mute")
-	notify-send "$TITLE: $mute" -i "$icon" -r $ID
 }
 
 set-volume() {
@@ -92,7 +91,6 @@ set-volume() {
 	pactl "set-$VOL" "$DEV" "${new_vol}%"
 
 	icon=$(get-icon "$new_vol")
-	notify-send "$TITLE: $new_vol" -h int:value:"$new_vol" -i "$icon" -r $ID
 }
 
 main() {

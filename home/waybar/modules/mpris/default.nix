@@ -1,5 +1,11 @@
+{ pkgs, ... }:
+
 {
   config = {
+    home.packages = with pkgs; [
+      playerctl # mpris support
+    ];
+
     programs.waybar = {
       settings.main = {
         mpris = {
@@ -8,12 +14,12 @@
           tooltip-format = "Playing: {title} - {artist}";
           tooltip-format-paused = "Paused: {title} - {artist}";
           player-icons = {
-            default = "󰐊";
+            default = "󰏤";
           };
           status-icons = {
-            paused = "󰏤";
+            paused = "󰐊";
           };
-          max-length = 25;
+          max-length = 40;
         };
       };
       style = ''

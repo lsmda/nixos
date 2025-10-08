@@ -6,7 +6,7 @@ in
 
 {
   imports = [
-    ../system/theme.nix
+    ../../system/theme
   ];
 
   config = {

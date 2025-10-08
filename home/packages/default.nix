@@ -95,8 +95,8 @@ in
 
 {
   imports = [
-    ../packages/obsidian.nix
-    ../packages/quickshell.nix
+    ../../packages/obsidian
+    ../../packages/quickshell
   ];
 
   config = {

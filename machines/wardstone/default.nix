@@ -18,20 +18,20 @@ in
 
     ./hardware.nix
 
-    ../../system/caddy.nix
-    ../../system/fonts.nix
-    ../../system/keyd.nix
-    ../../system/kimai.nix
-    ../../system/locale.nix
-    ../../system/networking.nix
-    ../../system/nfs-server.nix
-    ../../system/openssh.nix
-    ../../system/postgresql.nix
-    ../../system/samba.nix
-    ../../system/settings.nix
-    ../../system/soft-serve.nix
-    ../../system/sops.nix
-    ../../system/virtualisation.nix
+    ../../system/caddy
+    ../../system/fonts
+    ../../system/keyd
+    ../../system/kimai
+    ../../system/locale
+    ../../system/networking
+    ../../system/nfs-server
+    ../../system/openssh
+    ../../system/postgresql
+    ../../system/samba
+    ../../system/settings
+    ../../system/soft-serve
+    ../../system/sops
+    ../../system/virtualisation
   ];
 
   config = {
@@ -59,14 +59,14 @@ in
 
     home-manager.users.${config.machine.username} = {
       imports = [
-        ../../home/fastfetch.nix
-        ../../home/gpg.nix
+        ../../home/fastfetch
+        ../../home/gpg
         ../../home/helix
-        ../../home/packages.nix
-        ../../home/shell.nix
+        ../../home/packages
+        ../../home/shell
 
-        (import ../../home/git.nix { inherit config pkgs; })
-        (import ../../home/nushell.nix { inherit config; })
+        (import ../../home/git { inherit config pkgs; })
+        (import ../../home/nushell { inherit config; })
       ];
 
       programs.git.extraConfig.credential = mkForce { };

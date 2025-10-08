@@ -8,9 +8,9 @@ in
 
 {
   imports = [
-    ../fuzzel.nix
+    ../fuzzel
     ../waybar
-    ../wlogout.nix
+    ../wlogout
   ];
 
   config = {
