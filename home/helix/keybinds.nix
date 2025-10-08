@@ -48,7 +48,11 @@ in
         "open_below"
         "normal_mode"
       ];
+
+      X = "extend_line_up";
+
       space = {
+        minus = ":buffer-close";
         ret = "goto_word";
 
         # lazygit
@@ -72,11 +76,11 @@ in
           ":set mouse true"
         ];
 
-        b = ":run-shell-command ${blame_line} %{buffer_name} %{cursor_line}";
-        g = ":open %sh{${blame_file} %{buffer_name} %{cursor_line}}";
-        h = ":run-shell-command ${git_hunk} %{buffer_name} %{cursor_line} 3";
+        b = [ ":run-shell-command ${blame_line} %{buffer_name} %{cursor_line}" ];
+        g = [ ":open %sh{${blame_file} %{buffer_name} %{cursor_line}}" ];
+        h = [ ":run-shell-command ${git_hunk} %{buffer_name} %{cursor_line} 3" ];
 
-        q = ":quit";
+        q = ":buffer-close";
         Q = ":quit-all!";
         r = {
           r = ":config-reload";
