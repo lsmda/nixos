@@ -80,7 +80,7 @@ in
         g = [ ":open %sh{${blame_file} %{buffer_name} %{cursor_line}}" ];
         h = [ ":run-shell-command ${git_hunk} %{buffer_name} %{cursor_line} 3" ];
 
-        q = ":buffer-close";
+        q = ":quit";
         Q = ":quit-all!";
         r = {
           r = ":config-reload";
