@@ -15,9 +15,10 @@ in
 
   config = {
     home.packages = with pkgs; [
+      flameshot # screenshot tool
+      libnotify # notify-send
       networkmanagerapplet # network manager
       swaynotificationcenter
-      flameshot # screenshot tool
       wl-clipboard
     ];
 
