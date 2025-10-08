@@ -4,7 +4,7 @@ let
   gitDerivation = pkgs.stdenv.mkDerivation rec {
     name = "git-credentials";
 
-    src = ../secrets/git/credentials.json;
+    src = ../../secrets/git/credentials.json;
     ageKeyFile = /home/${config.machine.username}/.config/sops/age/keys.txt;
 
     nativeBuildInputs = [

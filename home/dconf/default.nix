@@ -1,7 +1,7 @@
 { lib, pkgs, ... }:
 
 let
-  background = toString ../assets/00.jpg;
+  background = toString ../../assets/00.jpg;
 in
 
 # use `dconf watch /` to track state changes, then set them here.

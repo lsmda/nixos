@@ -55,28 +55,28 @@
       }
 
       #lock {
-        background-image: image(url("${../assets/icons/lock.png}"));
+        background-image: image(url("${../../assets/icons/lock.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100px;
       }
 
       #logout {
-        background-image: image(url("${../assets/icons/logout.png}"));
+        background-image: image(url("${../../assets/icons/logout.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110px;
       }
 
       #reboot {
-        background-image: image(url("${../assets/icons/reboot.png}"));
+        background-image: image(url("${../../assets/icons/reboot.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110px;
       }
 
       #shutdown {
-        background-image: image(url("${../assets/icons/shutdown.png}"));
+        background-image: image(url("${../../assets/icons/shutdown.png}"));
         background-position: center;
         background-repeat: no-repeat;
         background-size: 110px;

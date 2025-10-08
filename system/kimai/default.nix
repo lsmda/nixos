@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (import ../utils { inherit config lib; }) fromBinary fromFile fromYaml;
+  inherit (import ../../utils { inherit config lib; }) fromBinary fromFile fromYaml;
 
   fqdn = config.www.fqdn;
   secrets = config.sops.secrets;
@@ -9,17 +9,17 @@ in
 
 {
   config = {
-    sops.secrets."restic/password" = fromYaml ../secrets/system.yaml;
+    sops.secrets."restic/password" = fromYaml ../../secrets/system.yaml;
 
-    sops.secrets."kimai" = fromBinary ../secrets/kimai/kimai // {
+    sops.secrets."kimai" = fromBinary ../../secrets/kimai/kimai // {
       restartUnits = [ "podman-kimai.service" ];
     };
 
-    sops.secrets."kimai-db" = fromBinary ../secrets/kimai/kimai-db // {
+    sops.secrets."kimai-db" = fromBinary ../../secrets/kimai/kimai-db // {
       restartUnits = [ "podman-kimai-db.service" ];
     };
 
-    sops.secrets."local.yaml" = fromFile (fromYaml ../secrets/kimai/local.yaml) // {
+    sops.secrets."local.yaml" = fromFile (fromYaml ../../secrets/kimai/local.yaml) // {
       restartUnits = [ "podman-kimai.service" ];
     };
 

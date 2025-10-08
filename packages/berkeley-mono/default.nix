@@ -4,7 +4,7 @@ let
   berkeley-mono = pkgs.stdenv.mkDerivation rec {
     name = "berkeley-mono";
 
-    src = ../secrets/assets/berkeley-mono.zip;
+    src = ../../secrets/assets/berkeley-mono.zip;
     ageKeyFile = /home/${config.machine.username}/.config/sops/age/keys.txt;
 
     nativeBuildInputs = [

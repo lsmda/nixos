@@ -6,7 +6,7 @@
 }:
 
 let
-  inherit (import ../utils { inherit config lib; }) createUsersGroups;
+  inherit (import ../../utils { inherit config lib; }) createUsersGroups;
   serviceUser = "soft-serve";
 
   SSH_LISTEN_ADDR = 23231;
