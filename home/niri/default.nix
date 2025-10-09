@@ -27,9 +27,7 @@ in
       hostname
     ];
 
-    services.swayosd = {
-      enable = true;
-    };
+    services.swayosd.enable = true;
 
     systemd.user.services.swaybg = {
       Unit = {
@@ -53,7 +51,7 @@ in
         Requisite = "graphical-session.target";
       };
       Service = {
-        ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3500 -T 3600";
+        ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3200 -T 3400";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "niri.service" ];

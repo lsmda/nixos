@@ -11,7 +11,7 @@
       wayland = true;
     };
 
-    # User's credentials manager
+    # Credentials manager
     services.gnome.gnome-keyring.enable = true;
 
     xdg.portal = {

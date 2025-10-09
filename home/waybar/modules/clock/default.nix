@@ -1,43 +1,38 @@
+{ config, ... }:
+
+let
+  theme = config.machine.theme;
+in
+
 {
-  config = {
-    programs.waybar = {
-      settings.main = {
-        "clock#time" = {
-          format = "{:%H:%M}";
-          min-length = 5;
-          max-length = 5;
-          tooltip-format = "Standard Time: {:%I:%M %p}";
+  config.programs.waybar = {
+    settings.main = {
+      "clock" = {
+        format = "{:%R}";
+        min-length = 5;
+        max-length = 5;
+        tooltip-format = "UTC Offset: {:%z}";
+      };
+      "clock#calendar" = {
+        format = "󰸗 {:%Y-%m-%d}";
+        min-length = 13;
+        max-length = 13;
+        tooltip-format = "{calendar}";
+        calendar = {
+          mode = "month";
+          mode-mon-col = 6;
+          format = {
+            months = "<span alpha='100%'><b>{}</b></span>";
+            days = "<span alpha='90%'>{}</span>";
+            today = "<span alpha='100%' background='#${theme.lavender}' color='#${theme.crust}'><b>{}</b></span>";
+            weekdays = "<span alpha='80%'><i>{}</i></span>";
+          };
         };
-        "clock#date" = {
-          format = "󰸗 {:%Y-%m-%d}";
-          min-length = 14;
-          max-length = 14;
-          tooltip-format = "{calendar}";
-          calendar = {
-            mode = "month";
-            mode-mon-col = 6;
-            format = {
-              months = "<span alpha='100%'><b>{}</b></span>";
-              days = "<span alpha='90%'>{}</span>";
-              weekdays = "<span alpha='80%'><i>{}</i></span>";
-              today = "<span alpha='100%'><b><u>{}</u></b></span>";
-            };
-          };
-          actions = {
-            on-click = "mode";
-          };
+        actions = {
+          on-click = "mode";
         };
       };
-      style = ''
-        #clock.time {
-        	padding-left: 10px;
-        	padding-right: 10px;
-        }
-        #clock.date {
-        	padding-left: 7px;
-        	padding-right: 7px;
-        }
-      '';
+      style = '''';
     };
   };
 }

@@ -5,25 +5,23 @@ let
 in
 
 {
-  config = {
-    programs.waybar = {
-      settings.main = {
-        "custom/power_menu" = {
-          format = "󰤄";
-          on-click = "ghostty -e ${powerMenuScript}";
-          tooltip-format = "Power Menu";
-        };
+  config.programs.waybar = {
+    settings.main = {
+      "custom/power_menu" = {
+        format = "󰤄";
+        on-click = "ghostty -e ${powerMenuScript}";
+        tooltip-format = "Power Menu";
       };
-      style = ''
-        #custom-power_menu {
-        	padding: 0 16px;
-        	font-size: 20px;
-        	color: @accent;
-        }
-        #custom-power_menu:hover {
-        	background-color: @hover-bg;
-        }
-      '';
     };
+    style = ''
+      #custom-power_menu {
+      	padding: 0 16px;
+      	font-size: 20px;
+      	color: @accent;
+      }
+      #custom-power_menu:hover {
+      	background-color: @hover-bg;
+      }
+    '';
   };
 }

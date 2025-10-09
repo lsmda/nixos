@@ -18,15 +18,12 @@ in
       [
         ffmpeg-full
 
-        # x264 and x265 encoders/decoders
+        intel-vaapi-driver # Legacy Intel VA-API driver
+        libva # Video Acceleration API
+        mesa # Mesa drivers for video acceleration
+
         x264
         x265
-
-        libva # Video Acceleration API
-        libva-utils # VA-API utilities for testing
-        intel-media-driver # Intel hardware video acceleration
-        intel-vaapi-driver # Legacy Intel VA-API driver
-        mesa # Mesa drivers for video acceleration
       ]
       ++ (if config.hardware.nvidia.enabled then nvidiaPackages else [ ]);
 

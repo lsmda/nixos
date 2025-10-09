@@ -17,6 +17,7 @@ in
     ../../system/boot
     ../../system/environment
     ../../system/fonts
+    ../../system/intel
     ../../system/keyd
     ../../system/locale
     ../../system/networking
