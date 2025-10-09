@@ -19,7 +19,7 @@
           status-icons = {
             paused = "󰐊";
           };
-          max-length = 40;
+          max-length = 38;
         };
       };
       style = ''

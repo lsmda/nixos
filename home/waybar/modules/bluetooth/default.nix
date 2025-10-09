@@ -30,7 +30,6 @@
       };
       style = ''
         #bluetooth {
-        	background-color: @tray;
         	padding: 0 5px;
         }
       '';

@@ -16,11 +16,6 @@
           tooltip-format = "Memory Used: {used:0.1f} GB / {total:0.1f} GB";
         };
       };
-      style = ''
-        #memory {
-        	background-color: @memory;
-        }
-      '';
     };
   };
 }

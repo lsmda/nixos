@@ -36,7 +36,6 @@ in
       };
       style = ''
         #network {
-        	background-color: @tray;
         	padding: 0 6px 0 4px;
         }
       '';

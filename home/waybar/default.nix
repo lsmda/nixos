@@ -48,16 +48,14 @@ in
       ];
 
       layer = "top";
-      height = 0;
+      height = 35;
       width = 0;
-      margin = "8";
+      margin = "6";
       spacing = 0;
       mode = "dock";
       reload_style_on_change = true;
     };
     style = ''
-      /* catppuccin-mocha */
-
       @define-color rosewater		#${theme.rosewater};
       @define-color flamingo		#${theme.flamingo};
       @define-color pink			#${theme.pink};
@@ -105,20 +103,20 @@ in
 
       @define-color workspaces	@mantle;
       @define-color temperature	@mantle;
-      @define-color memory		@base;
-      @define-color cpu			@surface0;
-      @define-color time			@surface0;
-      @define-color date			@base;
-      @define-color tray			@mantle;
-      @define-color volume		@mantle;
+      @define-color memory      @base;
+      @define-color cpu   			@surface0;
+      @define-color time		  	@surface0;
+      @define-color date			  @base;
+      @define-color tray			  @mantle;
+      @define-color volume		  @mantle;
       @define-color backlight		@base;
-      @define-color battery		@surface0;
+      @define-color battery		  @surface0;
 
       /* state colors */
 
       @define-color warning		@yellow;
-      @define-color critical		@red;
-      @define-color charging		@green;
+      @define-color critical  @red;
+      @define-color charging	@green;
               
       /* ----------------------- */
       /* -------- style -------- */
@@ -131,17 +129,12 @@ in
       	color: @main-fg;
       }
 
-      /* main outline */
-
-      window#waybar {
-      	background-color: @outline;
-        border-radius: 4px;
+      window {
+      	background-color: transparent;
       }
 
-      /* main background */
-
-      window#waybar > box {
-      	margin: 4px;
+      window#waybar {
+        border-radius: 5px;
       	background-color: @main-bg;
       }
 
@@ -172,8 +165,6 @@ in
       .critical { color: @critical; }
       .charging { color: @charging; }
 
-      /* buttons */
-
       button {
       	border-radius: 16px;
       	padding: 0 10px;
@@ -182,8 +173,6 @@ in
       	background-color: @hover-bg;
       	color: @hover-fg;
       }
-
-      /* tooltips */
 
       tooltip {
       	border: 2px solid @main-br;

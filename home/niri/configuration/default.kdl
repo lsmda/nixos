@@ -50,7 +50,7 @@ layout {
         off
     }
     border {
-        width 6
+        width 4
         inactive-color "#333"
         active-color "#b4befe"
     }
@@ -62,10 +62,10 @@ layout {
         color "#111c"
     }
     struts {
-        left -2
-        right -2
+        left -4
+        right -4
         top -10
-        bottom -2
+        bottom -4
     }
 }
 animations {
@@ -221,9 +221,6 @@ binds {
     }
     Ctrl+Print {
         screenshot-screen
-    }
-    Alt+Print {
-        screenshot-window
     }
     Mod+Escape {
         spawn "wlogout" "-b" "4"

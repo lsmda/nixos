@@ -1,9 +1,3 @@
-{ pkgs, ... }:
-
-let
-  backlightScript = pkgs.writeScript "backlight.sh" (builtins.readFile ./script.sh);
-in
-
 {
   config = {
     programs.waybar = {
@@ -23,20 +17,11 @@ in
           ];
           min-length = 7;
           max-length = 7;
-          on-scroll-up = "${backlightScript} up";
-          on-scroll-down = "${backlightScript} down";
+          on-scroll-up = "swayosd-client --brightness +1";
+          on-scroll-down = "swayosd-client --brightness -1";
           tooltip = false;
         };
       };
-      style = ''
-        #custom-left_div.7 {
-        	background-color: @volume;
-        	color: @backlight;
-        }
-        #backlight {
-        	background-color: @backlight;
-        }
-      '';
     };
   };
 }

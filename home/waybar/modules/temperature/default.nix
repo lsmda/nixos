@@ -18,16 +18,6 @@
           tooltip-format = "Temp in Fahrenheit: {temperatureF}°F";
         };
       };
-      style = ''
-        /* temperature */
-
-        #custom-left_div.2 {
-        	color: @temperature;
-        }
-        #temperature {
-        	background-color: @temperature;
-        }
-      '';
     };
   };
 }

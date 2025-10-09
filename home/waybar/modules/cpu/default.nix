@@ -16,11 +16,6 @@
           tooltip = false;
         };
       };
-      style = ''
-        #cpu {
-        	background-color: @cpu;
-        }
-      '';
     };
   };
 }

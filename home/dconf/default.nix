@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, ... }:
 
 let
   background = toString ../../assets/00.jpg;
@@ -8,10 +8,6 @@ in
 
 {
   config = {
-    home.packages = with pkgs; [
-      flameshot
-    ];
-
     dconf.settings = {
       # disable default keybinds
       "org/gnome/shell/keybindings" = {

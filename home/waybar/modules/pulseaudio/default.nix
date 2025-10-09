@@ -1,9 +1,3 @@
-{ pkgs, ... }:
-
-let
-  volume_script = pkgs.writeScript "volume.sh" (builtins.readFile ./script.sh);
-in
-
 {
   config = {
     programs.waybar = {
@@ -36,9 +30,9 @@ in
           };
           min-length = 7;
           max-length = 7;
-          on-click = "${volume_script} output mute";
-          on-scroll-up = "${volume_script} output raise";
-          on-scroll-down = "${volume_script} output lower";
+          on-click = "swayosd-client --output-volume mute-toggle";
+          on-scroll-up = "swayosd-client --output-volume +2";
+          on-scroll-down = "swayosd-client --output-volume -2";
           tooltip-format = "Output Device: {desc}";
         };
 
@@ -48,21 +42,12 @@ in
           format-source-muted = "󰍭 {volume}%";
           min-length = 7;
           max-length = 7;
-          on-click = "${volume_script} input mute";
-          on-scroll-up = "${volume_script} input raise";
-          on-scroll-down = "${volume_script} input lower";
+          on-click = "swayosd-client --input-volume mute-toggle";
+          on-scroll-up = "swayosd-client --input-volume +2";
+          on-scroll-down = "swayosd-client --input-volume -2";
           tooltip-format = "Input Device: {desc}";
         };
       };
-      style = ''
-        #custom-left_div.6 {
-        	color: @volume;
-        }
-        #pulseaudio,
-        #wireplumber {
-        	background-color: @volume;
-        }
-      '';
     };
   };
 }

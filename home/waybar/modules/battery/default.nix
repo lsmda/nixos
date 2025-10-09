@@ -33,18 +33,6 @@
           };
         };
       };
-      style = ''
-        #custom-left_div.8 {
-        	background-color: @backlight;
-        	color: @battery;
-        }
-        #battery {
-        	background-color: @battery;
-        }
-        #custom-left_inv.2 {
-        	color: @battery;
-        }
-      '';
     };
   };
 }

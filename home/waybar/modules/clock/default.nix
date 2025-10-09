@@ -32,12 +32,10 @@
         #clock.time {
         	padding-left: 10px;
         	padding-right: 10px;
-        	background-color: @time;
         }
         #clock.date {
         	padding-left: 7px;
         	padding-right: 7px;
-        	background-color: @date;
         }
       '';
     };
