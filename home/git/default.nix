@@ -38,19 +38,33 @@ in
 {
   config = {
     home.packages = with pkgs; [
+      difftastic
       git-credential-manager
     ];
 
     programs.git = {
       enable = true;
 
+      # difftastic.enable = true;
+
       extraConfig = {
-        user.name = credentials.name;
-        user.email = credentials.email;
         credential.credentialStore = "secretservice";
         credential.helper = "manager";
+
+        diff.external = "difft";
+        diff.tool = "difftastic";
+
+        difftool.prompt = false;
+        # difftool.difftastic.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
+        difftool.difftastic.cmd = "difft \"$MERGED\" \"$LOCAL\" \"abcdef1\" \"100644\" \"$REMOTE\" \"abcdef2\" \"100644\"";
+
         init.defaultBranch = "main";
+
+        pager.difftool = true;
         push.autoSetupRemote = true;
+
+        user.name = credentials.name;
+        user.email = credentials.email;
       };
 
       aliases = {
@@ -80,6 +94,25 @@ in
 
         sh = "stash";
         st = "status";
+      };
+    };
+
+    programs.lazygit = {
+      enable = true;
+      settings = {
+        git.paging.externalDiffCommand = "difft";
+        gui.showListFooter = false;
+        gui.showRandomTip = false;
+        gui.showCommandLog = false;
+        gui.showBottomLine = false;
+        gui.nerdFontsVersion = 3;
+        gui.border = "single";
+        quitOnTopLevelReturn = true;
+        keybinding = {
+          universal = {
+            quit = "<esc>";
+          };
+        };
       };
     };
   };
