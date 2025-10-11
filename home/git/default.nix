@@ -45,8 +45,6 @@ in
     programs.git = {
       enable = true;
 
-      # difftastic.enable = true;
-
       extraConfig = {
         credential.credentialStore = "secretservice";
         credential.helper = "manager";
@@ -55,7 +53,6 @@ in
         diff.tool = "difftastic";
 
         difftool.prompt = false;
-        # difftool.difftastic.cmd = "difft \"$LOCAL\" \"$REMOTE\"";
         difftool.difftastic.cmd = "difft \"$MERGED\" \"$LOCAL\" \"abcdef1\" \"100644\" \"$REMOTE\" \"abcdef2\" \"100644\"";
 
         init.defaultBranch = "main";
