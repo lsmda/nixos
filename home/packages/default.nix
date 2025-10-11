@@ -57,17 +57,13 @@ let
     caddy
     cargo
     cloudflared
-    cryfs
     dive # explore docker images
-    fastfetch
     fzf
     gcc
     gnumake
     go
     glow # render markdown on CLI
-    gocryptfs
     jq # cli JSON processor
-    keychain # keys management tool (GPG, SSH)
     lshw
     lua
     mariadb

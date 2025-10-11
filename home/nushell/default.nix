@@ -1,19 +1,26 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 let
   secrets = config.sops.secrets;
-  hostname = config.machine.hostname;
   storage = config.lan.storage;
+  hostname = config.machine.hostname;
 in
 
 {
   config = {
+    home.packages = with pkgs; [
+      cryfs
+      fastfetch
+      gocryptfs
+      keychain # keys management tool (GPG, SSH)
+      nh
+    ];
+
     programs.nushell = {
       enable = true;
 
       shellAliases = {
         ".." = "cd ..";
-        dd = "sudo dockerd";
         ns = "nix-shell";
         ff = "fastfetch";
         cfs = "cryfs";
@@ -26,8 +33,12 @@ in
         cp = "cp --verbose --recursive --progress";
         rm = "rm --verbose --recursive";
         bios = "sudo systemctl reboot --firmware-setup";
+
+        info = "nh os info";
         rebuild = "sudo nixos-rebuild switch --show-trace";
-        generations = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+        rollback = "sudo nh os rollback";
+        clean = "sudo nh clean all -v";
+        repl = "nix repl -f <nixpkgs>";
       };
 
       configFile.text = ''
@@ -110,36 +121,6 @@ in
           bat ...$args
         }
 
-        def --wrapped d [...args] { 
-          docker ...$args | split row "\n"
-        }
-
-        def removeDockerImages [] {
-          d images -q | uniq | each { |i| docker rmi --force $i }
-        }
-
-        def removeDockerContainer [regex: string] {
-          let containers = (d ps -a --format "{{.Names}}" | where { |c| $c =~ $regex })
-
-          if ($containers | is-empty) {
-             log info $"No containers found matching \"($regex)\""
-             return
-          }
-
-          $containers | each { |c| docker rm -v --force $c }
-        }
-
-        def removeDockerVolume [regex: string] {
-          let volumes = (d volume ls -q | where { |v| $v =~ $regex })
-           
-          if ($volumes | is-empty) {
-             log info $"No volumes found matching \"($regex)\""
-             return
-          }
-
-          $volumes | each { |v| docker volume rm --force $v }
-        }
-
         def runestore [...args] {
           if (sys host | hostname | $in =~ wardstone) {
             ssh -p 23231 localhost ...$args
@@ -147,16 +128,6 @@ in
           }
 
           ssh -p 23231 ${toString storage} ...$args
-        }
-
-        def removeNixGeneration [start: int, end?: int] {
-          if ($end | is-empty) {
-            sudo nix-env --delete-generations $start --profile /nix/var/nix/profiles/system
-          } else {
-            for i in (seq $start $end) {
-              sudo nix-env --delete-generations $i --profile /nix/var/nix/profiles/system
-            }
-          }
         }
 
         keychain --eval --quiet ~/.ssh/${hostname}

@@ -66,7 +66,7 @@ in
         ../../home/shell
 
         (import ../../home/git { inherit config pkgs; })
-        (import ../../home/nushell { inherit config; })
+        (import ../../home/nushell { inherit config pkgs; })
       ];
 
       programs.git.extraConfig.credential = mkForce { };
