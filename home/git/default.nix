@@ -57,7 +57,6 @@ in
 
         init.defaultBranch = "main";
 
-        pager.difftool = true;
         push.autoSetupRemote = true;
 
         user.name = credentials.name;
@@ -97,6 +96,7 @@ in
     programs.lazygit = {
       enable = true;
       settings = {
+        git.paging.colorArg = "always";
         git.paging.externalDiffCommand = "difft";
         gui.showListFooter = false;
         gui.showRandomTip = false;
