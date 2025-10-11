@@ -17,6 +17,27 @@ input {
     disable-power-key-handling
     warp-mouse-to-focus
 }
+environment {
+    DISPLAY ":0"
+    EGL_PLATFORM "wayland"
+    MOZ_ENABLE_WAYLAND "1"
+    // Electron & Chromium
+    NIXOS_OZONE_WL "1"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+    // Qt theming
+    QT_QPA_PLATFORM "wayland"
+    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
+    XDG_SESSION_TYPE "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    // NVIDIA
+    GBM_BACKEND "nvidia-drm"
+    WLR_NO_HARDWARE_CURSORS "1"
+    LIBVA_DRIVER_NAME  "nvidia"
+    __GLX_VENDOR_LIBRARY_NAME "nvidia"
+    NVD_BACKEND "direct" // Hardware Video Acceleration
+}
 output "DP-3" {
     mode "1920x1080@60.000"
 }
