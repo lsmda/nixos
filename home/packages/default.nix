@@ -39,6 +39,7 @@ let
 
     # java development
     ++ [
+      bruno
       jetbrains.idea-community
       jetbrains.webstorm
       maven
