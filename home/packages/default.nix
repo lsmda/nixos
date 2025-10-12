@@ -56,7 +56,6 @@ let
     age
     caddy
     cargo
-    cloudflared
     dive # explore docker images
     fzf
     gcc
@@ -91,6 +90,7 @@ in
 
 {
   imports = [
+    ../../packages/cloudflared
     ../../packages/obsidian
     ../../packages/quickshell
   ];

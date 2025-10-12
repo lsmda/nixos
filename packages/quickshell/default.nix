@@ -67,5 +67,5 @@ let
 in
 
 {
-  config.home.packages = [ quickshell ];
+  config.home.packages = lib.mkIf pkgs.stdenv.isx86_64 [ quickshell ];
 }
