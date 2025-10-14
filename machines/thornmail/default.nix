@@ -19,6 +19,7 @@ in
     ../../system/fonts
     ../../system/keyd
     ../../system/locale
+    ../../system/mysql
     ../../system/networking
     ../../system/nfs-client
     ../../system/niri

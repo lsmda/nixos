@@ -130,6 +130,15 @@ in
           ssh -p 23231 ${toString storage} ...$args
         }
 
+
+        def intellij-reset-evaluation-period [] {
+          rm -r -f ~/.config/JetBrains/IntelliJIdea*/eval
+          sed -i -E 's/<property name="evl.*" .*\/>//' ~/.config/JetBrains/IntelliJIdea*/options/other.xml
+          rm -r -f ~/.java/.userPrefs/jetbrains/idea
+        }
+
+        intellij-reset-evaluation-period
+
         keychain --eval --quiet ~/.ssh/${hostname}
           | lines
           | where not ($it | is-empty)

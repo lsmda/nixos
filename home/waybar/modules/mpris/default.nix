@@ -9,10 +9,10 @@
     programs.waybar = {
       settings.main = {
         mpris = {
-          format = "{player_icon} {title} - {artist}";
-          format-paused = "{status_icon} {title} - {artist}";
-          tooltip-format = "Playing: {title} - {artist}";
-          tooltip-format-paused = "Paused: {title} - {artist}";
+          format = "{player_icon} {title}";
+          format-paused = "{status_icon} {title}";
+          tooltip-format = "Playing: {title}";
+          tooltip-format-paused = "Paused: {title}";
           player-icons = {
             default = "󰏤";
           };

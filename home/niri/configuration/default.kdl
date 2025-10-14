@@ -1,5 +1,3 @@
-spawn-at-startup "waybar"
-spawn-at-startup "xwayland-satellite"
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshot %Y-%m-%d %H-%M-%S.png"
 hotkey-overlay {
@@ -200,7 +198,7 @@ binds {
     Ctrl+Print {
         screenshot-screen
     }
-    Mod+Escape {
+    Mod+Shift+Delete {
         spawn "wlogout" "-b" "4"
     }
     Ctrl+Alt+Delete {

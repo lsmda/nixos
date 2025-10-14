@@ -40,7 +40,7 @@ let
     # java development
     ++ [
       bruno
-      jetbrains.idea-community
+      jetbrains.idea-ultimate
       jetbrains.webstorm
       maven
       openjdk17

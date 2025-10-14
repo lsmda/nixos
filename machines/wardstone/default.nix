@@ -23,6 +23,7 @@ in
     ../../system/keyd
     ../../system/kimai
     ../../system/locale
+    ../../system/mysql
     ../../system/networking
     ../../system/nfs-server
     ../../system/openssh

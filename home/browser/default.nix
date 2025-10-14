@@ -323,10 +323,10 @@
         DisplayMenuBar = "never";
         DontCheckDefaultBrowser = true;
         EnableTrackingProtection = {
-          Value = true;
+          # Value = true;
           Cryptomining = true;
           Fingerprinting = true;
-          EmailTracking = true;
+          # EmailTracking = true;
           Locked = true;
         };
         Extensions = {

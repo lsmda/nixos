@@ -20,6 +20,7 @@ in
     ../../system/intel
     ../../system/keyd
     ../../system/locale
+    ../../system/mysql
     ../../system/networking
     ../../system/niri
     ../../system/nfs-client

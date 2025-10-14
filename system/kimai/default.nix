@@ -51,6 +51,9 @@ in
       environmentFiles = [
         secrets."kimai-db".path
       ];
+      ports = [
+        "8002:3306"
+      ];
       volumes = [
         "/var/lib/kimai-db:/var/lib/mysql"
       ];
