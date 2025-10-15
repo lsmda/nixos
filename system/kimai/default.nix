@@ -1,7 +1,7 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 
 let
-  inherit (import ../../utils { inherit config lib; }) fromBinary fromFile fromYaml;
+  inherit (import ../../utils { inherit config pkgs; }) fromBinary fromFile fromYaml;
 
   fqdn = config.www.fqdn;
   secrets = config.sops.secrets;

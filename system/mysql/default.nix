@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 
 let
   secrets = config.sops.secrets;
-  inherit (import ../../utils { inherit config lib; }) fromBinary;
+  inherit (import ../../utils { inherit config pkgs; }) fromBinary;
 in
 
 {

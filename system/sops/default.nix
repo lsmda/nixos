@@ -1,8 +1,8 @@
-{ lib, config, ... }:
+{ config, pkgs, ... }:
 
 let
   user = config.machine.username;
-  inherit (import ../../utils { inherit config lib; }) fromBinary fromYaml;
+  inherit (import ../../utils { inherit config pkgs; }) fromBinary fromYaml;
 in
 
 # generate age key:

@@ -7,7 +7,7 @@
 
 let
   inherit (lib) mkForce;
-  inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
+  inherit (import ../../utils { inherit config pkgs; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
 

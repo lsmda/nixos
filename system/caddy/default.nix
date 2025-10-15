@@ -1,7 +1,7 @@
 { config, lib, ... }:
 
 let
-  inherit (import ../../utils { inherit config lib; }) fromBinary fromYaml withOwner;
+  inherit (import ../../utils { inherit config pkgs; }) fromBinary fromYaml withOwner;
 
   fqdn = "lsmda.pm";
   secrets = config.sops.secrets;
