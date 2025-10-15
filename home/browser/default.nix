@@ -3,8 +3,8 @@
 {
   config = {
     home.packages = with pkgs; [
+      chromium
       librewolf
-      firefoxpwa
     ];
 
     programs.firefox = {
