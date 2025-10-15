@@ -5,10 +5,6 @@ let
     nvidia-vaapi-driver
     vdpauinfo
   ];
-  nvidiaVariables = {
-    LIBVA_DRIVER_NAME = "nvidia";
-    VDPAU_DRIVER = "nvidia";
-  };
 in
 
 {
@@ -30,7 +26,6 @@ in
     home.sessionVariables = {
       FFMPEG_VAAPI = "1";
       FFMPEG_VDPAU = "1";
-    }
-    // (if config.hardware.nvidia.enabled then nvidiaVariables else { });
+    };
   };
 }
