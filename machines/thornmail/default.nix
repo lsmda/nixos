@@ -18,6 +18,7 @@ in
     ../../system/environment
     ../../system/fonts
     ../../system/keyd
+    ../../system/keyring
     ../../system/locale
     ../../system/mysql
     ../../system/networking

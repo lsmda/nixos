@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (pkgs) lib;
-  inherit (import ../../utils { inherit config lib; }) createUsersGroups usersGroups;
+  inherit (import ../../utils { inherit config pkgs; }) createUsersGroups usersGroups;
   secrets = config.sops.secrets;
 in
 
@@ -19,6 +18,7 @@ in
     ../../system/fonts
     ../../system/intel
     ../../system/keyd
+    ../../system/keyring
     ../../system/locale
     ../../system/mysql
     ../../system/networking
