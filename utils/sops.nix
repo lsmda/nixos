@@ -1,6 +1,8 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 
 let
+  inherit (pkgs) lib;
+
   sopsFile = path: {
     mode = "0400";
     sopsFile = path;

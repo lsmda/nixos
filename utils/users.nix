@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ pkgs, ... }:
 
 let
+  inherit (pkgs) lib;
+
   stringToAttributeSet = str: {
     name = str;
     value = { };
