@@ -64,6 +64,9 @@ in
       };
 
       aliases = {
+        # Remove all local branches with no remote upstream ([b]ranch [p]urge)
+        bp = "!f() { git branch -vv | rg 'gone]' | awk '{print $1}' | xargs git branch -D \n }; f";
+
         br = "branch";
 
         cf = "config";
