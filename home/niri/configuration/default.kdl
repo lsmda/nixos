@@ -198,9 +198,6 @@ binds {
     Ctrl+Print {
         screenshot-screen
     }
-    Mod+Shift+Delete {
-        spawn "wlogout" "-b" "4"
-    }
     Ctrl+Alt+Delete {
         quit
     }

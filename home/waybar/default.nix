@@ -15,7 +15,7 @@ in
     ./modules/distro
     ./modules/memory
     ./modules/mpris
-    ./modules/power-menu
+    ./modules/power
     ./modules/temperature
     ./modules/tray
     ./modules/wireplumber
@@ -47,14 +47,13 @@ in
         "wireplumber#input"
         "backlight"
         "battery"
-        "custom/power_menu"
+        "custom/power"
       ];
 
       layer = "top";
       name = "main";
       height = 30;
       margin = "6";
-      # mode = "dock";
       reload_style_on_change = true;
     };
     style = ''
@@ -77,7 +76,7 @@ in
       	border-radius: 16px;
       }
 
-      window.main#waybar.top {
+      window#waybar {
         padding: 0 20px;
         font-size: 11pt;
       	font-weight: 400;
@@ -116,10 +115,21 @@ in
       	color: @hover-fg;
       }
 
-      tooltip, #tray menu {
+      menu,
+      tooltip {
       	border: 2px solid @main-br;
-      	border-radius: 10px;
+      	border-radius: 8px;
       	background-color: @main-bg;
+        padding: 2px;
+      }
+
+      menuitem {
+        padding: 8px 4px;
+        border-radius: 8px;
+      }
+
+      menuitem:hover {
+        background-color: @hover-bg;
       }
 
       tooltip label {

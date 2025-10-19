@@ -10,7 +10,6 @@ in
   imports = [
     ../fuzzel
     ../waybar
-    ../wlogout
   ];
 
   config = {
