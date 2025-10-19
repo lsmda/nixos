@@ -1,8 +1,8 @@
 {
   config.programs.waybar.settings.main = {
     memory = {
-      interval = 10;
-      format = "󰘚 {percentage}%";
+      interval = 2;
+      format = " {percentage}%";
       format-warning = "󰀧 {percentage}%";
       format-critical = "󰀧 {percentage}%";
       states = {

@@ -1,7 +1,7 @@
 {
   config.programs.waybar.settings.main = {
     battery = {
-      interval = 10;
+      interval = 2;
       states = {
         warning = 20;
         critical = 10;
@@ -21,7 +21,7 @@
         "󰁹"
       ];
       format-charging = "󰉁 {capacity}%";
-      min-length = 7;
+      min-length = 6;
       max-length = 7;
       tooltip-format = "Discharging: {time}";
       tooltip-format-charging = "Charging: {time}";

@@ -19,12 +19,13 @@
           status-icons = {
             paused = "󰐊";
           };
-          max-length = 35;
+          max-length = 30;
         };
       };
       style = ''
         #mpris {
-        	padding: 0 12px;
+        	margin: 0 4px;
+        	padding: 0 10px;
         }
       '';
     };

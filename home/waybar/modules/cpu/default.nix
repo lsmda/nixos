@@ -1,8 +1,8 @@
 {
   config.programs.waybar.settings.main = {
     cpu = {
-      interval = 10;
-      format = "󰍛 {usage}%";
+      interval = 2;
+      format = " {usage}%";
       format-warning = "󰀨 {usage}%";
       format-critical = "󰀨 {usage}%";
       min-length = 6;

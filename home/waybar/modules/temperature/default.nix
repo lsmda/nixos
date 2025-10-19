@@ -3,7 +3,7 @@
     temperature = {
       thermal-zone = 1;
       critical-threshold = 90;
-      interval = 10;
+      interval = 2;
       format-critical = "󰀦 {temperatureC}°C";
       format = "{icon} {temperatureC}°C";
       format-icons = [
