@@ -12,20 +12,20 @@ in
     sops.secrets."restic/password" = fromYaml ../../secrets/system.yaml;
 
     sops.secrets."kimai" = fromBinary ../../secrets/kimai/kimai // {
-      restartUnits = [ "podman-kimai.service" ];
+      restartUnits = [ "kimai.service" ];
     };
 
     sops.secrets."kimai-db" = fromBinary ../../secrets/kimai/kimai-db // {
-      restartUnits = [ "podman-kimai-db.service" ];
+      restartUnits = [ "kimai-db.service" ];
     };
 
     sops.secrets."local.yaml" = fromFile (fromYaml ../../secrets/kimai/local.yaml) // {
-      restartUnits = [ "podman-kimai.service" ];
+      restartUnits = [ "kimai.service" ];
     };
 
     virtualisation.oci-containers.containers."kimai" = {
       image = "kimai/kimai2:apache";
-      autoStart = true;
+      serviceName = "kimai";
       dependsOn = [ "kimai-db" ];
       environmentFiles = [
         secrets."kimai".path
@@ -43,7 +43,7 @@ in
 
     virtualisation.oci-containers.containers."kimai-db" = {
       image = "mysql:9.4";
-      autoStart = true;
+      serviceName = "kimai-db";
       cmd = [
         "--default-storage-engine"
         "innodb"
