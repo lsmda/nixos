@@ -29,20 +29,6 @@ in
 
     services.swayosd.enable = true;
 
-    systemd.user.services.waybar = {
-      Unit = {
-        Description = "Wayland bar for wlroots compositors";
-        PartOf = "graphical-session.target";
-        After = "graphical-session.target";
-        Requisite = "graphical-session.target";
-      };
-      Service = {
-        ExecStart = "${pkgs.waybar}/bin/waybar";
-        Restart = "on-failure";
-      };
-      Install.WantedBy = [ "niri.service" ];
-    };
-
     systemd.user.services.swaybg = {
       Unit = {
         Description = "Wallpaper tool for Wayland compositors";
@@ -65,7 +51,7 @@ in
         Requisite = "graphical-session.target";
       };
       Service = {
-        ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3200 -T 3400";
+        ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3250 -T 3300";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "niri.service" ];
