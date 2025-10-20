@@ -16,13 +16,13 @@ let
              </object>
           </child>
           <child>
-             <object class="GtkMenuItem" id="shutdown">
-                <property name="label">Shutdown</property>
+             <object class="GtkMenuItem" id="reboot">
+                <property name="label">Reboot</property>
              </object>
           </child>
           <child>
-             <object class="GtkMenuItem" id="reboot">
-                <property name="label">Reboot</property>
+             <object class="GtkMenuItem" id="shutdown">
+                <property name="label">Shutdown</property>
              </object>
           </child>
        </object>
