@@ -14,6 +14,82 @@ let
     sainnhe.gruvbox-material
   ];
 
+  userSettings = (
+    {
+      editor.bracketPairColorization.enabled = false;
+      editor.cursorBlinking = "smooth";
+      editor.cursorStyle = "block";
+      editor.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
+      editor.fontLigatures = true;
+      editor.fontSize = 12;
+      editor.fontWeight = 400;
+      editor.formatOnSave = true;
+      editor.guides.bracketPairs = "active";
+      editor.hover.enabled = false;
+      editor.lineHeight = 1.4;
+      editor.linkedEditing = true;
+      editor.minimap.enabled = false;
+      editor.minimap.renderCharacters = false;
+      editor.snippetSuggestions = "top";
+      editor.suggest.insertMode = "replace";
+      editor.tabSize = 2;
+      editor.tokenColorCustomizations.comments.fontStyle = "";
+    }
+    // {
+      terminal.integrated.commandsToSkipShell = [
+        "workbench.action.toggleSidebarVisibility"
+      ];
+      terminal.integrated.cursorBlinking = true;
+      terminal.integrated.cursorStyle = "block";
+      terminal.integrated.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
+      terminal.integrated.fontSize = 12;
+      terminal.integrated.fontWeight = 400;
+      terminal.integrated.lineHeight = 1.4;
+    }
+    // {
+      workbench.activityBar.location = "bottom";
+      workbench.editor.enablePreview = false;
+      workbench.colorTheme = "Gruvbox Material Dark";
+      workbench.iconTheme = "Monokai Classic Icons";
+      workbench.settings.editor = "json";
+      workbench.sideBar.location = "right";
+      workbench.startupEditor = "none";
+      workbench.tree.indent = 15;
+    }
+    // {
+      accessibility.verbosity.inlineChat = false;
+      accessibility.verbosity.panelChat = false;
+      breadcrumbs.enabled = true;
+      chat.agent.enabled = false;
+      chat.commandCenter.enabled = false;
+      chat.editor.fontSize = 11;
+      debug.console.fontSize = 11;
+      emmet.showSuggestionsAsSnippets = true;
+      emmet.triggerExpansionOnTab = true;
+      explorer.confirmDelete = false;
+      explorer.confirmDragAndDrop = false;
+      explorer.confirmPasteNative = false;
+      extensions.autoCheckUpdates = false;
+      extensions.ignoreRecommendations = true;
+      files.autoSave = "afterDelay";
+      files.autoSaveDelay = 500;
+      git.autofetch = true;
+      git.confirmSync = false;
+      redhat.telemetry.enabled = false;
+      security.workspace.trust.untrustedFiles = "open";
+      "[typescript]" = {
+        editor.defaultFormatter = "esbenp.prettier-vscode";
+      };
+      typescript.preferGoToSourceDefinition = true;
+      typescript.preferences.preferTypeOnlyAutoImports = true;
+      typescript.updateImportsOnFileMove.enabled = "always";
+      update.mode = "none";
+      update.showReleaseNotes = false;
+      window.menuBarVisibility = "toggle";
+      "window.zoomLevel" = 2;
+    }
+  );
+
   keybindings = [
     # Editor
     {
@@ -428,88 +504,6 @@ let
       when = "editorTextFocus && !editorReadonly";
     }
   ];
-
-  userSettings = (
-    {
-      editor.bracketPairColorization.enabled = false;
-      editor.cursorBlinking = "smooth";
-      editor.cursorStyle = "block";
-      editor.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
-      editor.fontLigatures = true;
-      editor.fontSize = 12;
-      editor.fontWeight = 400;
-      editor.formatOnSave = true;
-      editor.guides.bracketPairs = "active";
-      editor.hover.enabled = false;
-      # editor.letterSpacing = 1;
-      editor.lineHeight = 1.4;
-      editor.linkedEditing = true;
-      editor.minimap.enabled = false;
-      editor.minimap.renderCharacters = false;
-      editor.snippetSuggestions = "top";
-      editor.suggest.insertMode = "replace";
-      editor.tabSize = 2;
-      editor.tokenColorCustomizations.comments.fontStyle = "";
-    }
-    // {
-      terminal.integrated.commandsToSkipShell = [
-        "workbench.action.toggleSidebarVisibility"
-      ];
-      terminal.integrated.cursorBlinking = true;
-      terminal.integrated.cursorStyle = "block";
-      terminal.integrated.fontFamily = "'Berkeley Mono', 'Symbols Nerd Font'";
-      terminal.integrated.fontSize = 12;
-      terminal.integrated.fontWeight = 400;
-      # terminal.integrated.letterSpacing = 1;
-      terminal.integrated.lineHeight = 1.4;
-    }
-    // {
-      workbench.activityBar.location = "bottom";
-      workbench.editor.enablePreview = false;
-      workbench.colorTheme = "Gruvbox Material Dark";
-      workbench.iconTheme = "Monokai Classic Icons";
-      workbench.settings.editor = "json";
-      workbench.sideBar.location = "right";
-      workbench.startupEditor = "none";
-      workbench.tree.indent = 15;
-    }
-    // {
-      accessibility.verbosity.inlineChat = false;
-      accessibility.verbosity.panelChat = false;
-      breadcrumbs.enabled = true;
-      chat.agent.enabled = false;
-      chat.commandCenter.enabled = false;
-      chat.editor.fontSize = 11;
-      debug.console.fontSize = 11;
-      emmet.showSuggestionsAsSnippets = true;
-      emmet.triggerExpansionOnTab = true;
-      explorer.confirmDelete = false;
-      explorer.confirmDragAndDrop = false;
-      explorer.confirmPasteNative = false;
-      extensions.autoCheckUpdates = false;
-      extensions.ignoreRecommendations = true;
-      files.autoSave = "afterDelay";
-      files.autoSaveDelay = 500;
-      git.autofetch = true;
-      git.confirmSync = false;
-      javascript.updateImportsOnFileMove.enabled = "always";
-      markdown.preview.fontSize = 11;
-      redhat.telemetry.enabled = false;
-      remote.autoForwardPortsSource = "hybrid";
-      scm.inputFontSize = 11;
-      security.workspace.trust.untrustedFiles = "open";
-      settingsSync.ignoredSettings = [ "-window.zoomLevel" ];
-      "[typescript]" = {
-        editor.defaultFormatter = "esbenp.prettier-vscode";
-      };
-      typescript.preferGoToSourceDefinition = true;
-      typescript.preferences.preferTypeOnlyAutoImports = true;
-      typescript.updateImportsOnFileMove.enabled = "always";
-      update.mode = "none";
-      update.showReleaseNotes = false;
-      window.menuBarVisibility = "toggle";
-    }
-  );
 in
 
 {
