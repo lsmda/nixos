@@ -37,15 +37,6 @@ let
 
     ]
 
-    # java development
-    ++ [
-      bruno
-      jetbrains.idea-ultimate
-      jetbrains.webstorm
-      maven
-      openjdk17
-    ]
-
     # Nvidia
     ++ [
       egl-wayland
