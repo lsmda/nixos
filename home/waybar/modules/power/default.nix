@@ -39,7 +39,7 @@ in
         "menu" = "on-click";
         "menu-file" = menu;
         "menu-actions" = {
-          "shutdown" = "shutdown";
+          "shutdown" = "poweroff";
           "reboot" = "reboot";
           "suspend" = "systemctl suspend";
           "hibernate" = "systemctl hibernate";
