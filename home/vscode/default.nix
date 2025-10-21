@@ -97,10 +97,6 @@ let
       command = "gitlens.diffWithRevisionFrom";
     }
     {
-      key = "ctrl+k k";
-      command = "editor.action.showHover";
-    }
-    {
       key = "alt+m";
       command = "workbench.action.gotoLine";
     }
@@ -119,22 +115,12 @@ let
 
     # Files Explorer
     {
-      key = "w";
-      command = "list.selectAndPreserveFocus";
-      when = "sideBarFocus && !inputFocus";
-    }
-    {
       key = "ctrl+e";
       command = "workbench.action.toggleSidebarVisibility";
     }
     {
       key = "a";
       command = "explorer.newFile";
-      when = "filesExplorerFocus && !inputFocus";
-    }
-    {
-      key = "shift+a";
-      command = "explorer.newFolder";
       when = "filesExplorerFocus && !inputFocus";
     }
     {
@@ -252,255 +238,11 @@ let
     {
       key = "shift+alt+up";
       command = "editor.action.copyLinesUpAction";
-    }
-
-    # Removed
-    {
-      key = "ctrl+shift+t";
-      command = "-workbench.action.reopenClosedEditor";
-    }
-    {
-      key = "ctrl+g";
-      command = "-workbench.action.gotoLine";
-    }
-    {
-      key = "ctrl+k e";
-      command = "-workbench.files.action.focusOpenEditorsView";
-      when = "workbench.explorer.openEditorsView.active";
-    }
-    {
-      key = "ctrl+e";
-      command = "-workbench.action.quickOpen";
-    }
-    {
-      key = "ctrl+e ctrl+q";
-      command = "-sqltools.bookmarkSelection";
-      when = "editorHasSelection && editorTextFocus && !config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+r";
-      command = "-sqltools.deleteBookmark";
-      when = "!config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+a";
-      command = "-sqltools.runFromBookmarks";
-      when = "!config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+d";
-      command = "-sqltools.describeTable";
-      when = "!config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+e";
-      command = "-sqltools.executeQuery";
-      when = "editorHasSelection && editorTextFocus && !config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+s";
-      command = "-sqltools.showRecords";
-      when = "!config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+h";
-      command = "-sqltools.runFromHistory";
-      when = "!config.sqltools.disableChordKeybindings";
-    }
-    {
-      key = "ctrl+e ctrl+b";
-      command = "-sqltools.formatSql";
-      when = "editorHasSelection && editorTextFocus && !config.sqltools.disableChordKeybindings && !editorReadonly";
-    }
-    {
-      key = "ctrl+; ctrl+e";
-      command = "-testing.debugFailTests";
-    }
-    {
-      key = "ctrl+; e";
-      command = "-testing.reRunFailTests";
-    }
-    {
-      key = "ctrl+e";
-      command = "-editor.action.toggleScreenReaderAccessibilityMode";
-      when = "accessibilityHelpIsShown";
-    }
-    {
-      key = "ctrl+shift+e";
-      command = "-workbench.view.explorer";
-      when = "viewContainer.workbench.view.explorer.enabled";
-    }
-    {
-      key = "ctrl+enter";
-      command = "-gitlens.key.ctrl+enter";
-      when = "gitlens:key:ctrl+enter";
-    }
-    {
-      key = "ctrl+k ctrl+e";
-      command = "-keybindings.editor.defineWhenExpression";
-      when = "inKeybindings && keybindingFocus";
-    }
-    {
-      key = "ctrl+e";
-      command = "-workbench.action.quickOpenNavigateNextInFilePicker";
-      when = "inFilesPicker && inQuickOpen";
-    }
-    {
-      key = "ctrl+shift+e";
-      command = "-workbench.action.quickOpenNavigatePreviousInFilePicker";
-      when = "inFilesPicker && inQuickOpen";
-    }
-    {
-      key = "alt+e";
-      command = "-gl.explainSelectedCode";
-      when = "config.gitlab.duoChat.enabled && editorHasSelection && gitlab:chatAvailable && gitlab:chatAvailableForProject";
-    }
-    {
-      key = "ctrl+b";
-      command = "-workbench.action.toggleSidebarVisibility";
-    }
-    {
-      key = "ctrl+shift+g /";
-      command = "-gitlens.gitCommands";
-      when = "!gitlens:disabled && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g .";
-      command = "-gitlens.diffWithNext";
-      when = "editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /revision/";
-    }
-    {
-      key = "ctrl+shift+g .";
-      command = "-gitlens.diffWithNextInDiffLeft";
-      when = "editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /revision/";
-    }
-    {
-      key = "ctrl+shift+g .";
-      command = "-gitlens.diffWithNextInDiffRight";
-      when = "editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /revision/";
-    }
-    {
-      key = "ctrl+shift+g ,";
-      command = "-gitlens.diffWithPrevious";
-      when = "editorTextFocus && !isInDiffEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/";
-    }
-    {
-      key = "ctrl+shift+g ,";
-      command = "-gitlens.diffWithPreviousInDiffLeft";
-      when = "editorTextFocus && isInDiffEditor && !isInDiffRightEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/";
-    }
-    {
-      key = "ctrl+shift+g ,";
-      command = "-gitlens.diffWithPreviousInDiffRight";
-      when = "editorTextFocus && isInDiffRightEditor && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/";
-    }
-    {
-      key = "ctrl+shift+g shift+.";
-      command = "-gitlens.diffWithWorking";
-      when = "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /revision/";
-    }
-    {
-      key = "ctrl+shift+g shift+,";
-      command = "-gitlens.diffLineWithPrevious";
-      when = "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /tracked/";
-    }
-    {
-      key = "ctrl+shift+g c";
-      command = "-gitlens.showQuickCommitFileDetails";
-      when = "editorTextFocus && !gitlens:disabled && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g shift+h";
-      command = "-gitlens.showQuickRepoHistory";
-      when = "!gitlens:disabled && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g h";
-      command = "-gitlens.showQuickFileHistory";
-      when = "!gitlens:disabled && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g s";
-      command = "-gitlens.showQuickRepoStatus";
-      when = "!gitlens:disabled && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g b";
-      command = "-gitlens.toggleFileBlame";
-      when = "editorTextFocus && config.gitlens.keymap == 'chorded' && gitlens:activeFileStatus =~ /blameable/";
-    }
-    {
-      key = "ctrl+shift+g shift+b";
-      command = "-gitlens.toggleCodeLens";
-      when = "editorTextFocus && !gitlens:disabled && !gitlens:disabledToggleCodeLens && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g";
-      command = "-workbench.action.terminal.openDetectedLink";
-      when = "accessibleViewIsShown && terminalHasBeenCreated && accessibleViewCurrentProviderId == 'terminal'";
-    }
-    {
-      key = "ctrl+shift+g g";
-      command = "-workbench.view.scm";
-      when = "workbench.scm.active && !gitlens:disabled && config.gitlens.keymap == 'chorded'";
-    }
-    {
-      key = "ctrl+shift+g";
-      command = "-workbench.view.scm";
-      when = "workbench.scm.active";
-    }
-    {
-      key = "ctrl+shift+s";
-      command = "-workbench.action.files.saveAs";
-    }
-    {
-      key = "ctrl+shift+s";
-      command = "-workbench.action.files.saveLocalFile";
-      when = "remoteFileDialogVisible";
-    }
-    {
-      key = "ctrl+shift+r";
-      command = "-editor.action.refactor";
-      when = "editorHasCodeActionsProvider && textInputFocus && !editorReadonly";
-    }
-    {
-      key = "ctrl+shift+r";
-      command = "-rerunSearchEditorSearch";
-      when = "inSearchEditor";
-    }
-    {
-      key = "ctrl+shift+r";
-      command = "-workbench.action.quickOpenNavigatePreviousInRecentFilesPicker";
-      when = "inQuickOpen && inRecentFilesPicker";
-    }
-    {
-      key = "shift+alt+up";
-      command = "-editor.action.insertCursorAbove";
-      when = "editorTextFocus";
-    }
-    {
-      key = "shift+alt+up";
-      command = "-notebook.cell.copyUp";
-      when = "notebookEditorFocused && !inputFocus";
-    }
-    {
-      key = "shift+alt+down";
-      command = "-editor.action.insertCursorBelow";
-      when = "editorTextFocus";
-    }
-    {
-      key = "shift+alt+down";
-      command = "-notebook.cell.copyDown";
-      when = "notebookEditorFocused && !inputFocus";
+      when = "editorTextFocus && !editorReadonly";
     }
     {
       key = "shift+alt+down";
       command = "editor.action.copyLinesDownAction";
-      when = "editorTextFocus && !editorReadonly";
-    }
-    {
-      key = "ctrl+shift+alt+up";
-      command = "-editor.action.copyLinesUpAction";
       when = "editorTextFocus && !editorReadonly";
     }
   ];
