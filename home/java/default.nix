@@ -114,5 +114,5 @@ in
     openjdk17
   ];
 
-  home.file.".config/JetBrains/InteliJIdea2025.1/keymaps/lsmda.xml".text = keymaps;
+  home.file.".config/JetBrains/IntelliJIdea2025.1/keymaps/lsmda.xml".text = keymaps;
 }
