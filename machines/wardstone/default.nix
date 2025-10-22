@@ -19,6 +19,7 @@ in
     ./hardware.nix
 
     ../../system/caddy
+    ../../system/cloudflared
     ../../system/fonts
     ../../system/keyd
     ../../system/kimai

@@ -51,6 +51,7 @@ let
     dive # explore docker images
     fzf
     gcc
+    cloudflared
     gnumake
     go
     glow # render markdown on CLI
@@ -82,7 +83,6 @@ in
 
 {
   imports = [
-    ../../packages/cloudflared
     ../../packages/obsidian
     ../../packages/quickshell
   ];

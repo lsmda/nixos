@@ -3,7 +3,7 @@ keys:
   - &thornmail age1588vpcs2zagn3mhjrv97t6xvnzc4n7pfykulg4mcwe8h24dres5qq24usf
   - &wardstone age1qgdfyx67sed3rnd2esq8rc534rsvzdcdunyg7ftr786z5jrltc2sxjtewt
 creation_rules:
-  - path_regex: secrets/*
+  - path_regex: ./**
     key_groups:
       - age:
           - *spellbook

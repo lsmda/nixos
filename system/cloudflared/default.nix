@@ -1,6 +1,12 @@
-{ lib, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
+  inherit (pkgs) lib;
+  inherit (import ../../utils { inherit config pkgs; }) fromBinary;
+
+  fqdn = config.www.fqdn;
+  secrets = config.sops.secrets;
+
   cloudflared = pkgs.buildGoModule rec {
     pname = "cloudflared";
     version = "2025.9.1";
@@ -91,5 +97,23 @@ let
 in
 
 {
-  home.packages = lib.mkIf pkgs.stdenv.isAarch64 [ cloudflared ];
+  sops.secrets."cloudflare/rpi-4" = fromBinary ./secrets/rpi-4;
+
+  services.cloudflared = {
+    enable = true;
+    package = cloudflared;
+    tunnels = {
+      "rpi-4" = {
+        credentialsFile = "${secrets."cloudflare/rpi-4".path}";
+        ingress = lib.mkIf pkgs.stdenv.isAarch64 {
+          "${fqdn}" = "https://127.0.0.1";
+          "cv.${fqdn}" = "https://127.0.0.1";
+          "kimai.${fqdn}" = "https://127.0.0.1";
+          "ssh.${fqdn}" = "ssh://127.0.0.1:22";
+        };
+        originRequest.originServerName = "${fqdn}";
+        default = "http_status:404";
+      };
+    };
+  };
 }

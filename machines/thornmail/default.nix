@@ -15,6 +15,7 @@ in
 
     ../../system/bluetooth
     ../../system/boot
+    ../../system/cloudflared
     ../../system/environment
     ../../system/fonts
     ../../system/keyd

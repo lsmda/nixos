@@ -1,9 +1,10 @@
-{ config, lib, ... }:
+{ config, pkgs, ... }:
 
 let
-  inherit (import ../../utils { inherit config pkgs; }) fromBinary fromYaml withOwner;
+  inherit (pkgs) lib;
+  inherit (import ../../utils { inherit config pkgs; }) fromBinary withOwner;
 
-  fqdn = "lsmda.pm";
+  fqdn = config.www.fqdn;
   secrets = config.sops.secrets;
 in
 
@@ -16,32 +17,10 @@ in
   };
 
   config = {
-    sops.secrets."cloudflare/rpi-4" = fromBinary ../../secrets/cloudflare/rpi-4;
+    www.fqdn = "lsmda.pm";
 
-    sops.secrets."${fqdn}/key.pem" = withOwner "caddy" (fromBinary ../../secrets/${fqdn}/key.pem);
-    sops.secrets."${fqdn}/cert.pem" = withOwner "caddy" (fromBinary ../../secrets/${fqdn}/cert.pem);
-
-    sops.secrets."www/cv" = fromYaml ../../../secrets/system.yaml;
-    sops.secrets."www/lsmda" = fromYaml ../../../secrets/system.yaml;
-
-    www.fqdn = fqdn;
-
-    services.cloudflared = {
-      enable = true;
-      tunnels = {
-        "rpi-4" = {
-          credentialsFile = "${secrets."cloudflare/rpi-4".path}";
-          ingress = {
-            "${fqdn}" = "https://127.0.0.1";
-            "cv.${fqdn}" = "https://127.0.0.1";
-            "kimai.${fqdn}" = "https://127.0.0.1";
-            "ssh.${fqdn}" = "ssh://127.0.0.1:22";
-          };
-          originRequest.originServerName = "${fqdn}";
-          default = "http_status:404";
-        };
-      };
-    };
+    sops.secrets."${fqdn}/key.pem" = withOwner "caddy" (fromBinary ./secrets/${fqdn}.key.pem);
+    sops.secrets."${fqdn}/cert.pem" = withOwner "caddy" (fromBinary ./secrets/${fqdn}.cert.pem);
 
     services.caddy = {
       enable = true;
