@@ -55,6 +55,8 @@ let
       workbench.sideBar.location = "right";
       workbench.startupEditor = "none";
       workbench.tree.indent = 15;
+      workbench.layoutControl.enabled = false;
+      workbench.navigationControl.enabled = false;
     }
     // {
       accessibility.verbosity.inlineChat = false;
@@ -86,7 +88,8 @@ let
       update.mode = "none";
       update.showReleaseNotes = false;
       window.menuBarVisibility = "toggle";
-      "window.zoomLevel" = 2;
+      window.zoomLevel = 2;
+      window.commandCenter = false;
     }
   );
 
