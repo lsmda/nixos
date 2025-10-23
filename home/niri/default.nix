@@ -50,7 +50,7 @@ in
         Requisite = "graphical-session.target";
       };
       Service = {
-        ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3250 -T 3300";
+        ExecStart = "${pkgs.wlsunset}/bin/wlsunset -l 37.2 -L -8.4 -t 3000 -T 3001";
         Restart = "on-failure";
       };
       Install.WantedBy = [ "niri.service" ];
