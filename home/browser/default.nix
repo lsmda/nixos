@@ -431,7 +431,6 @@
         ];
       in
       {
-        enable = true;
         defaultApplications = builtins.listToAttrs (
           map (mimeType: {
             name = mimeType;
