@@ -2,19 +2,15 @@
   config.programs.waybar = {
     settings.main = {
       tray = {
-        icon-size = 17;
-        spacing = 8;
+        icon-size = 18;
+        spacing = 10;
         cursor = true;
       };
     };
     style = ''
       #tray {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-      #tray menu {
-        margin-left: 20px;
-        margin-right: 20px;
+        margin-left: 8px;
+        margin-right: 8px;
       }
     '';
   };
