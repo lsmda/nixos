@@ -63,6 +63,7 @@ in
         ../../home/gpg
         ../../home/gtk
         ../../home/helix
+        ../../home/java
         ../../home/mpv
         ../../home/packages
         ../../home/shell
